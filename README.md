@@ -1,6 +1,6 @@
 # Octopus Browser
 
-The ULTIMATE Browser for Ubuntu Tpuch
+An experamental Browser for Ubuntu Touch
 
 ## License
 

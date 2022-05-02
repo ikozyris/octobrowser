@@ -10,6 +10,6 @@
         }
     },
     "version": "@BUILD_VERSION@",
-    "maintainer": "Ioannis Kozyris <ioannis.kozyris@outlook.com>",
+    "maintainer": "ikozyris <me0qgrfli@relay.firefox.com>>",
     "framework" : "@CLICK_FRAMEWORK@"
 }

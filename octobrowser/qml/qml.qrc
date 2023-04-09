@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/qml">
+        <file>MainPage.qml</file>
+        <file>Main.qml</file>
+        <file>Settings.qml</file>
+        <file>About.qml</file>
+    </qresource>
+</RCC>

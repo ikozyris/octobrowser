@@ -1,0 +1,15 @@
+{
+    "name": "octobrowser.ikozyris",
+    "description": "Browse the WWW like an octopus.",
+    "architecture": "@CLICK_ARCH@",
+    "title": "Octopus Browser",
+    "hooks": {
+        "octobrowser": {
+            "apparmor": "octobrowser.apparmor",
+            "desktop":  "octobrowser.desktop"
+        }
+    },
+    "version": "@BUILD_VERSION@",
+    "maintainer": "ikozyris <none@none.none>",
+    "framework" : "@CLICK_FRAMEWORK@"
+}

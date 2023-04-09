@@ -30,7 +30,7 @@ stages:
   stage: *stage_build
   script:
     - 'clickable clean'
-    - 'clickable build --accept-review-errors'
+    - 'clickable build'
   artifacts:
     expire_in: '1 week'
 

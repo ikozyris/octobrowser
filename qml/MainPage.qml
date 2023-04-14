@@ -21,7 +21,6 @@ import QtWebEngine 1.7
 import Ubuntu.Components 1.3
 import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
-//import "GetUrl.js" as GetUrl
 
 Page {
     id: mainPage
@@ -131,9 +130,7 @@ Page {
                 //urltogo = geturl(textFieldInput.text),
                 //urltogo = textFieldInput.text
                 webview.url = urltogo,
-                webview.visible = true,
-                webview.stop(),
-                webview.reload()
+                webview.visible = true
             }
         }
 

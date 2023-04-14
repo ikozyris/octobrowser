@@ -56,7 +56,7 @@ stages:
 #  image: *image_clickable_amd64
 #  artifacts:
 #    paths: *paths_amd64
-xenial_all_click:
+focal_all_click:
   extends: '.build_click'
   image: *image_clickable_amd64
   artifacts:

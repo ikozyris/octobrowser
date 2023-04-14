@@ -70,7 +70,7 @@ Page {
                 linkColor: UbuntuColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: i18n.tr("An experamental browser for Ubuntu Touch. Its main ")
+                text: i18n.tr("An experamental browser for Ubuntu Touch. Not ready for daily use yet")
             }
 
             Label {

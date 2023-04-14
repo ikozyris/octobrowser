@@ -6,9 +6,9 @@ Features:
 - Automatically load images On/Off
 
 Additonally you can move the top bar to the bottom for One-handed mode. 
-To do that, you need to do the following to the file in ```qml/MainPage.qml```:
-Comment line 50, uncomment line 53
-Comment lines 149, 153 and Uncomment lines 150, 154 
+To do that, you need to do the following to the file in ```qml/MainPage.qml```:<br>
+Comment line 50, uncomment line 53<br>
+Comment lines 149, 153 and Uncomment lines 150, 154 <br>
 
 
 DISCLAIMER: Many things do not work, here is a TODO list sorted by priority:

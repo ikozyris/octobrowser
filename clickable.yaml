@@ -1,5 +1,6 @@
-clickable_minimum_required: 7.1.2
+clickable_minimum_required: 7.7.2
 builder: pure-qml-cmake
 kill: qmlscene
 dependencies_target:
 - 'qml-module-qtquick-controls'
+framework: "ubuntu-sdk-20.04"

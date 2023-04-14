@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 import QtQuick 2.9
-import Ubuntu.Components 1.3
+import Lomiri.Components 1.3
 
 Page {
     id: aboutPage
@@ -48,7 +48,7 @@ Page {
                 fontSize: "x-large"
             }
 
-            UbuntuShape {
+            LomiriShape {
                 width: units.gu(12); height: units.gu(12)
                 anchors.horizontalCenter: parent.horizontalCenter
                 radius: "medium"
@@ -59,7 +59,7 @@ Page {
 
             Label {
                 width: parent.width
-                linkColor: UbuntuColors.orange
+                linkColor: LomiriColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 text: i18n.tr("Version: 0.1")
@@ -67,15 +67,15 @@ Page {
 
             Label {
                 width: parent.width
-                linkColor: UbuntuColors.orange
+                linkColor: LomiriColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: i18n.tr("An experamental browser for Ubuntu Touch. Not ready for daily use yet")
+                text: i18n.tr("An experamental browser for Ubuntu Touch. Its main ")
             }
 
             Label {
                 width: parent.width
-                linkColor: UbuntuColors.orange
+                linkColor: LomiriColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 //TRANSLATORS: Please make sure the URLs are correct
@@ -85,7 +85,7 @@ Page {
 
             Label {
                 width: parent.width
-                linkColor: UbuntuColors.orange
+                linkColor: LomiriColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 text: "<a href='https://gitlab.com/ikozyris/octobrowser/'>" + i18n.tr("SOURCE") + "</a>"
@@ -94,7 +94,7 @@ Page {
             
             Label {
                 width: parent.width
-                linkColor: UbuntuColors.orange
+                linkColor: LomiriColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 style: Font.Bold
@@ -106,7 +106,7 @@ Page {
            
             Label {
                 width: parent.width
-                linkColor: UbuntuColors.orange
+                linkColor: LomiriColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 style: Font.Bold

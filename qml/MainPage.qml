@@ -18,7 +18,7 @@ import QtQuick 2.9
 //import QtQuick.Controls 2.2
 //import Morph.Web 0.1
 import QtWebEngine 1.11
-import Ubuntu.Components 1.3
+import Lomiri.Components 1.3
 import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
 //import "GetUrl.js" as GetUrl

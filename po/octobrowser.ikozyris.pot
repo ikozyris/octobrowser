@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-09 19:29+0000\n"
+"POT-Creation-Date: 2023-04-14 18:39+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/About.qml:23 ../qml/MainPage.qml:78
+#: ../qml/About.qml:23 ../qml/MainPage.qml:127
 msgid "About"
 msgstr ""
 
@@ -30,7 +30,7 @@ msgid "Version: 0.1"
 msgstr ""
 
 #: ../qml/About.qml:73
-msgid "An experamental browser for Ubuntu Touch."
+msgid "An experamental browser for Ubuntu Touch. Its main "
 msgstr ""
 
 #. TRANSLATORS: Please make sure the URLs are correct
@@ -47,15 +47,7 @@ msgid ""
 msgstr ""
 
 #: ../qml/About.qml:91
-msgid "ISSUES"
-msgstr ""
-
-#: ../qml/About.qml:91
 msgid "SOURCE"
-msgstr ""
-
-#: ../qml/About.qml:91
-msgid "WEBSITE"
 msgstr ""
 
 #: ../qml/About.qml:101
@@ -64,35 +56,64 @@ msgstr ""
 
 #: ../qml/About.qml:113
 msgid ""
-"Thanks to LogViewer, Indicator Weather and Qt webkit demo,\n"
-" This is my second qml app so expect many bugs!."
+"Thanks to the LogViewer app for the Settings page, and to Qt WebEngine demo "
+"app for the basics of QtWebEngine\n"
 msgstr ""
 
-#: ../qml/MainPage.qml:39
-msgid "website"
+#: ../qml/Help.qml:26 ../qml/MainPage.qml:132
+msgid "Help"
 msgstr ""
 
-#: ../qml/MainPage.qml:56
+#: ../qml/Help.qml:44
+msgid ""
+"In the address bar, you should put a VALID URL with the following format:\n"
+"http://www.example.com/index.html , which indicates a protocol (http),a "
+"hostname (www.example.com), and a file name (index.html).\n"
+"Anything will be treated as a search query and passed to duckduckgo.\n"
+"A common mistake is to forget to specicify the protocol"
+msgstr ""
+
+#: ../qml/MainPage.qml:78
 msgid "Forward"
 msgstr ""
 
-#: ../qml/MainPage.qml:62
+#: ../qml/MainPage.qml:84
 msgid "back"
 msgstr ""
 
-#: ../qml/MainPage.qml:72 ../qml/Settings.qml:13
+#: ../qml/MainPage.qml:105
+msgid "Enter a URL or a search query"
+msgstr ""
+
+#: ../qml/MainPage.qml:122 ../qml/Settings.qml:33
 msgid "Settings"
 msgstr ""
 
-#: ../qml/Settings.qml:17
+#: ../qml/MainPage.qml:137
+msgid "Exit"
+msgstr ""
+
+#: ../qml/Settings.qml:37
 msgid "Cancel"
 msgstr ""
 
-#: ../qml/Settings.qml:26
+#: ../qml/Settings.qml:46
 msgid "Apply"
 msgstr ""
 
-#: ../qml/Settings.qml:49
+#: ../qml/Settings.qml:69
 #, javascript-format
 msgid "Zoom level: %1%"
+msgstr ""
+
+#: ../qml/Settings.qml:113
+msgid "User Agent:"
+msgstr ""
+
+#: ../qml/Settings.qml:135
+msgid "Enable JavaScipt:"
+msgstr ""
+
+#: ../qml/Settings.qml:156
+msgid "Autoload Images:"
 msgstr ""

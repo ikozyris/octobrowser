@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022  ikozyris
+ * Copyright (C) 2023  ikozyris
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ Page {
                 linkColor: UbuntuColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: i18n.tr("An experamental browser for Ubuntu Touch.")
+                text: i18n.tr("An experamental browser for Ubuntu Touch. Its main ")
             }
 
             Label {
@@ -88,7 +88,7 @@ Page {
                 linkColor: UbuntuColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: "<a href='https://github.com/ikozyris/octobrowser/'>" + i18n.tr("SOURCE") + "</a> | <a href='https://github.com/ikozyris/octobrowser/issues'>" + i18n.tr("ISSUES") + "</a> | <a href='https://www.kozyweb.tk/manyclocks'>" + i18n.tr("WEBSITE") + "</a>"
+                text: "<a href='https://gitlab.com/ikozyris/octobrowser/'>" + i18n.tr("SOURCE") + "</a>"
                 onLinkActivated: Qt.openUrlExternally(link)
             }
             
@@ -98,7 +98,7 @@ Page {
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 style: Font.Bold
-                text: i18n.tr("Maintainer") + " (c) 2021 - 2022 ikozyris\n I won't be able to reply to emails and I only receive up to 10MB including attachments."
+                text: i18n.tr("Maintainer") + " (c) 2023 ikozyris\n"
                 
             }            
 
@@ -110,7 +110,7 @@ Page {
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 style: Font.Bold
-                text: i18n.tr("Thanks to LogViewer, Indicator Weather and Qt webkit demo,\n This is my second qml app so expect many bugs!.") 
+                text: i18n.tr("Thanks to the LogViewer app for the Settings page, and to Qt WebEngine demo app for the basics of QtWebEngine\n") 
            }
         }
     }

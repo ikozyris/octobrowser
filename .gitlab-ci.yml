@@ -1,63 +1,47 @@
 ---
 ###############################################################################
-# Define all YAML node anchors
+# Define defaults and template anchors
 ###############################################################################
-.node_anchors:
-  # `stage`
-  stage_build: &stage_build 'build'
-  # `image`
-  image_clickable_amd64: &image_clickable_amd64 'clickable/ci-16.04-amd64'
-  #image_clickable_arm64: &image_clickable_arm64 'clickable/ci-16.04-arm64'
-  #image_clickable_armhf: &image_clickable_armhf 'clickable/ci-16.04-armhf'
-  # `artifacts.paths` 
-  #paths_amd64: &paths_amd64
-  #  - 'build/x86_64-linux-gnu/app/*.click'
-  #paths_arm64: &paths_arm64
-  #  - 'build/aarch64-linux-gnu/app/*.click'
-  #paths_armhf: &paths_armhf
-  #  - 'build/arm-linux-gnueabihf/app/*.click'
-  paths_all: &paths_all
-    - 'build/all/app/*.click'
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+  DOCKER_DRIVER: overlay2
+  CLICKABLE_VERSION: "7"
+  UT_VERSION: "16.04"
+
+default:
+  image: "clickable/ci-$UT_VERSION-amd64:$CLICKABLE_VERSION"
 
 ###############################################################################
 # Define stages
 ###############################################################################
 stages:
-  - *stage_build
+- build
+- publish
 
 ###############################################################################
-# Define `build` template
+# `build` stage: build the click
 ###############################################################################
-.build_click:
-  stage: *stage_build
+build:
+  stage: build
   script:
-    - 'clickable clean'
-    - 'clickable build'
+  - clickable build
   artifacts:
-    expire_in: '1 week'
+    paths:
+    - build/all/app/*.click
+    expire_in: 1 week
 
 ###############################################################################
-# `build` stage: build clicks for `armhf`, `arm64` & `amd64`
+# `release` stage: upload to OpenStore on tags
 ###############################################################################
-#xenial_armhf_click:
-##  extends: '.build_click'
-#  image: *image_clickable_armhf
-#  artifacts:
-#    paths: *paths_armhf
-
-#xenial_arm64_click:
-#  extends: '.build_click'
-#  image: *image_clickable_arm64
-#  artifacts:
-#    paths: *paths_arm64
-
-#xenial_amd64_click:
-#  extends: '.build_click'
-#  image: *image_clickable_amd64
-#  artifacts:
-#    paths: *paths_amd64
-xenial_all_click:
-  extends: '.build_click'
-  image: *image_clickable_amd64
+publish:
+  stage: publish
+  rules:
+  - if: $CI_COMMIT_TAG
+  script:
+  - 'clickable publish --arch amd64 -- "$CI_COMMIT_MESSAGE"'
+  dependencies:
+  - build
   artifacts:
-    paths: *paths_all
+    paths:
+    - build/all/app/*.click
+    expire_in: 1 month

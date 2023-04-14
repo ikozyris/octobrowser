@@ -14,31 +14,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 import QtQuick 2.9
-import QtQuick.Controls 2.2
-import QtWebEngine 1.7
+//import QtQuick.Controls 2.2
+//import Morph.Web 0.1
+import QtWebEngine 1.11
 import Ubuntu.Components 1.3
 import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
+//import "GetUrl.js" as GetUrl
 
 Page {
     id: mainPage
     anchors.fill: parent
 
-    function isurl(s) {/*
-        var strRegex = "^((https|http|ftp|rtsp|mms)?://)"
-            + "?(([0-9a-z_!~*'().&=+$%-]+: )?[0-9a-z_!~*'().&=+$%-]+@)?" //ftp user@
-            + "(([0-9]{1,3}\.){3}[0-9]{1,3}" // IP 99.194.52.184
-            + "|" // DOMAIN
-            + "([0-9a-z_!~*'()-]+\.)*" //  www.
-            + "([0-9a-z][0-9a-z-]{0,61})?[0-9a-z]\." // 
-            + "[a-z]{2,6})" // first level domain- .com or .museum
-            + "(:[0-9]{1,4})?" // :80
-            + "((/?)|" // a slash isn't required if there is no file name
-            + "(/[0-9a-z_!~*'().;?:@&=+$,%#-]+)+/?)$";
-         var re=new RegExp(strRegex);
-         return re.test(url);*/
+    function isurl(s) {
         var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
         return regexp.test(s);
     }
@@ -55,37 +44,31 @@ Page {
             return query;
         }
     }
-/*
-    function geturl(text) {
-        let newUrl = decodeURIComponent(text);
-        newUrl = newUrl.trim().replace(/\s/g, "");
-
-        if(/^(:\/\/)/.test(newUrl)){
-            return `http${newUrl}`;
-        }
-        if(!/^(f|ht)tps?:\/\//i.test(newUrl)){
-            return `http://${newUrl}`;
-        }
-
-        return newUrl;
-    }*/
-
-    property string urltogo: ""
 
     header: PageHeader {
         id: pageHeader
-        anchors.top: parent.top
+        anchors.top: parent.top //if bar is on top
             //anchors.top: preferences.adrpos === 1 ? parent.top  :  undefined
             //anchors.bottom: preferences.adrpos === 1 ? parent.bottom  :  undefined
-            //bottom: parent.bottom
-            /*State {
-                name: "anchorBottom"
-                AnchorChanges {
-                    target: pageHeader
-                    anchors.top: undefined  //remove the top anchor
-                    anchors.bottom: parent.bottom
+            //bottom: parent.bottom //if bar is on bottom
+            /*states: [
+                State {
+                    name: "anchorBottom"
+                    AnchorChanges {
+                        target: pageHeader
+                        anchors.top: undefined  //remove the top anchor
+                        anchors.bottom: parent.bottom
+                    }
+                },
+                State {
+                    name: "anchorTop"
+                    AnchorChanges {
+                        target: pageHeader
+                        anchors.bottom: undefined //remove the bottom anchor
+                        anchors.top: parent.top  
+                    }
                 }
-            }*/
+            ]*/
         leadingActionBar {
             numberOfSlots: 3
             actions: [
@@ -119,7 +102,7 @@ Page {
                 right: parent.right
                 rightMargin: 0.11*parent.width
         	}
-        	placeholderText: i18n.tr('Enter website here')
+        	placeholderText: i18n.tr('Enter a URL or a search query')
             inputMethodHints: {
                 Qt.ImhNoAutoUppercase,
                 Qt.ImhUrlCharactersOnly,
@@ -127,9 +110,6 @@ Page {
             }
             onAccepted: {
                 webview.url = geturl(textFieldInput.text),
-                //urltogo = geturl(textFieldInput.text),
-                //urltogo = textFieldInput.text
-                webview.url = urltogo,
                 webview.visible = true
             }
         }
@@ -148,6 +128,11 @@ Page {
                     onTriggered: pStack.push(Qt.resolvedUrl("About.qml"));
                 },
                 Action {
+                    iconName: "help"
+                    text: i18n.tr("Help")
+                    onTriggered: pStack.push(Qt.resolvedUrl("Help.qml"));
+                },
+                Action {
                     iconName: "close"
                     text: i18n.tr("Exit")
                     onTriggered: Qt.quit()
@@ -160,39 +145,39 @@ Page {
     WebEngineView {
         id: webview
         visible: false
-        anchors {/*
-            top: pageHeader.bottom
-            topMargin: units.gu(0)
+        anchors {
+            top: pageHeader.bottom 
+            //top: parent.top //if bar is on bottom
             left: parent.left
             right: parent.right
+            bottom: parent.bottom 
+            //bottom: pageHeader.top //for bottom
+        	topMargin: units.gu(0)
 	        rightMargin: units.gu(0)
-            bottom: parent.bottom
         }/*
-        State {
-        name: "anchorBottom"
-            AnchorChanges {
-                target: webview
-                anchors.top: parent.top
-                anchors.bottom: pageHeader.top
+        states: [
+            State {
+            name: "anchorBottom"
+                AnchorChanges {
+                    target: webview
+                    anchors.top: parent.top
+                    anchors.bottom: pageHeader.top
+                }
+            },
+            State {
+                name: "anchorTop"
+                AnchorChanges {
+                    target: webview
+                    anchors.top: pageHeader.bottom
+                    anchors.bottom: parent.bottom
+                }
             }
-        }
-       
-            top: parent.top
-        	topMargin: units.gu(0)
-            left: parent.left
-            bottom: pageHeader.top
-            right: parent.right
-	        rightMargin: units.gu(0)
-        }*/
-            top: pageHeader.bottom
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        	topMargin: units.gu(0)
-	        rightMargin: units.gu(0)
-        }
-        url: urltogo
+        ]*/
+        url: "about:blank"
         zoomFactor: preferences.zoomlevel / 100
+        settings.javascriptEnabled: preferences.js
+        settings.autoLoadImages: preferences.loadimages
+        //settings.webRTCPublicInterfacesOnly: true
         profile: webViewProfile
         onLoadingChanged: {
             if(loadRequest.errorString)
@@ -209,8 +194,4 @@ Page {
         httpCacheType: WebEngineProfile.DiskHttpCache; //cache qml content to file
         httpUserAgent: preferences.cmuseragent
     }
-/*
-    Component.onCompleted: {
-        webview.stop()
-    }*/
 }

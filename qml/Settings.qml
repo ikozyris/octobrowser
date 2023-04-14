@@ -20,10 +20,11 @@ import Ubuntu.Components 1.3
 Page {
     id: settingPage
 
-
     property alias zoomlevel: zoomslider.value
-    property alias adrpos: posselector.selectedIndex
+    //property alias adrpos: posselector.selectedIndex
     property alias cmuseragent: uatext.text
+    property alias js: jsswitch.checked
+    property alias loadimages: imagswitch.checked
 
     signal applyChanges
     signal cancelChanges
@@ -59,7 +60,7 @@ Page {
             id: column
             width: scrollView.width
 
-            property int mSpacing: units.gu(1)
+            property int mSpacing: units.gu(2)
 
             ListItem {
                 height: zoomlabel.height + zoomslider.height + column.mSpacing
@@ -86,7 +87,7 @@ Page {
                         right: parent.right; rightMargin: units.gu(1)
                     }
                 }
-            }
+            }/*
             ListItem {
                 height: posselector.height + column.mSpacing
                 OptionSelector {
@@ -104,7 +105,7 @@ Page {
                         right: parent.right; rightMargin: units.gu(1)
                     }
                 }
-            }
+            }*/
             ListItem {
                 height: ualabel.height + uatext.height + 2 * column.mSpacing
                 Label {
@@ -116,13 +117,56 @@ Page {
                         right: parent.right; rightMargin: units.gu(1)
                     }
                 }
-                TextField {
+                TextArea {
                     id: uatext
+                    maximumLineCount: 3
                     width: parent.width
                     anchors.top: ualabel.bottom
                     anchors {
                         left: parent.left; leftMargin: units.gu(1)
                         right: parent.right; rightMargin: units.gu(1)
+                    }
+                }
+            }
+            ListItem {
+                height: jslabel.height + jsswitch.height + column.mSpacing
+                Label {
+                    id: jslabel
+                    text: i18n.tr("Enable JavaScipt:")
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        left: parent.left; leftMargin: units.gu(1)
+                        //right: parent.right; rightMargin: units.gu(1)
+                    }
+                }
+                Switch {
+                    id: jsswitch
+                    checked: true
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        right: parent.right; rightMargin: units.gu(1)
+                        //left: jslabel.left; leftMargin: units.gu(1)
+                    }
+                }
+            }
+            ListItem {
+                height: imaglabel.height + imagswitch.height + column.mSpacing
+                Label {
+                    id: imaglabel
+                    text: i18n.tr("Autoload Images:")
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        left: parent.left; leftMargin: units.gu(1)
+                        //right: parent.right; rightMargin: units.gu(1)
+                    }
+                }
+                Switch {
+                    id: imagswitch
+                    checked: true
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        right: parent.right; rightMargin: units.gu(1)
+                        //left: imaglabel.left; leftMargin: units.gu(1)
                     }
                 }
             }

@@ -1,4 +1,4 @@
-*
+/*
  * Copyright (C) 2023  ikozyris
  *
  * This program is free software: you can redistribute it and/or modify
@@ -17,6 +17,7 @@
 import QtQuick 2.9
 import Ubuntu.Components 1.3
 import Qt.labs.settings 1.0
+import "/qml/MainPage.qml" as MainPage
 
 MainView {
     id: mainView
@@ -31,8 +32,10 @@ MainView {
     Settings {
         id: preferences
         property int zoomlevel: 100
-        property int adrpos: 1
-        property string cmuseragent: "Mozilla/5.0 (Linux; Android 9) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Mobile Safari/537.36"
+        //property int adrpos: 1
+        property string cmuseragent: "Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Mobile Safari/537.36"
+        property bool js: true
+        property bool loadimages: true
     }
 
     PageStack {
@@ -46,17 +49,21 @@ MainView {
     function showSettings() {
         var prop = {
             zoomlevel: preferences.zoomlevel,
-            adrpos: preferences.adrpos,
-            cmuseragent: preferences.cmuseragent
+            //adrpos: preferences.adrpos,
+            cmuseragent: preferences.cmuseragent,
+            js: preferences.js,
+            loadimages: preferences.loadimages
         }
 
         var slot_applyChanges = function(msettings) {
             console.log("Saving changes...")
             preferences.zoomlevel = msettings.zoomlevel;
-            preferences.adrpos = msettings.adrpos;
+            //preferences.adrpos = msettings.adrpos;
             preferences.cmuseragent = msettings.cmuseragent
-            //mainPage.pageHeader.state = "anchorBottom";
-            //mainPage.webview.state = "anchorBottom"
+            preferences.js = msettings.js
+            preferences.loadimages = msettings.loadimages
+            //MainPage.mainPage.pageHeader.state = "anchorBottom";
+            //MainPage.mainPage.webview.state = "anchorBottom"
         }
 
         var settingPage = pStack.push(Qt.resolvedUrl("Settings.qml"), prop);

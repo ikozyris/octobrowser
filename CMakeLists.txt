@@ -24,6 +24,11 @@ else()
     set(CLICK_FRAMEWORK "ubuntu-sdk-16.04.3")
 endif()
 
+# Compile before running, see: https://doc.qt.io/qt-5/qtquick-deployment.html#ahead-of-time-compilation
+find_package(Qt5QuickCompiler)
+#qtquick_compiler_add_resources
+
+
 # This figures out the target architecture for use in the manifest file.
 if(DEFINED ENV{ARCH})
     set(CLICK_ARCH "$ENV{ARCH}")

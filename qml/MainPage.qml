@@ -51,7 +51,7 @@ Page {
             //anchors.top: preferences.adrpos === 1 ? parent.top  :  undefined
             //anchors.bottom: preferences.adrpos === 1 ? parent.bottom  :  undefined
             //bottom: parent.bottom //if bar is on bottom
-            /*states: [
+            states: [
                 State {
                     name: "anchorBottom"
                     AnchorChanges {
@@ -68,7 +68,7 @@ Page {
                         anchors.top: parent.top  
                     }
                 }
-            ]*/
+            ]
         leadingActionBar {
             numberOfSlots: 3
             actions: [
@@ -102,12 +102,13 @@ Page {
                 right: parent.right
                 rightMargin: 0.11*parent.width
         	}
-        	placeholderText: i18n.tr('Enter a URL or a search query')
+        	placeholderText: i18n.tr('Enter a URL or a search query')/*
             inputMethodHints: {
                 Qt.ImhNoAutoUppercase,
                 Qt.ImhUrlCharactersOnly,
                 Qt.ImhNoPredictiveText
-            }
+            }*/
+            inputMethodHints: Qt.ImhUrlCharactersOnly
             onAccepted: {
                 webview.url = geturl(textFieldInput.text),
                 webview.visible = true
@@ -133,6 +134,14 @@ Page {
                     onTriggered: pStack.push(Qt.resolvedUrl("Help.qml"));
                 },
                 Action {
+                    iconName: pageHeader.state === "anchorBottom" ? "go-up" : "go-down"
+                    text: i18n.tr("Change bar position")
+                    onTriggered: {
+                        pageHeader.state === "anchorBottom" ? "anchorTop" : "anchorBottom",
+                        webview.state === "anchorBottom" ? "anchorTop" : "anchorBottom"
+                    }
+                },
+                Action {
                     iconName: "close"
                     text: i18n.tr("Exit")
                     onTriggered: Qt.quit()
@@ -146,15 +155,13 @@ Page {
         id: webview
         visible: false
         anchors {
-            top: pageHeader.bottom 
-            //top: parent.top //if bar is on bottom
+            top: pageHeader.bottom //parent.top //if bar is on bottom
             left: parent.left
             right: parent.right
-            bottom: parent.bottom 
-            //bottom: pageHeader.top //for bottom
+            bottom: parent.bottom //pageHeader.top //for bottom
         	topMargin: units.gu(0)
 	        rightMargin: units.gu(0)
-        }/*
+        }
         states: [
             State {
             name: "anchorBottom"
@@ -172,13 +179,18 @@ Page {
                     anchors.bottom: parent.bottom
                 }
             }
-        ]*/
+        ]
         url: "about:blank"
         zoomFactor: preferences.zoomlevel / 100
+
         settings.javascriptEnabled: preferences.js
         settings.autoLoadImages: preferences.loadimages
-        //settings.webRTCPublicInterfacesOnly: true
+        settings.webRTCPublicInterfacesOnly: preferences.webrtc
+        settings.pdfViewerEnabled: true
+        settings.showScrollBars: false
+        settings.allowRunningInsecureContent: preferences.securecontent
         profile: webViewProfile
+
         onLoadingChanged: {
             if(loadRequest.errorString)
                 console.error(loadRequest.errorString);
@@ -193,5 +205,10 @@ Page {
         persistentCookiesPolicy: WebEngineProfile.NoPersistentCookies; //do NOT store persistent cookies
         httpCacheType: WebEngineProfile.DiskHttpCache; //cache qml content to file
         httpUserAgent: preferences.cmuseragent
+    }
+
+    Component.onCompleted: {
+        pageHeader.state = "anchorBottom";
+        webview.state = "anchorBottom";
     }
 }

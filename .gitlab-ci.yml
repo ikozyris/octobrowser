@@ -62,4 +62,3 @@ xenial_all_click:
   artifacts:
     paths: *paths_all
 
-

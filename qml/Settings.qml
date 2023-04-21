@@ -25,6 +25,8 @@ Page {
     property alias cmuseragent: uatext.text
     property alias js: jsswitch.checked
     property alias loadimages: imagswitch.checked
+    property alias webrtc: rtcswitch.checked
+    property alias securecontent: insecswitch.checked
 
     signal applyChanges
     signal cancelChanges
@@ -136,7 +138,6 @@ Page {
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
                         left: parent.left; leftMargin: units.gu(1)
-                        //right: parent.right; rightMargin: units.gu(1)
                     }
                 }
                 Switch {
@@ -145,7 +146,6 @@ Page {
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
                         right: parent.right; rightMargin: units.gu(1)
-                        //left: jslabel.left; leftMargin: units.gu(1)
                     }
                 }
             }
@@ -157,7 +157,6 @@ Page {
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
                         left: parent.left; leftMargin: units.gu(1)
-                        //right: parent.right; rightMargin: units.gu(1)
                     }
                 }
                 Switch {
@@ -166,7 +165,44 @@ Page {
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
                         right: parent.right; rightMargin: units.gu(1)
-                        //left: imaglabel.left; leftMargin: units.gu(1)
+                    }
+                }
+            }
+            ListItem {
+                height: inseclabel.height + insecswitch.height + column.mSpacing
+                Label {
+                    id: inseclabel
+                    text: i18n.tr("Allow running insecure content:")
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        left: parent.left; leftMargin: units.gu(1)
+                    }
+                }
+                Switch {
+                    id: insecswitch
+                    checked: false
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        right: parent.right; rightMargin: units.gu(1)
+                    }
+                }
+            }
+            ListItem {
+                height: rtclabel.height + rtcswitch.height + column.mSpacing
+                Label {
+                    id: rtclabel
+                    text: i18n.tr("Limit WebRTC to public IP addresses only:")
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        left: parent.left; leftMargin: units.gu(1)
+                    }
+                }
+                Switch {
+                    id: rtcswitch
+                    checked: false
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        right: parent.right; rightMargin: units.gu(1)
                     }
                 }
             }

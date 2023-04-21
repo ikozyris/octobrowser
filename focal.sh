@@ -1,4 +1,4 @@
-echo "Moving base to 20.04 this script was NEVER tested, use at our own risk.\n You have 5 seconds to Ctrl-C before any damage has been done"
+echo "Moving base to 20.04. This script was NEVER tested, use at our own risk.\n You have 5 seconds to Ctrl-C before any damage has been done"
 sleep 5
 find -name '*.qml' | xargs -I {} sed -i 's/import Ubuntu\./import Lomiri./g' {}
 find -name '*.qml' | xargs -I {} sed -i 's/UbuntuAnimation/LomiriAnimation/g' {}

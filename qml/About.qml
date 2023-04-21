@@ -62,7 +62,7 @@ Page {
                 linkColor: UbuntuColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: i18n.tr("Version: 0.1")
+                text: i18n.tr("Version: 0.1.1")
             }
 
             Label {
@@ -70,7 +70,7 @@ Page {
                 linkColor: UbuntuColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: i18n.tr("An experamental browser for Ubuntu Touch. Not ready for daily use yet")
+                text: i18n.tr("An experamental browser for Ubuntu Touch. Its main purpose is testing various things. It currently lacks of features compared to modern browser.")
             }
 
             Label {
@@ -102,15 +102,14 @@ Page {
                 
             }            
 
-            
-           
             Label {
                 width: parent.width
                 linkColor: UbuntuColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 style: Font.Bold
-                text: i18n.tr("Thanks to the LogViewer app for the Settings page, and to Qt WebEngine demo app for the basics of QtWebEngine\n") 
+                text: i18n.tr("Thanks to the LogViewer app for the Settings page, and to Qt WebEngine demo app for the basics of QtWebEngine\n" +
+                              " The icon is a remix of the stock_website Suru icon with an octopus from svgrepo.com") 
            }
         }
     }

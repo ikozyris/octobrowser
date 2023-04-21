@@ -32,10 +32,12 @@ MainView {
     Settings {
         id: preferences
         property int zoomlevel: 100
-        //property int adrpos: 1
+        //property int adrpos: 0
         property string cmuseragent: "Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Mobile Safari/537.36"
         property bool js: true
         property bool loadimages: true
+        property bool securecontent: false
+        property bool webrtc: false
     }
 
     PageStack {
@@ -52,18 +54,19 @@ MainView {
             //adrpos: preferences.adrpos,
             cmuseragent: preferences.cmuseragent,
             js: preferences.js,
-            loadimages: preferences.loadimages
+            loadimages: preferences.loadimages,
+            webrtc: preferences.webrtc
         }
 
         var slot_applyChanges = function(msettings) {
             console.log("Saving changes...")
             preferences.zoomlevel = msettings.zoomlevel;
             //preferences.adrpos = msettings.adrpos;
-            preferences.cmuseragent = msettings.cmuseragent
-            preferences.js = msettings.js
-            preferences.loadimages = msettings.loadimages
-            //MainPage.mainPage.pageHeader.state = "anchorBottom";
-            //MainPage.mainPage.webview.state = "anchorBottom"
+            preferences.cmuseragent = msettings.cmuseragent;
+            preferences.js = msettings.js;
+            preferences.loadimages = msettings.loadimages;
+            preferences.securecontent = msettings.securecontent;
+            preferences.webrtc = msettings.webrtc;
         }
 
         var settingPage = pStack.push(Qt.resolvedUrl("Settings.qml"), prop);

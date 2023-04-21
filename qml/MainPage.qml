@@ -34,7 +34,7 @@ Page {
 
     function geturl(text) {
         if (isurl(text)) {
-            console.log("String is a valid url")
+            console.log("String is a valid URL")
             console.log(text)
             return text;
         } else {
@@ -111,7 +111,8 @@ Page {
             inputMethodHints: Qt.ImhUrlCharactersOnly
             onAccepted: {
                 webview.url = geturl(textFieldInput.text),
-                webview.visible = true
+                webview.visible = true,
+                textFieldInput.text = webview.url
             }
         }
 
@@ -137,8 +138,10 @@ Page {
                     iconName: pageHeader.state === "anchorBottom" ? "go-up" : "go-down"
                     text: i18n.tr("Change bar position")
                     onTriggered: {
-                        pageHeader.state === "anchorBottom" ? "anchorTop" : "anchorBottom",
-                        webview.state === "anchorBottom" ? "anchorTop" : "anchorBottom"
+                        //pageHeader.state === "anchorBottom" ? "anchorTop" : "anchorBottom",
+                        //webview.state === "anchorBottom" ? "anchorTop" : "anchorBottom"
+                        webview.state = "anchorTop",
+                        pageHeader.state = "anchorTop"
                     }
                 },
                 Action {
@@ -152,6 +155,7 @@ Page {
     }
 
     WebEngineView {
+//    WebView {
         id: webview
         visible: false
         anchors {
@@ -190,6 +194,7 @@ Page {
         settings.showScrollBars: false
         settings.allowRunningInsecureContent: preferences.securecontent
         profile: webViewProfile
+//        context: webcontext 
 
         onLoadingChanged: {
             if(loadRequest.errorString)
@@ -197,7 +202,7 @@ Page {
             else
                 console.info("Load web page successfull");
         }
-    }
+    } 
 
     WebEngineProfile {
         //for more profile options see https://doc.qt.io/qt-5/qml-qtwebengine-webengineprofile.html
@@ -205,10 +210,19 @@ Page {
         persistentCookiesPolicy: WebEngineProfile.NoPersistentCookies; //do NOT store persistent cookies
         httpCacheType: WebEngineProfile.DiskHttpCache; //cache qml content to file
         httpUserAgent: preferences.cmuseragent
-    }
+    }/*
+    WebContext {
+        id: webcontext
+        userAgent: preferences.cmuseragent
+    }*/
 
     Component.onCompleted: {
         pageHeader.state = "anchorBottom";
         webview.state = "anchorBottom";
+    }
+
+    Component.onDestruction: {
+        webview.stop()
+        console.log("Goodbye")
     }
 }

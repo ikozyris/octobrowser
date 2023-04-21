@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-14 18:39+0000\n"
+"POT-Creation-Date: 2023-04-20 14:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/About.qml:23 ../qml/MainPage.qml:127
+#: ../qml/About.qml:23 ../qml/MainPage.qml:129
 msgid "About"
 msgstr ""
 
@@ -26,11 +26,13 @@ msgid "Octopus Browser"
 msgstr ""
 
 #: ../qml/About.qml:65
-msgid "Version: 0.1"
+msgid "Version: 0.1.1"
 msgstr ""
 
 #: ../qml/About.qml:73
-msgid "An experamental browser for Ubuntu Touch. Its main "
+msgid ""
+"An experamental browser for Ubuntu Touch. Its main purpose is testing "
+"various things. It currently lacks of features compared to modern browser."
 msgstr ""
 
 #. TRANSLATORS: Please make sure the URLs are correct
@@ -54,23 +56,40 @@ msgstr ""
 msgid "Maintainer"
 msgstr ""
 
-#: ../qml/About.qml:113
+#: ../qml/About.qml:111
 msgid ""
 "Thanks to the LogViewer app for the Settings page, and to Qt WebEngine demo "
 "app for the basics of QtWebEngine\n"
+" The icon is a remix of the stock_website Suru icon with an octopus from "
+"svgrepo.com"
 msgstr ""
 
-#: ../qml/Help.qml:26 ../qml/MainPage.qml:132
+#: ../qml/Help.qml:26 ../qml/MainPage.qml:134
 msgid "Help"
 msgstr ""
 
-#: ../qml/Help.qml:44
+#: ../qml/Help.qml:45
+msgid "I entered a website in the address bar but it won't go there."
+msgstr ""
+
+#: ../qml/Help.qml:51
 msgid ""
-"In the address bar, you should put a VALID URL with the following format:\n"
-"http://www.example.com/index.html , which indicates a protocol (http),a "
-"hostname (www.example.com), and a file name (index.html).\n"
-"Anything will be treated as a search query and passed to duckduckgo.\n"
-"A common mistake is to forget to specicify the protocol"
+"In the address bar, you should put a VALID URL (not just a domain or a "
+"website) with the following format: http://www.example.com/index.html, which "
+"indicates a protocol (http),a hostname (www.example.com), and a file name "
+"(index.html).Anything will be treated as a search query and is passed to "
+"duckduckgo"
+msgstr ""
+
+#: ../qml/Help.qml:67
+msgid "What settings are recommended for best security & privacy"
+msgstr ""
+
+#: ../qml/Help.qml:73
+msgid ""
+"First of all, disable all switches. In addition using a common user agent "
+"can limit fingerprinting. Please note that currnently this browser is not "
+"the best in terms of security."
 msgstr ""
 
 #: ../qml/MainPage.qml:78
@@ -85,35 +104,47 @@ msgstr ""
 msgid "Enter a URL or a search query"
 msgstr ""
 
-#: ../qml/MainPage.qml:122 ../qml/Settings.qml:33
+#: ../qml/MainPage.qml:124 ../qml/Settings.qml:35
 msgid "Settings"
 msgstr ""
 
-#: ../qml/MainPage.qml:137
+#: ../qml/MainPage.qml:139
+msgid "Change bar position"
+msgstr ""
+
+#: ../qml/MainPage.qml:149
 msgid "Exit"
 msgstr ""
 
-#: ../qml/Settings.qml:37
+#: ../qml/Settings.qml:39
 msgid "Cancel"
 msgstr ""
 
-#: ../qml/Settings.qml:46
+#: ../qml/Settings.qml:48
 msgid "Apply"
 msgstr ""
 
-#: ../qml/Settings.qml:69
+#: ../qml/Settings.qml:71
 #, javascript-format
 msgid "Zoom level: %1%"
 msgstr ""
 
-#: ../qml/Settings.qml:113
+#: ../qml/Settings.qml:115
 msgid "User Agent:"
 msgstr ""
 
-#: ../qml/Settings.qml:135
+#: ../qml/Settings.qml:137
 msgid "Enable JavaScipt:"
 msgstr ""
 
 #: ../qml/Settings.qml:156
 msgid "Autoload Images:"
+msgstr ""
+
+#: ../qml/Settings.qml:175
+msgid "Allow running insecure content:"
+msgstr ""
+
+#: ../qml/Settings.qml:194
+msgid "Limit WebRTC to public IP addresses only:"
 msgstr ""

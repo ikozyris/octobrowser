@@ -111,8 +111,7 @@ Page {
             inputMethodHints: Qt.ImhUrlCharactersOnly
             onAccepted: {
                 webview.url = geturl(textFieldInput.text),
-                webview.visible = true,
-                textFieldInput.text = webview.url
+                webview.visible = true
             }
         }
 
@@ -189,7 +188,7 @@ Page {
 
         settings.javascriptEnabled: preferences.js
         settings.autoLoadImages: preferences.loadimages
-        settings.webRTCPublicInterfacesOnly: preferences.webrtc
+        settings.webRTCPublicInterfacesOnly: preferences.webrtc //this does NOT disable WebRTC
         settings.pdfViewerEnabled: true
         settings.showScrollBars: false
         settings.allowRunningInsecureContent: preferences.securecontent
@@ -197,6 +196,7 @@ Page {
 //        context: webcontext 
 
         onLoadingChanged: {
+            textFieldInput.text = webview.url //change text of bar
             if(loadRequest.errorString)
                 console.error(loadRequest.errorString);
             else
@@ -217,7 +217,7 @@ Page {
     }*/
 
     Component.onCompleted: {
-        pageHeader.state = "anchorBottom";
+        pageHeader.state = "anchorBottom"; //set bar to bottom
         webview.state = "anchorBottom";
     }
 

@@ -15,7 +15,7 @@
  */
 
 import QtQuick 2.9
-//import QtQuick.Controls 2.2
+import QtQuick.Controls 2.2
 //import Morph.Web 0.1
 import QtWebEngine 1.11
 import Ubuntu.Components 1.3
@@ -27,33 +27,51 @@ Page {
     id: mainPage
     anchors.fill: parent
 
-    function isurl(s) {
-        var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
+    property string barposition: preferences.adrpos === 1 ? "bottom" : "top";
+
+    function lookslikeurl(s) {
+        var regexp = /^(?:(?:(?:[a-zA-z\-]+)\:\/{1,3})?(?:[a-zA-Z0-9])(?:[a-zA-Z0-9\-\.]){1,61}(?:\.[a-zA-Z]{2,})+|\[(?:(?:(?:[a-fA-F0-9]){1,4})(?::(?:[a-fA-F0-9]){1,4}){7}|::1|::)\]|(?:(?:[0-9]{1,3})(?:\.[0-9]{1,3}){3}))(?:\:[0-9]{1,5})?$/;
         return regexp.test(s);
     }
-
+    function fixurl(string) {
+        //console.log(lookslikeurl(string))
+        if (lookslikeurl(uri)) {
+            //console.log("https://" + string);
+            return "https://" + string;
+        } else {
+            //console.log("bad");
+            return "bad";
+        }
+    }
+    function isurl(s) {
+        var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+        return regexp.test(s);
+    }
     function geturl(text) {
         if (isurl(text)) {
-            console.log("String is a valid URL")
-            console.log(text)
+            //console.log("String is a valid URL")
+            //console.log(text)
             return text;
         } else {
-            var query = "https://duckduckgo.com/?q=" + encodeURIComponent(text);
-            console.log("String is a query")
-            console.log(query)
-            return query;
+            var result = fixurl(text)
+            if (result != "bad") {
+                //console.log("String is a URI")
+                return result;
+            } else {
+                var query = "https://duckduckgo.com/?q=" + encodeURIComponent(text);
+                //console.log("String is a query")
+                //console.log(query)
+                return query;
+            }
         }
     }
 
     header: PageHeader {
         id: pageHeader
         anchors.top: parent.top //if bar is on top
-            //anchors.top: preferences.adrpos === 1 ? parent.top  :  undefined
-            //anchors.bottom: preferences.adrpos === 1 ? parent.bottom  :  undefined
-            //bottom: parent.bottom //if bar is on bottom
             states: [
                 State {
-                    name: "anchorBottom"
+                    name: "bottom"
                     AnchorChanges {
                         target: pageHeader
                         anchors.top: undefined  //remove the top anchor
@@ -61,7 +79,7 @@ Page {
                     }
                 },
                 State {
-                    name: "anchorTop"
+                    name: "top"
                     AnchorChanges {
                         target: pageHeader
                         anchors.bottom: undefined //remove the bottom anchor
@@ -93,7 +111,7 @@ Page {
         }
 
         TextField {
-        id: textFieldInput
+            id: textFieldInput
 	        anchors {
 	            top: parent.top
                 topMargin: units.gu(1)
@@ -102,6 +120,7 @@ Page {
                 right: parent.right
                 rightMargin: 0.11*parent.width
         	}
+            
         	placeholderText: i18n.tr('Enter a URL or a search query')/*
             inputMethodHints: {
                 Qt.ImhNoAutoUppercase,
@@ -134,16 +153,6 @@ Page {
                     onTriggered: pStack.push(Qt.resolvedUrl("Help.qml"));
                 },
                 Action {
-                    iconName: pageHeader.state === "anchorBottom" ? "go-up" : "go-down"
-                    text: i18n.tr("Change bar position")
-                    onTriggered: {
-                        //pageHeader.state === "anchorBottom" ? "anchorTop" : "anchorBottom",
-                        //webview.state === "anchorBottom" ? "anchorTop" : "anchorBottom"
-                        webview.state = "anchorTop",
-                        pageHeader.state = "anchorTop"
-                    }
-                },
-                Action {
                     iconName: "close"
                     text: i18n.tr("Exit")
                     onTriggered: Qt.quit()
@@ -167,7 +176,7 @@ Page {
         }
         states: [
             State {
-            name: "anchorBottom"
+            name: "bottom"
                 AnchorChanges {
                     target: webview
                     anchors.top: parent.top
@@ -175,7 +184,7 @@ Page {
                 }
             },
             State {
-                name: "anchorTop"
+                name: "top"
                 AnchorChanges {
                     target: webview
                     anchors.top: pageHeader.bottom
@@ -183,12 +192,11 @@ Page {
                 }
             }
         ]
-        url: "about:blank"
+        url: ""
         zoomFactor: preferences.zoomlevel / 100
-
         settings.javascriptEnabled: preferences.js
         settings.autoLoadImages: preferences.loadimages
-        settings.webRTCPublicInterfacesOnly: preferences.webrtc //this does NOT disable WebRTC
+        settings.webRTCPublicInterfacesOnly: preferences.webrtc
         settings.pdfViewerEnabled: true
         settings.showScrollBars: false
         settings.allowRunningInsecureContent: preferences.securecontent
@@ -196,7 +204,7 @@ Page {
 //        context: webcontext 
 
         onLoadingChanged: {
-            textFieldInput.text = webview.url //change text of bar
+            textFieldInput.text = webview.url
             if(loadRequest.errorString)
                 console.error(loadRequest.errorString);
             else
@@ -209,7 +217,7 @@ Page {
         id: webViewProfile
         persistentCookiesPolicy: WebEngineProfile.NoPersistentCookies; //do NOT store persistent cookies
         httpCacheType: WebEngineProfile.DiskHttpCache; //cache qml content to file
-        httpUserAgent: preferences.cmuseragent
+        httpUserAgent: preferences.cmuseragent; //custom UA
     }/*
     WebContext {
         id: webcontext
@@ -217,12 +225,14 @@ Page {
     }*/
 
     Component.onCompleted: {
-        pageHeader.state = "anchorBottom"; //set bar to bottom
-        webview.state = "anchorBottom";
+        barposition: preferences.adrpos === 1 ? "bottom" : "top";
+        pageHeader.state = barposition;
+        webview.state = barposition;
+        //console.log(barposition);
     }
 
     Component.onDestruction: {
         webview.stop()
-        console.log("Goodbye")
+        //console.log("Goodbye")
     }
 }

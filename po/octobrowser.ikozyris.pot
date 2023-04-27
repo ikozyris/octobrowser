@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-20 14:55+0000\n"
+"POT-Creation-Date: 2023-04-27 10:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/About.qml:23 ../qml/MainPage.qml:129
+#: ../qml/About.qml:23 ../qml/MainPage.qml:147
 msgid "About"
 msgstr ""
 
@@ -64,7 +64,7 @@ msgid ""
 "svgrepo.com"
 msgstr ""
 
-#: ../qml/Help.qml:26 ../qml/MainPage.qml:134
+#: ../qml/Help.qml:26 ../qml/MainPage.qml:152
 msgid "Help"
 msgstr ""
 
@@ -87,32 +87,28 @@ msgstr ""
 
 #: ../qml/Help.qml:73
 msgid ""
-"First of all, disable all switches. In addition using a common user agent "
-"can limit fingerprinting. Please note that currnently this browser is not "
-"the best in terms of security."
+"First of all, disable all switches. In addition, you can use a common user "
+"agent to limit fingerprinting. Please note that currently this browser is "
+"not the best in terms of security or privacy."
 msgstr ""
 
-#: ../qml/MainPage.qml:78
+#: ../qml/MainPage.qml:96
 msgid "Forward"
 msgstr ""
 
-#: ../qml/MainPage.qml:84
+#: ../qml/MainPage.qml:102
 msgid "back"
 msgstr ""
 
-#: ../qml/MainPage.qml:105
+#: ../qml/MainPage.qml:124
 msgid "Enter a URL or a search query"
 msgstr ""
 
-#: ../qml/MainPage.qml:124 ../qml/Settings.qml:35
+#: ../qml/MainPage.qml:142 ../qml/Settings.qml:35
 msgid "Settings"
 msgstr ""
 
-#: ../qml/MainPage.qml:139
-msgid "Change bar position"
-msgstr ""
-
-#: ../qml/MainPage.qml:149
+#: ../qml/MainPage.qml:157
 msgid "Exit"
 msgstr ""
 
@@ -124,27 +120,39 @@ msgstr ""
 msgid "Apply"
 msgstr ""
 
-#: ../qml/Settings.qml:71
+#: ../qml/Settings.qml:74
 #, javascript-format
 msgid "Zoom level: %1%"
 msgstr ""
 
-#: ../qml/Settings.qml:115
+#: ../qml/Settings.qml:100
+msgid "Address bar position: %1"
+msgstr ""
+
+#: ../qml/Settings.qml:103
+msgid "top"
+msgstr ""
+
+#: ../qml/Settings.qml:104
+msgid "bottom"
+msgstr ""
+
+#: ../qml/Settings.qml:121
 msgid "User Agent:"
 msgstr ""
 
-#: ../qml/Settings.qml:137
+#: ../qml/Settings.qml:143
+msgid "Limit WebRTC to public IP addresses only:"
+msgstr ""
+
+#: ../qml/Settings.qml:165
 msgid "Enable JavaScipt:"
 msgstr ""
 
-#: ../qml/Settings.qml:156
+#: ../qml/Settings.qml:184
 msgid "Autoload Images:"
 msgstr ""
 
-#: ../qml/Settings.qml:175
+#: ../qml/Settings.qml:203
 msgid "Allow running insecure content:"
-msgstr ""
-
-#: ../qml/Settings.qml:194
-msgid "Limit WebRTC to public IP addresses only:"
 msgstr ""

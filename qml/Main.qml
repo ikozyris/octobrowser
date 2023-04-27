@@ -17,7 +17,6 @@
 import QtQuick 2.9
 import Ubuntu.Components 1.3
 import Qt.labs.settings 1.0
-import "/qml/MainPage.qml" as MainPage
 
 MainView {
     id: mainView
@@ -32,7 +31,7 @@ MainView {
     Settings {
         id: preferences
         property int zoomlevel: 100
-        //property int adrpos: 0
+        property int adrpos: 0
         property string cmuseragent: "Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Mobile Safari/537.36"
         property bool js: true
         property bool loadimages: true
@@ -51,7 +50,7 @@ MainView {
     function showSettings() {
         var prop = {
             zoomlevel: preferences.zoomlevel,
-            //adrpos: preferences.adrpos,
+            adrpos: preferences.adrpos,
             cmuseragent: preferences.cmuseragent,
             js: preferences.js,
             loadimages: preferences.loadimages,
@@ -61,7 +60,7 @@ MainView {
         var slot_applyChanges = function(msettings) {
             console.log("Saving changes...")
             preferences.zoomlevel = msettings.zoomlevel;
-            //preferences.adrpos = msettings.adrpos;
+            preferences.adrpos = msettings.adrpos;
             preferences.cmuseragent = msettings.cmuseragent;
             preferences.js = msettings.js;
             preferences.loadimages = msettings.loadimages;

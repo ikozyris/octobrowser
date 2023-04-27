@@ -21,7 +21,7 @@ Page {
     id: settingPage
 
     property alias zoomlevel: zoomslider.value
-    //property alias adrpos: posselector.selectedIndex
+    property alias adrpos: posselector.selectedIndex
     property alias cmuseragent: uatext.text
     property alias js: jsswitch.checked
     property alias loadimages: imagswitch.checked
@@ -64,6 +64,9 @@ Page {
 
             property int mSpacing: units.gu(2)
 
+            Label {
+                text: "Aesthetics"
+            }
             ListItem {
                 height: zoomlabel.height + zoomslider.height + column.mSpacing
                 Label {
@@ -89,7 +92,7 @@ Page {
                         right: parent.right; rightMargin: units.gu(1)
                     }
                 }
-            }/*
+            }
             ListItem {
                 height: posselector.height + column.mSpacing
                 OptionSelector {
@@ -107,7 +110,10 @@ Page {
                         right: parent.right; rightMargin: units.gu(1)
                     }
                 }
-            }*/
+            }
+            Label {
+                text: "Privacy"
+            }
             ListItem {
                 height: ualabel.height + uatext.height + 2 * column.mSpacing
                 Label {
@@ -129,6 +135,28 @@ Page {
                         right: parent.right; rightMargin: units.gu(1)
                     }
                 }
+            }
+            ListItem {
+                height: rtclabel.height + rtcswitch.height + column.mSpacing
+                Label {
+                    id: rtclabel
+                    text: i18n.tr("Limit WebRTC to public IP addresses only:")
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        left: parent.left; leftMargin: units.gu(1)
+                    }
+                }
+                Switch {
+                    id: rtcswitch
+                    checked: false
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        right: parent.right; rightMargin: units.gu(1)
+                    }
+                }
+            }
+            Label {
+                text: "Security"
             }
             ListItem {
                 height: jslabel.height + jsswitch.height + column.mSpacing
@@ -180,25 +208,6 @@ Page {
                 }
                 Switch {
                     id: insecswitch
-                    checked: false
-                    anchors {
-                        top: parent.top; topMargin: column.mSpacing
-                        right: parent.right; rightMargin: units.gu(1)
-                    }
-                }
-            }
-            ListItem {
-                height: rtclabel.height + rtcswitch.height + column.mSpacing
-                Label {
-                    id: rtclabel
-                    text: i18n.tr("Limit WebRTC to public IP addresses only:")
-                    anchors {
-                        top: parent.top; topMargin: column.mSpacing
-                        left: parent.left; leftMargin: units.gu(1)
-                    }
-                }
-                Switch {
-                    id: rtcswitch
                     checked: false
                     anchors {
                         top: parent.top; topMargin: column.mSpacing

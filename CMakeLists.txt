@@ -4,6 +4,12 @@ project(octobrowser C CXX)
 # Automatically create moc files
 set(CMAKE_AUTOMOC ON)
 
+find_package(Qt5Core REQUIRED)
+find_package(Qt5Qml REQUIRED)
+find_package(Qt5Quick REQUIRED)
+find_package(Qt5QuickControls2 REQUIRED)
+find_package(Qt5WebEngine REQUIRED)
+
 execute_process(
     COMMAND dpkg-architecture -qDEB_HOST_MULTIARCH
     OUTPUT_VARIABLE ARCH_TRIPLET
@@ -23,11 +29,6 @@ if(DEFINED ENV{SDK_FRAMEWORK})
 else()
     set(CLICK_FRAMEWORK "ubuntu-sdk-16.04.3")
 endif()
-
-# Compile before running, see: https://doc.qt.io/qt-5/qtquick-deployment.html#ahead-of-time-compilation
-find_package(Qt5QuickCompiler)
-#qtquick_compiler_add_resources
-
 
 # This figures out the target architecture for use in the manifest file.
 if(DEFINED ENV{ARCH})
@@ -63,10 +64,26 @@ message(STATUS "Build version is: ${BUILD_VERSION}")
 configure_file(manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/manifest.json)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifest.json DESTINATION ${CMAKE_INSTALL_PREFIX})
 install(FILES ${PROJECT_NAME}.apparmor DESTINATION ${DATA_DIR})
+install(FILES assets/logo.svg DESTINATION assets)
 
-install(DIRECTORY assets DESTINATION ${DATA_DIR})
+qt5_add_resources(QT_RESOURCES qml/qml.qrc)
+qt5_add_resources(QT_RESOURCES assets/assets.qrc)
 
-install(DIRECTORY qml DESTINATION ${DATA_DIR})
+add_executable(${PROJECT_NAME} main.cpp ${QT_RESOURCES})
+set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS_RELEASE -s)
+include_directories(${LIBAPPARMOR_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME}
+    Qt5::Core
+    Qt5::Gui
+    Qt5::Network
+    Qt5::Qml
+    Qt5::Quick
+    Qt5WebEngine
+    Qt5WebEngineCore
+    ${LIBAPPARMOR_LDFLAGS}
+)
+#target_link_libraries(${PROJECT_NAME} Qt5::Gui Qt5::Qml Qt5::Quick Qt5::QuickControls2 Qt5::QtWebEngine)
+install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 # Translations
 file(GLOB_RECURSE I18N_SRC_FILES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}/po qml/*.qml qml/*.js)
@@ -90,14 +107,15 @@ add_custom_target(${DESKTOP_FILE_NAME} ALL
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${DESKTOP_FILE_NAME} DESTINATION ${DATA_DIR})
 
 add_subdirectory(po)
+#add_subdirectory(plugins)
 
 # Make source files visible in qtcreator
 file(GLOB_RECURSE PROJECT_SRC_FILES
     RELATIVE ${CMAKE_CURRENT_SOURCE_DIR}
     qml/*.qml
-    qml/*.js
-    src/*
-    *.json
+#    qml/*.js
+#    src/*
+ #   *.json
     *.json.in
     *.apparmor
     *.desktop.in

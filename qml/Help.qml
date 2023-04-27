@@ -42,22 +42,20 @@ Page {
                 height: adrhelp.height + adrtitle.height + column.mPadding
                 Label {
                     id: adrtitle
-                    text: i18n.tr("I entered a website in the address bar but it won't go there.")
+                    text: i18n.tr("Something does not work")
                     wrapMode: Text.Wrap
                     font.italic: true
                 }
                 Text {
                     id: adrhelp
-                    text: i18n.tr("In the address bar, you should put a VALID URL (not just a domain or a website) with the following format: " +
-								"http://www.example.com/index.html, which indicates a protocol (http)," +
-								"a hostname (www.example.com), and a file name (index.html)." +
-                                "Anything will be treated as a search query and is passed to duckduckgo")
+                    text: i18n.tr("Report it on: https://gitlab.com/ikozyris/octobrowser/-/issues/")
                     wrapMode: Text.Wrap
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
                         left: parent.left; leftMargin: units.gu(1)
                         right: parent.right; rightMargin: units.gu(1)
                     }
+                    onLinkActivated: Qt.openUrlExternally(link)
                 }
             }
             ListItem {

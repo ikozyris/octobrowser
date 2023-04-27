@@ -7,4 +7,4 @@ find -name '*.qml' | xargs -I {} sed -i 's/UbuntuListView/LomiriListView/g' {}
 find -name '*.qml' | xargs -I {} sed -i 's/UbuntuColors/LomiriColors/g' {}
 find -name '*.qml' | xargs -I {} sed -i 's/UbuntuShape/LomiriShape/g' {}
 
-find -name '*.*' | xargs -I {} sed -i 's/16.04/20.04/g' {}
+find -name '*.apparmor' | xargs -I {} sed -i 's/16.04/20.04/g' {}

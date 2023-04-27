@@ -32,8 +32,14 @@ default:
 # Define stages
 ###############################################################################
 stages:
+- clean
 - build
-- publish
+
+# clean stage
+.clean:
+  stage: clean
+  script:
+  - clickable clean
 
 ###############################################################################
 # `build` stage: build clicks for all architectures
@@ -57,26 +63,3 @@ build_arm64:
 build_armhf:
   <<: *armhf
   extends: .build
-
-###############################################################################
-# `release` stage: upload to OpenStore on tags
-###############################################################################
-publish:
-  <<: *amd64
-  stage: publish
-  rules:
-  - if: $CI_COMMIT_TAG
-  script:
-  - 'clickable publish --arch amd64 -- "$CI_COMMIT_MESSAGE"'
-  - 'clickable publish --arch arm64'
-  - 'clickable publish --arch armhf'
-  dependencies:
-  - build_amd64
-  - build_arm64
-  - build_armhf
-  artifacts:
-    paths:
-    - build/x86_64-linux-gnu/app/*.click
-    - build/aarch64-linux-gnu/app/*.click
-    - build/arm-linux-gnueabihf/app/*.click
-    expire_in: 1 month

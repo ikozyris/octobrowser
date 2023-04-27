@@ -4,23 +4,18 @@ Browse the WWW like an octopus.
 Features:
 - Toggle JavaScipt On/Off
 - Automatically load images On/Off
+- Move address bar
+- _MORE_
 
-Additonally you can move the top bar to the bottom for One-handed mode. 
-To do that, you need to do the following to the file in ```qml/MainPage.qml```:<br>
-Comment line 50, uncomment line 53<br>
-Comment lines 149, 153 and Uncomment lines 150, 154 <br>
-
-
-DISCLAIMER: Many things do not work, here is a TODO list sorted by priority:
+**DISCLAIMER**: Many things do not work, here is a TODO list sorted by priority:
 - Tabs (important)
 - History (important)
 - Bookmarks
-- Camera and other permissions (easy but not prioritized)
+- Camera and other permissions (not prioritized)
 
-In other words: The simpliest yet experamental, pure QML browser for Ubuntu Touch.
+In other words: The simpliest yet experamental Qt browser for Ubuntu Touch.
 
-The simpliest pure QML browser for Ubuntu Touch.
-
+Note that the _focal_ branch is way **behind** the main branch (_xenial_)
 ## License
 
 Copyright (C) 2023  ikozyris

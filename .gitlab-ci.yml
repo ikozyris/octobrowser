@@ -32,14 +32,7 @@ default:
 # Define stages
 ###############################################################################
 stages:
-- clean
 - build
-
-# clean stage
-.clean:
-  stage: clean
-  script:
-  - clickable clean
 
 ###############################################################################
 # `build` stage: build clicks for all architectures
@@ -47,7 +40,8 @@ stages:
 .build:
   stage: build
   script:
-  - clickable build
+    - clickable clean
+    - clickable build
   artifacts:
     paths: *click_path
     expire_in: 1 week

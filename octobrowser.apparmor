@@ -1,6 +1,16 @@
 {
     "policy_groups": [
+        "audio",
         "networking",
+        "location",
+        "keep-display-on",
+        "camera",
+        "connectivity",
+        "content_exchange",
+        "content_exchange_source",
+        "sensors",
+        "video",
+        "push-notification-client",
         "webview"
     ],
     "policy_version": 16.04

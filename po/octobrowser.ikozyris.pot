@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-27 15:22+0000\n"
+"POT-Creation-Date: 2023-04-27 15:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/About.qml:23 ../qml/MainPage.qml:150
+#: ../qml/About.qml:23 ../qml/MainPage.qml:149
 msgid "About"
 msgstr ""
 
@@ -62,7 +62,7 @@ msgid ""
 "svgrepo.com"
 msgstr ""
 
-#: ../qml/Help.qml:26 ../qml/MainPage.qml:155
+#: ../qml/Help.qml:26 ../qml/MainPage.qml:154
 msgid "Help"
 msgstr ""
 
@@ -87,23 +87,23 @@ msgid ""
 "or privacy."
 msgstr ""
 
-#: ../qml/MainPage.qml:99
+#: ../qml/MainPage.qml:98
 msgid "Forward"
 msgstr ""
 
-#: ../qml/MainPage.qml:105
+#: ../qml/MainPage.qml:104
 msgid "back"
 msgstr ""
 
-#: ../qml/MainPage.qml:127
+#: ../qml/MainPage.qml:126
 msgid "Enter a URL or a search query"
 msgstr ""
 
-#: ../qml/MainPage.qml:145 ../qml/Settings.qml:35
+#: ../qml/MainPage.qml:144 ../qml/Settings.qml:35
 msgid "Settings"
 msgstr ""
 
-#: ../qml/MainPage.qml:160
+#: ../qml/MainPage.qml:159
 msgid "Exit"
 msgstr ""
 

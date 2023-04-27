@@ -21,7 +21,6 @@ import QtWebEngine 1.11
 import Ubuntu.Components 1.3
 import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
-//import "GetUrl.js" as GetUrl
 
 Page {
     id: mainPage
@@ -35,9 +34,13 @@ Page {
     }
     function fixurl(string) {
         //console.log(lookslikeurl(string))
-        if (lookslikeurl(uri)) {
-            //console.log("https://" + string);
-            return "https://" + string;
+        if (lookslikeurl(string)) {
+            console.log(preferences.securecontent)
+            if (preferences.securecontent != true) {
+                return "https://" + string;
+            } else {
+                return "http://" + string;
+            }
         } else {
             //console.log("bad");
             return "bad";
@@ -193,13 +196,13 @@ Page {
             }
         ]
         url: ""
-        zoomFactor: preferences.zoomlevel / 100
-        settings.javascriptEnabled: preferences.js
-        settings.autoLoadImages: preferences.loadimages
-        settings.webRTCPublicInterfacesOnly: preferences.webrtc
-        settings.pdfViewerEnabled: true
-        settings.showScrollBars: false
-        settings.allowRunningInsecureContent: preferences.securecontent
+        zoomFactor: preferences.zoomlevel / 100                         // custom zoom factor
+        settings.javascriptEnabled: preferences.js                      // enable javascipt
+        settings.autoLoadImages: preferences.loadimages                 // autoload images
+        settings.webRTCPublicInterfacesOnly: preferences.webrtc         // webrtc
+        settings.pdfViewerEnabled: true                                 // enable pdf viewer
+        settings.showScrollBars: false                                  // do not show scroll bars
+        settings.allowRunningInsecureContent: preferences.securecontent // InSecure content
         profile: webViewProfile
 //        context: webcontext 
 

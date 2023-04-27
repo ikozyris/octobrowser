@@ -54,6 +54,7 @@ MainView {
             cmuseragent: preferences.cmuseragent,
             js: preferences.js,
             loadimages: preferences.loadimages,
+            securecontent: preferences.securecontent,
             webrtc: preferences.webrtc
         }
 

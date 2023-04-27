@@ -66,6 +66,7 @@ Page {
 
             Label {
                 text: "Aesthetics"
+                font.bold: true
             }
             ListItem {
                 height: zoomlabel.height + zoomslider.height + column.mSpacing
@@ -113,6 +114,7 @@ Page {
             }
             Label {
                 text: "Privacy"
+                font.bold: true
             }
             ListItem {
                 height: ualabel.height + uatext.height + 2 * column.mSpacing
@@ -157,6 +159,7 @@ Page {
             }
             Label {
                 text: "Security"
+                font.bold: true
             }
             ListItem {
                 height: jslabel.height + jsswitch.height + column.mSpacing

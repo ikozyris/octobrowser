@@ -35,7 +35,6 @@ Page {
     function fixurl(string) {
         //console.log(lookslikeurl(string))
         if (lookslikeurl(string)) {
-            console.log(preferences.securecontent)
             if (preferences.securecontent != true) {
                 return "https://" + string;
             } else {

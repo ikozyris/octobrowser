@@ -48,7 +48,8 @@ Page {
                 }
                 Text {
                     id: adrhelp
-                    text: i18n.tr("Report it on: https://gitlab.com/ikozyris/octobrowser/-/issues/")
+                    linkColor: UbuntuColors.orange
+                    text: i18n.tr("Report it <a href='https://gitlab.com/ikozyris/octobrowser/-/issues'>here</a>")
                     wrapMode: Text.Wrap
                     anchors {
                         top: parent.top; topMargin: column.mSpacing

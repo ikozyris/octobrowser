@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-27 15:30+0000\n"
+"POT-Creation-Date: 2023-04-28 15:27+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/About.qml:23 ../qml/MainPage.qml:149
+#: ../qml/About.qml:23 ../qml/MainPage.qml:109
 msgid "About"
 msgstr ""
 
@@ -62,7 +62,7 @@ msgid ""
 "svgrepo.com"
 msgstr ""
 
-#: ../qml/Help.qml:26 ../qml/MainPage.qml:154
+#: ../qml/Help.qml:26 ../qml/MainPage.qml:114
 msgid "Help"
 msgstr ""
 
@@ -70,15 +70,16 @@ msgstr ""
 msgid "Something does not work"
 msgstr ""
 
-#: ../qml/Help.qml:51
-msgid "Report it on: https://gitlab.com/ikozyris/octobrowser/-/issues/"
+#: ../qml/Help.qml:52
+msgid ""
+"Report it <a href='https://gitlab.com/ikozyris/octobrowser/-/issues'>here</a>"
 msgstr ""
 
-#: ../qml/Help.qml:65
+#: ../qml/Help.qml:66
 msgid "What settings are recommended for best security & privacy"
 msgstr ""
 
-#: ../qml/Help.qml:71
+#: ../qml/Help.qml:72
 msgid ""
 "First of all, for maximum security and privacy, disable all switches. "
 "WARNING: may break some websites\n"
@@ -87,23 +88,23 @@ msgid ""
 "or privacy."
 msgstr ""
 
-#: ../qml/MainPage.qml:98
+#: ../qml/MainPage.qml:58
 msgid "Forward"
 msgstr ""
 
-#: ../qml/MainPage.qml:104
+#: ../qml/MainPage.qml:64
 msgid "back"
 msgstr ""
 
-#: ../qml/MainPage.qml:126
+#: ../qml/MainPage.qml:86
 msgid "Enter a URL or a search query"
 msgstr ""
 
-#: ../qml/MainPage.qml:144 ../qml/Settings.qml:35
+#: ../qml/MainPage.qml:104 ../qml/Settings.qml:35
 msgid "Settings"
 msgstr ""
 
-#: ../qml/MainPage.qml:159
+#: ../qml/MainPage.qml:119
 msgid "Exit"
 msgstr ""
 

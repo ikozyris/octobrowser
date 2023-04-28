@@ -21,52 +21,12 @@ import QtWebEngine 1.11
 import Ubuntu.Components 1.3
 import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
-
+import "utils.js" as JS
 Page {
     id: mainPage
     anchors.fill: parent
 
     property string barposition: preferences.adrpos === 1 ? "bottom" : "top";
-
-    function lookslikeurl(s) {
-        var regexp = /^(?:(?:(?:[a-zA-z\-]+)\:\/{1,3})?(?:[a-zA-Z0-9])(?:[a-zA-Z0-9\-\.]){1,61}(?:\.[a-zA-Z]{2,})+|\[(?:(?:(?:[a-fA-F0-9]){1,4})(?::(?:[a-fA-F0-9]){1,4}){7}|::1|::)\]|(?:(?:[0-9]{1,3})(?:\.[0-9]{1,3}){3}))(?:\:[0-9]{1,5})?$/;
-        return regexp.test(s);
-    }
-    function fixurl(string) {
-        //console.log(lookslikeurl(string))
-        if (lookslikeurl(string)) {
-            if (preferences.securecontent != true) {
-                return "https://" + string;
-            } else {
-                return "http://" + string;
-            }
-        } else {
-            //console.log("bad");
-            return "bad";
-        }
-    }
-    function isurl(s) {
-        var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-        return regexp.test(s);
-    }
-    function geturl(text) {
-        if (isurl(text)) {
-            //console.log("String is a valid URL")
-            //console.log(text)
-            return text;
-        } else {
-            var result = fixurl(text)
-            if (result != "bad") {
-                //console.log("String is a URI")
-                return result;
-            } else {
-                var query = "https://duckduckgo.com/?q=" + encodeURIComponent(text);
-                //console.log("String is a query")
-                //console.log(query)
-                return query;
-            }
-        }
-    }
 
     header: PageHeader {
         id: pageHeader
@@ -131,7 +91,7 @@ Page {
             }*/
             inputMethodHints: Qt.ImhUrlCharactersOnly
             onAccepted: {
-                webview.url = geturl(textFieldInput.text),
+                webview.url = JS.geturl(textFieldInput.text),
                 webview.visible = true
             }
         }
@@ -161,7 +121,6 @@ Page {
                 }
 	        ]
         }
-
     }
 
     WebEngineView {
@@ -178,7 +137,7 @@ Page {
         }
         states: [
             State {
-            name: "bottom"
+                name: "bottom"
                 AnchorChanges {
                     target: webview
                     anchors.top: parent.top
@@ -199,13 +158,25 @@ Page {
         settings.javascriptEnabled: preferences.js                      // enable javascipt
         settings.autoLoadImages: preferences.loadimages                 // autoload images
         settings.webRTCPublicInterfacesOnly: preferences.webrtc         // webrtc
+        settings.pluginsEnabled: true
         settings.pdfViewerEnabled: true                                 // enable pdf viewer
-        settings.showScrollBars: false                                  // do not show scroll bars
+        //settings.showScrollBars: false                                  // do not show scroll bars
         settings.allowRunningInsecureContent: preferences.securecontent // InSecure content
+        settings.fullScreenSupportEnabled: true
+        settings.dnsPrefetchEnabled: true
         profile: webViewProfile
 //        context: webcontext 
+        onFullScreenRequested: function(request) {
+            if (request.toggleOn) {
+               window.showFullScreen();
+            } else {
+                window.showNormal();
+            }
+            request.accept();
+        }
 
         onLoadingChanged: {
+            gc() //garbage collection
             textFieldInput.text = webview.url
             if(loadRequest.errorString)
                 console.error(loadRequest.errorString);
@@ -217,9 +188,9 @@ Page {
     WebEngineProfile {
         //for more profile options see https://doc.qt.io/qt-5/qml-qtwebengine-webengineprofile.html
         id: webViewProfile
-        persistentCookiesPolicy: WebEngineProfile.NoPersistentCookies; //do NOT store persistent cookies
-        httpCacheType: WebEngineProfile.DiskHttpCache; //cache qml content to file
-        httpUserAgent: preferences.cmuseragent; //custom UA
+        //persistentCookiesPolicy: WebEngineProfile.NoPersistentCookies; //do NOT store persistent cookies
+        httpCacheType: WebEngineProfile.DiskHttpCache;                 //cache qml content to file
+        httpUserAgent: preferences.cmuseragent;                        //custom UA
     }/*
     WebContext {
         id: webcontext

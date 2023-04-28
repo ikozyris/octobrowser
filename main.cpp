@@ -20,12 +20,20 @@
 #include <QString>
 #include <QQuickView>
 #include <QtWebEngine/QtWebEngine>
+#include <QtWebEngine/qtwebengineglobal.h>
 
 int main(int argc, char *argv[])
 {
-    QtWebEngine::initialize();
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--blink-settings=darkMode=3,darkModeImagePolicy=2,darkModeImageStyle=2 --enable-smooth-scrolling --enable-low-res-tiling --enable-low-end-device-mode --enable-natural-scroll-default");
+    qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "true");
+
+    if (qgetenv("QT_QPA_PLATFORM") == "wayland") {
+         qputenv("QT_WAYLAND_SHELL_INTEGRATION", "wl-shell");
+    }
+    QtWebEngine::initialize();
 
     QGuiApplication *app = new QGuiApplication(argc, (char**)argv);
     app->setApplicationName("octobrowser.ikozyris");
@@ -33,7 +41,7 @@ int main(int argc, char *argv[])
     qDebug() << "Starting app from main.cpp";
 
     QQuickView *view = new QQuickView();
-    view->setSource(QUrl("qrc:/qml/Main.qml"));
+    view->setSource(QUrl("qrc:///qml/Main.qml"));
     view->setResizeMode(QQuickView::SizeRootObjectToView);
     view->show();
 

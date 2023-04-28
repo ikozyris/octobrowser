@@ -9,7 +9,7 @@
             "desktop":  "octobrowser.desktop"
         }
     },
-    "version": "0.1.3",
+    "version": "@BUILD_VERSION@",
     "maintainer": "ikozyris <none@none.none>",
     "framework" : "@CLICK_FRAMEWORK@"
 }

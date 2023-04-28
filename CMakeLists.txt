@@ -3,12 +3,17 @@ project(octobrowser C CXX)
 
 # Automatically create moc files
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Werror")
 
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Qml REQUIRED)
 find_package(Qt5Quick REQUIRED)
 find_package(Qt5QuickControls2 REQUIRED)
 find_package(Qt5WebEngine REQUIRED)
+find_package(Qt5QuickCompiler REQUIRED)
+
+find_package(Qt5 COMPONENTS Quick Core Network)
 
 execute_process(
     COMMAND dpkg-architecture -qDEB_HOST_MULTIARCH
@@ -19,6 +24,7 @@ set(QT_IMPORTS_DIR "lib/${ARCH_TRIPLET}")
 
 set(PROJECT_NAME "octobrowser")
 set(FULL_PROJECT_NAME "octobrowser.ikozyris")
+set(CMAKE_INSTALL_PREFIX /)
 set(DATA_DIR /)
 set(DESKTOP_FILE_NAME ${PROJECT_NAME}.desktop)
 
@@ -60,16 +66,17 @@ endif(NOT BUILD_VERSION_RAW)
 string(SUBSTRING ${BUILD_VERSION_RAW} 1 -1 BUILD_VERSION)
 message(STATUS "Build version is: ${BUILD_VERSION}")
 
+qtquick_compiler_add_resources(QT_RESOURCES main.qrc)
+
+add_executable(${PROJECT_NAME} main.cpp main.qrc)
+qt5_use_modules(${PROJECT_NAME} Gui Qml Quick QuickControls2 Network WebEngine WebEngineCore)
 
 configure_file(manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/manifest.json)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifest.json DESTINATION ${CMAKE_INSTALL_PREFIX})
+
 install(FILES ${PROJECT_NAME}.apparmor DESTINATION ${DATA_DIR})
 install(FILES assets/logo.svg DESTINATION assets)
 
-qt5_add_resources(QT_RESOURCES qml/qml.qrc)
-qt5_add_resources(QT_RESOURCES assets/assets.qrc)
-
-add_executable(${PROJECT_NAME} main.cpp ${QT_RESOURCES})
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS_RELEASE -s)
 include_directories(${LIBAPPARMOR_INCLUDE_DIRS})
 target_link_libraries(${PROJECT_NAME}
@@ -78,6 +85,8 @@ target_link_libraries(${PROJECT_NAME}
     Qt5::Network
     Qt5::Qml
     Qt5::Quick
+    Qt5::QuickControls2
+#    Qt5::QuickLayouts
     Qt5WebEngine
     Qt5WebEngineCore
     ${LIBAPPARMOR_LDFLAGS}

@@ -4,4 +4,3 @@ kill: octobrowser
 dependencies_target:
 - 'qml-module-qtquick-controls'
 - 'qtwebengine5-dev'
-- 'libapparmor-dev'

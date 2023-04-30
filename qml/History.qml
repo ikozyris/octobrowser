@@ -21,10 +21,14 @@ import QtQuick.Controls 2.2
 import Ubuntu.Components 1.3
 
 //import MyHistory 0.1
-import "qrc:///qml/"
+//import "qrc:///qml/"
 
 Page {
 	id: historyPage
+    
+    signal applyChanges
+    property var array;
+    
 	header: PageHeader {
 		id: head
         title: i18n.tr("History")
@@ -34,16 +38,22 @@ Page {
         id: itemDelegate
         Label {
             // do not load NULL entries
-            text: MyHistory.array[index] != null ? MyHistory.array[index] : null
-		}
+            //text: MyHistory.array[index] != null ? MyHistory.array[index] : null
+            text: array[index] != null ? array[index] : null
+        }
     }
 
     ListView {
         anchors.fill: parent
 		anchors.topMargin: units.gu(6)
 		anchors.leftMargin: units.gu(2)
-        model: 42 // DILLEMA: 1337 or 42, entries to be loaded
+        model: 42 // DILLEMA: 1337 or 42, entries to be loaded (array.lenght does not work)
         delegate: itemDelegate
     }
-    //Component.onCompleted: console.log(MyHistory.sizeof())
+    Component.onCompleted: historyPage.applyChanges
+    Component.onDestruction: {
+        //console.log(array)
+        history.array = historyPage.array
+    }
+
 }

@@ -46,7 +46,7 @@ Page {
                     wrapMode: Text.Wrap
                     font.italic: true
                 }
-                Text {
+                Label {
                     id: adrhelp
                     linkColor: UbuntuColors.orange
                     text: i18n.tr("Report it <a href='https://gitlab.com/ikozyris/octobrowser/-/issues'>here</a>")
@@ -63,19 +63,21 @@ Page {
                 height: hstrhelp.height + hstrtitle.height + column.mPadding
                 Label {
                     id: hstrtitle
-                    text: i18n.tr("History is not remembered accross starts")
+                    text: i18n.tr("History is wrong")
                     wrapMode: Text.Wrap
                     font.italic: true
                 }
-                Text {
+                Label {
                     id: hstrhelp
-                    text: i18n.tr("This is a known issue.")
+                    linkColor: UbuntuColors.orange
+                    text: i18n.tr("History is shown in reverse order <a href='https://en.m.wikipedia.org/wiki/FIFO_(computing_and_electronics)'>(FIFO -> first in, first out)</a>")
                     wrapMode: Text.Wrap
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
                         left: parent.left; leftMargin: units.gu(1)
                         right: parent.right; rightMargin: units.gu(1)
                     }
+                    onLinkActivated: Qt.openUrlExternally(link)
                 }
             }
             ListItem {

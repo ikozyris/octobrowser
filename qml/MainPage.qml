@@ -23,7 +23,7 @@ import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
 
 import "qrc:///qml/utils.js" as JS
-import "qrc:///qml/"
+//import "qrc:///qml/"
 
 Page {
     id: mainPage
@@ -106,12 +106,12 @@ Page {
                 Action {
                     iconName: "settings"
 	                text: i18n.tr("Settings")
-                    onTriggered: mainView.showSettings()
+                    onTriggered: mainView.showSettings();
                 },
                 Action {
 	            	iconName: "history"
 	                text: i18n.tr("History")
-                    onTriggered: pStack.push(Qt.resolvedUrl("History.qml"));
+                    onTriggered: mainView.showHistory();
                 },
                 Action {
 	            	iconName: "info"
@@ -190,7 +190,8 @@ Page {
             if(loadRequest.errorString)
                 console.error(loadRequest.errorString);
             else
-                MyHistory.array.push(textFieldInput.text)
+                history.array.push(webview.url)
+                //MyHistory.array.push(textFieldInput.text)
         }
     } 
 
@@ -214,7 +215,7 @@ Page {
     }
 
     Component.onDestruction: {
-        webview.stop()
-        //console.log("Goodbye")
+        webview.stop(),
+        console.log("Goodbye")
     }
 }

@@ -17,7 +17,7 @@ In other words: The simpliest yet experamental Qt browser for Ubuntu Touch.
 - Camera and other permissions (not prioritized)
 
 ### Known Issues
-History is not preserved accross sessions
+Anchor to clipboard does not work
 
 ### Focal (20.04)
 This program is developed for 16.04 base but there is an outdated focal branch.<br>

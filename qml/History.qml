@@ -32,7 +32,7 @@ Page {
 
     Component {
         id: itemDelegate
-        Text {
+        Label {
             // do not load NULL entries
             text: MyHistory.array[index] != null ? MyHistory.array[index] : null
 		}

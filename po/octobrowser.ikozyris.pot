@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-30 16:22+0000\n"
+"POT-Creation-Date: 2023-04-30 16:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -69,7 +69,7 @@ msgid "Help"
 msgstr ""
 
 #: ../qml/Help.qml:45
-msgid "Something does not work"
+msgid "There is an unkown/new bug"
 msgstr ""
 
 #: ../qml/Help.qml:52
@@ -78,10 +78,18 @@ msgid ""
 msgstr ""
 
 #: ../qml/Help.qml:66
-msgid "What settings are recommended for best security & privacy"
+msgid "History is not remembered accross starts"
 msgstr ""
 
 #: ../qml/Help.qml:72
+msgid "This is a known issue."
+msgstr ""
+
+#: ../qml/Help.qml:85
+msgid "What settings are recommended for best security & privacy"
+msgstr ""
+
+#: ../qml/Help.qml:91
 msgid ""
 "First of all, for maximum security and privacy, disable all switches. "
 "WARNING: may break some websites\n"

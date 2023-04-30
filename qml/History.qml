@@ -33,6 +33,7 @@ Page {
     Component {
         id: itemDelegate
         Text {
+            // do not load NULL entries
             text: MyHistory.array[index] != null ? MyHistory.array[index] : null
 		}
     }
@@ -41,7 +42,7 @@ Page {
         anchors.fill: parent
 		anchors.topMargin: units.gu(6)
 		anchors.leftMargin: units.gu(2)
-        model: 50
+        model: 42 // DILLEMA: 1337 or 42, entries to be loaded
         delegate: itemDelegate
     }
     //Component.onCompleted: console.log(MyHistory.sizeof())

@@ -21,9 +21,10 @@
 #include <QQuickView>
 //#include <QQmlApplicationEngine>
 //#include <QQmlContext>
-#include <QQuickStyle>
+//#include <QQuickStyle>
 #include <QtWebEngine/QtWebEngine>
 
+// Run with QQuickView
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -50,7 +51,7 @@ int main(int argc, char *argv[])
     return app->exec();
 }
 
-/*
+/*  // Run with QQmlApplicationEngine
 int main(int argc, char *argv[])
 {
     QGuiApplication::setApplicationName("OctoBrowser");

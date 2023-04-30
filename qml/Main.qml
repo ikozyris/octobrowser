@@ -34,7 +34,7 @@ MainView {
 
     Settings {
         id: preferences
-        property var array: [""];
+        //property var array: [""];
         property int zoomlevel: 100
         property int adrpos: 0
         property string cmuseragent: "Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Mobile Safari/537.36"
@@ -65,7 +65,7 @@ MainView {
 
         var slot_applyChanges = function(msettings) {
             //console.log("Saving changes...")
-            preferences.array = msettings.array;
+            //preferences.array = msettings.array;
             preferences.zoomlevel = msettings.zoomlevel;
             preferences.adrpos = msettings.adrpos;
             preferences.cmuseragent = msettings.cmuseragent;

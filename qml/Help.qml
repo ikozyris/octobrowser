@@ -42,7 +42,7 @@ Page {
                 height: adrhelp.height + adrtitle.height + column.mPadding
                 Label {
                     id: adrtitle
-                    text: i18n.tr("Something does not work")
+                    text: i18n.tr("There is an unkown/new bug")
                     wrapMode: Text.Wrap
                     font.italic: true
                 }
@@ -57,6 +57,25 @@ Page {
                         right: parent.right; rightMargin: units.gu(1)
                     }
                     onLinkActivated: Qt.openUrlExternally(link)
+                }
+            }
+            ListItem {
+                height: hstrhelp.height + hstrtitle.height + column.mPadding
+                Label {
+                    id: hstrtitle
+                    text: i18n.tr("History is not remembered accross starts")
+                    wrapMode: Text.Wrap
+                    font.italic: true
+                }
+                Text {
+                    id: hstrhelp
+                    text: i18n.tr("This is a known issue.")
+                    wrapMode: Text.Wrap
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        left: parent.left; leftMargin: units.gu(1)
+                        right: parent.right; rightMargin: units.gu(1)
+                    }
                 }
             }
             ListItem {

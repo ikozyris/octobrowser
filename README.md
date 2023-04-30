@@ -5,17 +5,24 @@ Features:
 - Toggle JavaScipt On/Off
 - Automatically load images On/Off
 - Move address bar
+- History
 - _MORE_
-
-**DISCLAIMER**: Many things do not work, here is a TODO list sorted by priority:
-- Tabs (important)
-- History (important)
-- Bookmarks
-- Camera and other permissions (not prioritized)
 
 In other words: The simpliest yet experamental Qt browser for Ubuntu Touch.
 
-Note that the _focal_ branch is way **behind** the main branch (_xenial_)
+**DISCLAIMER**: Many things do not work, <br>here is a TODO list sorted by priority:
+- Tabs (important)
+- ~~History (important)~~ 
+- Bookmarks
+- Camera and other permissions (not prioritized)
+
+### Known Issues
+History is not preserved accross sessions
+
+### Focal (20.04)
+This program is developed for 16.04 base but there is an outdated focal branch.<br>
+You can use the untested `focal.sh` script to fix library imports. Then try to compile with `clickable`. It might work.
+
 ## License
 
 Copyright (C) 2023  ikozyris

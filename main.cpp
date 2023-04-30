@@ -19,8 +19,10 @@
 #include <QUrl>
 #include <QString>
 #include <QQuickView>
+//#include <QQmlApplicationEngine>
+//#include <QQmlContext>
+#include <QQuickStyle>
 #include <QtWebEngine/QtWebEngine>
-#include <QtWebEngine/qtwebengineglobal.h>
 
 int main(int argc, char *argv[])
 {
@@ -33,7 +35,7 @@ int main(int argc, char *argv[])
     if (qgetenv("QT_QPA_PLATFORM") == "wayland") {
          qputenv("QT_WAYLAND_SHELL_INTEGRATION", "wl-shell");
     }
-    QtWebEngine::initialize();
+    //QtWebEngine::initialize();
 
     QGuiApplication *app = new QGuiApplication(argc, (char**)argv);
     app->setApplicationName("octobrowser.ikozyris");
@@ -47,3 +49,28 @@ int main(int argc, char *argv[])
 
     return app->exec();
 }
+
+/*
+int main(int argc, char *argv[])
+{
+    QGuiApplication::setApplicationName("OctoBrowser");
+    QGuiApplication::setOrganizationName("octobrowser.ikozyris");
+    QGuiApplication::setApplicationName("octobrowser.ikozyris");
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+
+    QtWebEngine::initialize();
+
+    QGuiApplication app(argc, argv);
+
+    QString style = QQuickStyle::name();
+    QQuickStyle::setStyle("Suru");    
+
+    QQmlApplicationEngine engine;
+    engine.rootContext()->setContextProperty("availableStyles", QQuickStyle::availableStyles());
+    engine.load(QUrl("qrc:///qml/Main.qml"));
+    if (engine.rootObjects().isEmpty())
+        return -1;
+
+    return app.exec();
+}*/

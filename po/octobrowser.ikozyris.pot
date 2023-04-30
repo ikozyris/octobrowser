@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-28 15:27+0300\n"
+"POT-Creation-Date: 2023-04-30 16:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,24 +17,26 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/About.qml:23 ../qml/MainPage.qml:109
+#: ../qml/About.qml:23 ../qml/MainPage.qml:118
 msgid "About"
 msgstr ""
 
-#: ../qml/About.qml:47 octobrowser.desktop.in.h:1
+#: ../qml/About.qml:45 octobrowser.desktop.in.h:1
 msgid "Octopus Browser"
 msgstr ""
 
-#: ../qml/About.qml:65
-msgid "Version: 0.1.3"
+#: ../qml/About.qml:63
+msgid "Version: 0.2.0"
 msgstr ""
 
-#: ../qml/About.qml:73
-msgid "The simpliest yet experamental Qt browser for Ubuntu Touch."
+#: ../qml/About.qml:71
+msgid ""
+"A simple yet experamental Qt browser for Ubuntu Touch. Not in a production-"
+"ready state."
 msgstr ""
 
 #. TRANSLATORS: Please make sure the URLs are correct
-#: ../qml/About.qml:82
+#: ../qml/About.qml:80
 msgid ""
 "This program is free software: you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -46,15 +48,15 @@ msgid ""
 "License</a> for more details."
 msgstr ""
 
-#: ../qml/About.qml:91
+#: ../qml/About.qml:89
 msgid "SOURCE"
 msgstr ""
 
-#: ../qml/About.qml:101
+#: ../qml/About.qml:99
 msgid "Maintainer"
 msgstr ""
 
-#: ../qml/About.qml:111
+#: ../qml/About.qml:109
 msgid ""
 "Thanks to the LogViewer app for the Settings page, and to Qt WebEngine demo "
 "app for the basics of QtWebEngine\n"
@@ -62,7 +64,7 @@ msgid ""
 "svgrepo.com"
 msgstr ""
 
-#: ../qml/Help.qml:26 ../qml/MainPage.qml:114
+#: ../qml/Help.qml:26 ../qml/MainPage.qml:123
 msgid "Help"
 msgstr ""
 
@@ -88,23 +90,27 @@ msgid ""
 "or privacy."
 msgstr ""
 
-#: ../qml/MainPage.qml:58
+#: ../qml/History.qml:30 ../qml/MainPage.qml:113
+msgid "History"
+msgstr ""
+
+#: ../qml/MainPage.qml:62
 msgid "Forward"
 msgstr ""
 
-#: ../qml/MainPage.qml:64
+#: ../qml/MainPage.qml:68
 msgid "back"
 msgstr ""
 
-#: ../qml/MainPage.qml:86
+#: ../qml/MainPage.qml:90
 msgid "Enter a URL or a search query"
 msgstr ""
 
-#: ../qml/MainPage.qml:104 ../qml/Settings.qml:35
+#: ../qml/MainPage.qml:108 ../qml/Settings.qml:35
 msgid "Settings"
 msgstr ""
 
-#: ../qml/MainPage.qml:119
+#: ../qml/MainPage.qml:128
 msgid "Exit"
 msgstr ""
 

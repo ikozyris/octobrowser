@@ -1,0 +1,2 @@
+module MyHistory
+singleton MyHistory 0.1 Singleton.qml

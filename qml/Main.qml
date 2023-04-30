@@ -15,21 +15,26 @@
  */
 
 import QtQuick 2.9
+import QtQuick.Controls 2.2
 import Ubuntu.Components 1.3
 import Qt.labs.settings 1.0
 
 MainView {
+//ApplicationWindow {
     id: mainView
     objectName: 'mainView'
     applicationName: 'octobrowser.ikozyris'
     automaticOrientation: true
-    anchorToKeyboard: true
+    //TODO: FIXME, setting to true creates bugs
+    anchorToKeyboard: false
+    //visible: true
 
-    //width: units.gu(45)
-    //height: units.gu(75)
+    width: units.gu(45)
+    height: units.gu(75)
 
     Settings {
         id: preferences
+        property var array: [""];
         property int zoomlevel: 100
         property int adrpos: 0
         property string cmuseragent: "Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Mobile Safari/537.36"
@@ -59,7 +64,8 @@ MainView {
         }
 
         var slot_applyChanges = function(msettings) {
-            console.log("Saving changes...")
+            //console.log("Saving changes...")
+            preferences.array = msettings.array;
             preferences.zoomlevel = msettings.zoomlevel;
             preferences.adrpos = msettings.adrpos;
             preferences.cmuseragent = msettings.cmuseragent;
@@ -70,8 +76,6 @@ MainView {
         }
 
         var settingPage = pStack.push(Qt.resolvedUrl("Settings.qml"), prop);
-
         settingPage.applyChanges.connect(function() { slot_applyChanges(settingPage) });
     }
-
 }

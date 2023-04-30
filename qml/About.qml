@@ -20,7 +20,7 @@ Page {
     id: aboutPage
 
     header: PageHeader {
-    title: i18n.tr("About")
+        title: i18n.tr("About")
     }
 
     ScrollView {
@@ -33,8 +33,6 @@ Page {
             leftMargin: units.gu(2)
             rightMargin: units.gu(2)
         }
-
-        clip: true
 
         Column {
             id: aboutColumn
@@ -62,7 +60,7 @@ Page {
                 linkColor: UbuntuColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: i18n.tr("Version: 0.1.3")
+                text: i18n.tr("Version: 0.2.0")
             }
 
             Label {
@@ -70,7 +68,7 @@ Page {
                 linkColor: UbuntuColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: i18n.tr("The simpliest yet experamental Qt browser for Ubuntu Touch.")
+                text: i18n.tr("A simple yet experamental Qt browser for Ubuntu Touch. Not in a production-ready state.")
             }
 
             Label {

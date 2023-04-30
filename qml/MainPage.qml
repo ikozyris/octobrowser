@@ -21,10 +21,14 @@ import QtWebEngine 1.11
 import Ubuntu.Components 1.3
 import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
-import "utils.js" as JS
+
+import "qrc:///qml/utils.js" as JS
+import "qrc:///qml/"
+
 Page {
     id: mainPage
     anchors.fill: parent
+    visible: true
 
     property string barposition: preferences.adrpos === 1 ? "bottom" : "top";
 
@@ -104,7 +108,12 @@ Page {
 	                text: i18n.tr("Settings")
                     onTriggered: mainView.showSettings()
                 },
-                 Action {
+                Action {
+	            	iconName: "history"
+	                text: i18n.tr("History")
+                    onTriggered: pStack.push(Qt.resolvedUrl("History.qml"));
+                },
+                Action {
 	            	iconName: "info"
 	                text: i18n.tr("About")
                     onTriggered: pStack.push(Qt.resolvedUrl("About.qml"));
@@ -176,12 +185,12 @@ Page {
         }
 
         onLoadingChanged: {
-            gc() //garbage collection
+            //gc() //garbage collection
             textFieldInput.text = webview.url
             if(loadRequest.errorString)
                 console.error(loadRequest.errorString);
             else
-                console.info("Load web page successfull");
+                MyHistory.array.push(textFieldInput.text)
         }
     } 
 

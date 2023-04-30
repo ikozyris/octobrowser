@@ -4,7 +4,7 @@ project(octobrowser C CXX)
 # Automatically create moc files
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Werror")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Werror -O2")
 
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Qml REQUIRED)
@@ -12,7 +12,6 @@ find_package(Qt5Quick REQUIRED)
 find_package(Qt5QuickControls2 REQUIRED)
 find_package(Qt5WebEngine REQUIRED)
 find_package(Qt5QuickCompiler REQUIRED)
-
 find_package(Qt5 COMPONENTS Quick Core Network)
 
 execute_process(
@@ -70,6 +69,11 @@ qtquick_compiler_add_resources(QT_RESOURCES main.qrc)
 
 add_executable(${PROJECT_NAME} main.cpp main.qrc)
 qt5_use_modules(${PROJECT_NAME} Gui Qml Quick QuickControls2 Network WebEngine WebEngineCore)
+#qt_add_qml_module(history-module
+#    URI History
+#    QML_FILES
+#        History.qml
+#)
 
 configure_file(manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/manifest.json)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifest.json DESTINATION ${CMAKE_INSTALL_PREFIX})
@@ -79,6 +83,7 @@ install(FILES assets/logo.svg DESTINATION assets)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS_RELEASE -s)
 include_directories(${LIBAPPARMOR_INCLUDE_DIRS})
+
 target_link_libraries(${PROJECT_NAME}
     Qt5::Core
     Qt5::Gui
@@ -89,6 +94,7 @@ target_link_libraries(${PROJECT_NAME}
 #    Qt5::QuickLayouts
     Qt5WebEngine
     Qt5WebEngineCore
+#    history-module
     ${LIBAPPARMOR_LDFLAGS}
 )
 #target_link_libraries(${PROJECT_NAME} Qt5::Gui Qt5::Qml Qt5::Quick Qt5::QuickControls2 Qt5::QtWebEngine)

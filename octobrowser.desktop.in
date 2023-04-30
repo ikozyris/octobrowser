@@ -1,7 +1,9 @@
 [Desktop Entry]
 _Name=Octopus Browser
 Exec=octobrowser %U
+Keywords=Internet;WWW;Browser;Web;Explorer
 Icon=assets/logo.svg
 Terminal=false
 Type=Application
+Categories=Network;WebBrowser;
 X-Ubuntu-Touch=true

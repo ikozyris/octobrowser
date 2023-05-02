@@ -15,12 +15,13 @@
  */
 
 import QtQuick 2.9
-import QtQuick.Controls 2.2
+//import QtQuick.Controls 2.2
 //import Morph.Web 0.1
 import QtWebEngine 1.11
 import Ubuntu.Components 1.3
-import QtQuick.Layouts 1.3
+//import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
+import Ubuntu.DownloadManager 1.2
 
 import "qrc:///qml/utils.js" as JS
 //import "qrc:///qml/"
@@ -30,7 +31,8 @@ Page {
     anchors.fill: parent
     visible: true
 
-    property string barposition: preferences.adrpos === 1 ? "bottom" : "top";
+    property string barposition: preferences.adrpos == 1 ? "bottom" : "top";
+    property bool canshow: JS.canshow(webview.loadProgress)
 
     header: PageHeader {
         id: pageHeader
@@ -69,9 +71,8 @@ Page {
                     onTriggered: webview.goBack()
             	},
                 Action {
-                    iconName: webview.loadProgress === 100 ? "reload" : "stop"
-	                text: webview.loadProgress === 100 ? "Reload" : "Stop"
-                    onTriggered: webview.loadProgress === 100 ? webview.reload() : webview.stop()
+                    iconName: webview.loadProgress == 100 ? "reload" : "stop"
+                    onTriggered: webview.loadProgress == 100 ? webview.reload() : webview.stop()
                 }
             ]
         }
@@ -111,7 +112,7 @@ Page {
                 Action {
 	            	iconName: "history"
 	                text: i18n.tr("History")
-                    onTriggered: mainView.showHistory();
+                    onTriggered: pStack.push(Qt.resolvedUrl("History.qml"));
                 },
                 Action {
 	            	iconName: "info"
@@ -132,6 +133,47 @@ Page {
         }
     }
 
+    ProgressBar {
+        anchors {
+            top: pageHeader.bottom
+            left: parent.left
+            right: parent.right
+        }
+        value: webview.loadProgress / 100
+        visible: canshow
+    }
+
+    Rectangle {
+        id: webViewPlaceholder
+        anchors {
+            top: header.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+        color: "#3A3A3A"
+        visible: webview.visible ? false : true
+        Label {
+            id: placeholdertext
+            width: parent.width
+            horizontalAlignment: Text.AlignHCenter
+            text: i18n.tr("Welcome to <i>Octopus Browser</i>, <br> a fast & customizable browser.")
+            textSize: Label.Large
+            wrapMode: Text.Wrap
+            color: "white"
+            anchors.centerIn: parent
+        }
+        UbuntuShape {
+            width: units.gu(12); height: units.gu(12)
+            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.bottom: placeholdertext.top
+            radius: "medium"
+            image: Image {
+                source: Qt.resolvedUrl("qrc:///assets/logo.svg")
+            }
+        }
+    }
+
     WebEngineView {
 //    WebView {
         id: webview
@@ -141,7 +183,7 @@ Page {
             left: parent.left
             right: parent.right
             bottom: parent.bottom //pageHeader.top //for bottom
-        	topMargin: units.gu(0)
+        	topMargin: canshow ? units.gu(0.5) : units.gu(0)
 	        rightMargin: units.gu(0)
         }
         states: [
@@ -151,6 +193,14 @@ Page {
                     target: webview
                     anchors.top: parent.top
                     anchors.bottom: pageHeader.top
+                }
+            },
+            State {
+                name: "fullscreen"
+                AnchorChanges {
+                    target: webview
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
                 }
             },
             State {
@@ -177,9 +227,13 @@ Page {
 //        context: webcontext 
         onFullScreenRequested: function(request) {
             if (request.toggleOn) {
-               window.showFullScreen();
+                pageHeader.visible = false;
+                webview.state = "fullscreen";
+                window.showFullScreen();
             } else {
                 window.showNormal();
+                webview.state = barposition;
+                pageHeader.visible = true;
             }
             request.accept();
         }
@@ -189,16 +243,20 @@ Page {
             textFieldInput.text = webview.url
             if(loadRequest.errorString)
                 console.error(loadRequest.errorString);
-            else
-                history.array.push(webview.url)
-                //MyHistory.array.push(textFieldInput.text)
+            else {
+                history.urls.push(webview.url);
+                history.dates.push(new Date());
+                history.count = history.count + 1; 
+            }
         }
-    } 
+    }
+
+
 
     WebEngineProfile {
         //for more profile options see https://doc.qt.io/qt-5/qml-qtwebengine-webengineprofile.html
         id: webViewProfile
-        //persistentCookiesPolicy: WebEngineProfile.NoPersistentCookies; //do NOT store persistent cookies
+        persistentCookiesPolicy: WebEngineProfile.NoPersistentCookies; //do NOT store persistent cookies
         httpCacheType: WebEngineProfile.DiskHttpCache;                 //cache qml content to file
         httpUserAgent: preferences.cmuseragent;                        //custom UA
     }/*
@@ -208,10 +266,9 @@ Page {
     }*/
 
     Component.onCompleted: {
-        barposition: preferences.adrpos === 1 ? "bottom" : "top";
+        barposition: preferences.adrpos == 1 ? "bottom" : "top";
         pageHeader.state = barposition;
         webview.state = barposition;
-        //console.log(barposition);
     }
 
     Component.onDestruction: {

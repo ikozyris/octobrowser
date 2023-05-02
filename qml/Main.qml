@@ -45,7 +45,9 @@ MainView {
 
     Settings {
         id: history
-        property var array: [""];
+        property var urls: [""];
+        property var dates: [""];
+        property int count: 0;
     }
 
     PageStack {
@@ -80,18 +82,5 @@ MainView {
 
         var settingPage = pStack.push(Qt.resolvedUrl("Settings.qml"), prop);
         settingPage.applyChanges.connect(function() { slot_applyChanges(settingPage) });
-    }
-
-    function showHistory() {
-        //console.log(history.array)
-        var prop = {
-            array: history.array
-        }
-        var slot_applyChanges = function(msets) {
-            console.log("History");
-            history.array = msets.array;
-        }
-        var historyPage = pStack.push(Qt.resolvedUrl("History.qml"), prop);
-        historyPage.applyChanges.connect(function() { slot_applyChanges(historyPage) });
     }
 }

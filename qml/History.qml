@@ -14,46 +14,59 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.12
+import QtQuick 2.9
 import QtQuick.Window 2.9
 import QtQuick.Layouts 1.3
 import QtQuick.Controls 2.2
 import Ubuntu.Components 1.3
 
-//import MyHistory 0.1
-//import "qrc:///qml/"
-
 Page {
 	id: historyPage
     
-    signal applyChanges
-    property var array;
-    
-	header: PageHeader {
-		id: head
-        title: i18n.tr("History")
+    function clearhistory() {
+        history.urls = [];
+        history.dates = [];
+        history.count = 0;
     }
 
-    Component {
-        id: itemDelegate
-        Label {
-            // do not load NULL entries
-            //text: MyHistory.array[index] != null ? MyHistory.array[index] : null
-            text: array[index] != null ? array[index] : null
+	header: PageHeader {
+        title: i18n.tr("History")
+        trailingActionBar.actions: Action {
+            iconName: "delete"
+            text: i18n.tr("Clear history")
+            onTriggered: clearhistory()
         }
     }
 
-    ListView {
-        anchors.fill: parent
-		anchors.topMargin: units.gu(6)
-		anchors.leftMargin: units.gu(2)
-        model: 42 // DILLEMA: 1337 or 42, entries to be loaded (array.lenght does not work)
-        delegate: itemDelegate
-    }
-    Component.onCompleted: historyPage.applyChanges
-    Component.onDestruction: {
-        //console.log(array)
-        history.array = historyPage.array
+    ListItemActions {
+        id: leading
+        actions: Action {
+            iconName: "delete"
+            onTriggered: {
+                history.dates[index] = null
+                history.urls[index] = null
+            }
+        }
     }
 
+    UbuntuListView {
+        anchors {
+            fill: parent
+		    top: historyPage.header.bottom
+            topMargin: units.gu(6)
+            leftMargin: units.gu(0.5)
+            rightMargin: units.gu(0.5)
+        }
+        model: history.count // (array.lenght does not work)
+        delegate: ListItem {
+            leadingActions: leading
+            Label {
+                text: i18n.tr("On ") + history.dates[history.count-index] + ":\n" + history.urls[history.count-index]
+                wrapMode: Text.WrapAnywhere
+                width: parent.width
+                horizontalAlignment: Text.AlignHCenter
+            }
+        } 
+    }
+    //Component.onCompleted: console.log(history.count + " or " + history.urls.lenght)
 }

@@ -1,10 +1,10 @@
 function setFullscreen(fullscreen) {
 	if (fullscreen) {
 	    if (window.visibility != Page.FullScreen) {
-		window.visibility = Page.FullScreen
+			window.visibility = Page.FullScreen;
 	    }
 	} else {
-	    window.visibility = Window.Windowed
+	    window.visibility = Window.Windowed;
 	}
 }
 
@@ -41,5 +41,13 @@ function geturl(text) {
 			var query = "https://duckduckgo.com/?q=" + encodeURIComponent(text);
 			return query;
 	    }
+	}
+}
+
+function canshow(prog) {
+	if (prog != 0 && prog != 100)  {
+		return true;
+	} else {
+		return false;
 	}
 }

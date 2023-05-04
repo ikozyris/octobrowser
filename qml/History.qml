@@ -38,17 +38,6 @@ Page {
         }
     }
 
-    ListItemActions {
-        id: leading
-        actions: Action {
-            iconName: "delete"
-            onTriggered: {
-                history.dates[index] = null
-                history.urls[index] = null
-            }
-        }
-    }
-
     UbuntuListView {
         anchors {
             fill: parent
@@ -59,9 +48,22 @@ Page {
         }
         model: history.count // (array.lenght does not work)
         delegate: ListItem {
-            leadingActions: leading
+            //do not calculate this every time
+            readonly property int curr: history.count - index
+            //TODO: share this action as an optimization?
+            leadingActions: ListItemActions {
+                id: leading
+                actions: Action {
+                    iconName: "delete"
+                    onTriggered: {
+                        history.dates[curr] = null
+                        history.urls[curr] = null
+                        history.count = history.count - 1;
+                    }
+                }
+            }
             Label {
-                text: i18n.tr("On ") + history.dates[history.count-index] + ":\n" + history.urls[history.count-index]
+                text: i18n.tr("On ") + history.dates[curr] + ":\n" + history.urls[curr]
                 wrapMode: Text.WrapAnywhere
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter

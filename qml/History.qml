@@ -14,11 +14,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.9
-import QtQuick.Window 2.9
-import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.2
+import QtQuick 2.12
+//import QtQuick.Window 2.12
+//import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.12
 import Ubuntu.Components 1.3
+
+import "qrc:///qml/"
+import "qrc:///qml/utils.js" as JS
 
 Page {
 	id: historyPage
@@ -37,7 +40,6 @@ Page {
             onTriggered: clearhistory()
         }
     }
-
     UbuntuListView {
         anchors {
             fill: parent
@@ -55,11 +57,7 @@ Page {
                 id: leading
                 actions: Action {
                     iconName: "delete"
-                    onTriggered: {
-                        history.dates[curr] = null
-                        history.urls[curr] = null
-                        history.count = history.count - 1;
-                    }
+                    onTriggered: JS.delIndex(curr)
                 }
             }
             Label {
@@ -68,7 +66,19 @@ Page {
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
             }
+            trailingActions: ListItemActions {
+                actions: Action {
+                    iconName: "external-link"
+                    onTriggered: {
+                        MyTabs.currtab = history.urls[curr];
+                        pStack.pop();
+                    }
+                }
+            }
         } 
-    }
+    }/*
+    Loader {
+        sourceComponent: list
+    }*/
     //Component.onCompleted: console.log(history.count + " or " + history.urls.lenght)
 }

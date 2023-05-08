@@ -48,8 +48,4 @@ function delIndex(index) {
 	history.dates.splice(index, 1);
 	history.urls.splice(index, 1);
 	history.count = history.count - 1;
-<<<<<<< HEAD:qml/Utils.js
 }
-=======
-}
->>>>>>> 95b5829fc0a86edfbe3d12f668fa77ca4cca64b5:qml/utils.js

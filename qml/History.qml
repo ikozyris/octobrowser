@@ -21,11 +21,7 @@ import QtQuick.Controls 2.12
 import Ubuntu.Components 1.3
 
 import "qrc:///qml/"
-<<<<<<< HEAD
 import "qrc:///qml/Utils.js" as JS
-=======
-import "qrc:///qml/utils.js" as JS
->>>>>>> 95b5829fc0a86edfbe3d12f668fa77ca4cca64b5
 
 Page {
 	id: historyPage

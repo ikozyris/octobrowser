@@ -13,7 +13,7 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-import QtQuick 2.9
+import QtQuick 2.12
 import Ubuntu.Components 1.3
 
 Page {
@@ -60,7 +60,7 @@ Page {
                 linkColor: UbuntuColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: i18n.tr("Version: 0.2.0")
+                text: i18n.tr("Version: 0.3.0")
             }
 
             Label {
@@ -68,7 +68,7 @@ Page {
                 linkColor: UbuntuColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: i18n.tr("A simple yet experamental Qt browser for Ubuntu Touch. Not in a production-ready state.")
+                text: i18n.tr("A simple yet experimental Qt browser for Ubuntu Touch. Not in a production-ready state.")
             }
 
             Label {

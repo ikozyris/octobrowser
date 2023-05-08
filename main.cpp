@@ -17,26 +17,33 @@
 #include <QGuiApplication>
 #include <QCoreApplication>
 #include <QUrl>
-#include <QString>
-#include <QQuickView>
-//#include <QQmlApplicationEngine>
-//#include <QQmlContext>
-//#include <QQuickStyle>
-#include <QtWebEngine/QtWebEngine>
-
+//#include <QString>
+#include <QQuickView>               // QQview
+//#include <QQmlApplicationEngine>  // QQengine
+//#include <QQmlContext>            //  >>
+//#include <QQuickStyle>            //  >>
+//#include <QtWebEngine/QtWebEngine>
+//#include <QtWebEngine/qtwebengineglobal.h>
+#include <QStandardPaths>
 // Run with QQuickView
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+    QGuiApplication::setOrganizationName("octobrowser.ikozyris");
+    QGuiApplication::setApplicationName("octobrowser.ikozyris");
 
-   // qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--blink-settings=darkMode=3,darkModeImagePolicy=2,darkModeImageStyle=2 --enable-smooth-scrolling --enable-low-res-tiling --enable-low-end-device-mode --enable-natural-scroll-default");
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--blink-settings=darkMode=3,darkModeImagePolicy=2,darkModeImageStyle=2 --enable-smooth-scrolling --enable-low-res-tiling --enable-low-end-device-mode --enable-natural-scroll-default");
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "true");
-
+    qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2");
     if (qgetenv("QT_QPA_PLATFORM") == "wayland") {
-         qputenv("QT_WAYLAND_SHELL_INTEGRATION", "wl-shell");
+        qputenv("QT_WAYLAND_SHELL_INTEGRATION", "wl-shell");
     }
+    //qputenv("PERFPROFILER_PARSER_FILEPATH",TODO);
     //QtWebEngine::initialize();
+QString configPath = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
+QString cachePath = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
+QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
 
     QGuiApplication *app = new QGuiApplication(argc, (char**)argv);
     app->setApplicationName("octobrowser.ikozyris");
@@ -50,25 +57,29 @@ int main(int argc, char *argv[])
 
     return app->exec();
 }
-
-/*  // Run with QQmlApplicationEngine
+/*
+// Run with QQmlApplicationEngine //DO NOT USE
+//QtWebEngineProcess is not killed after app is closed 
+// You may see this:
+// [1:19:0505/191935.727720:ERROR:address_tracker_linux.cc(214)] Could not bind NETLINK socket: Address already in use (98)
+// [1:1:0505/191937.894230:ERROR:service_worker_storage.cc(1753)] Failed to delete the database: Database IO error
 int main(int argc, char *argv[])
 {
-    QGuiApplication::setApplicationName("OctoBrowser");
+    QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication::setOrganizationName("octobrowser.ikozyris");
     QGuiApplication::setApplicationName("octobrowser.ikozyris");
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 
-    QtWebEngine::initialize();
+    //QtWebEngine::initialize();
+    //QWebEngineProfile::defaultProfile()->setPersistentCookiesPolicy(QWebEngineProfile::ForcePersistentCookies);
 
     QGuiApplication app(argc, argv);
 
-    QString style = QQuickStyle::name();
-    QQuickStyle::setStyle("Suru");    
+//    QString style = QQuickStyle::name();
+//    QQuickStyle::setStyle("Suru");    
 
     QQmlApplicationEngine engine;
-    engine.rootContext()->setContextProperty("availableStyles", QQuickStyle::availableStyles());
+//    engine.rootContext()->setContextProperty("availableStyles", QQuickStyle::availableStyles());
     engine.load(QUrl("qrc:///qml/Main.qml"));
     if (engine.rootObjects().isEmpty())
         return -1;

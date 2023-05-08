@@ -14,23 +14,28 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.9
-//import QtQuick.Controls 2.2
+import QtQuick 2.12
+//import QtGraphicalEffects 1.12
+import QtQuick.Controls 2.2
 //import Morph.Web 0.1
 import QtWebEngine 1.11
 import Ubuntu.Components 1.3
-//import QtQuick.Layouts 1.3
+import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
+import Qt.labs.platform 1.0
 import Ubuntu.DownloadManager 1.2
+import Ubuntu.Components.Popups 1.3
 
-import "qrc:///qml/utils.js" as JS
-//import "qrc:///qml/"
+import "qrc:///qml/Utils.js" as JS
+import "qrc:///qml/Dialogs/" as DL
+
+import DownloadInterceptor 1.0
 
 Page {
     id: mainPage
     anchors.fill: parent
-    visible: true
-
+    //visible: true
+    
     property string barposition: preferences.adrpos == 1 ? "bottom" : "top";
     property bool canshow: JS.canshow(webview.loadProgress)
 
@@ -59,17 +64,17 @@ Page {
             numberOfSlots: 3
             actions: [
                 Action {
-	        		visible: webview.canGoForward ? true : false
+		    visible: webview.canGoForward ? true : false
                     iconName: "go-next"
-	                text: i18n.tr("Forward")
+	            text: i18n.tr("Forward")
                     onTriggered: webview.goForward()
-            	},
+		},
                 Action {
                     visible: webview.canGoBack ? true : false
-	        		iconName: "previous"
-	                text: i18n.tr("back")
+		    iconName: "previous"
+	            text: i18n.tr("back")
                     onTriggered: webview.goBack()
-            	},
+		},
                 Action {
                     iconName: webview.loadProgress == 100 ? "reload" : "stop"
                     onTriggered: webview.loadProgress == 100 ? webview.reload() : webview.stop()
@@ -79,24 +84,19 @@ Page {
 
         TextField {
             id: textFieldInput
-	        anchors {
-	            top: parent.top
+	    anchors {
+	        top: parent.top
                 topMargin: units.gu(1)
                 left: parent.left
                 leftMargin: 0.27*parent.width
                 right: parent.right
                 rightMargin: 0.11*parent.width
-        	}
+	   }
             
-        	placeholderText: i18n.tr('Enter a URL or a search query')/*
-            inputMethodHints: {
-                Qt.ImhNoAutoUppercase,
-                Qt.ImhUrlCharactersOnly,
-                Qt.ImhNoPredictiveText
-            }*/
-            inputMethodHints: Qt.ImhUrlCharactersOnly
+	    placeholderText: i18n.tr('Enter a URL or a search query')
+            inputMethodHints: Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
             onAccepted: {
-                webview.url = JS.geturl(textFieldInput.text),
+                MyTabs.currtab = JS.geturl(textFieldInput.text),
                 webview.visible = true
             }
         }
@@ -105,31 +105,41 @@ Page {
             numberOfSlots: 0
             actions: [
                 Action {
+                    iconName: "browser-tabs"
+                    text: i18n.tr("Manage Tabs")
+                    onTriggered: pStack.push(Qt.resolvedUrl("TabView.qml"));
+                },
+                Action {
+                    iconName: "document-save"
+                    text: i18n.tr("Downloads")
+                    onTriggered: pStack.push(Qt.resolvedUrl("Download.qml"));
+                },
+                Action {
                     iconName: "settings"
 	                text: i18n.tr("Settings")
                     onTriggered: mainView.showSettings();
                 },
                 Action {
-	            	iconName: "history"
-	                text: i18n.tr("History")
+		    iconName: "history"
+	            text: i18n.tr("History")
                     onTriggered: pStack.push(Qt.resolvedUrl("History.qml"));
                 },
                 Action {
-	            	iconName: "info"
-	                text: i18n.tr("About")
+	            iconName: "info"
+	            text: i18n.tr("About")
                     onTriggered: pStack.push(Qt.resolvedUrl("About.qml"));
                 },
                 Action {
                     iconName: "help"
                     text: i18n.tr("Help")
                     onTriggered: pStack.push(Qt.resolvedUrl("Help.qml"));
-                },
+                }/*,
                 Action {
                     iconName: "close"
                     text: i18n.tr("Exit")
                     onTriggered: Qt.quit()
-                }
-	        ]
+                }*/
+	    ]
         }
     }
 
@@ -139,6 +149,7 @@ Page {
             left: parent.left
             right: parent.right
         }
+        showProgressPercentage: false
         value: webview.loadProgress / 100
         visible: canshow
     }
@@ -183,8 +194,8 @@ Page {
             left: parent.left
             right: parent.right
             bottom: parent.bottom //pageHeader.top //for bottom
-        	topMargin: canshow ? units.gu(0.5) : units.gu(0)
-	        rightMargin: units.gu(0)
+	    topMargin: canshow ? units.gu(0.5) : units.gu(0)
+	    rightMargin: units.gu(0)
         }
         states: [
             State {
@@ -212,19 +223,20 @@ Page {
                 }
             }
         ]
-        url: ""
+        url: MyTabs.currtab
         zoomFactor: preferences.zoomlevel / 100                         // custom zoom factor
         settings.javascriptEnabled: preferences.js                      // enable javascipt
         settings.autoLoadImages: preferences.loadimages                 // autoload images
-        settings.webRTCPublicInterfacesOnly: preferences.webrtc         // webrtc
-        settings.pluginsEnabled: true
+        settings.webRTCPublicInterfacesOnly: preferences.webrtc         // setting to true creates leaks
+        settings.pluginsEnabled: true                                   // workaround for pdf
+        settings.playbackRequiresUserGesture: preferences.autoplay      // autoplay video
         settings.pdfViewerEnabled: true                                 // enable pdf viewer
-        //settings.showScrollBars: false                                  // do not show scroll bars
+        settings.showScrollBars: false                                  // do not show scroll bars
         settings.allowRunningInsecureContent: preferences.securecontent // InSecure content
         settings.fullScreenSupportEnabled: true
         settings.dnsPrefetchEnabled: true
+        settings.touchIconsEnabled: true
         profile: webViewProfile
-//        context: webcontext 
         onFullScreenRequested: function(request) {
             if (request.toggleOn) {
                 pageHeader.visible = false;
@@ -237,7 +249,6 @@ Page {
             }
             request.accept();
         }
-
         onLoadingChanged: {
             //gc() //garbage collection
             textFieldInput.text = webview.url
@@ -249,30 +260,36 @@ Page {
                 history.count = history.count + 1; 
             }
         }
+        backgroundColor: "grey"
     }
-
-
 
     WebEngineProfile {
         //for more profile options see https://doc.qt.io/qt-5/qml-qtwebengine-webengineprofile.html
         id: webViewProfile
-        persistentCookiesPolicy: WebEngineProfile.NoPersistentCookies; //do NOT store persistent cookies
+        persistentCookiesPolicy: WebEngineProfile.AllowPersistentCookies; //store persistent cookies
         httpCacheType: WebEngineProfile.DiskHttpCache;                 //cache qml content to file
         httpUserAgent: preferences.cmuseragent;                        //custom UA
-    }/*
-    WebContext {
-        id: webcontext
-        userAgent: preferences.cmuseragent
-    }*/
+        offTheRecord: false
+        onDownloadRequested: {
+            var fileUrl = StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/Downloads/" + download.downloadFileName;
+            var request = new XMLHttpRequest();
+            request.open("PUT", fileUrl, false);
+            request.send(decodeURIComponent(download.url.toString().replace("data:text/plain;,", "")));
+            PopupUtils.open(DL.downloadDialog, mainPage, { "fileName" : download.downloadFileName})
+        }
+    }
 
     Component.onCompleted: {
         barposition: preferences.adrpos == 1 ? "bottom" : "top";
         pageHeader.state = barposition;
         webview.state = barposition;
+        //gc();
     }
 
     Component.onDestruction: {
         webview.stop(),
+        webViewProfile.clearHttpCache(),
+        gc(),
         console.log("Goodbye")
     }
 }

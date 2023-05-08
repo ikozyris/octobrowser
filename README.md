@@ -1,11 +1,13 @@
 # Octopus Browser
 
 Browse the WWW like an octopus.
+
 Features:
 - Toggle JavaScipt On/Off
 - Automatically load images On/Off
 - Move address bar
 - History
+- Block autoplaying videos
 - _MORE_
 
 In other words: The simpliest yet experamental Qt browser for Ubuntu Touch.

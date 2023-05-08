@@ -1,7 +1,7 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
 <qresource prefix="/">
-	<file>qml/utils.js</file>
+	<file>qml/Utils.js</file>
 	<file>qml/Main.qml</file>
 	<file>qml/MainPage.qml</file>
 	<file>qml/Settings.qml</file>
@@ -10,6 +10,10 @@
 	<file>qml/qmldir</file>
 	<file>qml/About.qml</file>
 	<file>qml/Help.qml</file>
+	<file>qml/TabView.qml</file>
+	<file>qml/Download.qml</file>
+	<file>qml/Dialogs/Download.qml</file>
+	<file>qml/KeyboardRectangle.qml</file>
 	<file>assets/logo.svg</file>
 </qresource>
 </RCC>

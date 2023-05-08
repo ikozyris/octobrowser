@@ -1,13 +1,4 @@
-function setFullscreen(fullscreen) {
-	if (fullscreen) {
-	    if (window.visibility != Page.FullScreen) {
-			window.visibility = Page.FullScreen;
-	    }
-	} else {
-	    window.visibility = Window.Windowed;
-	}
-}
-
+//url related
 function lookslikeurl(s) {
 	var regexp = /^(?:(?:(?:[a-zA-z\-]+)\:\/{1,3})?(?:[a-zA-Z0-9])(?:[a-zA-Z0-9\-\.]){1,61}(?:\.[a-zA-Z]{2,})+|\[(?:(?:(?:[a-fA-F0-9]){1,4})(?::(?:[a-fA-F0-9]){1,4}){7}|::1|::)\]|(?:(?:[0-9]{1,3})(?:\.[0-9]{1,3}){3}))(?:\:[0-9]{1,5})?$/;
 	return regexp.test(s);
@@ -50,4 +41,11 @@ function canshow(prog) {
 	} else {
 		return false;
 	}
+}
+
+//history related
+function delIndex(index) {
+	history.dates.splice(index, 1);
+	history.urls.splice(index, 1);
+	history.count = history.count - 1;
 }

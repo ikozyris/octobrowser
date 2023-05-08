@@ -14,11 +14,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.9
-import QtQuick.Window 2.9
-import QtQuick.Layouts 1.3
-import QtQuick.Controls 2.2
+import QtQuick 2.12
+//import QtQuick.Window 2.12
+//import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.12
 import Ubuntu.Components 1.3
+
+import "qrc:///qml/"
+import "qrc:///qml/Utils.js" as JS
 
 Page {
 	id: historyPage
@@ -37,18 +40,6 @@ Page {
             onTriggered: clearhistory()
         }
     }
-
-    ListItemActions {
-        id: leading
-        actions: Action {
-            iconName: "delete"
-            onTriggered: {
-                history.dates[index] = null
-                history.urls[index] = null
-            }
-        }
-    }
-
     UbuntuListView {
         anchors {
             fill: parent
@@ -59,14 +50,35 @@ Page {
         }
         model: history.count // (array.lenght does not work)
         delegate: ListItem {
-            leadingActions: leading
+            //do not calculate this every time
+            readonly property int curr: history.count - index
+            //TODO: share this action as an optimization?
+            leadingActions: ListItemActions {
+                id: leading
+                actions: Action {
+                    iconName: "delete"
+                    onTriggered: JS.delIndex(curr)
+                }
+            }
             Label {
-                text: i18n.tr("On ") + history.dates[history.count-index] + ":\n" + history.urls[history.count-index]
+                text: i18n.tr("On ") + history.dates[curr] + ":\n" + history.urls[curr]
                 wrapMode: Text.WrapAnywhere
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
             }
+            trailingActions: ListItemActions {
+                actions: Action {
+                    iconName: "external-link"
+                    onTriggered: {
+                        MyTabs.currtab = history.urls[curr];
+                        pStack.pop();
+                    }
+                }
+            }
         } 
-    }
+    }/*
+    Loader {
+        sourceComponent: list
+    }*/
     //Component.onCompleted: console.log(history.count + " or " + history.urls.lenght)
 }

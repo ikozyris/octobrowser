@@ -1,13 +1,25 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(octobrowser C CXX)
 
+## This CMakeLists.txt uses qtquickcompiler
+## but it was not used because the app
+## is slower when compiled (if you are not
+## convinced, test it)
+
 # Automatically create moc files
 set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Werror -O2")
 
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Qml REQUIRED)
 find_package(Qt5Quick REQUIRED)
 find_package(Qt5QuickControls2 REQUIRED)
+find_package(Qt5WebEngine REQUIRED)
+find_package(Qt5QuickCompiler REQUIRED)
+find_package(Qt5 COMPONENTS Quick Core Network)
 
 execute_process(
     COMMAND dpkg-architecture -qDEB_HOST_MULTIARCH
@@ -18,6 +30,7 @@ set(QT_IMPORTS_DIR "lib/${ARCH_TRIPLET}")
 
 set(PROJECT_NAME "octobrowser")
 set(FULL_PROJECT_NAME "octobrowser.ikozyris")
+set(CMAKE_INSTALL_PREFIX /)
 set(DATA_DIR /)
 set(DESKTOP_FILE_NAME ${PROJECT_NAME}.desktop)
 
@@ -59,18 +72,30 @@ endif(NOT BUILD_VERSION_RAW)
 string(SUBSTRING ${BUILD_VERSION_RAW} 1 -1 BUILD_VERSION)
 message(STATUS "Build version is: ${BUILD_VERSION}")
 
+qtquick_compiler_add_resources(RESOURCES main.qrc)
 
+add_executable(${PROJECT_NAME} main.cpp ${RESOURCES})
+qt5_use_modules(${PROJECT_NAME} Gui Qml Quick QuickControls2 Network WebEngine WebEngineCore)
 configure_file(manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/manifest.json)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifest.json DESTINATION ${CMAKE_INSTALL_PREFIX})
+
 install(FILES ${PROJECT_NAME}.apparmor DESTINATION ${DATA_DIR})
 install(FILES assets/logo.svg DESTINATION assets)
 
-#qt5_add_resources(QT_RESOURCES qml/qml.qrc)
-#qt5_add_resources(QT_RESOURCES assets/assets.qrc)
-qt5_add_resources(QT_RESOURCES main.qrc)
-add_executable(${PROJECT_NAME} main.cpp ${QT_RESOURCES})
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS_RELEASE -s)
-target_link_libraries(${PROJECT_NAME} Qt5::Gui Qt5::Qml Qt5::Quick Qt5::QuickControls2)
+include_directories(${LIBAPPARMOR_INCLUDE_DIRS})
+
+target_link_libraries(${PROJECT_NAME}
+    Qt5::Core
+    Qt5::Gui
+    Qt5::Network
+    Qt5::Qml
+    Qt5::Quick
+    Qt5::QuickControls2
+    Qt5WebEngine
+    Qt5WebEngineCore
+    ${LIBAPPARMOR_LDFLAGS}
+)
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_PREFIX})
 
 # Translations
@@ -95,7 +120,7 @@ add_custom_target(${DESKTOP_FILE_NAME} ALL
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${DESKTOP_FILE_NAME} DESTINATION ${DATA_DIR})
 
 add_subdirectory(po)
-add_subdirectory(plugins)
+#add_subdirectory(plugins)
 
 # Make source files visible in qtcreator
 file(GLOB_RECURSE PROJECT_SRC_FILES
@@ -103,7 +128,7 @@ file(GLOB_RECURSE PROJECT_SRC_FILES
     qml/*.qml
     qml/*.js
 #    src/*
-#    *.json
+ #   *.json
     *.json.in
     *.apparmor
     *.desktop.in

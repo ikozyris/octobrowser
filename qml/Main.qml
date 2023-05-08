@@ -14,21 +14,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.9
+import QtQuick 2.12
+//import QtGraphicalEffects 1.12
 import QtQuick.Controls 2.2
 import Ubuntu.Components 1.3
 import Qt.labs.settings 1.0
 
 MainView {
-//ApplicationWindow {
+//ApplicationWindow { //for engine
     id: mainView
     objectName: 'mainView'
     applicationName: 'octobrowser.ikozyris'
     automaticOrientation: true
     //TODO: FIXME, setting to true creates bugs
     anchorToKeyboard: false
-    //visible: true
-
+    //visible: true //for engine
     width: units.gu(45)
     height: units.gu(75)
 
@@ -41,6 +41,9 @@ MainView {
         property bool loadimages: true
         property bool securecontent: false
         property bool webrtc: false
+        property bool keeptabs: false
+        property bool autoplay: false
+        property bool lightfilter: false
     }
 
     Settings {
@@ -50,13 +53,31 @@ MainView {
         property int count: 0;
     }
 
+    KeyboardRectangle {
+        id: keyboardRect
+    }
+    
     PageStack {
         id: pStack
+        anchors {
+            fill: undefined // unset the default to make the other anchors work
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            bottom: keyboardRect.top
+        }
     }
 
     Component.onCompleted: {
-        pStack.push(Qt.resolvedUrl("MainPage.qml"));
+        pStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
+
+/*
+    ColorOverlay {
+        anchors.fill: parent
+        source: mainView
+        color: preferences.lightfilter ? "#09000000" : "transparent"
+    }*/
 
     function showSettings() {
         var prop = {
@@ -66,7 +87,10 @@ MainView {
             js: preferences.js,
             loadimages: preferences.loadimages,
             securecontent: preferences.securecontent,
-            webrtc: preferences.webrtc
+            webrtc: preferences.webrtc,
+            keeptabs: preferences.keeptabs,
+            autoplay: preferences.autoplay,
+            lightfilter: preferences.lightfilter
         }
 
         var slot_applyChanges = function(msettings) {
@@ -78,6 +102,9 @@ MainView {
             preferences.loadimages = msettings.loadimages;
             preferences.securecontent = msettings.securecontent;
             preferences.webrtc = msettings.webrtc;
+            preferences.keeptabs = msettings.keeptabs;
+            preferences.autoplay = msettings.autoplay;
+            preferences.lightfilter = msettings.lightfilter;
         }
 
         var settingPage = pStack.push(Qt.resolvedUrl("Settings.qml"), prop);

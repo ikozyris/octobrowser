@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.9
+import QtQuick 2.12
 import Ubuntu.Components 1.3
 
 Page {
@@ -27,6 +27,9 @@ Page {
     property alias loadimages: imagswitch.checked
     property alias webrtc: rtcswitch.checked
     property alias securecontent: insecswitch.checked
+    property alias keeptabs: ktabs.checked
+    property alias autoplay: playswitch.checked
+    property alias lightfilter: blfilter.checked
 
     signal applyChanges
     signal cancelChanges
@@ -53,20 +56,48 @@ Page {
             }
         }
     }
-
     ScrollView {
         id: scrollView
         anchors.fill: settingPage
-
         Column {
             id: column
             width: scrollView.width
-
             property int mSpacing: units.gu(2)
-
             Label {
-                text: "Aesthetics"
+                text: i18n.tr("General")
                 font.bold: true
+            }
+            ListItem {
+                Label {
+                    text: i18n.tr("Remember open tabs:")
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        left: parent.left; leftMargin: units.gu(1)
+                    }
+                }
+                Switch {
+                    id: ktabs
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        right: parent.right; rightMargin: units.gu(1)
+                    }
+                }
+            }
+            ListItem {
+                Label {
+                    text: i18n.tr("Blue light filter:")
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        left: parent.left; leftMargin: units.gu(1)
+                    }
+                }
+                Switch {
+                    id: blfilter
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        right: parent.right; rightMargin: units.gu(1)
+                    }
+                }
             }
             ListItem {
                 height: zoomlabel.height + zoomslider.height + column.mSpacing
@@ -104,7 +135,6 @@ Page {
                         i18n.tr("top"),
                         i18n.tr("bottom"),
                     ]
-                    selectedIndex: 0
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
                         left: parent.left; leftMargin: units.gu(1)
@@ -113,7 +143,7 @@ Page {
                 }
             }
             Label {
-                text: "Privacy"
+                text: i18n.tr("Privacy")
                 font.bold: true
             }
             ListItem {
@@ -139,9 +169,7 @@ Page {
                 }
             }
             ListItem {
-                height: rtclabel.height + rtcswitch.height + column.mSpacing
                 Label {
-                    id: rtclabel
                     text: i18n.tr("Limit WebRTC to public IP addresses only:")
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
@@ -150,7 +178,6 @@ Page {
                 }
                 Switch {
                     id: rtcswitch
-                    checked: false
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
                         right: parent.right; rightMargin: units.gu(1)
@@ -158,13 +185,11 @@ Page {
                 }
             }
             Label {
-                text: "Security"
+                text: i18n.tr("Security")
                 font.bold: true
             }
             ListItem {
-                height: jslabel.height + jsswitch.height + column.mSpacing
                 Label {
-                    id: jslabel
                     text: i18n.tr("Enable JavaScipt:")
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
@@ -173,7 +198,6 @@ Page {
                 }
                 Switch {
                     id: jsswitch
-                    checked: true
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
                         right: parent.right; rightMargin: units.gu(1)
@@ -181,9 +205,7 @@ Page {
                 }
             }
             ListItem {
-                height: imaglabel.height + imagswitch.height + column.mSpacing
                 Label {
-                    id: imaglabel
                     text: i18n.tr("Autoload Images:")
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
@@ -192,7 +214,6 @@ Page {
                 }
                 Switch {
                     id: imagswitch
-                    checked: true
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
                         right: parent.right; rightMargin: units.gu(1)
@@ -200,7 +221,22 @@ Page {
                 }
             }
             ListItem {
-                height: inseclabel.height + insecswitch.height + column.mSpacing
+                Label {
+                    text: i18n.tr("Autoplay videos:")
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        left: parent.left; leftMargin: units.gu(1)
+                    }
+                }
+                Switch {
+                    id: playswitch
+                    anchors {
+                        top: parent.top; topMargin: column.mSpacing
+                        right: parent.right; rightMargin: units.gu(1)
+                    }
+                }
+            }
+            ListItem {
                 Label {
                     id: inseclabel
                     text: i18n.tr("Allow running insecure content:")
@@ -211,7 +247,6 @@ Page {
                 }
                 Switch {
                     id: insecswitch
-                    checked: false
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
                         right: parent.right; rightMargin: units.gu(1)

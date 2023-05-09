@@ -17,7 +17,7 @@
 #include <QGuiApplication>
 #include <QCoreApplication>
 #include <QUrl>
-//#include <QString>
+#include <QString>
 #include <QQuickView>               // QQview
 //#include <QQmlApplicationEngine>  // QQengine
 //#include <QQmlContext>            //  >>
@@ -25,25 +25,31 @@
 //#include <QtWebEngine/QtWebEngine>
 //#include <QtWebEngine/qtwebengineglobal.h>
 #include <QStandardPaths>
+
 // Run with QQuickView
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
+
     QGuiApplication::setOrganizationName("octobrowser.ikozyris");
     QGuiApplication::setApplicationName("octobrowser.ikozyris");
 
-    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--blink-settings=darkMode=3,darkModeImagePolicy=2,darkModeImageStyle=2 --enable-smooth-scrolling --enable-low-res-tiling --enable-low-end-device-mode --enable-natural-scroll-default");
+//"--blink-settings=darkMode=3,darkModeImagePolicy=2,darkModeImageStyle=2 --enable-smooth-scrolling --enable-low-res-tiling 
+// --enable-low-end-device-mode --enable-natural-scroll-default
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", " --force-dark-mode --enable-smooth-scrolling");
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "true");
-    qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2");
+
+    qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2"); //force QQC2 web popups
+    
     if (qgetenv("QT_QPA_PLATFORM") == "wayland") {
         qputenv("QT_WAYLAND_SHELL_INTEGRATION", "wl-shell");
     }
     //qputenv("PERFPROFILER_PARSER_FILEPATH",TODO);
     //QtWebEngine::initialize();
-QString configPath = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
-QString cachePath = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
-QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QString configPath = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
+    QString cachePath = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
+    QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
 
     QGuiApplication *app = new QGuiApplication(argc, (char**)argv);
     app->setApplicationName("octobrowser.ikozyris");

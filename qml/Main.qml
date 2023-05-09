@@ -15,7 +15,7 @@
  */
 
 import QtQuick 2.12
-//import QtGraphicalEffects 1.12
+import QtGraphicalEffects 1.12
 import QtQuick.Controls 2.2
 import Ubuntu.Components 1.3
 import Qt.labs.settings 1.0
@@ -23,10 +23,9 @@ import Qt.labs.settings 1.0
 MainView {
 //ApplicationWindow { //for engine
     id: mainView
-    objectName: 'mainView'
+    //objectName: 'mainView'
     applicationName: 'octobrowser.ikozyris'
     automaticOrientation: true
-    //TODO: FIXME, setting to true creates bugs
     anchorToKeyboard: false
     //visible: true //for engine
     width: units.gu(45)
@@ -72,12 +71,12 @@ MainView {
         pStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
 
-/*
+
     ColorOverlay {
-        anchors.fill: parent
-        source: mainView
-        color: preferences.lightfilter ? "#09000000" : "transparent"
-    }*/
+        anchors.fill: pStack
+        source: pStack
+        color: preferences.lightfilter ? "#60600000" : "transparent"
+    }
 
     function showSettings() {
         var prop = {

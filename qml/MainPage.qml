@@ -295,7 +295,7 @@ Page {
             var request = new XMLHttpRequest();
             request.open("PUT", fileUrl, false);
             request.send(decodeURIComponent(download.url.toString().replace("data:text/plain;,", "")));
-            PopupUtils.open(DL.downloadDialog, mainPage, { "fileName" : download.downloadFileName})
+            PopupUtils.open(DownloadingDialog, mainPage, { "fileName" : download.downloadFileName})
         }
     }
 

@@ -27,9 +27,9 @@ import Ubuntu.DownloadManager 1.2
 import Ubuntu.Components.Popups 1.3
 
 import "qrc:///qml/Utils.js" as JS
-import "qrc:///qml/Dialogs/" as DL
+import "qrc:///qml/Dialogs/"
 
-import DownloadInterceptor 1.0
+//import DownloadInterceptor 1.0
 
 Page {
     id: mainPage
@@ -139,7 +139,7 @@ Page {
                     text: i18n.tr("Exit")
                     onTriggered: Qt.quit()
                 }*/
-	    ]
+	        ]
         }
     }
 
@@ -162,6 +162,24 @@ Page {
             right: parent.right
             bottom: parent.bottom
         }
+        states: [
+            State {
+                name: "bottom"
+                AnchorChanges {
+                    target: webViewPlaceholder
+                    anchors.top: parent.top
+                    anchors.bottom: pageHeader.top
+                }
+            },
+            State {
+                name: "top"
+                AnchorChanges {
+                    target: webViewPlaceholder
+                    anchors.top: pageHeader.bottom
+                    anchors.bottom: parent.bottom
+                }
+            }
+        ]
         color: "#3A3A3A"
         visible: webview.visible ? false : true
         Label {
@@ -225,17 +243,19 @@ Page {
         ]
         url: MyTabs.currtab
         zoomFactor: preferences.zoomlevel / 100                         // custom zoom factor
-        settings.javascriptEnabled: preferences.js                      // enable javascipt
-        settings.autoLoadImages: preferences.loadimages                 // autoload images
-        settings.webRTCPublicInterfacesOnly: preferences.webrtc         // setting to true creates leaks
-        settings.pluginsEnabled: true                                   // workaround for pdf
-        settings.playbackRequiresUserGesture: preferences.autoplay      // autoplay video
-        settings.pdfViewerEnabled: true                                 // enable pdf viewer
-        settings.showScrollBars: false                                  // do not show scroll bars
-        settings.allowRunningInsecureContent: preferences.securecontent // InSecure content
-        settings.fullScreenSupportEnabled: true
-        settings.dnsPrefetchEnabled: true
-        settings.touchIconsEnabled: true
+        settings {
+            javascriptEnabled: preferences.js                      // enable javascipt
+            autoLoadImages: preferences.loadimages                 // autoload images
+            webRTCPublicInterfacesOnly: preferences.webrtc         // setting to true creates leaks
+            pluginsEnabled: true                                   // workaround for pdf
+            playbackRequiresUserGesture: preferences.autoplay      // autoplay video
+            pdfViewerEnabled: true                                 // enable pdf viewer
+            showScrollBars: false                                  // do not show scroll bars
+            allowRunningInsecureContent: preferences.securecontent // InSecure content
+            fullScreenSupportEnabled: true
+            dnsPrefetchEnabled: true
+            touchIconsEnabled: true
+        }
         profile: webViewProfile
         onFullScreenRequested: function(request) {
             if (request.toggleOn) {
@@ -283,7 +303,7 @@ Page {
         barposition: preferences.adrpos == 1 ? "bottom" : "top";
         pageHeader.state = barposition;
         webview.state = barposition;
-        //gc();
+        webViewPlaceholder.state = barposition;
     }
 
     Component.onDestruction: {

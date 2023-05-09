@@ -2,4 +2,3 @@ build
 .clickable
 .vscode
 CMakeLists.txt.*
-plugins

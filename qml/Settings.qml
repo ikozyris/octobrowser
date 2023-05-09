@@ -15,6 +15,7 @@
  */
 
 import QtQuick 2.12
+import QtQuick.Layouts 1.3
 import Ubuntu.Components 1.3
 
 Page {
@@ -58,21 +59,31 @@ Page {
     }
     ScrollView {
         id: scrollView
+        anchors.margins: units.gu(0.2)
         anchors.fill: settingPage
         Column {
             id: column
             width: scrollView.width
             property int mSpacing: units.gu(2)
-            Label {
-                text: i18n.tr("General")
-                font.bold: true
+            // ==== GENERAL CATEGORY ====
+            ListItem {
+                Label {
+                    text: i18n.tr("Show General category:")
+                    font.bold: true
+                }
+                CheckBox {
+                    id: genshow
+                    anchors.right: parent.right
+                    anchors.rightMargin: column.mSpacing
+                    checked: false
+                }
             }
             ListItem {
+                visible: genshow.checked
                 Label {
                     text: i18n.tr("Remember open tabs:")
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
-                        left: parent.left; leftMargin: units.gu(1)
                     }
                 }
                 Switch {
@@ -84,11 +95,11 @@ Page {
                 }
             }
             ListItem {
+                visible: genshow.checked
                 Label {
                     text: i18n.tr("Blue light filter:")
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
-                        left: parent.left; leftMargin: units.gu(1)
                     }
                 }
                 Switch {
@@ -100,14 +111,13 @@ Page {
                 }
             }
             ListItem {
+                visible: genshow.checked
                 height: zoomlabel.height + zoomslider.height + column.mSpacing
                 Label {
                     id: zoomlabel
                     text: i18n.tr("Zoom level: %1%").arg(zoomlevel)
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
-                        left: parent.left; leftMargin: units.gu(1)
-                        right: parent.right; rightMargin: units.gu(1)
                     }
                 }
                 Slider {
@@ -119,13 +129,10 @@ Page {
                     live: true
                     width: parent.width
                     anchors.top: zoomlabel.bottom
-                    anchors {
-                        left: parent.left; leftMargin: units.gu(1)
-                        right: parent.right; rightMargin: units.gu(1)
-                    }
                 }
             }
             ListItem {
+                visible: genshow.checked
                 height: posselector.height + column.mSpacing
                 OptionSelector {
                     id: posselector
@@ -137,43 +144,47 @@ Page {
                     ]
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
-                        left: parent.left; leftMargin: units.gu(1)
-                        right: parent.right; rightMargin: units.gu(1)
                     }
                 }
             }
-            Label {
-                text: i18n.tr("Privacy")
-                font.bold: true
+            // ==== PRIVACY CATEGORY ====
+            ListItem {
+                Label {
+                    text: i18n.tr("Show Privacy category")
+                    font.bold: true
+                }
+                CheckBox {
+                    id: prishow
+                    anchors.right: parent.right
+                    anchors.rightMargin: column.mSpacing
+                    checked: false
+                }
             }
             ListItem {
-                height: ualabel.height + uatext.height + 2 * column.mSpacing
+                visible: prishow.checked
+                height: ualabel.height + uatext.height + column.mSpacing
                 Label {
                     id: ualabel
                     text: i18n.tr("User Agent:")
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
                         left: parent.left; leftMargin: units.gu(1)
-                        right: parent.right; rightMargin: units.gu(1)
                     }
                 }
                 TextArea {
+                    visible: prishow.checked
                     id: uatext
                     maximumLineCount: 3
                     width: parent.width
                     anchors.top: ualabel.bottom
-                    anchors {
-                        left: parent.left; leftMargin: units.gu(1)
-                        right: parent.right; rightMargin: units.gu(1)
-                    }
                 }
             }
             ListItem {
+                visible: prishow.checked
                 Label {
                     text: i18n.tr("Limit WebRTC to public IP addresses only:")
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
-                        left: parent.left; leftMargin: units.gu(1)
                     }
                 }
                 Switch {
@@ -184,16 +195,25 @@ Page {
                     }
                 }
             }
-            Label {
-                text: i18n.tr("Security")
-                font.bold: true
+            // ==== SECURITY CATEGORY ====
+            ListItem {
+                Label {
+                    text: i18n.tr("Show Security category:")
+                    font.bold: true
+                }
+                CheckBox {
+                    id: secshow
+                    anchors.right: parent.right
+                    anchors.rightMargin: column.mSpacing
+                    checked: false
+                }
             }
             ListItem {
+                visible: secshow.checked
                 Label {
                     text: i18n.tr("Enable JavaScipt:")
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
-                        left: parent.left; leftMargin: units.gu(1)
                     }
                 }
                 Switch {
@@ -205,11 +225,11 @@ Page {
                 }
             }
             ListItem {
+                visible: secshow.checked
                 Label {
                     text: i18n.tr("Autoload Images:")
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
-                        left: parent.left; leftMargin: units.gu(1)
                     }
                 }
                 Switch {
@@ -221,11 +241,11 @@ Page {
                 }
             }
             ListItem {
+                visible: secshow.checked
                 Label {
                     text: i18n.tr("Autoplay videos:")
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
-                        left: parent.left; leftMargin: units.gu(1)
                     }
                 }
                 Switch {
@@ -237,12 +257,12 @@ Page {
                 }
             }
             ListItem {
+                visible: secshow.checked
                 Label {
                     id: inseclabel
                     text: i18n.tr("Allow running insecure content:")
                     anchors {
                         top: parent.top; topMargin: column.mSpacing
-                        left: parent.left; leftMargin: units.gu(1)
                     }
                 }
                 Switch {

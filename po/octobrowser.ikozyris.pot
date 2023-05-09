@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-08 17:02+0000\n"
+"POT-Creation-Date: 2023-05-09 12:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -72,7 +72,7 @@ msgstr ""
 msgid "Download:"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:35 ../qml/Settings.qml:42
+#: ../qml/Dialogs/Download.qml:35 ../qml/Settings.qml:43
 msgid "Cancel"
 msgstr ""
 
@@ -148,75 +148,75 @@ msgstr ""
 msgid "Manage Tabs"
 msgstr ""
 
-#: ../qml/MainPage.qml:119 ../qml/Settings.qml:38
+#: ../qml/MainPage.qml:119 ../qml/Settings.qml:39
 msgid "Settings"
 msgstr ""
 
-#: ../qml/MainPage.qml:171
+#: ../qml/MainPage.qml:189
 msgid "Welcome to <i>Octopus Browser</i>, <br> a fast & customizable browser."
 msgstr ""
 
-#: ../qml/Settings.qml:51
+#: ../qml/Settings.qml:52
 msgid "Apply"
 msgstr ""
 
-#: ../qml/Settings.qml:67
-msgid "General"
-msgstr ""
-
-#: ../qml/Settings.qml:72
-msgid "Remember open tabs:"
+#: ../qml/Settings.qml:75
+msgid "Show General category:"
 msgstr ""
 
 #: ../qml/Settings.qml:88
+msgid "Remember open tabs:"
+msgstr ""
+
+#: ../qml/Settings.qml:104
 msgid "Blue light filter:"
 msgstr ""
 
-#: ../qml/Settings.qml:106
+#: ../qml/Settings.qml:122
 #, javascript-format
 msgid "Zoom level: %1%"
 msgstr ""
 
-#: ../qml/Settings.qml:132
+#: ../qml/Settings.qml:143
 msgid "Address bar position: %1"
 msgstr ""
 
-#: ../qml/Settings.qml:135
+#: ../qml/Settings.qml:146
 msgid "top"
 msgstr ""
 
-#: ../qml/Settings.qml:136
+#: ../qml/Settings.qml:147
 msgid "bottom"
 msgstr ""
 
-#: ../qml/Settings.qml:146
-msgid "Privacy"
+#: ../qml/Settings.qml:157
+msgid "Show Privacy category"
 msgstr ""
 
-#: ../qml/Settings.qml:153
+#: ../qml/Settings.qml:172
 msgid "User Agent:"
 msgstr ""
 
-#: ../qml/Settings.qml:173
+#: ../qml/Settings.qml:189
 msgid "Limit WebRTC to public IP addresses only:"
 msgstr ""
 
-#: ../qml/Settings.qml:188
-msgid "Security"
+#: ../qml/Settings.qml:205
+msgid "Show Security category:"
 msgstr ""
 
-#: ../qml/Settings.qml:193
+#: ../qml/Settings.qml:218
 msgid "Enable JavaScipt:"
 msgstr ""
 
-#: ../qml/Settings.qml:209
+#: ../qml/Settings.qml:234
 msgid "Autoload Images:"
 msgstr ""
 
-#: ../qml/Settings.qml:225
+#: ../qml/Settings.qml:250
 msgid "Autoplay videos:"
 msgstr ""
 
-#: ../qml/Settings.qml:242
+#: ../qml/Settings.qml:267
 msgid "Allow running insecure content:"
 msgstr ""

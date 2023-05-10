@@ -3,6 +3,6 @@ builder: cmake
 kill: octobrowser
 dependencies_target:
 - 'qml-module-qtquick-controls2'
+- 'qml-module-qtquick-controls'
 - 'qtwebengine5-dev'
-#- 'qml-module-ubuntu-performancemetrics'
 build_args: "CONFIG+=qtquickcompiler"

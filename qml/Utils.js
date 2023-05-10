@@ -42,6 +42,19 @@ function canshow(prog) {
 		return false;
 	}
 }
+// fullscreen mode
+function fullscreen(request) {
+	if (request.toggleOn) {
+		pageHeader.visible = false
+		webview.state = "fullscreen"
+		window.showFullScreen()
+	} else {
+		window.showNormal()
+		webview.state = barposition
+		pageHeader.visible = true
+	}
+	request.accept();
+}
 
 //history related
 function delIndex(index) {

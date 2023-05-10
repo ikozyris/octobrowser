@@ -72,9 +72,9 @@ endif(NOT BUILD_VERSION_RAW)
 string(SUBSTRING ${BUILD_VERSION_RAW} 1 -1 BUILD_VERSION)
 message(STATUS "Build version is: ${BUILD_VERSION}")
 
-qtquick_compiler_add_resources(RESOURCES main.qrc)
+qtquick_compiler_add_resources(QT_RESOURCES main.qrc)
 
-add_executable(${PROJECT_NAME} main.cpp ${RESOURCES})
+add_executable(${PROJECT_NAME} main.cpp ${QT_RESOURCES})
 qt5_use_modules(${PROJECT_NAME} Gui Qml Quick QuickControls2 Network WebEngine WebEngineCore)
 configure_file(manifest.json.in ${CMAKE_CURRENT_BINARY_DIR}/manifest.json)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/manifest.json DESTINATION ${CMAKE_INSTALL_PREFIX})

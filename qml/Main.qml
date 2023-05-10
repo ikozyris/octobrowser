@@ -19,11 +19,12 @@ import QtGraphicalEffects 1.12
 import QtQuick.Controls 2.2
 import Ubuntu.Components 1.3
 import Qt.labs.settings 1.0
+import QtWebEngine 1.10
+//import Ubuntu.PerformanceMetrics 0.1
 
 MainView {
 //ApplicationWindow { //for engine
     id: mainView
-    //objectName: 'mainView'
     applicationName: 'octobrowser.ikozyris'
     automaticOrientation: true
     anchorToKeyboard: false
@@ -66,16 +67,19 @@ MainView {
             bottom: keyboardRect.top
         }
     }
+/*    PerformanceOverlay {
+        anchors.fill: pStack
+        enabled: true
+    }*/
 
     Component.onCompleted: {
         pStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
 
-
-    ColorOverlay {
+    ColorOverlay { //blue light filter
         anchors.fill: pStack
         source: pStack
-        color: preferences.lightfilter ? "#60600000" : "transparent"
+        color: preferences.lightfilter ? "#40300000" : "transparent" //TODO: better RGBA
     }
 
     function showSettings() {
@@ -108,5 +112,21 @@ MainView {
 
         var settingPage = pStack.push(Qt.resolvedUrl("Settings.qml"), prop);
         settingPage.applyChanges.connect(function() { slot_applyChanges(settingPage) });
+    }
+
+    WebEngineProfile {
+        //for more profile options see https://doc.qt.io/qt-5/qml-qtwebengine-webengineprofile.html
+        id: webViewProfile
+        persistentCookiesPolicy: WebEngineProfile.AllowPersistentCookies; //store persistent cookies
+        httpCacheType: WebEngineProfile.DiskHttpCache;                 //cache qml content to file
+        httpUserAgent: preferences.cmuseragent;                        //custom UA
+        offTheRecord: false
+        onDownloadRequested: {
+            var fileUrl = StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/Downloads/" + download.downloadFileName;
+            var request = new XMLHttpRequest();
+            request.open("PUT", fileUrl, false);
+            request.send(decodeURIComponent(download.url.toString().replace("data:text/plain;,", "")))
+            PopupUtils.open(DownloadingDialog, mainPage, { "fileName" : download.downloadFileName})
+        }
     }
 }

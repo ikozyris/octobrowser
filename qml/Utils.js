@@ -6,7 +6,7 @@ function lookslikeurl(s) {
 
 function fixurl(string) {
 	if (lookslikeurl(string)) {
-	    if (preferences.securecontent != true) {
+	    if (prefs.securecontent != true) {
 			return "https://" + string;
 	    } else {
 			return "http://" + string;

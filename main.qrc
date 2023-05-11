@@ -12,7 +12,7 @@
 	<file>qml/qmldir</file>
 	<file>qml/About.qml</file>
 	<file>qml/Help.qml</file>
-	<file>qml/TabView.qml</file>
+	<file>qml/TabsView.qml</file>
 	<file>qml/Tab.qml</file>
 	<file>qml/Download.qml</file>
 	<file>qml/Dialogs/Download.qml</file>

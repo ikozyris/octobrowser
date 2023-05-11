@@ -33,7 +33,7 @@ MainView {
     height: units.gu(75)
 
     Settings {
-        id: preferences
+        id: prefs
         property int zoomlevel: 100
         property int adrpos: 0
         property string cmuseragent: "Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Mobile Safari/537.36"
@@ -79,35 +79,36 @@ MainView {
     ColorOverlay { //blue light filter
         anchors.fill: pStack
         source: pStack
-        color: preferences.lightfilter ? "#40300000" : "transparent" //TODO: better RGBA
+//      TODO: better ARGB           #AARRGGBB (SVG like: "khaki")
+        color: prefs.lightfilter ? "#25f0e600" : "transparent"
     }
 
     function showSettings() {
         var prop = {
-            zoomlevel: preferences.zoomlevel,
-            adrpos: preferences.adrpos,
-            cmuseragent: preferences.cmuseragent,
-            js: preferences.js,
-            loadimages: preferences.loadimages,
-            securecontent: preferences.securecontent,
-            webrtc: preferences.webrtc,
-            keeptabs: preferences.keeptabs,
-            autoplay: preferences.autoplay,
-            lightfilter: preferences.lightfilter
+            zoomlevel: prefs.zoomlevel,
+            adrpos: prefs.adrpos,
+            cmuseragent: prefs.cmuseragent,
+            js: prefs.js,
+            loadimages: prefs.loadimages,
+            securecontent: prefs.securecontent,
+            webrtc: prefs.webrtc,
+            keeptabs: prefs.keeptabs,
+            autoplay: prefs.autoplay,
+            lightfilter: prefs.lightfilter
         }
 
         var slot_applyChanges = function(msettings) {
             //console.log("Saving changes...")
-            preferences.zoomlevel = msettings.zoomlevel;
-            preferences.adrpos = msettings.adrpos;
-            preferences.cmuseragent = msettings.cmuseragent;
-            preferences.js = msettings.js;
-            preferences.loadimages = msettings.loadimages;
-            preferences.securecontent = msettings.securecontent;
-            preferences.webrtc = msettings.webrtc;
-            preferences.keeptabs = msettings.keeptabs;
-            preferences.autoplay = msettings.autoplay;
-            preferences.lightfilter = msettings.lightfilter;
+            prefs.zoomlevel = msettings.zoomlevel;
+            prefs.adrpos = msettings.adrpos;
+            prefs.cmuseragent = msettings.cmuseragent;
+            prefs.js = msettings.js;
+            prefs.loadimages = msettings.loadimages;
+            prefs.securecontent = msettings.securecontent;
+            prefs.webrtc = msettings.webrtc;
+            prefs.keeptabs = msettings.keeptabs;
+            prefs.autoplay = msettings.autoplay;
+            prefs.lightfilter = msettings.lightfilter;
         }
 
         var settingPage = pStack.push(Qt.resolvedUrl("Settings.qml"), prop);
@@ -119,7 +120,7 @@ MainView {
         id: webViewProfile
         persistentCookiesPolicy: WebEngineProfile.AllowPersistentCookies; //store persistent cookies
         httpCacheType: WebEngineProfile.DiskHttpCache;                 //cache qml content to file
-        httpUserAgent: preferences.cmuseragent;                        //custom UA
+        httpUserAgent: prefs.cmuseragent;                        //custom UA
         offTheRecord: false
         onDownloadRequested: {
             var fileUrl = StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/Downloads/" + download.downloadFileName;

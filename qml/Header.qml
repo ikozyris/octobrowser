@@ -64,12 +64,21 @@ PageHeader {
         }
     }
     trailingActionBar {
-        numberOfSlots: 0
+        numberOfSlots: 2
         actions: [
+            Action {
+                iconName: "add"
+                text: i18n.tr("New Tab")
+                onTriggered: {
+                    MyTabs.tabs.push(webview.url),
+                    MyTabs.currtab = ""
+                    MyTabs.tabVisibility = false                    
+                }
+            },
             Action {
                 iconName: "browser-tabs"
                 text: i18n.tr("Manage Tabs")
-                onTriggered: pStack.push(Qt.resolvedUrl("TabView.qml"));
+                onTriggered: pStack.push(Qt.resolvedUrl("TabsView.qml"));
             },
             Action {
                 iconName: "document-save"

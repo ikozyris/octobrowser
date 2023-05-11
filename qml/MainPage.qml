@@ -30,7 +30,7 @@ Page {
     id: mainPage
     anchors.fill: parent
 
-    property string barposition: preferences.adrpos == 1 ? "bottom" : "top";
+    property string barposition: prefs.adrpos == 1 ? "bottom" : "top";
     property bool canshow: JS.canshow(webview.loadProgress)
 
     header: Header {id: pageHeader}
@@ -49,6 +49,14 @@ Page {
                     target: webview
                     anchors.top: parent.top
                     anchors.bottom: pageHeader.top
+                }
+            },
+            State {
+                name: "fullscreen"
+                AnchorChanges {
+                    target: webview
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
                 }
             },
             State {
@@ -141,7 +149,7 @@ Page {
     }
 
     Component.onCompleted: {
-        barposition: preferences.adrpos == 1 ? "bottom" : "top";
+        barposition: prefs.adrpos == 1 ? "bottom" : "top";
         pageHeader.state = barposition;
         webview.state = barposition;
         webViewPlaceholder.state = barposition;

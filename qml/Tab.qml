@@ -6,17 +6,17 @@ WebEngineView {
     id: webview
     visible: MyTabs.tabVisibility
     url: MyTabs.currtab
-    zoomFactor: preferences.zoomlevel / 100                    // custom zoom factor
+    zoomFactor: prefs.zoomlevel / 100                    // custom zoom factor
 
     settings {
-        javascriptEnabled: preferences.js                      // enable javascipt
-        autoLoadImages: preferences.loadimages                 // autoload images
-        webRTCPublicInterfacesOnly: preferences.webrtc         // setting to true creates leaks
-        pluginsEnabled: true                                   // workaround for pdf
-        playbackRequiresUserGesture: preferences.autoplay      // autoplay video
-        pdfViewerEnabled: true                                 // enable pdf viewer
-        showScrollBars: false                                  // do not show scroll bars
-        allowRunningInsecureContent: preferences.securecontent // InSecure content
+        javascriptEnabled: prefs.js                      // enable javascipt
+        autoLoadImages: prefs.loadimages                 // autoload images
+        webRTCPublicInterfacesOnly: prefs.webrtc         // setting to true creates leaks
+        pluginsEnabled: true                             // for pdf
+        playbackRequiresUserGesture: prefs.autoplay      // autoplay video (chrome behavior)
+        pdfViewerEnabled: true                           // enable pdf viewer
+        showScrollBars: false                            // do not show scroll bars
+        allowRunningInsecureContent: prefs.securecontent // InSecure content
         fullScreenSupportEnabled: true
         dnsPrefetchEnabled: true
         touchIconsEnabled: true

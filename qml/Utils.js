@@ -35,7 +35,7 @@ function fixurl(string) {
 }
 
 function isurl(s) {
-	var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+	var regexp = /(ftp|http|https|chrome):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 	return regexp.test(s);
 }
 
@@ -76,7 +76,7 @@ function fullscreen(request) {
 
 //array related
 function delIndex(index, array) { //delete index in array
-	console.log(array);
+	//console.log(array);
 	array.dates.splice(index, 1);
 	array.urls.splice(index, 1);
 	array.count = array.count - 1;
@@ -91,7 +91,7 @@ function showTabs() {
 		let tileX = prevX;
 		let tileY = prevY;
 		if (i != 1) {
-			if (prevX * 2 >= parent.width) {
+			if (prevX + units.gu(20) >= parent.width) {
 				tileX = units.gu(2)
 				tileY = prevY + units.gu(14);
 			} else {

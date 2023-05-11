@@ -53,6 +53,8 @@ WebEngineView {
         request.accept();
     }
     onLoadingChanged: {
+        //pageHeader.textFieldInput.text = webview.url
+        MyTabs.currtab = webview.url
         if(loadRequest.errorString)
             console.error(loadRequest.errorString)
         else {

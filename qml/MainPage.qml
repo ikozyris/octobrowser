@@ -36,6 +36,7 @@ Page {
     property bool canshow: JS.canshow(webview.loadProgress)
 
     header: Header {id: pageHeader}
+
     WebViewer {
         id: webview
         anchors {

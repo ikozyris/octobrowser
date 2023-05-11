@@ -1,3 +1,21 @@
+/*
+ * Copyright (C) 2023  ikozyris
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; version 3.
+ *
+ * octobrowser is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * this file is part of Octopus Browser (octobrowser)
+ */
+
 //url related
 function lookslikeurl(s) {
 	var regexp = /^(?:(?:(?:[a-zA-z\-]+)\:\/{1,3})?(?:[a-zA-Z0-9])(?:[a-zA-Z0-9\-\.]){1,61}(?:\.[a-zA-Z]{2,})+|\[(?:(?:(?:[a-fA-F0-9]){1,4})(?::(?:[a-fA-F0-9]){1,4}){7}|::1|::)\]|(?:(?:[0-9]{1,3})(?:\.[0-9]{1,3}){3}))(?:\:[0-9]{1,5})?$/;
@@ -56,9 +74,37 @@ function fullscreen(request) {
 	request.accept();
 }
 
-//history related
-function delIndex(index) {
-	history.dates.splice(index, 1);
-	history.urls.splice(index, 1);
-	history.count = history.count - 1;
+//array related
+function delIndex(index, array) { //delete index in array
+	console.log(array);
+	array.dates.splice(index, 1);
+	array.urls.splice(index, 1);
+	array.count = array.count - 1;
+}
+
+// tabs
+function showTabs() {
+	let i = 1;
+	let prevX = units.gu(2);
+	let prevY = units.gu(2)
+	while (MyTabs.tabs[i] != undefined) {
+		let tileX = prevX;
+		let tileY = prevY;
+		if (i != 1) {
+			if (prevX * 2 >= parent.width) {
+				tileX = units.gu(2)
+				tileY = prevY + units.gu(14);
+			} else {
+				tileX = prevX + units.gu(14);
+				tileY = prevY;
+			}
+		}
+		// TODO: take a thumbnail of the tab somehow (maybe Ubuntu.Thumbmnailer)
+		// Currently it is just a random color
+		let tileColor = ["red","green", "blue"][Math.floor(Math.random() * 3)];
+		listModel.append( { tileX, tileY, tileColor } );
+		prevX = tileX;
+		prevY = tileY;
+		++i;
+	}
 }

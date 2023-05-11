@@ -12,6 +12,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * this file is part of Octopus Browser (octobrowser)
  */
 import QtQuick 2.12
 import Ubuntu.Components 1.3

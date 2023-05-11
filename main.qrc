@@ -1,22 +1,23 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
 <qresource prefix="/">
-	<file>qml/Utils.js</file>
-	<file>qml/Main.qml</file>
-	<file>qml/MainPage.qml</file>
-	<file>qml/Settings.qml</file>
-	<file>qml/History.qml</file>
-	<file>qml/HistoryView.qml</file>
-	<file>qml/Header.qml</file>
-	<file>qml/Singleton.qml</file>
-	<file>qml/qmldir</file>
+	<file>assets/logo.svg</file>
 	<file>qml/About.qml</file>
-	<file>qml/Help.qml</file>
-	<file>qml/TabsView.qml</file>
-	<file>qml/Tab.qml</file>
 	<file>qml/Download.qml</file>
 	<file>qml/Dialogs/Download.qml</file>
+	<file>qml/Header.qml</file>
+	<file>qml/Help.qml</file>
+	<file>qml/History.qml</file>
+	<file>qml/HistoryView.qml</file>
 	<file>qml/KeyboardRectangle.qml</file>
-	<file>assets/logo.svg</file>
+	<file>qml/Main.qml</file>
+	<file>qml/MainPage.qml</file>
+	<file>qml/qmldir</file>
+	<file>qml/Settings.qml</file>
+	<file>qml/SingleTab.qml</file>
+	<file>qml/Singleton.qml</file>
+	<file>qml/TabsView.qml</file>
+	<file>qml/Utils.js</file>
+	<file>qml/WebViewer.qml</file>
 </qresource>
 </RCC>

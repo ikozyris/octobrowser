@@ -12,6 +12,8 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * this file is part of Octopus Browser (octobrowser)
  */
 
 import QtQuick 2.12
@@ -21,7 +23,6 @@ import QtQuick.Controls 2.12
 import Ubuntu.Components 1.3
 
 import "qrc:///qml/"
-import "qrc:///qml/Utils.js" as JS
 
 Page {
 	id: historyPage
@@ -42,7 +43,7 @@ Page {
     }
 
     Loader {
-        source: "HistoryView.qml"
+        source: Qt.resolvedUrl("HistoryView.qml")
         asynchronous: true
         anchors {
             fill: parent

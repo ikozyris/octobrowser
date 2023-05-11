@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-11 11:31+0000\n"
+"POT-Creation-Date: 2023-05-11 14:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,26 +17,26 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/About.qml:23 ../qml/Header.qml:100
+#: ../qml/About.qml:25 ../qml/Header.qml:118
 msgid "About"
 msgstr ""
 
-#: ../qml/About.qml:45 octobrowser.desktop.in.h:1
+#: ../qml/About.qml:47 octobrowser.desktop.in.h:1
 msgid "Octopus Browser"
 msgstr ""
 
-#: ../qml/About.qml:63
+#: ../qml/About.qml:65
 msgid "Version: 0.3.0"
 msgstr ""
 
-#: ../qml/About.qml:71
+#: ../qml/About.qml:73
 msgid ""
 "A simple yet experimental Qt browser for Ubuntu Touch. Not in a production-"
 "ready state."
 msgstr ""
 
 #. TRANSLATORS: Please make sure the URLs are correct
-#: ../qml/About.qml:80
+#: ../qml/About.qml:82
 msgid ""
 "This program is free software: you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License as published by the Free "
@@ -48,15 +48,15 @@ msgid ""
 "License</a> for more details."
 msgstr ""
 
-#: ../qml/About.qml:89
+#: ../qml/About.qml:91
 msgid "SOURCE"
 msgstr ""
 
-#: ../qml/About.qml:99
+#: ../qml/About.qml:101
 msgid "Maintainer"
 msgstr ""
 
-#: ../qml/About.qml:109
+#: ../qml/About.qml:111
 msgid ""
 "Thanks to the LogViewer app for the Settings page, and to Qt WebEngine demo "
 "app for the basics of QtWebEngine\n"
@@ -72,7 +72,7 @@ msgstr ""
 msgid "Download:"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:35 ../qml/Settings.qml:43
+#: ../qml/Dialogs/Download.qml:35 ../qml/Settings.qml:45
 msgid "Cancel"
 msgstr ""
 
@@ -80,58 +80,58 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: ../qml/Download.qml:10 ../qml/Header.qml:85
+#: ../qml/Download.qml:28 ../qml/Header.qml:103
 msgid "Downloads"
 msgstr ""
 
-#: ../qml/Header.qml:59
+#: ../qml/Header.qml:77
 msgid "Enter a URL or a search query"
 msgstr ""
 
-#: ../qml/Header.qml:71
+#: ../qml/Header.qml:89
 msgid "New Tab"
 msgstr ""
 
-#: ../qml/Header.qml:80
+#: ../qml/Header.qml:98
 msgid "Manage Tabs"
 msgstr ""
 
-#: ../qml/Header.qml:90 ../qml/Settings.qml:39
+#: ../qml/Header.qml:108 ../qml/Settings.qml:41
 msgid "Settings"
 msgstr ""
 
-#: ../qml/Header.qml:95 ../qml/History.qml:36
+#: ../qml/Header.qml:113 ../qml/History.qml:37
 msgid "History"
 msgstr ""
 
-#: ../qml/Header.qml:105 ../qml/Help.qml:26
+#: ../qml/Header.qml:123 ../qml/Help.qml:28
 msgid "Help"
 msgstr ""
 
-#: ../qml/Help.qml:45
+#: ../qml/Help.qml:47
 msgid "There is an unkown/new bug"
 msgstr ""
 
-#: ../qml/Help.qml:52
+#: ../qml/Help.qml:54
 msgid ""
 "Report it <a href='https://gitlab.com/ikozyris/octobrowser/-/issues'>here</a>"
 msgstr ""
 
-#: ../qml/Help.qml:66
+#: ../qml/Help.qml:68
 msgid "History is wrong"
 msgstr ""
 
-#: ../qml/Help.qml:73
+#: ../qml/Help.qml:75
 msgid ""
 "History is shown in reverse order <a href='https://en.m.wikipedia.org/wiki/"
 "FIFO_(computing_and_electronics)'>(FIFO -> first in, first out)</a>"
 msgstr ""
 
-#: ../qml/Help.qml:87
+#: ../qml/Help.qml:89
 msgid "What settings are recommended for best security & privacy"
 msgstr ""
 
-#: ../qml/Help.qml:93
+#: ../qml/Help.qml:95
 msgid ""
 "First of all, for maximum security and privacy, disable all switches. "
 "WARNING: may break some websites\n"
@@ -140,79 +140,79 @@ msgid ""
 "or privacy."
 msgstr ""
 
-#: ../qml/History.qml:39
+#: ../qml/History.qml:40
 msgid "Clear history"
 msgstr ""
 
-#: ../qml/HistoryView.qml:18
+#: ../qml/HistoryView.qml:38
 msgid "On "
 msgstr ""
 
-#: ../qml/MainPage.qml:134
+#: ../qml/MainPage.qml:136
 msgid "Welcome to <i>Octopus Browser</i>, <br> a fast & customizable browser."
 msgstr ""
 
-#: ../qml/Settings.qml:52
+#: ../qml/Settings.qml:54
 msgid "Apply"
 msgstr ""
 
-#: ../qml/Settings.qml:71
+#: ../qml/Settings.qml:73
 msgid "Show General category:"
 msgstr ""
 
-#: ../qml/Settings.qml:84
+#: ../qml/Settings.qml:86
 msgid "Remember open tabs:"
 msgstr ""
 
-#: ../qml/Settings.qml:100
+#: ../qml/Settings.qml:102
 msgid "Blue light filter:"
 msgstr ""
 
-#: ../qml/Settings.qml:118
+#: ../qml/Settings.qml:120
 #, javascript-format
 msgid "Zoom level: %1%"
 msgstr ""
 
-#: ../qml/Settings.qml:139
+#: ../qml/Settings.qml:141
 msgid "Address bar position: %1"
 msgstr ""
 
-#: ../qml/Settings.qml:142
+#: ../qml/Settings.qml:144
 msgid "top"
 msgstr ""
 
-#: ../qml/Settings.qml:143
+#: ../qml/Settings.qml:145
 msgid "bottom"
 msgstr ""
 
-#: ../qml/Settings.qml:153
+#: ../qml/Settings.qml:155
 msgid "Show Privacy category"
 msgstr ""
 
-#: ../qml/Settings.qml:168
+#: ../qml/Settings.qml:170
 msgid "User Agent:"
 msgstr ""
 
-#: ../qml/Settings.qml:185
+#: ../qml/Settings.qml:187
 msgid "Limit WebRTC to public IP addresses only:"
 msgstr ""
 
-#: ../qml/Settings.qml:201
+#: ../qml/Settings.qml:203
 msgid "Show Security category:"
 msgstr ""
 
-#: ../qml/Settings.qml:214
+#: ../qml/Settings.qml:216
 msgid "Enable JavaScipt:"
 msgstr ""
 
-#: ../qml/Settings.qml:230
+#: ../qml/Settings.qml:232
 msgid "Autoload Images:"
 msgstr ""
 
-#: ../qml/Settings.qml:246
+#: ../qml/Settings.qml:248
 msgid "Autoplay videos:"
 msgstr ""
 
-#: ../qml/Settings.qml:263
+#: ../qml/Settings.qml:265
 msgid "Allow running insecure content:"
 msgstr ""

@@ -13,13 +13,14 @@ Features:
 In other words: The simpliest yet experamental Qt browser for Ubuntu Touch.
 
 **DISCLAIMER**: Many things do not work, <br>here is a TODO list sorted by priority:
-- Tabs (important)
+- ~~Tabs (important)~~ almost (to some extent)
 - ~~History (important)~~ 
 - Bookmarks
 - Camera and other permissions (not prioritized)
 
 ### Known Issues
-Anchor to clipboard does not work
+~~Anchor to clipboard does not work~~<br>
+Tabs are not the the best
 
 ### Focal (20.04)
 This program is developed for 16.04 base but there is an outdated focal branch.<br>

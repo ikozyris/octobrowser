@@ -46,7 +46,7 @@ UbuntuListView {
                     iconName: "external-link"
                     onTriggered: {
                         MyTabs.currtab = history.urls[curr];
-				    	mainPage.webview.url = MyTabs.currtab;
+				    	//mainPage.webview.url = MyTabs.currtab;
                         MyTabs.tabVisibility = true;
                         pStack.pop();
                     }

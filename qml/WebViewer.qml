@@ -23,7 +23,7 @@ import QtQuick 2.12
 WebEngineView {
     id: webview
     visible: MyTabs.tabVisibility
-    //url: /*MyTabs.tabs[MyTabs.tabNum] */MyTabs.currtab
+    url: /*MyTabs.tabs[MyTabs.tabNum] */MyTabs.currtab
     zoomFactor: prefs.zoomlevel / 100                    // custom zoom factor
 
     settings {
@@ -54,11 +54,11 @@ WebEngineView {
         request.accept();
     }
     onLoadingChanged: {
-        MyTabs.currtab = webview.url
+        //MyTabs.currtab = webview.url
         MyTabs.tabs[MyTabs.tabNum] = webview.url
         //console.log("webview| " + MyTabs.tabs[MyTabs.tabNum])
         console.log("webview| actual: " + webview.url) 
-        //pageHeader.textFieldInput.text = webview.url
+        pageHeader.textFieldInput.text = webview.url
         if(loadRequest.errorString)
             console.error(loadRequest.errorString)
         else {

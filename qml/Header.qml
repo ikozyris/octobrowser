@@ -77,7 +77,7 @@ PageHeader {
         inputMethodHints: Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
         onAccepted: {
             //MyTabs.tabs[MyTabs.tabNum] = JS.geturl(textFieldInput.text)
-            webview.url = JS.geturl(textFieldInput.text)
+            MyTabs.currtab = JS.geturl(textFieldInput.text)
             MyTabs.tabVisibility = true
             console.log("textField| " + MyTabs.tabs[MyTabs.tabNum])
         }

@@ -48,6 +48,13 @@ Page {
             single.download(text.text);
         }
     }
+    Label {
+        text: "This page exists to manually download a url, in case downloading does not work. \n" +
+              "The download location (xenial 16.04) is:\n /home/phablet/.local/share/ubuntu-download-manager/octobrowser.ikozyris/Downloads"
+        wrapMode: Text.Wrap
+        anchors.centerIn: parent
+        width: parent.width
+    }
     ProgressBar {
         minimumValue: 0
         maximumValue: 100

@@ -31,7 +31,7 @@ UbuntuListView {
             id: leading
             actions: Action {
                 iconName: "delete"
-                onTriggered: JS.delIndex(curr, history)
+                onTriggered: JS.delIndex(curr)
             }
         }
         Label {
@@ -41,14 +41,21 @@ UbuntuListView {
             horizontalAlignment: Text.AlignHCenter
         }
         trailingActions: ListItemActions {
-            actions: Action {
-                iconName: "external-link"
-                onTriggered: {
-                    MyTabs.currtab = history.urls[curr];
-					MyTabs.tabVisibility = true;
-                    pStack.pop();
+            actions: [
+                Action {
+                    iconName: "external-link"
+                    onTriggered: {
+                        MyTabs.currtab = history.urls[curr];
+				    	mainPage.webview.url = MyTabs.currtab;
+                        MyTabs.tabVisibility = true;
+                        pStack.pop();
+                    }
+                },
+                Action {
+                    iconName: "edit-copy"
+                    onTriggered: Clipboard.push(history.urls[curr])
                 }
-            }
+            ]
         }
     } 
 }

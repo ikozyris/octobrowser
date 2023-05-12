@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-11 19:45+0000\n"
+"POT-Creation-Date: 2023-05-12 18:41+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/About.qml:25 ../qml/Header.qml:118
+#: ../qml/About.qml:25 ../qml/Header.qml:121
 msgid "About"
 msgstr ""
 
@@ -80,31 +80,31 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: ../qml/Download.qml:28 ../qml/Header.qml:103
+#: ../qml/Download.qml:28 ../qml/Header.qml:106
 msgid "Downloads"
 msgstr ""
 
-#: ../qml/Header.qml:77
+#: ../qml/Header.qml:76
 msgid "Enter a URL or a search query"
 msgstr ""
 
-#: ../qml/Header.qml:89
+#: ../qml/Header.qml:90
 msgid "New Tab"
 msgstr ""
 
-#: ../qml/Header.qml:98
+#: ../qml/Header.qml:101
 msgid "Manage Tabs"
 msgstr ""
 
-#: ../qml/Header.qml:108 ../qml/Settings.qml:41
+#: ../qml/Header.qml:111 ../qml/Settings.qml:41
 msgid "Settings"
 msgstr ""
 
-#: ../qml/Header.qml:113 ../qml/History.qml:37
+#: ../qml/Header.qml:116 ../qml/History.qml:37
 msgid "History"
 msgstr ""
 
-#: ../qml/Header.qml:123 ../qml/Help.qml:28
+#: ../qml/Header.qml:126 ../qml/Help.qml:28
 msgid "Help"
 msgstr ""
 
@@ -148,7 +148,7 @@ msgstr ""
 msgid "On "
 msgstr ""
 
-#: ../qml/MainPage.qml:137
+#: ../qml/MainPage.qml:134
 msgid "Welcome to <i>Octopus Browser</i>, <br> a fast & customizable browser."
 msgstr ""
 
@@ -215,4 +215,12 @@ msgstr ""
 
 #: ../qml/Settings.qml:265
 msgid "Allow running insecure content:"
+msgstr ""
+
+#: ../qml/TabsView.qml:28
+msgid "Tabs"
+msgstr ""
+
+#: ../qml/TabsView.qml:29
+msgid "Current tab:"
 msgstr ""

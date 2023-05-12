@@ -21,7 +21,9 @@ import QtGraphicalEffects 1.12
 import QtQuick.Controls 2.2
 import Ubuntu.Components 1.3
 import Qt.labs.settings 1.0
+import Qt.labs.platform 1.0
 import QtWebEngine 1.10
+import Ubuntu.DownloadManager 1.2
 //import Ubuntu.PerformanceMetrics 0.1
 
 MainView {
@@ -50,9 +52,10 @@ MainView {
 
     Settings {
         id: history
-        property var urls: [""];
-        property var dates: [""];
-        property int count: 0;
+        property var urls: [""]
+        property var dates: [""]
+        // since urls.lenght does not work
+        property int count: 0
     }
 
     KeyboardRectangle {
@@ -121,15 +124,18 @@ MainView {
         //for more profile options see https://doc.qt.io/qt-5/qml-qtwebengine-webengineprofile.html
         id: webViewProfile
         persistentCookiesPolicy: WebEngineProfile.AllowPersistentCookies; //store persistent cookies
-        httpCacheType: WebEngineProfile.DiskHttpCache;                 //cache qml content to file
+        storageName: "Storage"
+        persistentStoragePath: "/home/phablet/.local/share/octobrowser.ikozyris"
+        httpCacheType: WebEngineProfile.DiskHttpCache;           //cache qml content to file
         httpUserAgent: prefs.cmuseragent;                        //custom UA
         offTheRecord: false
         onDownloadRequested: {
-            var fileUrl = StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/Downloads/" + download.downloadFileName;
+            //var fileUrl = StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/Downloads/" + download.downloadFileName;
+            var fileUrl = "/home/phablet/.local/share/octobrowser.ikozyris/Downloads/" + download.downloadFileName;
             var request = new XMLHttpRequest();
             request.open("PUT", fileUrl, false);
             request.send(decodeURIComponent(download.url.toString().replace("data:text/plain;,", "")))
-            PopupUtils.open(DownloadingDialog, mainPage, { "fileName" : download.downloadFileName})
+            //PopupUtils.open(DownloadingDialog, mainPage, { "fileName" : download.downloadFileName})
         }
     }
 }

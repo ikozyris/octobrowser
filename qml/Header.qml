@@ -12,7 +12,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * this file is part of Octopus Browser (octobrowser)
  */
 
@@ -20,7 +20,6 @@ import Ubuntu.Components 1.3
 import QtQuick 2.12
 
 import "qrc:///qml/Utils.js" as JS
-import "qrc:///qml/" 
 
 PageHeader {
     id: pageHeader
@@ -57,15 +56,15 @@ PageHeader {
                 onTriggered: webview.goBack();
             },
             Action {
-                visible: MyTabs.currtab != ""
-                iconName: webview.loadProgress == 100 ? "reload" : "stop"
-                onTriggered: webview.loadProgress == 100 ? webview.reload() : webview.stop()
+                visible: /*MyTabs.tabs[MyTabs.tabNum]*/MyTabs.currtab != ""
+                iconName: webview.loadProgress === 100 ? "reload" : "stop"
+                onTriggered: webview.loadProgress === 100 ? webview.reload() : webview.stop()
             }
         ]
     }
     TextField {
         id: textFieldInput
-        text: MyTabs.currtab
+        text: /*MyTabs.tabs[MyTabs.tabNum] */MyTabs.currtab
         anchors {
             top: parent.top
             topMargin: units.gu(1)
@@ -73,12 +72,14 @@ PageHeader {
             leftMargin: units.gu(1)
             right: trailingActionBar.left
             rightMargin: units.gu(1)
-	    }        
+	    }
         placeholderText: i18n.tr('Enter a URL or a search query')
         inputMethodHints: Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
         onAccepted: {
-            MyTabs.currtab = JS.geturl(textFieldInput.text),
+            //MyTabs.tabs[MyTabs.tabNum] = JS.geturl(textFieldInput.text)
+            webview.url = JS.geturl(textFieldInput.text)
             MyTabs.tabVisibility = true
+            console.log("textField| " + MyTabs.tabs[MyTabs.tabNum])
         }
     }
     trailingActionBar {
@@ -88,40 +89,42 @@ PageHeader {
                 iconName: "add"
                 text: i18n.tr("New Tab")
                 onTriggered: {
-                    MyTabs.tabs.push(webview.url),
-                    MyTabs.currtab = ""
-                    MyTabs.tabVisibility = false                    
+                    MyTabs.tabs.push("")
+                    MyTabs.tabNum++
+                    //MyTabs.currtab = ""
+                    MyTabs.tabVisibility = false
+                    //console.log("plus| " + MyTabs.tabs + "  |Num: " + MyTabs.tabNum)
                 }
             },
             Action {
                 iconName: "browser-tabs"
                 text: i18n.tr("Manage Tabs")
-                onTriggered: pStack.push(Qt.resolvedUrl("TabsView.qml"));
+                onTriggered: pStack.push(Qt.resolvedUrl("TabsView.qml"))
             },
             Action {
                 iconName: "document-save"
                 text: i18n.tr("Downloads")
-                onTriggered: pStack.push(Qt.resolvedUrl("Download.qml"));
+                onTriggered: pStack.push(Qt.resolvedUrl("Download.qml"))
             },
             Action {
                 iconName: "settings"
                 text: i18n.tr("Settings")
-                onTriggered: mainView.showSettings();
+                onTriggered: mainView.showSettings()
             },
             Action {
                 iconName: "history"
                 text: i18n.tr("History")
-                onTriggered: pStack.push(Qt.resolvedUrl("History.qml"));
+                onTriggered: pStack.push(Qt.resolvedUrl("History.qml"))
             },
             Action {
                 iconName: "info"
                 text: i18n.tr("About")
-                onTriggered: pStack.push(Qt.resolvedUrl("About.qml"));
+                onTriggered: pStack.push(Qt.resolvedUrl("About.qml"))
             },
             Action {
                 iconName: "help"
                 text: i18n.tr("Help")
-                onTriggered: pStack.push(Qt.resolvedUrl("Help.qml"));
+                onTriggered: pStack.push(Qt.resolvedUrl("Help.qml"))
             }
         ]
     }

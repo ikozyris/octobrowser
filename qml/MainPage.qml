@@ -20,9 +20,6 @@ import QtQuick 2.12
 import QtQuick.Controls 2.2
 import Ubuntu.Components 1.3
 import QtQuick.Layouts 1.3
-import Qt.labs.settings 1.0
-import Qt.labs.platform 1.0
-import Ubuntu.DownloadManager 1.2
 import Ubuntu.Components.Popups 1.3
 
 import "qrc:///qml/Utils.js" as JS
@@ -32,7 +29,7 @@ Page {
     id: mainPage
     anchors.fill: parent
 
-    property string barposition: prefs.adrpos == 1 ? "bottom" : "top";
+    property string barposition: prefs.adrpos === 1 ? "bottom" : "top";
     property bool canshow: JS.canshow(webview.loadProgress)
 
     header: Header {id: pageHeader}
@@ -152,9 +149,9 @@ Page {
     }
 
     Component.onCompleted: {
-        barposition: prefs.adrpos == 1 ? "bottom" : "top";
-        pageHeader.state = barposition;
-        webview.state = barposition;
-        webViewPlaceholder.state = barposition;
+        barposition: prefs.adrpos === 1 ? "bottom" : "top"
+        pageHeader.state = barposition
+        webview.state = barposition
+        webViewPlaceholder.state = barposition
     }
 }

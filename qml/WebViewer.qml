@@ -23,7 +23,7 @@ import QtQuick 2.12
 WebEngineView {
     id: webview
     visible: MyTabs.tabVisibility
-    url: MyTabs.currtab
+    //url: /*MyTabs.tabs[MyTabs.tabNum] */MyTabs.currtab
     zoomFactor: prefs.zoomlevel / 100                    // custom zoom factor
 
     settings {
@@ -31,8 +31,9 @@ WebEngineView {
         autoLoadImages: prefs.loadimages                 // autoload images
         webRTCPublicInterfacesOnly: prefs.webrtc         // setting to true creates leaks
         pluginsEnabled: true                             // for pdf
-        playbackRequiresUserGesture: prefs.autoplay      // autoplay video (chrome behavior)
         pdfViewerEnabled: true                           // enable pdf viewer
+        // according to: https://sites.google.com/a/chromium.org/dev/audio-video/autoplay
+        playbackRequiresUserGesture: prefs.autoplay      // autoplay video (chrome behavior)
         showScrollBars: false                            // do not show scroll bars
         allowRunningInsecureContent: prefs.securecontent // InSecure content
         fullScreenSupportEnabled: true
@@ -53,8 +54,11 @@ WebEngineView {
         request.accept();
     }
     onLoadingChanged: {
-        //pageHeader.textFieldInput.text = webview.url
         MyTabs.currtab = webview.url
+        MyTabs.tabs[MyTabs.tabNum] = webview.url
+        //console.log("webview| " + MyTabs.tabs[MyTabs.tabNum])
+        console.log("webview| actual: " + webview.url) 
+        //pageHeader.textFieldInput.text = webview.url
         if(loadRequest.errorString)
             console.error(loadRequest.errorString)
         else {
@@ -63,5 +67,7 @@ WebEngineView {
             history.count = history.count + 1
         }
     }
+    onLoadProgressChanged: console.log(loadProgress)
+    //onLinkChanged: webview.url = link
     backgroundColor: "grey"
 }

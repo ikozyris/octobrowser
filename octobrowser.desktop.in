@@ -1,7 +1,7 @@
 [Desktop Entry]
 _Name=Octopus Browser
 Exec=octobrowser %U
-Keywords=Internet;WWW;Browser;Web;Explorer
+Keywords=Internet;WWW;Browser;Web;Explorer;Octopus;
 Icon=assets/logo.svg
 Terminal=false
 Type=Application

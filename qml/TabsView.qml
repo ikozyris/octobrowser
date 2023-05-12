@@ -23,6 +23,12 @@ import Ubuntu.Components 1.3
 import "qrc:///qml/Utils.js" as JS
 
 Page {
+	header: PageHeader {
+		anchors.top: parent.top
+		title: i18n.tr("Tabs")
+		subtitle: i18n.tr("Current tab:" + MyTabs.tabNum)
+	}
+
     Repeater {
         model: listModel
         delegate: SingleTab {
@@ -38,9 +44,9 @@ Page {
 				MouseArea {
 					anchors.fill: parent
 					onClicked: {
-						MyTabs.currtab = MyTabs.tabs[index];
-						MyTabs.tabVisibility = true;
-                    	pStack.pop();
+						MyTabs.tabNum = index
+						MyTabs.tabVisibility = true
+                    	pStack.pop()
 					}
 				}
 			}
@@ -51,7 +57,7 @@ Page {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-						JS.delIndex(index, MyTabs.tabs)
+						MyTabs.tabs.splice(index,1)
 						listModel.remove(index)
 					}
                 }

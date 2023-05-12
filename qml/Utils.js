@@ -60,40 +60,26 @@ function canshow(prog) {
 		return false;
 	}
 }
-// fullscreen mode
-function fullscreen(request) {
-	if (request.toggleOn) {
-		pageHeader.visible = false
-		webview.state = "fullscreen"
-		window.showFullScreen()
-	} else {
-		window.showNormal()
-		webview.state = barposition
-		pageHeader.visible = true
-	}
-	request.accept();
-}
 
-//array related
-function delIndex(index, array) { //delete index in array
-	//console.log(array);
-	array.dates.splice(index, 1);
-	array.urls.splice(index, 1);
-	array.count = array.count - 1;
+//history related
+function delIndex(index) {
+	history.dates.splice(index, 1);
+	history.urls.splice(index, 1);
+	history.count;
 }
 
 // tabs
 function showTabs() {
-	let i = 1;
+	let i = 0;
 	let prevX = units.gu(2);
-	let prevY = units.gu(2)
+	let prevY = units.gu(8)
 	while (MyTabs.tabs[i] != undefined) {
 		let tileX = prevX;
 		let tileY = prevY;
-		if (i != 1) {
+		if (i != 0) {
 			if (prevX + units.gu(20) >= parent.width) {
 				tileX = units.gu(2)
-				tileY = prevY + units.gu(14);
+				tileY = prevY + units.gu(20);
 			} else {
 				tileX = prevX + units.gu(14);
 				tileY = prevY;

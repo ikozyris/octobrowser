@@ -54,11 +54,11 @@ WebEngineView {
         request.accept();
     }
     onLoadingChanged: {
-        //MyTabs.currtab = webview.url
+        MyTabs.display = webview.url
         MyTabs.tabs[MyTabs.tabNum] = webview.url
         //console.log("webview| " + MyTabs.tabs[MyTabs.tabNum])
-        console.log("webview| actual: " + webview.url) 
-        pageHeader.textFieldInput.text = webview.url
+        //console.log("webview| actual: " + webview.url) 
+        //pageHeader.textFieldInput.text = webview.url
         if(loadRequest.errorString)
             console.error(loadRequest.errorString)
         else {
@@ -67,7 +67,7 @@ WebEngineView {
             history.count = history.count + 1
         }
     }
-    onLoadProgressChanged: console.log(loadProgress)
+    //onLoadProgressChanged: console.log(loadProgress)
     //onLinkChanged: webview.url = link
     backgroundColor: "grey"
 }

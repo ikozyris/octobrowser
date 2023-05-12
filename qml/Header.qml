@@ -64,7 +64,7 @@ PageHeader {
     }
     TextField {
         id: textFieldInput
-        text: /*MyTabs.tabs[MyTabs.tabNum] */MyTabs.currtab
+        text: MyTabs.display/*MyTabs.tabs[MyTabs.tabNum] MyTabs.currtab*/
         anchors {
             top: parent.top
             topMargin: units.gu(1)
@@ -79,7 +79,7 @@ PageHeader {
             //MyTabs.tabs[MyTabs.tabNum] = JS.geturl(textFieldInput.text)
             MyTabs.currtab = JS.geturl(textFieldInput.text)
             MyTabs.tabVisibility = true
-            console.log("textField| " + MyTabs.tabs[MyTabs.tabNum])
+            //console.log("textField| " + MyTabs.tabs[MyTabs.tabNum])
         }
     }
     trailingActionBar {
@@ -91,7 +91,7 @@ PageHeader {
                 onTriggered: {
                     MyTabs.tabs.push("")
                     MyTabs.tabNum++
-                    //MyTabs.currtab = ""
+                    MyTabs.currtab = ""
                     MyTabs.tabVisibility = false
                     //console.log("plus| " + MyTabs.tabs + "  |Num: " + MyTabs.tabNum)
                 }

@@ -11,5 +11,5 @@ Item {
 	property int tabNum: 0;
 	property bool tabVisibility: false;
 	// URL forwarded from history
-	property url togo: "";
+	property url display: "";
 }

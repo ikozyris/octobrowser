@@ -5,6 +5,7 @@
 	<file>qml/About.qml</file>
 	<file>qml/Download.qml</file>
 	<file>qml/Dialogs/Download.qml</file>
+	<file>qml/Dialogs/SelectOverride.qml</file>
 	<file>qml/Header.qml</file>
 	<file>qml/Help.qml</file>
 	<file>qml/History.qml</file>
@@ -13,6 +14,7 @@
 	<file>qml/Main.qml</file>
 	<file>qml/MainPage.qml</file>
 	<file>qml/qmldir</file>
+	<file>qml/select_override.js</file>
 	<file>qml/Settings.qml</file>
 	<file>qml/SingleTab.qml</file>
 	<file>qml/Singleton.qml</file>

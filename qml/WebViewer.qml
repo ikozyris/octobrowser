@@ -17,6 +17,7 @@
  */
 
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3
 import QtWebEngine 1.11
 import QtQuick 2.12
 
@@ -67,7 +68,44 @@ WebEngineView {
             history.count = history.count + 1
         }
     }
+    /**
+    *   html select override
+    *   set enableSelectOverride to true to make Morph.Web handle select
+    *   note that as it uses javascript prompt,
+    *   make sure that onJavaScriptDialogRequested signal handler don't overplay prompt dialog by checking the isASelectRequest(request)
+    */
+
+    property bool enableSelectOverride: true
+    property var selectOverride: function(request) {
+        console.log("test var")
+        var dialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/SelectOverride.qml"), this);
+        dialog.options = request.defaultText;
+        dialog.accept.connect(request.dialogAccept);
+        dialog.reject.connect(request.dialogReject);
+        //make sure to close dialogs after returning a value ( fix freeze with big dropdowns )
+        dialog.accept.connect(function() { PopupUtils.close(dialog) })
+        dialog.reject.connect(function() { PopupUtils.close(dialog) })
+    }
+    readonly property var isASelectRequest: function(request){
+        return (request.type === JavaScriptDialogRequest.DialogTypePrompt && request.message==='XX-MORPH-SELECT-OVERRIDE-XX')
+    }
+
+    userScripts: WebEngineScript {
+        runOnSubframes: true
+        sourceUrl: enableSelectOverride ? Qt.resolvedUrl("select_override.js") : ""
+        injectionPoint: WebEngineScript.DocumentReady
+        worldId: WebEngineScript.MainWorld
+    }
+
+    onJavaScriptDialogRequested: function(request) {
+        console.log("test request")
+        //if (isASelectRequest(request)) return; //this is a select box , Morph.Web handled it already
+        if (enableSelectOverride && isASelectRequest(request)) {
+            request.accepted = true
+            selectOverride(request)
+        }
+    }
     //onLoadProgressChanged: console.log(loadProgress)
     //onLinkChanged: webview.url = link
-    backgroundColor: "grey"
+    backgroundColor: "lightgrey"
 }

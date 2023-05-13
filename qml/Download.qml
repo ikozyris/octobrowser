@@ -59,6 +59,7 @@ Page {
         minimumValue: 0
         maximumValue: 100
         value: single.progress
+        height: units.gu(2)
         anchors {
             left: parent.left
             right: parent.right

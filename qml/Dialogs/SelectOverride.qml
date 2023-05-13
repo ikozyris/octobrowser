@@ -24,7 +24,6 @@ import Ubuntu.Components.Popups 1.3 as Popups
 
 Popups.Dialog {
     id: selectOverlay
-    objectName: "selectOverrideDialog"
     modal: true
 
     __dimBackground: false //avoid default opaque background
@@ -45,11 +44,10 @@ Popups.Dialog {
         }
     }
 
-
     ListView {
         model: selectOverlay.selectOptions
         currentIndex: selectedIndex
-        highlightMoveDuration : 0
+        highlightMoveDuration: 0
         height: Math.min(units.gu(60), units.gu(5 * count))
 
         delegate: ListItems.Standard {
@@ -68,7 +66,6 @@ Popups.Dialog {
                 elide: Label.ElideRight
                 text: modelData
             }
-
             onTriggered: selectOverlay.accept(index)
         }
 

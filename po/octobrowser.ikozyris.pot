@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-13 15:22+0000\n"
+"POT-Creation-Date: 2023-05-13 21:13+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/About.qml:25 ../qml/Header.qml:121
+#: ../qml/About.qml:25 ../qml/Header.qml:117
 msgid "About"
 msgstr ""
 
@@ -58,53 +58,55 @@ msgstr ""
 
 #: ../qml/About.qml:111
 msgid ""
-"Thanks to the LogViewer app for the Settings page, and to Qt WebEngine demo "
-"app for the basics of QtWebEngine\n"
+"Thanks to the LogViewer app for the Settings page, to Qt WebEngine demo app "
+"for the basics of QtWebEngine\n"
+"In addition, a would like to say THANK YOU to UBports for developing Ubuntu "
+"Touch and Morph.\n"
 " The icon is a remix of the stock_website Suru icon with an octopus from "
 "svgrepo.com"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:11
-msgid "Download"
+#: ../qml/Dialogs/Download.qml:10
+msgid "Downloading:"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:12
-msgid "Download:"
-msgstr ""
-
-#: ../qml/Dialogs/Download.qml:35 ../qml/Settings.qml:45
+#: ../qml/Dialogs/Download.qml:24 ../qml/Settings.qml:45
 msgid "Cancel"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:37 ../qml/Dialogs/Download.qml:55
-msgid "Close"
+#: ../qml/Dialogs/Download.qml:24
+msgid "OK"
 msgstr ""
 
-#: ../qml/Download.qml:28 ../qml/Header.qml:106
+#: ../qml/Download.qml:28
 msgid "Downloads"
 msgstr ""
 
-#: ../qml/Header.qml:76
+#: ../qml/Header.qml:78
 msgid "Enter a URL or a search query"
 msgstr ""
 
-#: ../qml/Header.qml:90
+#: ../qml/Header.qml:92
 msgid "New Tab"
 msgstr ""
 
-#: ../qml/Header.qml:101
+#: ../qml/Header.qml:97
 msgid "Manage Tabs"
 msgstr ""
 
-#: ../qml/Header.qml:111 ../qml/Settings.qml:41
+#: ../qml/Header.qml:102
+msgid "Manual download"
+msgstr ""
+
+#: ../qml/Header.qml:107 ../qml/Settings.qml:41
 msgid "Settings"
 msgstr ""
 
-#: ../qml/Header.qml:116 ../qml/History.qml:37
+#: ../qml/Header.qml:112 ../qml/History.qml:37
 msgid "History"
 msgstr ""
 
-#: ../qml/Header.qml:126 ../qml/Help.qml:28
+#: ../qml/Header.qml:122 ../qml/Help.qml:28
 msgid "Help"
 msgstr ""
 

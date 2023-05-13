@@ -6,7 +6,7 @@ take a list of select options, pass it to a window.prompt so that it can be hand
     function handleSelect(select) {
 
         var opts = []
-        for (var i = 0; i < select.options.length; i++) {
+        for (var i = 0; i < select.options.length; ++i) {
             opts.push(select.options[i].innerText);
         }
         //Send a prompt so that WebEngine can intercept it with onJavascriptDialogRequested event

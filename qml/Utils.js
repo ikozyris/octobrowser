@@ -94,3 +94,11 @@ function showTabs() {
 		++i;
 	}
 }
+
+function newtab() {
+	MyTabs.tabs.push("")
+	MyTabs.tabNum++
+	MyTabs.currtab = ""
+	pageHeader.textbar = ""
+	MyTabs.tabVisibility = false
+}

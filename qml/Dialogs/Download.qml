@@ -2,59 +2,44 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
-
-import DownloadInterceptor 1.0
+import Ubuntu.DownloadManager 1.2
 
 Dialog {
     id: downloadDialog
-    property Page page
-    property string dialogTitle: i18n.tr("Download") 			// Title of the dialog
-    property string descriptionPrepend: i18n.tr("Download:") 	// Explanation (under title)
-    
+
+    property string dialogTitle: i18n.tr("Downloading:") // Title of the dialog
+    property url url: "" 				// Explanation (under title)
+
     title: dialogTitle
-    text: descriptionPrepend
+    text: url
 
-    ProgressBar {
-		id: downloadBar
-		height: units.dp(3)
-		anchors {
-			left: parent.left
-			right: parent.right
-		}
-
-		showProgressPercentage: false
-		minimumValue: 0
-		maximumValue: 100
-	}
-    
-    //TO DO: Implement a cancel to the download
-    
-    Button {
-		id: cancelButton
-		visible: true
-        text: i18n.tr("Cancel")
-        onClicked: {
-			cancelButton.text === i18n.tr("Close") ? console.log("We had an error. No need to abort") : console.log("Abort"); DownloadInterceptor.abort();
-            console.log("Closing popup")
-            PopupUtils.close(downloadDialog)
-        }
+    SingleDownload {
+        id: single
     }
-        
-    Connections {
-		target: DownloadInterceptor
-		
-		onDownloading: {
-			downloadBar.value = (received * 100) / total
-		}
-		
-		onFail: {
-			//Something went wrong and the `message` argument will tell you what it was.
-			
-			console.log("Error: " + message)
-			cancelButton.visible = true
-			cancelButton.text = i18n.tr("Close")
-			downloadDialog.text = message
-		}
-	}
+	Column {
+		height: cancelButton.height + progBar.height + units.gu(4)
 
+    	Button {
+			id: cancelButton
+    	    text: single.progress === 100 ? i18n.tr("OK") : i18n.tr("Cancel")
+    	    onClicked: {
+				single.progress === 100 ? PopupUtils.close(downloadDialog) : single.cancel()
+    	        PopupUtils.close(downloadDialog)
+    	    }
+			//anchors.horizontalCenter: Qt.AlignHCenter
+    	}
+    	ProgressBar {
+			id: progBar
+    	    minimumValue: 0
+    	    maximumValue: 100
+    	    value: single.progress
+    	    height: units.gu(1)
+    	    anchors {
+    	        left: parent.left
+    	        right: parent.right
+    	        bottom: parent.bottom
+    	    }
+    	}
+	}
+	Component.onCompleted: single.download(url)
 }

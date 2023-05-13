@@ -23,6 +23,9 @@ import "qrc:///qml/Utils.js" as JS
 
 PageHeader {
     id: pageHeader
+
+    property alias textbar: textFieldInput.text
+
     anchors.top: parent.top //if bar is on top
     states: [
         State {
@@ -56,7 +59,7 @@ PageHeader {
                 onTriggered: webview.goBack();
             },
             Action {
-                visible: /*MyTabs.tabs[MyTabs.tabNum]*/MyTabs.currtab != ""
+                visible: MyTabs.currtab != ""
                 iconName: webview.loadProgress === 100 ? "reload" : "stop"
                 onTriggered: webview.loadProgress === 100 ? webview.reload() : webview.stop()
             }
@@ -64,7 +67,6 @@ PageHeader {
     }
     TextField {
         id: textFieldInput
-        text: MyTabs.display/*MyTabs.tabs[MyTabs.tabNum] MyTabs.currtab*/
         anchors {
             top: parent.top
             topMargin: units.gu(1)
@@ -88,13 +90,7 @@ PageHeader {
             Action {
                 iconName: "add"
                 text: i18n.tr("New Tab")
-                onTriggered: {
-                    MyTabs.tabs.push("")
-                    MyTabs.tabNum++
-                    MyTabs.currtab = ""
-                    MyTabs.tabVisibility = false
-                    //console.log("plus| " + MyTabs.tabs + "  |Num: " + MyTabs.tabNum)
-                }
+                onTriggered: JS.newtab()
             },
             Action {
                 iconName: "browser-tabs"
@@ -103,7 +99,7 @@ PageHeader {
             },
             Action {
                 iconName: "document-save"
-                text: i18n.tr("Downloads")
+                text: i18n.tr("Manual download")
                 onTriggered: pStack.push(Qt.resolvedUrl("Download.qml"))
             },
             Action {

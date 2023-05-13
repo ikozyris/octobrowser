@@ -108,7 +108,8 @@ Page {
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 style: Font.Bold
-                text: i18n.tr("Thanks to the LogViewer app for the Settings page, and to Qt WebEngine demo app for the basics of QtWebEngine\n" +
+                text: i18n.tr("Thanks to the LogViewer app for the Settings page, to Qt WebEngine demo app for the basics of QtWebEngine\n" +
+                              "In addition, a would like to say THANK YOU to UBports for developing Ubuntu Touch and Morph.\n" +
                               " The icon is a remix of the stock_website Suru icon with an octopus from svgrepo.com") 
            }
         }

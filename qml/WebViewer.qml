@@ -24,7 +24,7 @@ import QtQuick 2.12
 WebEngineView {
     id: webview
     visible: MyTabs.tabVisibility
-    url: /*MyTabs.tabs[MyTabs.tabNum] */MyTabs.currtab
+    url: MyTabs.currtab
     zoomFactor: prefs.zoomlevel / 100                    // custom zoom factor
 
     settings {
@@ -55,11 +55,11 @@ WebEngineView {
         request.accept();
     }
     onLoadingChanged: {
-        MyTabs.display = webview.url
+        //MyTabs.currtab = webview.url
         MyTabs.tabs[MyTabs.tabNum] = webview.url
         //console.log("webview| " + MyTabs.tabs[MyTabs.tabNum])
         //console.log("webview| actual: " + webview.url) 
-        //pageHeader.textFieldInput.text = webview.url
+        pageHeader.textbar = webview.url
         if(loadRequest.errorString)
             console.error(loadRequest.errorString)
         else {
@@ -68,16 +68,14 @@ WebEngineView {
             history.count = history.count + 1
         }
     }
-    /**
-    *   html select override
-    *   set enableSelectOverride to true to make Morph.Web handle select
-    *   note that as it uses javascript prompt,
-    *   make sure that onJavaScriptDialogRequested signal handler don't overplay prompt dialog by checking the isASelectRequest(request)
-    */
-
+    /*
+     *   html select override
+     *   set enableSelectOverride to true to make Morph.Web handle select
+     *   note that as it uses javascript prompt,
+     *   make sure that onJavaScriptDialogRequested signal handler don't overplay prompt dialog by checking the isASelectRequest(request)
+     */
     property bool enableSelectOverride: true
     property var selectOverride: function(request) {
-        console.log("test var")
         var dialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/SelectOverride.qml"), this);
         dialog.options = request.defaultText;
         dialog.accept.connect(request.dialogAccept);
@@ -98,8 +96,7 @@ WebEngineView {
     }
 
     onJavaScriptDialogRequested: function(request) {
-        console.log("test request")
-        //if (isASelectRequest(request)) return; //this is a select box , Morph.Web handled it already
+        
         if (enableSelectOverride && isASelectRequest(request)) {
             request.accepted = true
             selectOverride(request)

@@ -23,7 +23,7 @@ import Ubuntu.Components 1.3
 import Qt.labs.settings 1.0
 import Qt.labs.platform 1.0
 import QtWebEngine 1.10
-import Ubuntu.DownloadManager 1.2
+import Ubuntu.Components.Popups 1.3
 //import Ubuntu.PerformanceMetrics 0.1
 
 MainView {
@@ -130,12 +130,13 @@ MainView {
         httpUserAgent: prefs.cmuseragent;                        //custom UA
         offTheRecord: false
         onDownloadRequested: {
+            console.log(download.url)
             //var fileUrl = StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/Downloads/" + download.downloadFileName;
-            var fileUrl = "/home/phablet/.local/share/octobrowser.ikozyris/Downloads/" + download.downloadFileName;
-            var request = new XMLHttpRequest();
-            request.open("PUT", fileUrl, false);
-            request.send(decodeURIComponent(download.url.toString().replace("data:text/plain;,", "")))
-            //PopupUtils.open(DownloadingDialog, mainPage, { "fileName" : download.downloadFileName})
+            //var fileUrl = "/home/phablet/.local/share/octobrowser.ikozyris/Downloads/" + download.downloadFileName;
+            //var request = new XMLHttpRequest();
+            //request.open("PUT", fileUrl, false);
+            //request.send(decodeURIComponent(download.url.toString().replace("data:text/plain;,", "")))
+            PopupUtils.open(Qt.resolvedUrl("/qml/Dialogs/Download.qml"), mainView, {'url': download.url})
         }
     }
 }

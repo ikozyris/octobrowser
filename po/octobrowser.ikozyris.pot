@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-13 21:13+0000\n"
+"POT-Creation-Date: 2023-05-16 16:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,23 +58,29 @@ msgstr ""
 
 #: ../qml/About.qml:111
 msgid ""
-"Thanks to the LogViewer app for the Settings page, to Qt WebEngine demo app "
-"for the basics of QtWebEngine\n"
-"In addition, a would like to say THANK YOU to UBports for developing Ubuntu "
-"Touch and Morph.\n"
+"I would like to say THANK YOU to UBports for continuing the development of "
+"Ubuntu Touch.\n"
 " The icon is a remix of the stock_website Suru icon with an octopus from "
 "svgrepo.com"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:10
+#: ../qml/Dialogs/Download.qml:20
 msgid "Downloading:"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:24 ../qml/Settings.qml:45
+#: ../qml/Dialogs/Download.qml:34
+msgid "Pause"
+msgstr ""
+
+#: ../qml/Dialogs/Download.qml:34
+msgid "Resume"
+msgstr ""
+
+#: ../qml/Dialogs/Download.qml:39 ../qml/Settings.qml:45
 msgid "Cancel"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:24
+#: ../qml/Dialogs/Download.qml:39
 msgid "OK"
 msgstr ""
 

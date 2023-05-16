@@ -126,17 +126,17 @@ MainView {
         persistentCookiesPolicy: WebEngineProfile.AllowPersistentCookies; //store persistent cookies
         storageName: "Storage"
         persistentStoragePath: "/home/phablet/.local/share/octobrowser.ikozyris"
-        httpCacheType: WebEngineProfile.DiskHttpCache;           //cache qml content to file
+        //httpCacheType: WebEngineProfile.DiskHttpCache;           //cache qml content to file
         httpUserAgent: prefs.cmuseragent;                        //custom UA
         offTheRecord: false
         onDownloadRequested: {
-            console.log(download.url)
+            //console.log(download.url)
             //var fileUrl = StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/Downloads/" + download.downloadFileName;
             //var fileUrl = "/home/phablet/.local/share/octobrowser.ikozyris/Downloads/" + download.downloadFileName;
             //var request = new XMLHttpRequest();
             //request.open("PUT", fileUrl, false);
             //request.send(decodeURIComponent(download.url.toString().replace("data:text/plain;,", "")))
-            PopupUtils.open(Qt.resolvedUrl("/qml/Dialogs/Download.qml"), mainView, {'url': download.url})
+            PopupUtils.open(Qt.resolvedUrl("/qml/Dialogs/Download.qml"), undefined, {'url': download.url})
         }
     }
 }

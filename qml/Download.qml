@@ -12,7 +12,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * this file is part of Octopus Browser (octobrowser)
  */
 
@@ -21,18 +21,18 @@ import Ubuntu.Components 1.3
 import Ubuntu.DownloadManager 1.2
 
 Page {
-	id: downloadsPage
+    id: downloadsPage
 
-	header: PageHeader {
-		anchors.top: parent.top
-		title: i18n.tr("Downloads")
-	}
+    header: PageHeader {
+        anchors.top: parent.top
+        title: i18n.tr("Downloads")
+    }
     TextField {
         id: text
         placeholderText: "File URL to download..."
         height: 50
         anchors {
-			top: downloadsPage.header.bottom
+            top: downloadsPage.header.bottom
             left: parent.left
             right: button.left
             rightMargin: units.gu(2)
@@ -43,7 +43,7 @@ Page {
         text: "Download"
         height: 50
         anchors.right: parent.right
-		anchors.top: downloadsPage.header.bottom
+        anchors.top: downloadsPage.header.bottom
         onClicked: {
             single.download(text.text);
         }

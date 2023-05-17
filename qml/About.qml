@@ -12,7 +12,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * this file is part of Octopus Browser (octobrowser)
  */
 import QtQuick 2.12
@@ -91,7 +91,7 @@ Page {
                 text: "<a href='https://gitlab.com/ikozyris/octobrowser/'>" + i18n.tr("SOURCE") + "</a>"
                 onLinkActivated: Qt.openUrlExternally(link)
             }
-            
+
             Label {
                 width: parent.width
                 linkColor: UbuntuColors.orange
@@ -99,8 +99,8 @@ Page {
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 style: Font.Bold
                 text: i18n.tr("Maintainer") + " (c) 2023 ikozyris\n"
-                
-            }            
+
+            }
 
             Label {
                 width: parent.width
@@ -109,7 +109,7 @@ Page {
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 style: Font.Bold
                 text: i18n.tr("I would like to say THANK YOU to UBports for continuing the development of Ubuntu Touch.\n" +
-                              " The icon is a remix of the stock_website Suru icon with an octopus from svgrepo.com") 
+                              " The icon is a remix of the stock_website Suru icon with an octopus from svgrepo.com")
            }
         }
     }

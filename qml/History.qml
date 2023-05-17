@@ -12,7 +12,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * this file is part of Octopus Browser (octobrowser)
  */
 
@@ -25,15 +25,15 @@ import Ubuntu.Components 1.3
 import "qrc:///qml/"
 
 Page {
-	id: historyPage
-    
+    id: historyPage
+
     function clearhistory() {
         history.urls = [];
         history.dates = [];
         history.count = 0;
     }
 
-	header: PageHeader {
+    header: PageHeader {
         title: i18n.tr("History")
         trailingActionBar.actions: Action {
             iconName: "delete"
@@ -47,7 +47,7 @@ Page {
         asynchronous: true
         anchors {
             fill: parent
-	        top: historyPage.header.bottom
+            top: historyPage.header.bottom
             topMargin: units.gu(6)
             leftMargin: units.gu(0.5)
             rightMargin: units.gu(0.5)

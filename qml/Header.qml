@@ -74,7 +74,7 @@ PageHeader {
             leftMargin: units.gu(1)
             right: trailingActionBar.left
             rightMargin: units.gu(1)
-	    }
+        }
         placeholderText: i18n.tr('Enter a URL or a search query')
         inputMethodHints: Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
         onAccepted: {

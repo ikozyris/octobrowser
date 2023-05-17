@@ -12,7 +12,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * this file is part of Octopus Browser (octobrowser)
  */
 
@@ -22,7 +22,7 @@ import Ubuntu.Components 1.3
 import QtQuick.Layouts 1.3
 
 Page {
-	id: helpPage
+    id: helpPage
 
     header: PageHeader {
         title: i18n.tr("Help")
@@ -92,7 +92,7 @@ Page {
                 }
                 Label {
                     id: sphelp
-                    text: i18n.tr("First of all, for maximum security and privacy, disable all switches. WARNING: may break some websites\n" + 
+                    text: i18n.tr("First of all, for maximum security and privacy, disable all switches. WARNING: may break some websites\n" +
                                   "In addition, you can use a common user agent to limit fingerprinting.\n" +
                                   "Please note that currently this browser is not the best in terms of security or privacy.")
                     wrapMode: Text.Wrap

@@ -12,7 +12,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * this file is part of Octopus Browser (octobrowser)
  */
 
@@ -23,11 +23,11 @@ import Ubuntu.Components 1.3
 import "qrc:///qml/Utils.js" as JS
 
 Page {
-	header: PageHeader {
-		anchors.top: parent.top
-		title: i18n.tr("Tabs")
-		subtitle: i18n.tr("Current tab:" + MyTabs.tabNum)
-	}
+    header: PageHeader {
+        anchors.top: parent.top
+        title: i18n.tr("Tabs")
+        subtitle: i18n.tr("Current tab:" + MyTabs.tabNum)
+    }
 
     Repeater {
         model: listModel
@@ -35,47 +35,47 @@ Page {
             x: tileX
             y: tileY
             color: tileColor
-			Text {
-				text: MyTabs.tabs[index]
-				anchors.centerIn: parent
-				width: parent.width
-				wrapMode: Text.WrapAnywhere
-				color: "white"
-				MouseArea {
-					anchors.fill: parent
-					onClicked: {
-						MyTabs.tabNum = index
-						MyTabs.currtab = MyTabs.tabs[index]
-						MyTabs.tabVisibility = true
-                    	pStack.pop()
-					}
-				}
-			}
+            Text {
+                text: MyTabs.tabs[index]
+                anchors.centerIn: parent
+                width: parent.width
+                wrapMode: Text.WrapAnywhere
+                color: "white"
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        MyTabs.tabNum = index
+                        MyTabs.currtab = MyTabs.tabs[index]
+                        MyTabs.tabVisibility = true
+                        pStack.pop()
+                    }
+                }
+            }
             Label {
                 text: "X"
-				textSize: Label.XLarge
+                textSize: Label.XLarge
                 anchors.right: parent.right
                 color: "white"
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-						// if current tab is deleted
-						if (MyTabs.tabNum === index)
-							MyTabs.tabNum--
-						MyTabs.tabs.splice(index,1)
-						listModel.remove(index)
-					}
+                        // if current tab is deleted
+                        if (MyTabs.tabNum === index)
+                            MyTabs.tabNum--
+                        MyTabs.tabs.splice(index,1)
+                        listModel.remove(index)
+                    }
                 }
             }
         }
     }
-    
+
     ListModel {
         id: listModel
     }
 
-	Component.onCompleted: {
-		//console.info(MyTabs.tabs)
-		JS.showTabs()
-	}
+    Component.onCompleted: {
+        //console.info(MyTabs.tabs)
+        JS.showTabs()
+    }
 }

@@ -12,7 +12,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * this file is part of Octopus Browser (octobrowser)
  */
 
@@ -46,7 +46,7 @@ UbuntuListView {
                     iconName: "external-link"
                     onTriggered: {
                         MyTabs.currtab = history.urls[curr];
-				    	//mainPage.webview.url = MyTabs.currtab;
+                        //mainPage.webview.url = MyTabs.currtab;
                         MyTabs.tabVisibility = true;
                         pStack.pop();
                     }
@@ -57,5 +57,5 @@ UbuntuListView {
                 }
             ]
         }
-    } 
+    }
 }

@@ -81,7 +81,6 @@ PageHeader {
             //MyTabs.tabs[MyTabs.tabNum] = JS.geturl(textFieldInput.text)
             MyTabs.currtab = JS.geturl(textFieldInput.text)
             MyTabs.tabVisibility = true
-            //console.log("textField| " + MyTabs.tabs[MyTabs.tabNum])
         }
     }
     trailingActionBar {

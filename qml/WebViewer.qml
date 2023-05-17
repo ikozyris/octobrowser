@@ -59,18 +59,16 @@ WebEngineView {
         pageHeader.textbar = webview.url
     }
     onLoadingChanged: {
-        //MyTabs.currtab = webview.url
-        //MyTabs.tabs[MyTabs.tabNum] = webview.url
-        //console.log("webview| " + MyTabs.tabs[MyTabs.tabNum])
-        //console.log("webview| actual: " + webview.url) 
         if(loadRequest.errorString)
             console.error(loadRequest.errorString)
         else {
+            //add url to history
             history.urls.push(webview.url)
             history.dates.push(new Date())
             history.count = history.count + 1
         }
     }
+
     /*
      *   html select override
      *   set enableSelectOverride to true to make Morph.Web handle select
@@ -90,22 +88,17 @@ WebEngineView {
     readonly property var isASelectRequest: function(request){
         return (request.type === JavaScriptDialogRequest.DialogTypePrompt && request.message==='XX-MORPH-SELECT-OVERRIDE-XX')
     }
-
     userScripts: WebEngineScript {
         runOnSubframes: true
         sourceUrl: enableSelectOverride ? Qt.resolvedUrl("select_override.js") : ""
         injectionPoint: WebEngineScript.DocumentReady
         worldId: WebEngineScript.MainWorld
     }
-
     onJavaScriptDialogRequested: function(request) {
-        
         if (enableSelectOverride && isASelectRequest(request)) {
             request.accepted = true
             selectOverride(request)
         }
     }
-    //onLoadProgressChanged: console.log(loadProgress)
-    //onLinkChanged: webview.url = link
     backgroundColor: "lightgrey"
 }

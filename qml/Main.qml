@@ -54,7 +54,7 @@ MainView {
         id: history
         property var urls: [""]
         property var dates: [""]
-        // since urls.lenght does not work
+        // since urls.lenght does not work, custom counter is used
         property int count: 0
     }
 

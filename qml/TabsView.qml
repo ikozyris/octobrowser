@@ -45,6 +45,7 @@ Page {
 					anchors.fill: parent
 					onClicked: {
 						MyTabs.tabNum = index
+						MyTabs.currtab = MyTabs.tabs[index]
 						MyTabs.tabVisibility = true
                     	pStack.pop()
 					}
@@ -58,6 +59,9 @@ Page {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
+						// if current tab is deleted
+						if (MyTabs.tabNum === index)
+							MyTabs.tabNum--
 						MyTabs.tabs.splice(index,1)
 						listModel.remove(index)
 					}

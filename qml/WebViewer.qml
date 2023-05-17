@@ -54,12 +54,15 @@ WebEngineView {
         }
         request.accept();
     }
+    onUrlChanged: {
+        MyTabs.tabs[MyTabs.tabNum] = webview.url
+        pageHeader.textbar = webview.url
+    }
     onLoadingChanged: {
         //MyTabs.currtab = webview.url
-        MyTabs.tabs[MyTabs.tabNum] = webview.url
+        //MyTabs.tabs[MyTabs.tabNum] = webview.url
         //console.log("webview| " + MyTabs.tabs[MyTabs.tabNum])
         //console.log("webview| actual: " + webview.url) 
-        pageHeader.textbar = webview.url
         if(loadRequest.errorString)
             console.error(loadRequest.errorString)
         else {

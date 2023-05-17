@@ -26,12 +26,13 @@
 //#include <QQuickStyle>            //  >>
 //#include <QtWebEngine/QtWebEngine>
 //#include <QtWebEngine/qtwebengineglobal.h>
-#include <QStandardPaths>
+//#include <QStandardPaths>
 
 // Run with QQuickView
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setAttribute(Qt::AA_UseOpenGLES);
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 
     QGuiApplication::setOrganizationName("octobrowser.ikozyris");
@@ -49,9 +50,9 @@ int main(int argc, char *argv[])
     }
     //qputenv("PERFPROFILER_PARSER_FILEPATH",TODO);
     //QtWebEngine::initialize();
-    QString configPath = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
-    QString cachePath = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
-    QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    //QString configPath = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
+    //QString cachePath = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
+    //QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
 
     QGuiApplication *app = new QGuiApplication(argc, (char**)argv);
     app->setApplicationName("octobrowser.ikozyris");

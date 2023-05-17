@@ -2,9 +2,7 @@
 take a list of select options, pass it to a window.prompt so that it can be handled in QML with onJavascriptDialogRequested*/
 
 (function() {
-
     function handleSelect(select) {
-
         var opts = []
         for (var i = 0; i < select.options.length; ++i) {
             opts.push(select.options[i].innerText);
@@ -22,16 +20,13 @@ take a list of select options, pass it to a window.prompt so that it can be hand
         var select = null
         if (evt.target.tagName === 'SELECT') {
             select = evt.target
-        }else if (evt.composedPath()[0].tagName === 'SELECT') { // in case of event retargeting, original event is stored in composedPath array
+        } else if (evt.composedPath()[0].tagName === 'SELECT') { // in case of event retargeting, original event is stored in composedPath array
             select = evt.composedPath()[0]
         }
-
-        if (select!==null){
+        if (select !== null){
             //disable default opening of select drop box
             evt.preventDefault();
             handleSelect(select)
         }
-
     });
-
 })();

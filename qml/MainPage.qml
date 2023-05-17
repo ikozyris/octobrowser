@@ -32,7 +32,7 @@ Page {
     property string barposition: prefs.adrpos === 1 ? "bottom" : "top";
     property bool canshow: JS.canshow(webview.loadProgress)
 
-    header: Header {id: pageHeader}
+    header: Header { id: pageHeader }
 
     WebViewer {
         id: webview

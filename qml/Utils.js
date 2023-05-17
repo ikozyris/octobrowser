@@ -54,7 +54,7 @@ function geturl(text) {
 }
 
 function canshow(prog) {
-	if (prog != 0 && prog != 100)  {
+	if (prog !== 0 && prog !== 100)  {
 		return true;
 	} else {
 		return false;
@@ -65,20 +65,22 @@ function canshow(prog) {
 function delIndex(index) {
 	history.dates.splice(index, 1);
 	history.urls.splice(index, 1);
-	history.count;
+	//TODO: array.lenghtdoes not work
+	
+	history.count--;
 }
 
 // tabs
 function showTabs() {
 	let i = 0;
 	let prevX = units.gu(2);
-	let prevY = units.gu(8)
+	let prevY = units.gu(8);
 	while (MyTabs.tabs[i] != undefined) {
 		let tileX = prevX;
 		let tileY = prevY;
-		if (i != 0) {
+		if (i !== 0) {
 			if (prevX + units.gu(20) >= parent.width) {
-				tileX = units.gu(2)
+				tileX = units.gu(2);
 				tileY = prevY + units.gu(20);
 			} else {
 				tileX = prevX + units.gu(14);
@@ -96,9 +98,9 @@ function showTabs() {
 }
 
 function newtab() {
-	MyTabs.tabs.push("")
-	MyTabs.tabNum++
-	MyTabs.currtab = ""
-	pageHeader.textbar = ""
-	MyTabs.tabVisibility = false
+	MyTabs.tabs.push("");
+	MyTabs.tabNum++;
+	MyTabs.currtab = "";
+	pageHeader.textbar = "";
+	MyTabs.tabVisibility = false;
 }

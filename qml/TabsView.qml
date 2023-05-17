@@ -50,8 +50,9 @@ Page {
 					}
 				}
 			}
-            Text {
+            Label {
                 text: "X"
+				textSize: Label.XLarge
                 anchors.right: parent.right
                 color: "white"
                 MouseArea {
@@ -70,7 +71,7 @@ Page {
     }
 
 	Component.onCompleted: {
-		console.log(MyTabs.tabs)
+		//console.info(MyTabs.tabs)
 		JS.showTabs()
 	}
 }

@@ -26,6 +26,7 @@ WebEngineView {
     visible: MyTabs.tabVisibility
     url: MyTabs.currtab
     zoomFactor: prefs.zoomlevel / 100                    // custom zoom factor
+    backgroundColor: "lightgrey"
 
     settings {
         javascriptEnabled: prefs.js                      // enable javascipt
@@ -100,5 +101,28 @@ WebEngineView {
             selectOverride(request)
         }
     }
-    backgroundColor: "lightgrey"
+    onFileDialogRequested: function(request) {
+        switch (request.mode) {
+            case FileDialogRequest.FileModeOpen:
+                request.accepted = true;
+                var fileDialogSingle = PopupUtils.open(Qt.resolvedUrl("Content/Picker.qml"));
+                fileDialogSingle.allowMultipleFiles = false;
+                fileDialogSingle.accept.connect(request.dialogAccept);
+                fileDialogSingle.reject.connect(request.dialogReject);
+                break;
+
+            case FileDialogRequest.FileModeOpenMultiple:
+                request.accepted = true;
+                var fileDialogMultiple = PopupUtils.open(Qt.resolvedUrl("Content/Picker.qml"));
+                fileDialogMultiple.allowMultipleFiles = true;
+                fileDialogMultiple.accept.connect(request.dialogAccept);
+                fileDialogMultiple.reject.connect(request.dialogReject);
+                break;
+
+            //case FilealogRequest.FileModeUploadFolder:
+            case FileDialogRequest.FileModeSave:
+                request.accepted = false;
+                break;
+        }
+    }
 }

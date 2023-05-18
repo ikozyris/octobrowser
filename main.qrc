@@ -3,6 +3,10 @@
 <qresource prefix="/">
 	<file>assets/logo.svg</file>
 	<file>qml/About.qml</file>
+	<file>qml/Content/Handler.qml</file>
+	<file>qml/Content/MimeTypeMapper.js</file>
+	<file>qml/Content/Picker.qml</file>
+	<file>qml/Content/Share.qml</file>
 	<file>qml/Download.qml</file>
 	<file>qml/Dialogs/Download.qml</file>
 	<file>qml/Dialogs/SelectOverride.qml</file>

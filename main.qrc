@@ -3,6 +3,9 @@
 <qresource prefix="/">
 	<file>assets/logo.svg</file>
 	<file>qml/About.qml</file>
+	<file>qml/Components/Settings.qml</file>
+	<file>qml/Components/History.qml</file>
+	<file>qml/Components/SingleTab.qml</file>
 	<file>qml/Content/Handler.qml</file>
 	<file>qml/Content/MimeTypeMapper.js</file>
 	<file>qml/Content/Picker.qml</file>
@@ -12,15 +15,13 @@
 	<file>qml/Dialogs/SelectOverride.qml</file>
 	<file>qml/Header.qml</file>
 	<file>qml/Help.qml</file>
-	<file>qml/History.qml</file>
 	<file>qml/HistoryView.qml</file>
 	<file>qml/KeyboardRectangle.qml</file>
 	<file>qml/Main.qml</file>
 	<file>qml/MainPage.qml</file>
 	<file>qml/qmldir</file>
 	<file>qml/select_override.js</file>
-	<file>qml/Settings.qml</file>
-	<file>qml/SingleTab.qml</file>
+	<file>qml/SettingsView.qml</file>
 	<file>qml/Singleton.qml</file>
 	<file>qml/TabsView.qml</file>
 	<file>qml/Utils.js</file>

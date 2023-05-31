@@ -3,9 +3,17 @@
         "all"
     ],
     "share": [
-        "all"
+        "pictures",
+        "documents",
+        "videos",
+        "contacts",
+        "music"
     ],
     "source": [
-        "all"
+        "pictures",
+        "documents",
+        "videos",
+        "contacts",
+        "music"
     ]
 }

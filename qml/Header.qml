@@ -104,12 +104,12 @@ PageHeader {
             Action {
                 iconName: "settings"
                 text: i18n.tr("Settings")
-                onTriggered: mainView.showSettings()
+                onTriggered: pStack.push(Qt.resolvedUrl("SettingsView.qml"))
             },
             Action {
                 iconName: "history"
                 text: i18n.tr("History")
-                onTriggered: pStack.push(Qt.resolvedUrl("History.qml"))
+                onTriggered: pStack.push(Qt.resolvedUrl("HistoryView.qml"))
             },
             Action {
                 iconName: "info"

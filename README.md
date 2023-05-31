@@ -8,6 +8,7 @@ Features:
 - Move address bar
 - History
 - Block autoplaying videos
+- Tabs
 - _MORE_
 
 In other words: The simpliest yet experamental Qt browser for Ubuntu Touch.
@@ -19,13 +20,19 @@ In other words: The simpliest yet experamental Qt browser for Ubuntu Touch.
 - Camera and other permissions (not prioritized)
 
 ### Known Issues
-~~Anchor to clipboard does not work~~<br>
 Tabs are not the the best
 
 ### Focal (20.04)
 This program is developed for 16.04 base but there is an outdated focal branch.<br>
 You can use the untested `focal.sh` script to fix library imports. Then try to compile with `clickable`. It might work.
 
+## Qt Quick Compiler
+to compile Ahead-Of-Time:
+```
+mv CMakeLists.txt CMakeLists-JIT.txt; mv CMakeLists-AOT.txt CMakeLists.txt
+```
+I didn't notice any improvement so it is not used by default.
+Not convinced that JIT is faster than AOT (until Qt 6.3)? See [this article](https://www.qt.io/blog/the-new-qtquick-compiler-technology)
 ## License
 
 Copyright (C) 2023  ikozyris

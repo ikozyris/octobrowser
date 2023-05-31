@@ -25,8 +25,8 @@
 //#include <QQmlContext>            //  >>
 //#include <QQuickStyle>            //  >>
 //#include <QtWebEngine/QtWebEngine>
-//#include <QtWebEngine/qtwebengineglobal.h>
-//#include <QStandardPaths>
+#include <QtWebEngine/qtwebengineglobal.h>
+#include <QStandardPaths>
 
 // Run with QQuickView
 int main(int argc, char *argv[])
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 
 //"--blink-settings=darkMode=3,darkModeImagePolicy=2,darkModeImageStyle=2 --enable-smooth-scrolling --enable-low-res-tiling 
 // --enable-low-end-device-mode --enable-natural-scroll-default
-    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--force-dark-mode --blink-settings=darkModeEnabled=true");
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--force-dark-mode --blink-settings=darkModeEnabled=true -DQT_FEATURE_webengine_system_icu=ON ");
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "true");
 
     qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2"); //force QQC2 web popups
@@ -60,18 +60,25 @@ int main(int argc, char *argv[])
     qDebug() << "Starting app from main.cpp";
 
     QQuickView *view = new QQuickView();
+
+    qDebug() << "Almost 1";
+    qDebug() << "Almost 1.1";
     view->setSource(QUrl("qrc:///qml/Main.qml"));
+    qDebug() << "Almost 2";
     view->setResizeMode(QQuickView::SizeRootObjectToView);
     view->show();
 
+    qDebug() << "Almost end";
+
     return app->exec();
 }
-/*
+
 // Run with QQmlApplicationEngine //DO NOT USE
 //QtWebEngineProcess is not killed after app is closed 
 // You may see this:
 // [1:19:0505/191935.727720:ERROR:address_tracker_linux.cc(214)] Could not bind NETLINK socket: Address already in use (98)
 // [1:1:0505/191937.894230:ERROR:service_worker_storage.cc(1753)] Failed to delete the database: Database IO error
+/*
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);

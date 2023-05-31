@@ -41,6 +41,7 @@ WebEngineView {
         fullScreenSupportEnabled: true
         dnsPrefetchEnabled: true
         touchIconsEnabled: true
+        localStorageEnabled: true
     }
     profile: webViewProfile
     onFullScreenRequested: function(request) {
@@ -60,7 +61,7 @@ WebEngineView {
         pageHeader.textbar = webview.url
     }
     onLoadingChanged: {
-        if(loadRequest.errorString)
+        if (loadRequest.errorString)
             console.error(loadRequest.errorString)
         else {
             //add url to history
@@ -87,7 +88,7 @@ WebEngineView {
         dialog.reject.connect(function() { PopupUtils.close(dialog) })
     }
     readonly property var isASelectRequest: function(request){
-        return (request.type === JavaScriptDialogRequest.DialogTypePrompt && request.message==='XX-MORPH-SELECT-OVERRIDE-XX')
+        return (request.type === JavaScriptDialogRequest.DialogTypePrompt && request.message==='XX-MORPH-SELECT-OVERRIDE-XX');
     }
     userScripts: WebEngineScript {
         runOnSubframes: true
@@ -97,8 +98,8 @@ WebEngineView {
     }
     onJavaScriptDialogRequested: function(request) {
         if (enableSelectOverride && isASelectRequest(request)) {
-            request.accepted = true
-            selectOverride(request)
+            request.accepted = true;
+            selectOverride(request);
         }
     }
     onFileDialogRequested: function(request) {

@@ -3,8 +3,14 @@
         "audio",
         "networking",
         "location",
+        "keep-display-on",
+        "camera",
+        "connectivity",
         "content_exchange",
-        "keep-display-on"
+        "content_exchange_source",
+        "sensors",
+        "video",
+        "webview"
     ],
     "policy_version": 16.04
 }

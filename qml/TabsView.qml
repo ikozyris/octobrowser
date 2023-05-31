@@ -21,6 +21,7 @@ import QtQuick.Controls 2.12
 import Ubuntu.Components 1.3
 
 import "qrc:///qml/Utils.js" as JS
+import "qrc:///qml/Components"
 
 Page {
     header: PageHeader {
@@ -53,7 +54,7 @@ Page {
             }
             Label {
                 text: "X"
-                textSize: Label.XLarge
+                fontSize: "x-large"
                 anchors.right: parent.right
                 color: "white"
                 MouseArea {

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-18 12:34+0000\n"
+"POT-Creation-Date: 2023-05-31 08:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -64,6 +64,75 @@ msgid ""
 "svgrepo.com"
 msgstr ""
 
+#: ../qml/Components/History.qml:38
+msgid "On "
+msgstr ""
+
+#: ../qml/Components/Settings.qml:32
+msgid "Show General category:"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:45
+msgid "Remember open tabs:"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:62
+msgid "Clear cache on exit:"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:79
+msgid "Blue light filter:"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:98
+#, javascript-format
+msgid "Zoom level: %1%"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:119
+msgid "Address bar position: %1"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:121
+msgid "top"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:122
+msgid "bottom"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:132
+msgid "Show Privacy category"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:147
+msgid "User Agent:"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:165
+msgid "Limit WebRTC to public IP addresses only:"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:182
+msgid "Show Security category:"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:195
+msgid "Enable JavaScipt:"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:212
+msgid "Autoload Images:"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:229
+msgid "Autoplay videos:"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:247
+msgid "Allow running insecure content:"
+msgstr ""
+
 #: ../qml/Dialogs/Download.qml:20
 msgid "Downloading:"
 msgstr ""
@@ -76,7 +145,7 @@ msgstr ""
 msgid "Resume"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:39 ../qml/Settings.qml:45
+#: ../qml/Dialogs/Download.qml:39
 msgid "Cancel"
 msgstr ""
 
@@ -104,11 +173,11 @@ msgstr ""
 msgid "Manual download"
 msgstr ""
 
-#: ../qml/Header.qml:106 ../qml/Settings.qml:41
+#: ../qml/Header.qml:106 ../qml/SettingsView.qml:41
 msgid "Settings"
 msgstr ""
 
-#: ../qml/Header.qml:111 ../qml/History.qml:37
+#: ../qml/Header.qml:111 ../qml/HistoryView.qml:37
 msgid "History"
 msgstr ""
 
@@ -148,87 +217,18 @@ msgid ""
 "or privacy."
 msgstr ""
 
-#: ../qml/History.qml:40
+#: ../qml/HistoryView.qml:40
 msgid "Clear history"
-msgstr ""
-
-#: ../qml/HistoryView.qml:38
-msgid "On "
 msgstr ""
 
 #: ../qml/MainPage.qml:134
 msgid "Welcome to <i>Octopus Browser</i>, <br> a fast & customizable browser."
 msgstr ""
 
-#: ../qml/Settings.qml:54
-msgid "Apply"
-msgstr ""
-
-#: ../qml/Settings.qml:73
-msgid "Show General category:"
-msgstr ""
-
-#: ../qml/Settings.qml:86
-msgid "Remember open tabs:"
-msgstr ""
-
-#: ../qml/Settings.qml:102
-msgid "Blue light filter:"
-msgstr ""
-
-#: ../qml/Settings.qml:120
-#, javascript-format
-msgid "Zoom level: %1%"
-msgstr ""
-
-#: ../qml/Settings.qml:141
-msgid "Address bar position: %1"
-msgstr ""
-
-#: ../qml/Settings.qml:144
-msgid "top"
-msgstr ""
-
-#: ../qml/Settings.qml:145
-msgid "bottom"
-msgstr ""
-
-#: ../qml/Settings.qml:155
-msgid "Show Privacy category"
-msgstr ""
-
-#: ../qml/Settings.qml:170
-msgid "User Agent:"
-msgstr ""
-
-#: ../qml/Settings.qml:187
-msgid "Limit WebRTC to public IP addresses only:"
-msgstr ""
-
-#: ../qml/Settings.qml:203
-msgid "Show Security category:"
-msgstr ""
-
-#: ../qml/Settings.qml:216
-msgid "Enable JavaScipt:"
-msgstr ""
-
-#: ../qml/Settings.qml:232
-msgid "Autoload Images:"
-msgstr ""
-
-#: ../qml/Settings.qml:248
-msgid "Autoplay videos:"
-msgstr ""
-
-#: ../qml/Settings.qml:265
-msgid "Allow running insecure content:"
-msgstr ""
-
-#: ../qml/TabsView.qml:28
+#: ../qml/TabsView.qml:29
 msgid "Tabs"
 msgstr ""
 
-#: ../qml/TabsView.qml:29
+#: ../qml/TabsView.qml:30
 msgid "Current tab:"
 msgstr ""

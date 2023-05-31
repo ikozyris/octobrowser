@@ -16,46 +16,42 @@
  * this file is part of Octopus Browser (octobrowser)
  */
 
-import Ubuntu.Components 1.3
 import QtQuick 2.12
+//import QtQuick.Window 2.12
+//import QtQuick.Layouts 1.3
+import QtQuick.Controls 2.12
+import Ubuntu.Components 1.3
 
-import "qrc:///qml/Utils.js" as JS
+import "qrc:///qml/"
 
-UbuntuListView {
-    model: history.count // (array.lenght does not work)
-    delegate: ListItem {
-        //do not calculate this every time
-        readonly property int curr: history.count - index
-        //TODO: share this action as an optimization?
-        leadingActions: ListItemActions {
-            id: leading
-            actions: Action {
-                iconName: "delete"
-                onTriggered: JS.delIndex(curr)
-            }
-        }
-        Label {
-            text: i18n.tr("On ") + history.dates[curr] + ":\n" + history.urls[curr]
-            wrapMode: Text.WrapAnywhere
-            width: parent.width
-            horizontalAlignment: Text.AlignHCenter
-        }
-        trailingActions: ListItemActions {
-            actions: [
-                Action {
-                    iconName: "external-link"
-                    onTriggered: {
-                        MyTabs.currtab = history.urls[curr];
-                        //mainPage.webview.url = MyTabs.currtab;
-                        MyTabs.tabVisibility = true;
-                        pStack.pop();
-                    }
-                },
-                Action {
-                    iconName: "edit-copy"
-                    onTriggered: Clipboard.push(history.urls[curr])
-                }
-            ]
+Page {
+    id: historyPage
+
+    function clearhistory() {
+        history.urls = [];
+        history.dates = [];
+        history.count = 0;
+    }
+
+    header: PageHeader {
+        title: i18n.tr("History")
+        trailingActionBar.actions: Action {
+            iconName: "delete"
+            text: i18n.tr("Clear history")
+            onTriggered: clearhistory()
         }
     }
+
+    Loader {
+        source: Qt.resolvedUrl("Components/History.qml")
+        asynchronous: true
+        anchors {
+            fill: parent
+            top: historyPage.header.bottom
+            topMargin: units.gu(6)
+            leftMargin: units.gu(0.5)
+            rightMargin: units.gu(0.5)
+        }
+    }
+    //Component.onCompleted: console.log(history.count + " or " + history.urls.lenght)
 }

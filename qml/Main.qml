@@ -25,6 +25,7 @@ import Qt.labs.platform 1.0
 import QtWebEngine 1.10
 import Ubuntu.Components.Popups 1.3
 //import Ubuntu.PerformanceMetrics 0.1
+import Ubuntu.Content 1.3
 
 MainView {
 //ApplicationWindow { //for engine
@@ -48,6 +49,7 @@ MainView {
         property bool keeptabs: false
         property bool autoplay: false
         property bool lightfilter: false
+        property bool clearcache: false
     }
 
     Settings {
@@ -72,52 +74,17 @@ MainView {
             bottom: keyboardRect.top
         }
     }
-/*    PerformanceOverlay {
+/*
+    PerformanceOverlay {
         anchors.fill: pStack
         enabled: true
     }*/
 
-    Component.onCompleted: {
-        pStack.push(Qt.resolvedUrl("MainPage.qml"))
-    }
-
     ColorOverlay { //blue light filter
         anchors.fill: pStack
         source: pStack
-//      TODO: better ARGB           #AARRGGBB (like SVG khaki without blue)
-        color: prefs.lightfilter ? "#25f0e600" : "transparent"
-    }
-
-    function showSettings() {
-        var prop = {
-            zoomlevel: prefs.zoomlevel,
-            adrpos: prefs.adrpos,
-            cmuseragent: prefs.cmuseragent,
-            js: prefs.js,
-            loadimages: prefs.loadimages,
-            securecontent: prefs.securecontent,
-            webrtc: prefs.webrtc,
-            keeptabs: prefs.keeptabs,
-            autoplay: prefs.autoplay,
-            lightfilter: prefs.lightfilter
-        }
-
-        var slot_applyChanges = function(msettings) {
-            //console.log("Saving changes...")
-            prefs.zoomlevel = msettings.zoomlevel;
-            prefs.adrpos = msettings.adrpos;
-            prefs.cmuseragent = msettings.cmuseragent;
-            prefs.js = msettings.js;
-            prefs.loadimages = msettings.loadimages;
-            prefs.securecontent = msettings.securecontent;
-            prefs.webrtc = msettings.webrtc;
-            prefs.keeptabs = msettings.keeptabs;
-            prefs.autoplay = msettings.autoplay;
-            prefs.lightfilter = msettings.lightfilter;
-        }
-
-        var settingPage = pStack.push(Qt.resolvedUrl("Settings.qml"), prop);
-        settingPage.applyChanges.connect(function() { slot_applyChanges(settingPage) });
+// TODO: better ARGB (1/3 opacity)  #AARRGGBB (like SVG khaki without blue)
+        color: prefs.lightfilter ? "#30f0e600" : "transparent"
     }
 
     WebEngineProfile {
@@ -129,14 +96,19 @@ MainView {
         //httpCacheType: WebEngineProfile.DiskHttpCache;           //cache qml content to file
         httpUserAgent: prefs.cmuseragent;                        //custom UA
         offTheRecord: false
-        onDownloadRequested: {
-            //console.log(download.url)
-            //var fileUrl = StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/Downloads/" + download.downloadFileName;
+        onDownloadRequested: {/*
+            console.log(download.url)
+            var fileUrl = StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/Downloads/" + download.downloadFileName;
             //var fileUrl = "/home/phablet/.local/share/octobrowser.ikozyris/Downloads/" + download.downloadFileName;
-            //var request = new XMLHttpRequest();
-            //request.open("PUT", fileUrl, false);
-            //request.send(decodeURIComponent(download.url.toString().replace("data:text/plain;,", "")))
-            PopupUtils.open(Qt.resolvedUrl("/qml/Dialogs/Download.qml"), undefined, {'url': download.url})
+            var request = new XMLHttpRequest();
+            request.open("PUT", fileUrl, false);
+            request.send(decodeURIComponent(download.url.toString().replace("data:text/plain;,", "")))*/
+            PopupUtils.open(Qt.resolvedUrl("/qml/Dialogs/Download.qml"), mainView, {'url': download.url})
         }
+    }
+
+    Component.onCompleted: {
+        console.log("Main loaded")
+        pStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
 }

@@ -132,7 +132,7 @@ Page {
             width: parent.width
             horizontalAlignment: Text.AlignHCenter
             text: i18n.tr("Welcome to <i>Octopus Browser</i>, <br> a fast & customizable browser.")
-            textSize: Label.Large
+            fontSize: "large"
             wrapMode: Text.Wrap
             color: "white"
             anchors.centerIn: parent
@@ -149,9 +149,16 @@ Page {
     }
 
     Component.onCompleted: {
+        console.log("MainPage loaded")
         barposition: prefs.adrpos === 1 ? "bottom" : "top"
         pageHeader.state = barposition
         webview.state = barposition
         webViewPlaceholder.state = barposition
+    }
+
+    Component.onDestruction: {
+        if (prefs.clearcache)
+            webViewProfile.clearHttpCache()
+        //if (prefs.clearCookies)
     }
 }

@@ -149,7 +149,7 @@ Page {
     }
 
     Component.onCompleted: {
-        console.log("MainPage loaded")
+        //console.log("MainPage loaded")
         barposition: prefs.adrpos === 1 ? "bottom" : "top"
         pageHeader.state = barposition
         webview.state = barposition

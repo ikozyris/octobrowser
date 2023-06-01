@@ -20,8 +20,8 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3 as Popups
 import Ubuntu.Content 1.3
-import "MimeTypeMapper.js" as MimeTypeMapper
-import "."
+import "qrc:///qml/Content/MimeTypeMapper.js" as MimeTypeMapper
+import "qrc:///qml/Content/"
 
 Popups.PopupBase {
     id: picker

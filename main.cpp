@@ -61,14 +61,9 @@ int main(int argc, char *argv[])
 
     QQuickView *view = new QQuickView();
 
-    qDebug() << "Almost 1";
-    qDebug() << "Almost 1.1";
     view->setSource(QUrl("qrc:///qml/Main.qml"));
-    qDebug() << "Almost 2";
     view->setResizeMode(QQuickView::SizeRootObjectToView);
     view->show();
-
-    qDebug() << "Almost end";
 
     return app->exec();
 }

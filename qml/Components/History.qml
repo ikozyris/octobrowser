@@ -20,6 +20,7 @@ import Ubuntu.Components 1.3
 import QtQuick 2.12
 
 import "qrc:///qml/Utils.js" as JS
+import "qrc:///qml/"
 
 UbuntuListView {
     model: history.count // (array.lenght does not work)

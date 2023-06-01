@@ -5,4 +5,4 @@ dependencies_target:
 - 'qml-module-qtquick-controls2'
 - 'qml-module-qtquick-controls'
 - 'qtwebengine5-dev'
-build_args: "CONFIG+=qtquickcompiler"
+#build_args: "CONFIG+=qtquickcompiler"

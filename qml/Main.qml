@@ -108,7 +108,7 @@ MainView {
     }
 
     Component.onCompleted: {
-        console.log("Main loaded")
+        //console.log("Main loaded")
         pStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
 }

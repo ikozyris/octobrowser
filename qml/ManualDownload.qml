@@ -27,15 +27,12 @@ Page {
         anchors.top: parent.top
         title: i18n.tr("Downloads")
     }
-    DownloadManager {
-        id: manager
-    }
     TextField {
         id: text
         placeholderText: "File URL to download..."
         height: 50
         anchors {
-            top: header.bottom
+            top: downloadsPage.header.bottom
             left: parent.left
             right: button.left
             rightMargin: units.gu(2)
@@ -45,23 +42,10 @@ Page {
         id: button
         text: "Download"
         height: 50
-        anchors.top: header.bottom
         anchors.right: parent.right
+        anchors.top: downloadsPage.header.bottom
         onClicked: {
-            manager.download(text.text);
-        }
-    }
-    UbuntuListView {
-        id: list
-        anchors {
-            left: parent.left
-            right: parent.right
-            top: text.bottom
-            bottom: parent.bottom
-        }
-        model: manager.downloads
-        delegate: Label {
-            text: model.url
+            single.download(text.text);
         }
     }
     Label {
@@ -72,14 +56,17 @@ Page {
         width: parent.width
     }
     ProgressBar {
-        value: manager.downloads.progress
-        anchors {
-            bottom: parent.bottom
-            left: parent.left
-            right: parent.right
-        }
         minimumValue: 0
         maximumValue: 100
-        height: units.gu(5)
+        value: single.progress
+        height: units.gu(2)
+        anchors {
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+        SingleDownload {
+            id: single
+        }
     }
 }

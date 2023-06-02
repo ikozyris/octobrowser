@@ -83,16 +83,17 @@ MainView {
     ColorOverlay { //blue light filter
         anchors.fill: pStack
         source: pStack
-// TODO: better ARGB (1/3 opacity)  #AARRGGBB (like SVG khaki without blue)
+// TODO: better ARGB (3/16 opacity) #AARRGGBB (like SVG khaki without blue)
         color: prefs.lightfilter ? "#30f0e600" : "transparent"
     }
 
     WebEngineProfile {
         //for more profile options see https://doc.qt.io/qt-5/qml-qtwebengine-webengineprofile.html
         id: webViewProfile
-        persistentCookiesPolicy: WebEngineProfile.AllowPersistentCookies; //store persistent cookies
         storageName: "Storage"
-        persistentStoragePath: "/home/phablet/.local/share/octobrowser.ikozyris"
+        persistentStoragePath: StandardPaths.AppDataLocation
+        //downloadPath: StandardPaths.AppDataLocation + "/Downloads"
+        //persistentCookiesPolicy: WebEngineProfile.AllowPersistentCookies; //store persistent cookies
         //httpCacheType: WebEngineProfile.DiskHttpCache;           //cache qml content to file
         httpUserAgent: prefs.cmuseragent;                        //custom UA
         offTheRecord: false
@@ -109,6 +110,7 @@ MainView {
 
     Component.onCompleted: {
         //console.log("Main loaded")
+        //FileOperations.mkpath(Qt.resolvedUrl(StandardPaths.AppDataLocation) + "/Downloads");
         pStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
 }

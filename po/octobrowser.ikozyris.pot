@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-01 12:01+0000\n"
+"POT-Creation-Date: 2023-06-02 08:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -137,24 +137,20 @@ msgstr ""
 msgid "Downloading:"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:34
+#: ../qml/Dialogs/Download.qml:38
 msgid "Pause"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:34
+#: ../qml/Dialogs/Download.qml:38
 msgid "Resume"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:39
+#: ../qml/Dialogs/Download.qml:43
 msgid "Cancel"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:39
+#: ../qml/Dialogs/Download.qml:43
 msgid "OK"
-msgstr ""
-
-#: ../qml/Download.qml:28
-msgid "Downloads"
 msgstr ""
 
 #: ../qml/Header.qml:78
@@ -223,6 +219,10 @@ msgstr ""
 
 #: ../qml/MainPage.qml:134
 msgid "Welcome to <i>Octopus Browser</i>, <br> a fast & customizable browser."
+msgstr ""
+
+#: ../qml/ManualDownload.qml:28
+msgid "Downloads"
 msgstr ""
 
 #: ../qml/TabsView.qml:29

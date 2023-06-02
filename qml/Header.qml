@@ -99,7 +99,7 @@ PageHeader {
             Action {
                 iconName: "document-save"
                 text: i18n.tr("Manual download")
-                onTriggered: pStack.push(Qt.resolvedUrl("Download.qml"))
+                onTriggered: pStack.push(Qt.resolvedUrl("ManualDownload.qml"))
             },
             Action {
                 iconName: "settings"

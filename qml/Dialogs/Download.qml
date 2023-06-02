@@ -26,6 +26,10 @@ Dialog {
 
     SingleDownload {
         id: single
+        metadata: Metadata {
+            showInIndicator: true
+            title: "Downloading" + url + "from Octobrowser"
+        }
     }
 
     Button {

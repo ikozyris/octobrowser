@@ -89,6 +89,7 @@ PageHeader {
             Action {
                 iconName: "add"
                 text: i18n.tr("New Tab")
+                // TODO: use GridView rather than custom function
                 onTriggered: JS.newtab()
             },
             Action {

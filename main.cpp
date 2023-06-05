@@ -40,7 +40,8 @@ int main(int argc, char *argv[])
 
 //"--blink-settings=darkMode=3,darkModeImagePolicy=2,darkModeImageStyle=2 --enable-smooth-scrolling --enable-low-res-tiling 
 // --enable-low-end-device-mode --enable-natural-scroll-default
-    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--force-dark-mode --blink-settings=darkModeEnabled=true -DQT_FEATURE_webengine_system_icu=ON ");
+    // TODO: do not hard code dark mode
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--force-dark-mode --blink-settings=darkModeEnabled=true");
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "true");
 
     qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2"); //force QQC2 web popups

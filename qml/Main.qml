@@ -21,7 +21,7 @@ import QtGraphicalEffects 1.12
 import QtQuick.Controls 2.2
 import Ubuntu.Components 1.3
 import Qt.labs.settings 1.0
-import Qt.labs.platform 1.0
+import Qt.labs.platform 1.1
 import QtWebEngine 1.10
 import Ubuntu.Components.Popups 1.3
 //import Ubuntu.PerformanceMetrics 0.1
@@ -79,20 +79,31 @@ MainView {
         anchors.fill: pStack
         enabled: true
     }*/
-
     ColorOverlay { //blue light filter
         anchors.fill: pStack
         source: pStack
+        //visible: prefs.lightfilter
 // TODO: better ARGB (3/16 opacity) #AARRGGBB (like SVG khaki without blue)
-        color: prefs.lightfilter ? "#30f0e600" : "transparent"
+        color: "#30f0e600"
     }
+    // TODO: find a way to make both effects work (color + brightness)
+    /*
+    BrightnessContrast {
+        anchors.fill: pStack
+        source: pStack
+        visible: prefs.lightfilter
+        brightness: -0.25
+    }*/
 
     WebEngineProfile {
         //for more profile options see https://doc.qt.io/qt-5/qml-qtwebengine-webengineprofile.html
         id: webViewProfile
         storageName: "Storage"
-        persistentStoragePath: StandardPaths.AppDataLocation
-        //downloadPath: StandardPaths.AppDataLocation + "/Downloads"
+
+        // wrong path
+        //persistentStoragePath: StandardPaths.writableLocation(StandardPaths.AppDataLocation)
+        //downloadPath: StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/Downloads"
+
         //persistentCookiesPolicy: WebEngineProfile.AllowPersistentCookies; //store persistent cookies
         //httpCacheType: WebEngineProfile.DiskHttpCache;           //cache qml content to file
         httpUserAgent: prefs.cmuseragent;                        //custom UA
@@ -109,7 +120,6 @@ MainView {
     }
 
     Component.onCompleted: {
-        //console.log("Main loaded")
         //FileOperations.mkpath(Qt.resolvedUrl(StandardPaths.AppDataLocation) + "/Downloads");
         pStack.push(Qt.resolvedUrl("MainPage.qml"))
     }

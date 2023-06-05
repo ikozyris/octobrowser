@@ -1,7 +1,7 @@
 ## Contributions are welcome!
 To contribute:
 - Make your changes
-- Test them (if possible, test EVERYTHING to avoid regressions)
+- Test everything affected
 - Merge request
 - Make any requested changes
 

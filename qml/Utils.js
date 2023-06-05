@@ -89,7 +89,7 @@ function showTabs() {
 		}
 		// TODO: take a thumbnail of the tab somehow (maybe Ubuntu.Thumbmnailer)
 		// Currently it is just a random color
-		let tileColor = ["red","green", "blue"][Math.floor(Math.random() * 3)];
+		let tileColor = ["red", "blue", "green"][Math.floor(Math.random() * 3)];
 		listModel.append( { tileX, tileY, tileColor } );
 		prevX = tileX;
 		prevY = tileY;

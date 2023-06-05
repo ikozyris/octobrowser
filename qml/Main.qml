@@ -82,7 +82,7 @@ MainView {
     ColorOverlay { //blue light filter
         anchors.fill: pStack
         source: pStack
-        //visible: prefs.lightfilter
+        visible: prefs.lightfilter
 // TODO: better ARGB (3/16 opacity) #AARRGGBB (like SVG khaki without blue)
         color: "#30f0e600"
     }

@@ -41,11 +41,9 @@ ScrollView {
         }
         ListItem {
             visible: genshow.checked
-            Label {
-                text: i18n.tr("Remember open tabs:")
-                anchors {
-                    top: parent.top; topMargin: column.mSpacing
-                }
+            ListItemLayout {
+                title.text: i18n.tr("Remember open tabs:")
+                subtitle.text: i18n.tr("Do not close tabs on exit")
             }
             Switch {
                 id: ktabs
@@ -58,11 +56,9 @@ ScrollView {
         }
         ListItem {
             visible: genshow.checked
-            Label {
-                text: i18n.tr("Clear cache on exit:")
-                anchors {
-                    top: parent.top; topMargin: column.mSpacing
-                }
+            ListItemLayout {
+                title.text: i18n.tr("Clear web cache on exit:")
+                subtitle.text: i18n.tr("Web caches can get very large if never cleard")
             }
             Switch {
                 id: clrchache
@@ -75,11 +71,9 @@ ScrollView {
         }
         ListItem {
             visible: genshow.checked
-            Label {
-                text: i18n.tr("Blue light filter:")
-                anchors {
-                    top: parent.top; topMargin: column.mSpacing
-                }
+            ListItemLayout {
+                title.text: i18n.tr("Blue light filter:")
+                subtitle.text: i18n.tr("Applies a yellow overlay to the app")
             }
             Switch {
                 id: blfilter
@@ -93,12 +87,10 @@ ScrollView {
         ListItem {
             visible: genshow.checked
             height: zoomlabel.height + zoomslider.height + column.mSpacing
-            Label {
+            ListItemLayout {
                 id: zoomlabel
-                text: i18n.tr("Zoom level: %1%").arg(zoomslider.value)
-                anchors {
-                    top: parent.top; topMargin: column.mSpacing
-                }
+                title.text: i18n.tr("Zoom level: %1%").arg(zoomslider.value)
+                subtitle.text: i18n.tr("Scales the page according to your needs")
             }
             Slider {
                 id: zoomslider
@@ -116,7 +108,7 @@ ScrollView {
             height: posselector.height + column.mSpacing
             OptionSelector {
                 id: posselector
-                text: i18n.tr("Address bar position: %1").arg(posselector.selectedIndex)
+                text: i18n.tr("Address bar position: %1 (restart the app after change)").arg(posselector.selectedIndex)
                 model: [
                     i18n.tr("top"),
                     i18n.tr("bottom"),
@@ -142,16 +134,13 @@ ScrollView {
         ListItem {
             visible: prishow.checked
             height: ualabel.height + uatext.height + column.mSpacing
-            Label {
+            ListItemLayout {
                 id: ualabel
-                text: i18n.tr("User Agent:")
-                anchors {
-                    top: parent.top; topMargin: column.mSpacing
-                    left: parent.left; leftMargin: units.gu(1)
-                }
+                title.text: i18n.tr("User Agent:")
+                subtitle.text: i18n.tr("This can be used to confuse websites about your identity and/or"
+                                     + " load the desktop version of a page.")
             }
             TextArea {
-                visible: prishow.checked
                 id: uatext
                 maximumLineCount: 3
                 width: parent.width
@@ -161,11 +150,9 @@ ScrollView {
         }
         ListItem {
             visible: prishow.checked
-            Label {
-                text: i18n.tr("Limit WebRTC to public IP addresses only:")
-                anchors {
-                    top: parent.top; topMargin: column.mSpacing
-                }
+            ListItemLayout {
+                title.text: i18n.tr("Limit WebRTC to public IP addresses only:")
+                subtitle.text: i18n.tr("If enabled, it might leak your real IP, even if a VPN is used")
             }
             Switch {
                 id: rtcswitch
@@ -191,11 +178,9 @@ ScrollView {
         }
         ListItem {
             visible: secshow.checked
-            Label {
-                text: i18n.tr("Enable JavaScipt:")
-                anchors {
-                    top: parent.top; topMargin: column.mSpacing
-                }
+            ListItemLayout {
+                title.text: i18n.tr("Enable JavaScipt:")
+                subtitle.text: i18n.tr("A major security feature, it will break many websites")
             }
             Switch {
                 id: jsswitch
@@ -208,11 +193,9 @@ ScrollView {
         }
         ListItem {
             visible: secshow.checked
-            Label {
-                text: i18n.tr("Autoload Images:")
-                anchors {
-                    top: parent.top; topMargin: column.mSpacing
-                }
+            ListItemLayout {
+                title.text: i18n.tr("Autoload Images:")
+                subtitle.text: i18n.tr("By disabling, images will not be loaded")
             }
             Switch {
                 id: imagswitch
@@ -225,11 +208,9 @@ ScrollView {
         }
         ListItem {
             visible: secshow.checked
-            Label {
-                text: i18n.tr("Autoplay videos:")
-                anchors {
-                    top: parent.top; topMargin: column.mSpacing
-                }
+            ListItemLayout {
+                title.text: i18n.tr("Autoplay videos:")
+                subtitle.text: i18n.tr("Does not work all times")
             }
             Switch {
                 id: playswitch
@@ -242,12 +223,9 @@ ScrollView {
         }
         ListItem {
             visible: secshow.checked
-            Label {
-                id: inseclabel
-                text: i18n.tr("Allow running insecure content:")
-                anchors {
-                    top: parent.top; topMargin: column.mSpacing
-                }
+            ListItemLayout {
+                title.text: i18n.tr("Allow running insecure content:")
+                subtitle.text: i18n.tr("Allows loading files over unencrypted HTTP")
             }
             Switch {
                 id: insecswitch

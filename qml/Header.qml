@@ -87,12 +87,6 @@ PageHeader {
         numberOfSlots: 2
         actions: [
             Action {
-                iconName: "add"
-                text: i18n.tr("New Tab")
-                // TODO: use GridView rather than custom function
-                onTriggered: JS.newtab()
-            },
-            Action {
                 iconName: "browser-tabs"
                 text: i18n.tr("Manage Tabs")
                 onTriggered: pStack.push(Qt.resolvedUrl("TabsView.qml"))

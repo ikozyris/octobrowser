@@ -101,6 +101,7 @@ function newtab() {
 	MyTabs.tabs.push("");
 	MyTabs.tabNum++;
 	MyTabs.currtab = "";
+	// TODO: cannot be acessed from another file
 	pageHeader.textbar = "";
 	MyTabs.tabVisibility = false;
 }

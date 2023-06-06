@@ -22,12 +22,27 @@ import Ubuntu.Components 1.3
 
 import "qrc:///qml/Utils.js" as JS
 import "qrc:///qml/Components"
+import "."
 
 Page {
     header: PageHeader {
         anchors.top: parent.top
         title: i18n.tr("Tabs")
         subtitle: i18n.tr("Current tab:" + MyTabs.tabNum)
+        trailingActionBar {
+            actions: Action {
+                iconName: "add"
+                onTriggered: {
+                    MyTabs.tabs.push("");
+                    MyTabs.tabNum++;
+                    MyTabs.currtab = "";
+                    // TODO: cannot be accessed from another file
+                    //pageHeader.textbar = "";
+                    MyTabs.tabVisibility = false;
+                    pStack.pop();
+                }
+            }
+        }
     }
 
     Repeater {

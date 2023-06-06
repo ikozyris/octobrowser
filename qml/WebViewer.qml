@@ -65,10 +65,12 @@ WebEngineView {
         if (loadRequest.errorString)
             console.error(loadRequest.errorString)
         else {
-            //add url to history
-            history.urls.push(webview.url)
-            history.dates.push(new Date())
-            history.count = history.count + 1
+            if (history.urls[history.count] !== url) {
+                //add url to history
+                history.urls.push(webview.url)
+                history.dates.push(new Date())
+                history.count = history.count + 1
+            }
         }
     }
 

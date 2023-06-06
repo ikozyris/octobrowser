@@ -10,7 +10,7 @@
             "content-hub": "octobrowser-contenthub.json"
         }
     },
-    "version": "0.4.5",
+    "version": "0.4.6",
     "maintainer": "ikozyris <none@none.none>",
     "framework" : "@CLICK_FRAMEWORK@"
 }

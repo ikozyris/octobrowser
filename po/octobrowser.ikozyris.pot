@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-05 20:58+0000\n"
+"POT-Creation-Date: 2023-06-06 14:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/About.qml:25 ../qml/Header.qml:117
+#: ../qml/About.qml:25 ../qml/Header.qml:111
 msgid "About"
 msgstr ""
 
@@ -76,61 +76,103 @@ msgstr ""
 msgid "Remember open tabs:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:62
-msgid "Clear cache on exit:"
+#: ../qml/Components/Settings.qml:46
+msgid "Do not close tabs on exit"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:79
+#: ../qml/Components/Settings.qml:60
+msgid "Clear web cache on exit:"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:61
+msgid "Web caches can get very large if never cleard"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:75
 msgid "Blue light filter:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:98
+#: ../qml/Components/Settings.qml:76
+msgid "Applies a yellow overlay to the app"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:92
 #, javascript-format
 msgid "Zoom level: %1%"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:119
-msgid "Address bar position: %1"
+#: ../qml/Components/Settings.qml:93
+msgid "Scales the page according to your needs"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:121
+#: ../qml/Components/Settings.qml:111
+msgid "Address bar position: %1 (restart the app after change)"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:113
 msgid "top"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:122
+#: ../qml/Components/Settings.qml:114
 msgid "bottom"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:132
+#: ../qml/Components/Settings.qml:124
 msgid "Show Privacy category"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:147
+#: ../qml/Components/Settings.qml:139
 msgid "User Agent:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:165
+#: ../qml/Components/Settings.qml:140
+msgid ""
+"This can be used to confuse websites about your identity and/or load the "
+"desktop version of a page."
+msgstr ""
+
+#: ../qml/Components/Settings.qml:154
 msgid "Limit WebRTC to public IP addresses only:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:182
+#: ../qml/Components/Settings.qml:155
+msgid "If enabled, it might leak your real IP, even if a VPN is used"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:169
 msgid "Show Security category:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:195
+#: ../qml/Components/Settings.qml:182
 msgid "Enable JavaScipt:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:212
+#: ../qml/Components/Settings.qml:183
+msgid "A major security feature, it will break many websites"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:197
 msgid "Autoload Images:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:229
+#: ../qml/Components/Settings.qml:198
+msgid "By disabling, images will not be loaded"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:212
 msgid "Autoplay videos:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:247
+#: ../qml/Components/Settings.qml:213
+msgid "Does not work all times"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:227
 msgid "Allow running insecure content:"
+msgstr ""
+
+#: ../qml/Components/Settings.qml:228
+msgid "Allows loading files over unencrypted HTTP"
 msgstr ""
 
 #: ../qml/Dialogs/Download.qml:20
@@ -158,26 +200,22 @@ msgid "Enter a URL or a search query"
 msgstr ""
 
 #: ../qml/Header.qml:91
-msgid "New Tab"
-msgstr ""
-
-#: ../qml/Header.qml:97
 msgid "Manage Tabs"
 msgstr ""
 
-#: ../qml/Header.qml:102
+#: ../qml/Header.qml:96
 msgid "Manual download"
 msgstr ""
 
-#: ../qml/Header.qml:107 ../qml/SettingsView.qml:41
+#: ../qml/Header.qml:101 ../qml/SettingsView.qml:41
 msgid "Settings"
 msgstr ""
 
-#: ../qml/Header.qml:112 ../qml/HistoryView.qml:37
+#: ../qml/Header.qml:106 ../qml/HistoryView.qml:37
 msgid "History"
 msgstr ""
 
-#: ../qml/Header.qml:122 ../qml/Help.qml:28
+#: ../qml/Header.qml:116 ../qml/Help.qml:28
 msgid "Help"
 msgstr ""
 
@@ -225,10 +263,10 @@ msgstr ""
 msgid "Downloads"
 msgstr ""
 
-#: ../qml/TabsView.qml:29
+#: ../qml/TabsView.qml:30
 msgid "Tabs"
 msgstr ""
 
-#: ../qml/TabsView.qml:30
+#: ../qml/TabsView.qml:31
 msgid "Current tab:"
 msgstr ""

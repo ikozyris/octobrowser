@@ -14,12 +14,13 @@ Item {
 	// URL forwarded from history
 	property url display: "";
 
-	Settings {
+/*	Settings {
 		id: kept
 		property var tabsk: []
 	}
 
 	// TODO: cannot access
-	//Component.onCompleted: if (prefs.ktabs) tabs = kept.tabsk 
-	//Component.onDestruction: if (prefs.ktabs) kept.tabsk = tabs 
+	Component.onCompleted: if (prefs.ktabs) tabs = kept.tabsk 
+	Component.onDestruction: if (prefs.ktabs) kept.tabsk = tabs 
+*/
 }

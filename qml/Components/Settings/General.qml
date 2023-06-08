@@ -100,13 +100,13 @@ ScrollView {
                 anchors {
                     top: parent.top; topMargin: column.mSpacing
                 }
+                selectedIndex: prefs.adrpos
             }
         }
 	}
     Component.onDestruction: {
 	    prefs.keeptabs = ktabs.checked
         prefs.clearcache = clrchache.checked
-	    //prefs.lightfilter = blfilter.checked
 	    prefs.zoomlevel = zoomslider.value
 	    prefs.adrpos = posselector.selectedIndex
     }

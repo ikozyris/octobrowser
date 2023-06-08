@@ -16,6 +16,7 @@
 	<file>qml/Content/Share.qml</file>
 	<file>qml/Dialogs/Download.qml</file>
 	<file>qml/Dialogs/SelectOverride.qml</file>
+	<file>qml/FindSingleton.qml</file>
 	<file>qml/Help.qml</file>
 	<file>qml/HistoryView.qml</file>
 	<file>qml/KeyboardRectangle.qml</file>

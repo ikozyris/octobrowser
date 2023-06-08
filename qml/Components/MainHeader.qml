@@ -116,12 +116,7 @@ PageHeader {
                 iconName: "browser-tabs"
                 text: i18n.tr("Manage Tabs")
                 onTriggered: pStack.push(Qt.resolvedUrl("/qml/TabsView.qml"))
-            },/*
-            Action {
-                iconName: "document-save"
-                text: i18n.tr("Manual download")
-                onTriggered: pStack.push(Qt.resolvedUrl("ManualDownload.qml"))
-            },*/
+            },
             Action {
                 iconName: "settings"
                 text: i18n.tr("Settings")

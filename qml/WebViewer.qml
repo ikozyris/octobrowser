@@ -135,4 +135,8 @@ WebEngineView {
         MyTabs.currtab = request.requestedUrl;
         MyTabs.tabVisibility = true;
     }
+    onFindTextFinished: function(result) {
+        Find.totalFound = result.numberOfMatches;
+        Find.activeFound = result.activeMatch;
+    }
 }

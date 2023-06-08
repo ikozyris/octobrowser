@@ -20,9 +20,9 @@
 // It is a workaround required to handle interaction with the OSK,
 // until the shell/WM takes care of that on behalf of the applications.
 
-// Copied from the morph-browser: https://github.com/ubports/morph-browser/blob/b1b3fc2846100185fc27397e6c374c7343d528a7/src/app/KeyboardRectangle.qml
+// Copied from the morph-browser: https://github.com/ubports/morph-browser/blob/b1b3fc2.126100185fc27397e6c374c7343d528a7/src/app/KeyboardRectangle.qml
 
-import QtQuick 2.4
+import QtQuick 2.12
 import Ubuntu.Components 1.3
 
 Item {

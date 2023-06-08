@@ -22,32 +22,32 @@ import Ubuntu.Components 1.3
 
 Page {
     id: settingPage
-/*
-    property alias zoomlevel: zoomslider.value
-    property alias adrpos: posselector.selectedIndex
-    property alias cmuseragent: uatext.text
-    property alias js: jsswitch.checked
-    property alias loadimages: imagswitch.checked
-    property alias webrtc: rtcswitch.checked
-    property alias securecontent: insecswitch.checked
-    property alias keeptabs: ktabs.checked
-    property alias autoplay: playswitch.checked
-    property alias lightfilter: blfilter.checked
-*/
-    //signal applyChanges
-    //signal cancelChanges
 
     header: PageHeader {
         title: i18n.tr("Settings")
+        leadingActionBar {
+            actions: Action {
+                iconName: "back"
+                onTriggered: {
+                    settingsLoader.active = false
+                    pStack.pop()
+                }
+            }
+        }
+        extension: Sections {
+            id: sections
+            model: ["General", "Privacy", "Security"]
+        }
     }
+
     Loader {
-        source: Qt.resolvedUrl("Components/Settings.qml")
+        id: settingsLoader
         asynchronous: true
+        // TODO: this is a very silly way to do this and will have problems if sections get translated
+        source: Qt.resolvedUrl("/qml/Components/Settings/" + sections.model[sections.selectedIndex] + ".qml")
         anchors {
             top: settingPage.header.bottom
-            leftMargin: units.gu(0.2)
             left: parent.left
-            rightMargin: units.gu(0.2)
             right: parent.right
             bottom: parent.bottom
         }

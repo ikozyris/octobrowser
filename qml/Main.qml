@@ -41,7 +41,8 @@ MainView {
         id: prefs
         property int zoomlevel: 100
         property int adrpos: 0
-        property string cmuseragent: "Mozilla/5.0 (Linux; Android 11) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Mobile Safari/537.36"
+        // TODO: better UA?
+        property string cmuseragent: "Mozilla/5.0 (Linux; Mobile; Ubuntu 16.04 like Android 9;) AppleWebKit/537.36 Chrome/87.0.4280.144 Mobile Safari/537.36"
         property bool js: true
         property bool loadimages: true
         property bool securecontent: false
@@ -52,6 +53,7 @@ MainView {
         property bool clearcache: false
     }
 
+    // Maybe use a DB?
     Settings {
         id: history
         property var urls: [""]

@@ -62,7 +62,7 @@ Page {
                 linkColor: UbuntuColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: i18n.tr("Version: 0.4.5")
+                text: i18n.tr("Version: 0.4.7")
             }
 
             Label {
@@ -70,7 +70,7 @@ Page {
                 linkColor: UbuntuColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: i18n.tr("A simple yet experimental Qt browser for Ubuntu Touch. Not in a production-ready state.")
+                text: i18n.tr("An experimentalyet simple browser (from scratch) for Ubuntu Touch. Not in a production-ready state.")
             }
 
             Label {

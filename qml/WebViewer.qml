@@ -36,9 +36,10 @@ WebEngineView {
         pluginsEnabled: true                             // for pdf
         pdfViewerEnabled: true                           // enable pdf viewer
         // according to: https://sites.google.com/a/chromium.org/dev/audio-video/autoplay
-        playbackRequiresUserGesture: prefs.autoplay      // autoplay video (chrome behavior)
+        playbackRequiresUserGesture: prefs.autoplay      // block autoplay (chrome behavior)
+        // TODO: show a more mobile-friendly, smaller and nicer scrollbar
         showScrollBars: false                            // do not show scroll bars
-        allowRunningInsecureContent: prefs.securecontent // InSecure content
+        allowRunningInsecureContent: prefs.securecontent // inSecure content
         fullScreenSupportEnabled: true
         dnsPrefetchEnabled: true
         touchIconsEnabled: true
@@ -62,9 +63,11 @@ WebEngineView {
         pageHeader.textbar = webview.url
     }
     onLoadingChanged: {
+        // TODO: display with popup
         if (loadRequest.errorString)
             console.error(loadRequest.errorString)
         else {
+            // avoid duplicates
             if (history.urls[history.count] !== url) {
                 //add url to history
                 history.urls.push(webview.url)
@@ -74,13 +77,7 @@ WebEngineView {
         }
     }
 
-    /*
-     *   html select override
-     *   set enableSelectOverride to true to make Morph.Web handle select
-     *   note that as it uses javascript prompt,
-     *   make sure that onJavaScriptDialogRequested signal handler don't overplay prompt dialog by checking the isASelectRequest(request)
-     */
-    property bool enableSelectOverride: true
+    // html <select> override
     property var selectOverride: function(request) {
         var dialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/SelectOverride.qml"), this);
         dialog.options = request.defaultText;
@@ -95,12 +92,12 @@ WebEngineView {
     }
     userScripts: WebEngineScript {
         runOnSubframes: true
-        sourceUrl: enableSelectOverride ? Qt.resolvedUrl("select_override.js") : ""
+        sourceUrl: Qt.resolvedUrl("select_override.js")
         injectionPoint: WebEngineScript.DocumentReady
         worldId: WebEngineScript.MainWorld
     }
     onJavaScriptDialogRequested: function(request) {
-        if (enableSelectOverride && isASelectRequest(request)) {
+        if (isASelectRequest(request)) {
             request.accepted = true;
             selectOverride(request);
         }
@@ -136,7 +133,6 @@ WebEngineView {
     onNewViewRequested: function(request) {
         JS.newtab();
         MyTabs.currtab = request.requestedUrl;
-        MyTabs.tabs[MyTabs.tabNum] = request.requestedUrl;
         MyTabs.tabVisibility = true;
     }
 }

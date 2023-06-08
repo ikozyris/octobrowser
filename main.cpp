@@ -23,7 +23,7 @@
 #include <QQuickView>               // QQview
 //#include <QQmlApplicationEngine>  // QQengine
 //#include <QQmlContext>            //  >>
-//#include <QQuickStyle>            //  >>
+#include <QQuickStyle>
 //#include <QtWebEngine/QtWebEngine>
 #include <QtWebEngine/qtwebengineglobal.h>
 #include <QStandardPaths>
@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 //"--blink-settings=darkMode=3,darkModeImagePolicy=2,darkModeImageStyle=2 --enable-smooth-scrolling --enable-low-res-tiling 
 // --enable-low-end-device-mode --enable-natural-scroll-default
     // TODO: do not hard code dark mode
-    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--force-dark-mode --blink-settings=darkModeEnabled=true");
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--force-dark-mode --blink-settings=darkModeEnabled=true --darkModeInversionAlgorithm=4");
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "true");
 
     qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2"); //force QQC2 web popups
@@ -49,19 +49,15 @@ int main(int argc, char *argv[])
     if (qgetenv("QT_QPA_PLATFORM") == "wayland") {
         qputenv("QT_WAYLAND_SHELL_INTEGRATION", "wl-shell");
     }
-    //qputenv("PERFPROFILER_PARSER_FILEPATH",TODO);
-    //QtWebEngine::initialize();
-    //QString configPath = QStandardPaths::writableLocation(QStandardPaths::AppConfigLocation);
-    //QString cachePath = QStandardPaths::writableLocation(QStandardPaths::CacheLocation);
-    //QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
 
     QGuiApplication *app = new QGuiApplication(argc, (char**)argv);
     app->setApplicationName("octobrowser.ikozyris");
 
     qDebug() << "Starting app from main.cpp";
 
+    QQuickStyle::setStyle("Suru"); // set style tu Suru (for Ubuntu Touch)
+    
     QQuickView *view = new QQuickView();
-
     view->setSource(QUrl("qrc:///qml/Main.qml"));
     view->setResizeMode(QQuickView::SizeRootObjectToView);
     view->show();

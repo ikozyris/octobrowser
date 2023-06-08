@@ -16,7 +16,7 @@
  * this file is part of Octopus Browser (octobrowser)
  */
 
-import QtQuick 2.9
+import QtQuick 2.12
 import Ubuntu.Components 1.3
 import Ubuntu.DownloadManager 1.2
 

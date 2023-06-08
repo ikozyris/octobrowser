@@ -33,12 +33,7 @@ Page {
             actions: Action {
                 iconName: "add"
                 onTriggered: {
-                    MyTabs.tabs.push("");
-                    MyTabs.tabNum++;
-                    MyTabs.currtab = "";
-                    // TODO: cannot be accessed from another file
-                    //pageHeader.textbar = "";
-                    MyTabs.tabVisibility = false;
+                    JS.newtab();
                     pStack.pop();
                 }
             }
@@ -75,14 +70,16 @@ Page {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        // if current tab is deleted
-                        if (MyTabs.tabNum === index)
+                        // if deleted tab is before current
+                        if (MyTabs.tabNum >= index)
                             MyTabs.tabNum--
                         MyTabs.tabs.splice(index,1)
                         listModel.remove(index)
                     }
                 }
             }
+            Component.onDestruction: console.log("deleted " + index + " tab")
+            Component.onCompleted: console.info(index + " out of " + MyTabs.tabNum)
         }
     }
 
@@ -91,7 +88,6 @@ Page {
     }
 
     Component.onCompleted: {
-        //console.info(MyTabs.tabs)
         JS.showTabs()
     }
 }

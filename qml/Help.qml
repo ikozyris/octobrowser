@@ -92,7 +92,7 @@ Page {
                 }
                 Label {
                     id: sphelp
-                    text: i18n.tr("First of all, for maximum security and privacy, disable all switches. WARNING: may break some websites\n" +
+                    text: i18n.tr("Disable javascript, disable autoloadind images and block autoplay.\n" +
                                   "In addition, you can use a common user agent to limit fingerprinting.\n" +
                                   "Please note that currently this browser is not the best in terms of security or privacy.")
                     wrapMode: Text.Wrap

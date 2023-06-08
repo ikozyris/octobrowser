@@ -1,6 +1,6 @@
 {
     "name": "octobrowser.ikozyris",
-    "description": "A simple yet experimental mobile browser",
+    "description": "An experimental yet simple mobile browser",
     "architecture": "@CLICK_ARCH@",
     "title": "Octopus Browser",
     "hooks": {
@@ -10,7 +10,7 @@
             "content-hub": "octobrowser-contenthub.json"
         }
     },
-    "version": "0.4.6",
+    "version": "0.4.7",
     "maintainer": "ikozyris <none@none.none>",
     "framework" : "@CLICK_FRAMEWORK@"
 }

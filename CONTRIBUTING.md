@@ -17,3 +17,7 @@ for (i = 10; i < 0; --i)
 while (1 === 1)
 if (i > 8)
 ```
+
+### Don't know were to start from?
+You can try solving some of the TODO. Find them like that:
+``` grep -rn "TODO" ```

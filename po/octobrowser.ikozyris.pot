@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-06 14:52+0000\n"
+"POT-Creation-Date: 2023-06-08 11:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/About.qml:25 ../qml/Header.qml:111
+#: ../qml/About.qml:25 ../qml/Components/MainHeader.qml:142
 msgid "About"
 msgstr ""
 
@@ -26,13 +26,13 @@ msgid "Octopus Browser"
 msgstr ""
 
 #: ../qml/About.qml:65
-msgid "Version: 0.4.5"
+msgid "Version: 0.4.7"
 msgstr ""
 
 #: ../qml/About.qml:73
 msgid ""
-"A simple yet experimental Qt browser for Ubuntu Touch. Not in a production-"
-"ready state."
+"An experimentalyet simple browser (from scratch) for Ubuntu Touch. Not in a "
+"production-ready state."
 msgstr ""
 
 #. TRANSLATORS: Please make sure the URLs are correct
@@ -68,155 +68,143 @@ msgstr ""
 msgid "On "
 msgstr ""
 
-#: ../qml/Components/Settings.qml:32
-msgid "Show General category:"
+#: ../qml/Components/MainHeader.qml:95
+msgid "Enter a URL or a search query"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:45
+#: ../qml/Components/MainHeader.qml:117
+msgid "Manage Tabs"
+msgstr ""
+
+#: ../qml/Components/MainHeader.qml:127 ../qml/SettingsView.qml:27
+msgid "Settings"
+msgstr ""
+
+#: ../qml/Components/MainHeader.qml:132 ../qml/HistoryView.qml:35
+msgid "History"
+msgstr ""
+
+#: ../qml/Components/MainHeader.qml:137
+msgid "Find in page"
+msgstr ""
+
+#: ../qml/Components/MainHeader.qml:147 ../qml/Help.qml:28
+msgid "Help"
+msgstr ""
+
+#: ../qml/Components/Settings/General.qml:32
 msgid "Remember open tabs:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:46
+#: ../qml/Components/Settings/General.qml:33
 msgid "Do not close tabs on exit"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:60
+#: ../qml/Components/Settings/General.qml:46
 msgid "Clear web cache on exit:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:61
+#: ../qml/Components/Settings/General.qml:47
 msgid "Web caches can get very large if never cleard"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:75
+#: ../qml/Components/Settings/General.qml:60
 msgid "Blue light filter:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:76
+#: ../qml/Components/Settings/General.qml:61
 msgid "Applies a yellow overlay to the app"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:92
+#: ../qml/Components/Settings/General.qml:77
 #, javascript-format
 msgid "Zoom level: %1%"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:93
+#: ../qml/Components/Settings/General.qml:78
 msgid "Scales the page according to your needs"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:111
+#: ../qml/Components/Settings/General.qml:95
 msgid "Address bar position: %1 (restart the app after change)"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:113
+#: ../qml/Components/Settings/General.qml:97
 msgid "top"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:114
+#: ../qml/Components/Settings/General.qml:98
 msgid "bottom"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:124
-msgid "Show Privacy category"
-msgstr ""
-
-#: ../qml/Components/Settings.qml:139
+#: ../qml/Components/Settings/Privacy.qml:34
 msgid "User Agent:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:140
+#: ../qml/Components/Settings/Privacy.qml:35
 msgid ""
 "This can be used to confuse websites about your identity and/or load the "
 "desktop version of a page."
 msgstr ""
 
-#: ../qml/Components/Settings.qml:154
+#: ../qml/Components/Settings/Privacy.qml:48
 msgid "Limit WebRTC to public IP addresses only:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:155
+#: ../qml/Components/Settings/Privacy.qml:49
 msgid "If enabled, it might leak your real IP, even if a VPN is used"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:169
-msgid "Show Security category:"
-msgstr ""
-
-#: ../qml/Components/Settings.qml:182
+#: ../qml/Components/Settings/Security.qml:32
 msgid "Enable JavaScipt:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:183
+#: ../qml/Components/Settings/Security.qml:33
 msgid "A major security feature, it will break many websites"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:197
+#: ../qml/Components/Settings/Security.qml:46
 msgid "Autoload Images:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:198
+#: ../qml/Components/Settings/Security.qml:47
 msgid "By disabling, images will not be loaded"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:212
-msgid "Autoplay videos:"
+#: ../qml/Components/Settings/Security.qml:60
+msgid "Block autoplay:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:213
-msgid "Does not work all times"
+#: ../qml/Components/Settings/Security.qml:61
+msgid "Block videos from automatically playing"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:227
+#: ../qml/Components/Settings/Security.qml:74
 msgid "Allow running insecure content:"
 msgstr ""
 
-#: ../qml/Components/Settings.qml:228
+#: ../qml/Components/Settings/Security.qml:75
 msgid "Allows loading files over unencrypted HTTP"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:20
+#: ../qml/Dialogs/Download.qml:22
 msgid "Downloading:"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:38
+#: ../qml/Dialogs/Download.qml:36
 msgid "Pause"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:38
+#: ../qml/Dialogs/Download.qml:36
 msgid "Resume"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:43
+#: ../qml/Dialogs/Download.qml:41
 msgid "Cancel"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:43
+#: ../qml/Dialogs/Download.qml:41
 msgid "OK"
-msgstr ""
-
-#: ../qml/Header.qml:78
-msgid "Enter a URL or a search query"
-msgstr ""
-
-#: ../qml/Header.qml:91
-msgid "Manage Tabs"
-msgstr ""
-
-#: ../qml/Header.qml:96
-msgid "Manual download"
-msgstr ""
-
-#: ../qml/Header.qml:101 ../qml/SettingsView.qml:41
-msgid "Settings"
-msgstr ""
-
-#: ../qml/Header.qml:106 ../qml/HistoryView.qml:37
-msgid "History"
-msgstr ""
-
-#: ../qml/Header.qml:116 ../qml/Help.qml:28
-msgid "Help"
 msgstr ""
 
 #: ../qml/Help.qml:47
@@ -244,18 +232,17 @@ msgstr ""
 
 #: ../qml/Help.qml:95
 msgid ""
-"First of all, for maximum security and privacy, disable all switches. "
-"WARNING: may break some websites\n"
+"Disable javascript, disable autoloadind images and block autoplay.\n"
 "In addition, you can use a common user agent to limit fingerprinting.\n"
 "Please note that currently this browser is not the best in terms of security "
 "or privacy."
 msgstr ""
 
-#: ../qml/HistoryView.qml:40
+#: ../qml/HistoryView.qml:38
 msgid "Clear history"
 msgstr ""
 
-#: ../qml/MainPage.qml:134
+#: ../qml/MainPage.qml:174
 msgid "Welcome to <i>Octopus Browser</i>, <br> a fast & customizable browser."
 msgstr ""
 

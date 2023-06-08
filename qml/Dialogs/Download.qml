@@ -1,5 +1,4 @@
-
-import QtQuick 2.4
+import QtQuick 2.12
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.DownloadManager 1.2
@@ -17,11 +16,10 @@ Dialog {
         }
     }
 
-    property string dialogTitle: i18n.tr("Downloading:") // Title of the dialog
-    property url url: "" 				// Explanation (under title)
+    property url url: ""
     property bool isPaused: false
 
-    title: dialogTitle
+    title: i18n.tr("Downloading:")
     text: url
 
     SingleDownload {

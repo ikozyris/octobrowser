@@ -30,14 +30,54 @@ Page {
     anchors.fill: parent
 
     property string barposition: prefs.adrpos === 1 ? "bottom" : "top";
-    property bool canshow: JS.canshow(webview.loadProgress)
-
-    header: Header { id: pageHeader }
-
-    WebViewer {
-        id: webview
+    //property bool canshow: JS.canshow(webview.loadProgress)
+    property alias pageHeader: headerLoader.item
+    header: Loader { 
+        id: headerLoader
+        source: Qt.resolvedUrl("/qml/Components/MainHeader.qml")
         anchors {
-            top: pageHeader.bottom
+            top: parent.top
+            left: parent.left
+            right: parent.right
+        }
+        states: [
+            State {
+                name: "bottom"
+                AnchorChanges {
+                    target: headerLoader
+                    anchors.top: undefined  //remove the top anchor
+                    anchors.bottom: parent.bottom
+                }
+            },
+            State {
+                name: "top"
+                AnchorChanges {
+                    target: headerLoader
+                    anchors.bottom: undefined //remove the bottom anchor
+                    anchors.top: parent.top
+                }
+            }
+        ]    
+    }
+    // Receive messages from header
+    Connections {
+        target: headerLoader.item
+        onMessage: {
+            // enter find mode
+            if (msg === "find")
+                headerLoader.setSource(Qt.resolvedUrl("/qml/Components/Find.qml"))
+            // exit find mode
+            else if (msg === "unfind")
+                headerLoader.setSource(Qt.resolvedUrl("/qml/Components/MainHeader.qml"))
+        }
+    }
+    property alias webview: webviewLoader.item
+
+    Loader {
+        id: webviewLoader
+        source: Qt.resolvedUrl("/qml/WebViewer.qml")
+        anchors {
+            top: header.bottom
             left: parent.left
             right: parent.right
             bottom: parent.bottom
@@ -46,15 +86,15 @@ Page {
             State {
                 name: "bottom"
                 AnchorChanges {
-                    target: webview
+                    target: webviewLoader
                     anchors.top: parent.top
-                    anchors.bottom: pageHeader.top
+                    anchors.bottom: header.top
                 }
             },
             State {
                 name: "fullscreen"
                 AnchorChanges {
-                    target: webview
+                    target: webviewLoader
                     anchors.top: parent.top
                     anchors.bottom: parent.bottom
                 }
@@ -62,8 +102,8 @@ Page {
             State {
                 name: "top"
                 AnchorChanges {
-                    target: webview
-                    anchors.top: pageHeader.bottom
+                    target: webviewLoader
+                    anchors.top: header.bottom
                     anchors.bottom: parent.bottom
                 }
             }
@@ -72,7 +112,7 @@ Page {
 
     ProgressBar {
         anchors {
-            top: pageHeader.bottom
+            top: header.bottom
             left: parent.left
             right: parent.right
         }
@@ -80,29 +120,29 @@ Page {
             State {
                 name: "bottom"
                 AnchorChanges {
-                    target: webview
+                    target: webviewLoader
                     anchors.top: undefined
-                    anchors.bottom: pageHeader.top
+                    anchors.bottom: header.top
                 }
             },
             State {
                 name: "top"
                 AnchorChanges {
-                    target: webview
+                    target: webviewLoader
                     anchors.bottom: undefined
-                    anchors.top: pageHeader.bottom
+                    anchors.top: header.bottom
                 }
             }
         ]
         showProgressPercentage: false
         value: webview.loadProgress / 100
-        visible: canshow
+        visible: JS.canshow(webview.loadProgress)
     }
 
     Rectangle {
         id: webViewPlaceholder
         anchors {
-            top: pageHeader.bottom
+            top: header.bottom
             left: parent.left
             right: parent.right
             bottom: parent.bottom
@@ -113,19 +153,19 @@ Page {
                 AnchorChanges {
                     target: webViewPlaceholder
                     anchors.top: parent.top
-                    anchors.bottom: pageHeader.top
+                    anchors.bottom: header.top
                 }
             },
             State {
                 name: "top"
                 AnchorChanges {
                     target: webViewPlaceholder
-                    anchors.top: pageHeader.bottom
+                    anchors.top: header.bottom
                     anchors.bottom: parent.bottom
                 }
             }
         ]
-        color: "#3A3A3A"
+        color: Theme.name === "Ubuntu.Components.Themes.SuruDark" ? "#3A3A3A" : "dimgray"
         visible: !MyTabs.tabVisibility // opposite
         Label {
             id: placeholdertext
@@ -151,8 +191,8 @@ Page {
     Component.onCompleted: {
         //console.log("MainPage loaded")
         barposition: prefs.adrpos === 1 ? "bottom" : "top"
-        pageHeader.state = barposition
-        webview.state = barposition
+        headerLoader.state = barposition
+        webviewLoader.state = barposition
         webViewPlaceholder.state = barposition
     }
 

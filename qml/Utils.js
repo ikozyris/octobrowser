@@ -15,15 +15,16 @@
  *
  * this file is part of Octopus Browser (octobrowser)
  */
+// TODO: port as many of these as possible to C++ 
 
 //url related
-function lookslikeurl(s) {
+function looksLikeUrl(s) {
 	var regexp = /^(?:(?:(?:[a-zA-z\-]+)\:\/{1,3})?(?:[a-zA-Z0-9])(?:[a-zA-Z0-9\-\.]){1,61}(?:\.[a-zA-Z]{2,})+|\[(?:(?:(?:[a-fA-F0-9]){1,4})(?::(?:[a-fA-F0-9]){1,4}){7}|::1|::)\]|(?:(?:[0-9]{1,3})(?:\.[0-9]{1,3}){3}))(?:\:[0-9]{1,5})?$/;
 	return regexp.test(s);
 }
 
-function fixurl(string) {
-	if (lookslikeurl(string)) {
+function fixUrl(string) {
+	if (looksLikeUrl(string)) {
 	    if (prefs.securecontent != true) {
 			return "https://" + string;
 	    } else {
@@ -34,21 +35,26 @@ function fixurl(string) {
 	}
 }
 
-function isurl(s) {
-	var regexp = /(ftp|http|https|chrome):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+function isValidUrl(s) {
+	var regexp = /(ftp|http|https|chrome|chrome-extension):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 	return regexp.test(s);
 }
 
-function geturl(text) {
-	if (isurl(text)) {
+function escapeHtmlEntities(query) {
+    return query.replace(/\W/g, encodeURIComponent);
+}
+
+function buildSearchUrl(text) {
+	if (isValidUrl(text)) {
 	    return text;
 	} else {
-	    var result = fixurl(text)
+	    var result = fixUrl(text)
 	    if (result != "bad") {
 			return result;
 	    } else {
-			var query = "https://duckduckgo.com/?q=" + encodeURIComponent(text);
-			return query;
+			var terms = text.split(/\s/).map(escapeHtmlEntities);
+			// TODO: do not hard code search engine
+			return "https://duckduckgo.com/?q=" + terms.join("+");
 	    }
 	}
 }
@@ -65,8 +71,7 @@ function canshow(prog) {
 function delIndex(index) {
 	history.dates.splice(index, 1);
 	history.urls.splice(index, 1);
-	//TODO: array.lenghtdoes not work
-	
+	//TODO: array.lenght does not work
 	history.count--;
 }
 
@@ -101,7 +106,5 @@ function newtab() {
 	MyTabs.tabs.push("");
 	MyTabs.tabNum++;
 	MyTabs.currtab = "";
-	// TODO: cannot be acessed from another file
-	pageHeader.textbar = "";
 	MyTabs.tabVisibility = false;
 }

@@ -122,7 +122,6 @@ MainView {
     }
 
     Component.onCompleted: {
-        //FileOperations.mkpath(Qt.resolvedUrl(StandardPaths.AppDataLocation) + "/Downloads");
         pStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
 }

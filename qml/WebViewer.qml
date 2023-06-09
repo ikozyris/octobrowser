@@ -38,8 +38,8 @@ WebEngineView {
         // according to: https://sites.google.com/a/chromium.org/dev/audio-video/autoplay
         playbackRequiresUserGesture: prefs.autoplay      // block autoplay (chrome behavior)
         // TODO: show a more mobile-friendly, smaller and nicer scrollbar
-        showScrollBars: false                            // do not show scroll bars
-        allowRunningInsecureContent: prefs.securecontent // inSecure content
+        //showScrollBars: false                            // do not show scroll bars
+        allowRunningInsecureContent: prefs.securecontent // insecure content
         fullScreenSupportEnabled: true
         dnsPrefetchEnabled: true
         touchIconsEnabled: true

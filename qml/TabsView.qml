@@ -78,8 +78,8 @@ Page {
                     }
                 }
             }
-            Component.onDestruction: console.log("deleted " + index + " tab")
-            Component.onCompleted: console.info(index + " out of " + MyTabs.tabNum)
+            //Component.onDestruction: console.info("deleted " + index + " tab")
+            //Component.onCompleted: console.info(index + " out of " + MyTabs.tabNum)
         }
     }
 

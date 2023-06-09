@@ -21,6 +21,7 @@ PageHeader {
 
     TextField {
         id: findTextbar
+        anchors.topMargin: units.gu(0.2)
         anchors.left: leadingActionBar.right
         onAccepted: {
             webview.findText(findTextbar.text, 

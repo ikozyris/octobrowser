@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-08 16:16+0000\n"
+"POT-Creation-Date: 2023-06-09 13:43+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/About.qml:25 ../qml/Components/MainHeader.qml:142
+#: ../qml/About.qml:25 ../qml/Components/MainHeader.qml:137
 msgid "About"
 msgstr ""
 
@@ -76,19 +76,19 @@ msgstr ""
 msgid "Manage Tabs"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:127 ../qml/SettingsView.qml:27
+#: ../qml/Components/MainHeader.qml:122 ../qml/SettingsView.qml:27
 msgid "Settings"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:132 ../qml/HistoryView.qml:35
+#: ../qml/Components/MainHeader.qml:127 ../qml/HistoryView.qml:35
 msgid "History"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:137
+#: ../qml/Components/MainHeader.qml:132
 msgid "Find in page"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:147 ../qml/Help.qml:28
+#: ../qml/Components/MainHeader.qml:142 ../qml/Help.qml:28
 msgid "Help"
 msgstr ""
 
@@ -126,14 +126,16 @@ msgid "Scales the page according to your needs"
 msgstr ""
 
 #: ../qml/Components/Settings/General.qml:95
-msgid "Address bar position: %1 (restart the app after change)"
-msgstr ""
-
-#: ../qml/Components/Settings/General.qml:97
-msgid "top"
+msgid ""
+"Address bar position: %1 \n"
+"(restart the app after change)"
 msgstr ""
 
 #: ../qml/Components/Settings/General.qml:98
+msgid "top"
+msgstr ""
+
+#: ../qml/Components/Settings/General.qml:99
 msgid "bottom"
 msgstr ""
 
@@ -191,19 +193,19 @@ msgstr ""
 msgid "Downloading:"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:36
+#: ../qml/Dialogs/Download.qml:45
 msgid "Pause"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:36
+#: ../qml/Dialogs/Download.qml:45
 msgid "Resume"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:41
+#: ../qml/Dialogs/Download.qml:50
 msgid "Cancel"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:41
+#: ../qml/Dialogs/Download.qml:50
 msgid "OK"
 msgstr ""
 

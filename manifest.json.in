@@ -6,8 +6,8 @@
     "hooks": {
         "octobrowser": {
             "apparmor": "octobrowser.apparmor",
-            "desktop":  "octobrowser.desktop",
-            "content-hub": "octobrowser-contenthub.json"
+            "content-hub": "octobrowser-contenthub.json",
+            "desktop":  "octobrowser.desktop"
         }
     },
     "version": "0.4.7",

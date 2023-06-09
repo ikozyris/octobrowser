@@ -29,7 +29,16 @@ Dialog {
             title: "Downloading" + url + "from Octobrowser"
         }
     }
-
+    Label {
+        text: "Status: " + single.progress
+    }
+    ProgressBar {
+        id: progBar
+        minimumValue: 0
+        maximumValue: 100
+        value: single.progress
+        height: units.gu(1)
+    }
     Button {
         id: pauseButton
         visible: single.progress === 100 ? false : true
@@ -43,13 +52,6 @@ Dialog {
             single.progress === 100 ? PopupUtils.close(downloadDialog) : single.cancel()
             PopupUtils.close(downloadDialog)
         }
-    }
-    ProgressBar {
-        id: progBar
-        minimumValue: 0
-        maximumValue: 100
-        value: single.progress
-        height: units.gu(1)
     }
 
     Component.onCompleted: single.download(url)

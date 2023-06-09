@@ -92,7 +92,8 @@ ScrollView {
             height: posselector.height + column.mSpacing
             OptionSelector {
                 id: posselector
-                text: i18n.tr("Address bar position: %1 (restart the app after change)").arg(posselector.selectedIndex)
+                text: i18n.tr("Address bar position: %1 \n(restart the app after change)").arg(
+                    posselector.selectedIndex === 0 ? "top" : "bottom")
                 model: [
                     i18n.tr("top"),
                     i18n.tr("bottom"),

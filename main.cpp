@@ -32,19 +32,25 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-    QCoreApplication::setAttribute(Qt::AA_UseOpenGLES);
+    //QCoreApplication::setAttribute(Qt::AA_UseOpenGLES); // Is this needed?
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
 
     QGuiApplication::setOrganizationName("octobrowser.ikozyris");
     QGuiApplication::setApplicationName("octobrowser.ikozyris");
 
-//"--blink-settings=darkMode=3,darkModeImagePolicy=2,darkModeImageStyle=2 --enable-smooth-scrolling --enable-low-res-tiling 
-// --enable-low-end-device-mode --enable-natural-scroll-default
+//"--blink-settings=darkMode=3,darkModeImagePolicy=2,darkModeImageStyle=2 
+// --enable-low-res-tiling
     // TODO: do not hard code dark mode
-    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--force-dark-mode --blink-settings=darkModeEnabled=true --darkModeInversionAlgorithm=4");
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", " --force-dark-mode" 
+             " --blink-settings=darkModeEnabled=true" 
+             " --darkModeInversionAlgorithm=4"
+             " --enable-low-end-device-mode"
+             " --enable-features=OverlayScrollbar" //better scrollbar
+             " --enable-smooth-scrolling" // smooth scroll
+             " --enable-natural-scroll-default");
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "true");
-
-    qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2"); //force QQC2 web popups
+    qputenv("APP_ID", "ikozyris.octobrowser");
+    qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2"); //force QQC2 popups
     
     if (qgetenv("QT_QPA_PLATFORM") == "wayland") {
         qputenv("QT_WAYLAND_SHELL_INTEGRATION", "wl-shell");

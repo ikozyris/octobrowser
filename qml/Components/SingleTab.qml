@@ -8,5 +8,6 @@ Item {
         id: rect
         anchors.fill: parent
         color: "green"
+        radius: 10
     }
 }

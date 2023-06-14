@@ -3,18 +3,17 @@
 <qresource prefix="/">
 	<file>assets/logo.svg</file>
 	<file>qml/About.qml</file>
-	<file>qml/Components/Settings/General.qml</file>
-	<file>qml/Components/Settings/Privacy.qml</file>
-	<file>qml/Components/Settings/Security.qml</file>
 	<file>qml/Components/Find.qml</file>
 	<file>qml/Components/History.qml</file>
 	<file>qml/Components/MainHeader.qml</file>
+	<file>qml/Components/Settings/General.qml</file>
+	<file>qml/Components/Settings/Privacy.qml</file>
+	<file>qml/Components/Settings/Security.qml</file>
 	<file>qml/Components/SingleTab.qml</file>
-	<file>qml/Content/Handler.qml</file>
 	<file>qml/Content/MimeTypeMapper.js</file>
 	<file>qml/Content/Picker.qml</file>
-	<file>qml/Content/Share.qml</file>
 	<file>qml/Dialogs/Download.qml</file>
+	<file>qml/Dialogs/DownloadSingle.qml</file>
 	<file>qml/Dialogs/SelectOverride.qml</file>
 	<file>qml/FindSingleton.qml</file>
 	<file>qml/Help.qml</file>

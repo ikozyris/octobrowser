@@ -10,49 +10,51 @@ Dialog {
 
     function rePau() {
         if (isPaused) {
-            downloadItem.resume()
+            single.resume()
             isPaused = false
         } else {
-            downloadItem.pause()
+            single.pause()
             isPaused = true
         }
     }
-    // workaround to inherit webengine download item
-    property var downloadItem
 
-    property bool isPaused: false
-    property real progress: (downloadItem.receivedBytes / downloadItem.totalBytes) * 100
+    title: i18n.tr("Downloading:")
+    text: url
 
-    title: i18n.tr("Downloading:\n" + downloadItem.downloadFileName)
-    text: downloadItem.url
-
+    SingleDownload {
+        id: single
+        metadata: Metadata {
+            showInIndicator: true
+            title: "Downloading from Octobrowser"
+        }
+    }
     Label {
-        text: "Progress: " + progress
+        text: "Progress: " + single.progress
     }
     ProgressBar {
         id: progBar
         minimumValue: 0
         maximumValue: 100
-        value: progress
+        value: single.progress
         height: units.gu(1)
     }
     Button {
         id: pauseButton
-        visible: progress === 100 ? false : true
+        visible: single.progress === 100 ? false : true
         text: isPaused ? i18n.tr("Resume") : i18n.tr("Pause")
         onClicked: rePau()
     }
     Button {
         id: okButton
-        text: progress === 100 ? i18n.tr("OK") : i18n.tr("Cancel")
+        text: single.progress === 100 ? i18n.tr("OK") : i18n.tr("Cancel")
         onClicked: {
-            progress === 100 ? PopupUtils.close(downloadDialog) : downloadItem.cancel()
+            single.progress === 100 ? PopupUtils.close(downloadDialog) : download.cancel()
             PopupUtils.close(downloadDialog)
         }
     }
     Button {
         id: shareButton
-        visible: progress === 100
+        visible: single.progress === 100
         text: i18n.tr("Open")
         onClicked: {
             /*
@@ -68,5 +70,5 @@ Dialog {
             
         }
     }
-    //Component.onCompleted: single.download(url)
+    Component.onCompleted: single.download(url)
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-09 13:43+0000\n"
+"POT-Creation-Date: 2023-06-14 09:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -189,24 +189,32 @@ msgstr ""
 msgid "Allows loading files over unencrypted HTTP"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:22
-msgid "Downloading:"
+#: ../qml/Dialogs/Download.qml:26
+msgid "Downloading:\n"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:45
+#: ../qml/Dialogs/Download.qml:42 ../qml/Dialogs/DownloadSingle.qml:44
 msgid "Pause"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:45
+#: ../qml/Dialogs/Download.qml:42 ../qml/Dialogs/DownloadSingle.qml:44
 msgid "Resume"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:50
+#: ../qml/Dialogs/Download.qml:47 ../qml/Dialogs/DownloadSingle.qml:49
 msgid "Cancel"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:50
+#: ../qml/Dialogs/Download.qml:47 ../qml/Dialogs/DownloadSingle.qml:49
 msgid "OK"
+msgstr ""
+
+#: ../qml/Dialogs/Download.qml:56 ../qml/Dialogs/DownloadSingle.qml:58
+msgid "Open"
+msgstr ""
+
+#: ../qml/Dialogs/DownloadSingle.qml:21
+msgid "Downloading:"
 msgstr ""
 
 #: ../qml/Help.qml:47

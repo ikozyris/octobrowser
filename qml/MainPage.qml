@@ -195,10 +195,4 @@ Page {
         webviewLoader.state = barposition
         webViewPlaceholder.state = barposition
     }
-
-    Component.onDestruction: {
-        if (prefs.clearcache)
-            webViewProfile.clearHttpCache()
-        //if (prefs.clearCookies)
-    }
 }

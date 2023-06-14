@@ -100,28 +100,68 @@ MainView {
     WebEngineProfile {
         //for more profile options see https://doc.qt.io/qt-5/qml-qtwebengine-webengineprofile.html
         id: webViewProfile
-        storageName: "Storage"
+        storageName: "OctoStorage"
 
         // wrong path
         //persistentStoragePath: StandardPaths.writableLocation(StandardPaths.AppDataLocation)
-        //downloadPath: StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/Downloads"
+        //StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/Downloads"
+        downloadPath: "/home/phablet/.local/share/octobrowser.ikozyris/Downloads/"
+        
+        httpCacheMaximumSize: 90000000 // 90MB
 
-        //persistentCookiesPolicy: WebEngineProfile.AllowPersistentCookies; //store persistent cookies
-        //httpCacheType: WebEngineProfile.DiskHttpCache;           //cache qml content to file
         httpUserAgent: prefs.cmuseragent;                        //custom UA
         offTheRecord: false
         onDownloadRequested: {/*
             console.log(download.url)
-            var fileUrl = StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/Downloads/" + download.downloadFileName;
-            //var fileUrl = "/home/phablet/.local/share/octobrowser.ikozyris/Downloads/" + download.downloadFileName;
+            var fileUrl = StandardPaths.writableLocation(StandardPaths.AppDataLocation)
+                 + "/Downloads/" + download.downloadFileName;
+            //var fileUrl = "/home/phablet/.local/share/octobrowser.ikozyris/Downloads/"
+                 + download.downloadFileName;
             var request = new XMLHttpRequest();
             request.open("PUT", fileUrl, false);
             request.send(decodeURIComponent(download.url.toString().replace("data:text/plain;,", "")))*/
-            PopupUtils.open(Qt.resolvedUrl("/qml/Dialogs/Download.qml"), mainView, {'url': download.url})
+            download.accept()
+            PopupUtils.open(Qt.resolvedUrl("/qml/Dialogs/Download.qml"), 
+            null, {'downloadItem': download})
+            //console.log("downloading to: " + webViewProfile.downloadPath + download.downloadFileName)
         }
     }
+    Loader {
+        id: contentPickerLoader
+        source: Qt.resolvedUrl("/qml/Content/Picker.qml")
+        active: false
+        asynchronous: true
+    }
 
+    // if it was trigerred internally
+    property bool internal: false
+    Connections {
+        target: ContentHub
+
+        onImportRequested: {
+            console.log("import")
+            console.log(transfer)
+            // it was triggered externally so open it in webview
+            if (!internal) {
+                MyTabs.currtab = transfer.items[0].url
+                MyTabs.tabVisibility = true
+            }
+
+        }
+        onExportRequested: {
+            console.log("export")
+        }
+    }
     Component.onCompleted: {
+        console.log(Date())
+        //console.log(StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/Downloads/")
+        //console.log(StandardPaths.writableLocation(StandardPaths.downloadLocation) + "/Downloads/")
+        //console.log(webViewProfile.downloadPath)
+        // WORKAROUND: since app closes before onDestruction 
+        if (prefs.clearcache) {
+            //console.log("clearing cache")
+            webViewProfile.clearHttpCache()
+        }
         pStack.push(Qt.resolvedUrl("MainPage.qml"))
     }
 }

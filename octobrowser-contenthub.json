@@ -7,13 +7,15 @@
         "documents",
         "videos",
         "contacts",
-        "music"
+        "music",
+        "links"
     ],
     "source": [
         "pictures",
         "documents",
         "videos",
         "contacts",
-        "music"
+        "music",
+        "links"
     ]
 }

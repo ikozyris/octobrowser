@@ -21,6 +21,7 @@ import Ubuntu.Components.Popups 1.3
 import QtWebEngine 1.11
 import QtQuick 2.12
 import "qrc:///qml/Utils.js" as JS
+import "qrc:///qml/Content/MimeTypeMapper.js" as MimeTypeMapper
 
 WebEngineView {
     id: webview
@@ -48,13 +49,13 @@ WebEngineView {
     profile: webViewProfile
     onFullScreenRequested: function(request) {
         if (request.toggleOn) {
-            pageHeader.visible = false;
-            webview.state = "fullscreen";
+            headerLoader.visible = false;
+            webviewLoader.state = "fullscreen";
             window.showFullScreen();
         } else {
             window.showNormal();
-            webview.state = barposition;
-            pageHeader.visible = true;
+            webviewLoader.state = barposition;
+            headerLoader.visible = true;
         }
         request.accept();
     }
@@ -67,8 +68,9 @@ WebEngineView {
         if (loadRequest.errorString)
             console.error(loadRequest.errorString)
         else {
-            // avoid duplicates
-            if (history.urls[history.count] !== url) {
+            // avoid duplicates and redirects
+            if (history.urls[history.count] !== url && 
+                webview.loadProgress === 100) {
                 //add url to history
                 history.urls.push(webview.url)
                 history.dates.push(new Date())
@@ -103,25 +105,23 @@ WebEngineView {
         }
     }
     onFileDialogRequested: function(request) {
+        //var contentType = MimeTypeMapper.mimeTypeToContentType(request.acceptedMimeTypes)
+
         switch (request.mode) {
             case FileDialogRequest.FileModeOpen:
                 request.accepted = true;
-                var fileDialogSingle = PopupUtils.open(Qt.resolvedUrl("Content/Picker.qml"));
-                fileDialogSingle.allowMultipleFiles = false;
-                fileDialogSingle.accept.connect(request.dialogAccept);
-                fileDialogSingle.reject.connect(request.dialogReject);
+                mainView.internal = true;
+                mainView.contentPickerLoader.active = true;
                 break;
 
             case FileDialogRequest.FileModeOpenMultiple:
                 request.accepted = true;
-                var fileDialogMultiple = PopupUtils.open(Qt.resolvedUrl("Content/Picker.qml"));
-                fileDialogMultiple.allowMultipleFiles = true;
-                fileDialogMultiple.accept.connect(request.dialogAccept);
-                fileDialogMultiple.reject.connect(request.dialogReject);
+                
                 break;
 
-            //case FilealogRequest.FileModeUploadFolder:
-            case FileDialogRequest.FileModeSave:
+            // TODO: support saving and maybe uploding directories
+            default:
+                console.log("Unsupported request, rejecting")
                 request.accepted = false;
                 break;
         }

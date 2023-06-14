@@ -10,7 +10,7 @@ You should follow the following rules:
 - Use ';' (semicolons) in JavaScript and functions
 - Use meaningful comments
 - Prefer easily understandable code rather than too many comments
-- Try to not exceed the width of 80 columns and NEVER over 110
+- Avoid exceeding the width of 80 columns and NEVER over 120
 - The following if/while/for... structure:
 ```
 for (i = 10; i < 0; --i)

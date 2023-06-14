@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
              " --enable-smooth-scrolling" // smooth scroll
              " --enable-natural-scroll-default");
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "true");
-    qputenv("APP_ID", "ikozyris.octobrowser");
+    //qputenv("APP_ID", "ikozyris.octobrowser");
     qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2"); //force QQC2 popups
     
     if (qgetenv("QT_QPA_PLATFORM") == "wayland") {

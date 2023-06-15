@@ -19,50 +19,74 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.Content 1.3
+import Ubuntu.Components.Popups 1.3
 import "MimeTypeMapper.js" as MimeTypeMapper
 import "../Dialogs/"
 
-Page {
+PopupBase {
     id: picker
-    property var handler
+    // Set the parent at construction time, instead of letting show()
+    // set it later on, which for some reason results in the size of
+    // the dialog not being updated.
+    parent: QuickUtils.rootItem(this)
+    property var acceptTypes
     property var contentType
+    property bool allowMultipleFiles
 
-    ContentPeerPicker {
-        anchors { fill: parent; topMargin: picker.header.height }
-        visible: parent.visible
-        showTitle: true
-        contentType: picker.contentType
-        handler: picker.handler
-
-        onPeerSelected: {
-            peer.selectionType = ContentTransfer.Single
-            picker.activeTransfer = peer.request()
-            picker.activeTransfer.stateChanged.connect(function() {
-				if (picker.activeTransfer.state === ContentTransfer.InProgress) {
-					console.log("In progress");
-					picker.activeTransfer.items = picker.activeTransfer.items[0].url = url;
-					picker.activeTransfer.state = ContentTransfer.Charged;
-				}
-                if (picker.activeTransfer.state === ContentTransfer.Charged) {
-					console.log("Charged");
-                    picker.imported(picker.activeTransfer.items[0].url)
-					console.log(picker.activeTransfer.items[0].url)
-                    picker.activeTransfer = null
-                }
-            })
-        }
-        onCancelPressed: {
-                pageStack.pop()
-            }
-    }
-
-    ContentTransferHint {
-        id: transferHint
+    signal accept(var files)
+    signal reject()
+    onAccept: hide()
+    onReject: hide()
+    Rectangle {
         anchors.fill: parent
-        activeTransfer: picker.activeTransfer
+        ContentTransferHint {
+            anchors.fill: parent
+            activeTransfer: picker.activeTransfer
+        }
+        ContentPeerPicker {
+            id: peerPicker
+            anchors.fill: parent
+            visible: true
+            contentType: ContentType.All
+            handler: ContentHandler.Source
+            onPeerSelected: {
+                    if (allowMultipleFiles) {
+                        peer.selectionType = ContentTransfer.Multiple
+                    } else {
+                        peer.selectionType = ContentTransfer.Single
+                    }
+                    picker.activeTransfer = peer.request()
+                    stateChangeConnection.target = picker.activeTransfer
+            }
+            onCancelPressed: {
+                reject()
+            }
+        }
     }
-    Component {
-        id: resultComponent
-        ContentItem {}
+    Connections {
+        id: stateChangeConnection
+        target: null
+        onStateChanged: {
+            if (picker.activeTransfer.state === ContentTransfer.Charged) {
+                var selectedItems = []
+                for (var i in picker.activeTransfer.items) {
+                    // ContentTransfer.Single seems not to be handled properly, e.g. selected items with file manager
+                    // -> only select the first item
+                    if ((i > 0) && ! allowMultipleFiles) {
+                        break;
+                    }
+
+                    selectedItems.push(String(picker.activeTransfer.items[i].url).replace("file://", ""))
+                }
+                accept(selectedItems)
+            }
+        }
+    }
+    Component.onCompleted: {
+        peerPicker.contentType = MimeTypeMapper.mimeTypeToContentType(acceptTypes)
+        console.log(MimeTypeMapper.mimeTypeToContentType(acceptTypes))
+        show()
+        console.log("*********webengine sent types: " + acceptTypes)
+        console.log("*********set types: " + peerPicker.contentType)
     }
 }

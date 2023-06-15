@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-14 09:16+0000\n"
+"POT-Creation-Date: 2023-06-15 16:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/About.qml:25 ../qml/Components/MainHeader.qml:137
+#: ../qml/About.qml:25 ../qml/Components/MainHeader.qml:138
 msgid "About"
 msgstr ""
 
@@ -68,27 +68,27 @@ msgstr ""
 msgid "On "
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:95
+#: ../qml/Components/MainHeader.qml:96
 msgid "Enter a URL or a search query"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:117
+#: ../qml/Components/MainHeader.qml:118
 msgid "Manage Tabs"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:122 ../qml/SettingsView.qml:27
+#: ../qml/Components/MainHeader.qml:123 ../qml/SettingsView.qml:27
 msgid "Settings"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:127 ../qml/HistoryView.qml:35
+#: ../qml/Components/MainHeader.qml:128 ../qml/HistoryView.qml:35
 msgid "History"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:132
+#: ../qml/Components/MainHeader.qml:133
 msgid "Find in page"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:142 ../qml/Help.qml:28
+#: ../qml/Components/MainHeader.qml:143 ../qml/Help.qml:28
 msgid "Help"
 msgstr ""
 

@@ -21,7 +21,6 @@ import Ubuntu.Components.Popups 1.3
 import QtWebEngine 1.11
 import QtQuick 2.12
 import "qrc:///qml/Utils.js" as JS
-import "qrc:///qml/Content/MimeTypeMapper.js" as MimeTypeMapper
 
 WebEngineView {
     id: webview
@@ -69,7 +68,7 @@ WebEngineView {
             console.error(loadRequest.errorString)
         else {
             // avoid duplicates and redirects
-            if (history.urls[history.count] !== url && 
+            if (history.urls[history.count] !== url &&
                 webview.loadProgress === 100) {
                 //add url to history
                 history.urls.push(webview.url)
@@ -81,7 +80,7 @@ WebEngineView {
 
     // html <select> override
     property var selectOverride: function(request) {
-        var dialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/SelectOverride.qml"), this);
+        var dialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/SelectOverride.qml"));
         dialog.options = request.defaultText;
         dialog.accept.connect(request.dialogAccept);
         dialog.reject.connect(request.dialogReject);
@@ -105,18 +104,24 @@ WebEngineView {
         }
     }
     onFileDialogRequested: function(request) {
-        //var contentType = MimeTypeMapper.mimeTypeToContentType(request.acceptedMimeTypes)
-
+        var acceptedTypes = request.acceptedMimeTypes.toString()
         switch (request.mode) {
             case FileDialogRequest.FileModeOpen:
                 request.accepted = true;
-                mainView.internal = true;
-                mainView.contentPickerLoader.active = true;
+                var fileDialogSingle = PopupUtils.open(Qt.resolvedUrl("/qml/Content/Picker.qml"),
+                                       this, {'acceptTypes': acceptedTypes});
+                fileDialogSingle.allowMultipleFiles = false;
+                fileDialogSingle.accept.connect(request.dialogAccept);
+                fileDialogSingle.reject.connect(request.dialogReject);
                 break;
 
             case FileDialogRequest.FileModeOpenMultiple:
                 request.accepted = true;
-                
+                var fileDialogMultiple = PopupUtils.open(Qt.resolvedUrl("/qml/Content/Picker.qml"),
+                                        null, {'acceptTypes': acceptedTypes});
+                fileDialogMultiple.allowMultipleFiles = true;
+                fileDialogMultiple.accept.connect(request.dialogAccept);
+                fileDialogMultiple.reject.connect(request.dialogReject);
                 break;
 
             // TODO: support saving and maybe uploding directories
@@ -138,5 +143,16 @@ WebEngineView {
     onFindTextFinished: function(result) {
         Find.totalFound = result.numberOfMatches;
         Find.activeFound = result.activeMatch;
+    }
+    // TODO: maybe just ignore it?
+    onJavaScriptConsoleMessage: {/*
+        var msg = "[JS] (%1:%2) %3".arg(sourceID).arg(lineNumber).arg(message)
+        if (level === WebEngineView.InfoMessageLevel) {
+            console.log(msg)
+        } else if (level === WebEngineView.WarningMessageLevel) {
+            console.warn(msg)
+        } else if (level === WebEngineView.ErrorMessageLevel) {
+            console.error(msg)
+        }*/
     }
 }

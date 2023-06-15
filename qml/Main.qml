@@ -22,7 +22,7 @@ import QtQuick.Controls 2.2
 import Ubuntu.Components 1.3
 import Qt.labs.settings 1.0
 import Qt.labs.platform 1.1
-import QtWebEngine 1.10
+import QtWebEngine 1.11
 import Ubuntu.Components.Popups 1.3
 //import Ubuntu.PerformanceMetrics 0.1
 import Ubuntu.Content 1.3
@@ -107,7 +107,7 @@ MainView {
         //StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/Downloads"
         downloadPath: "/home/phablet/.local/share/octobrowser.ikozyris/Downloads/"
         
-        httpCacheMaximumSize: 90000000 // 90MB
+        httpCacheMaximumSize: 94371840 // ~90MB
 
         httpUserAgent: prefs.cmuseragent;                        //custom UA
         offTheRecord: false
@@ -126,12 +126,6 @@ MainView {
             //console.log("downloading to: " + webViewProfile.downloadPath + download.downloadFileName)
         }
     }
-    Loader {
-        id: contentPickerLoader
-        source: Qt.resolvedUrl("/qml/Content/Picker.qml")
-        active: false
-        asynchronous: true
-    }
 
     // if it was trigerred internally
     property bool internal: false
@@ -145,6 +139,8 @@ MainView {
             if (!internal) {
                 MyTabs.currtab = transfer.items[0].url
                 MyTabs.tabVisibility = true
+            } else {
+                console.log("internal import")
             }
 
         }

@@ -68,5 +68,4 @@ Dialog {
             
         }
     }
-    //Component.onCompleted: single.download(url)
 }

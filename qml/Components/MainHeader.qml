@@ -50,7 +50,8 @@ PageHeader {
             }
         ]
     }
-    QQC2.TextField {
+    //QQC2.TextField {
+    TextField {
         id: textFieldInput
         anchors {
             top: parent.top
@@ -81,15 +82,15 @@ PageHeader {
                     }
                 }
             }
-        ]
+        ]/*
         background: Rectangle {
             id: backcolor
             anchors.fill: parent
             color: Theme.name === "Ubuntu.Components.Themes.SuruDark" ? "#3A3A3A" : "lightgray"
             radius: 10
-        }
+        }*/
         transitions: Transition {
-            // smoothly reanchor and move into new position
+            // smoothly reanchor
             AnchorAnimation { duration: 100 }
         }
         placeholderText: i18n.tr("Enter a URL or a search query")

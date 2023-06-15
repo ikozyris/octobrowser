@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
     qputenv("QTWEBENGINE_CHROMIUM_FLAGS", " --force-dark-mode" 
              " --blink-settings=darkModeEnabled=true" 
              " --darkModeInversionAlgorithm=4"
-             " --enable-low-end-device-mode"
+            // " --enable-low-end-device-mode"
              " --enable-features=OverlayScrollbar" //better scrollbar
              " --enable-smooth-scrolling" // smooth scroll
              " --enable-natural-scroll-default");
@@ -61,7 +61,9 @@ int main(int argc, char *argv[])
 
     qDebug() << "Starting app from main.cpp";
 
-    QQuickStyle::setStyle("Suru"); // set style tu Suru (for Ubuntu Touch)
+    // disabled since this style has problems and 
+    // qqc2 components are only once used
+    //QQuickStyle::setStyle("Suru"); // set style to Suru (for Ubuntu Touch)
     
     QQuickView *view = new QQuickView();
     view->setSource(QUrl("qrc:///qml/Main.qml"));

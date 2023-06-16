@@ -12,7 +12,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- * 
+ *
  * this file is part of Octopus Browser (octobrowser)
  */
 
@@ -27,6 +27,8 @@
 //#include <QtWebEngine/QtWebEngine>
 #include <QtWebEngine/qtwebengineglobal.h>
 #include <QStandardPaths>
+#include <stdio.h>
+#include <string>
 
 // Run with QQuickView
 int main(int argc, char *argv[])
@@ -38,20 +40,24 @@ int main(int argc, char *argv[])
     QGuiApplication::setOrganizationName("octobrowser.ikozyris");
     QGuiApplication::setApplicationName("octobrowser.ikozyris");
 
-//"--blink-settings=darkMode=3,darkModeImagePolicy=2,darkModeImageStyle=2 
-// --enable-low-res-tiling
-    // TODO: do not hard code dark mode
-    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", " --force-dark-mode" 
-             " --blink-settings=darkModeEnabled=true" 
-             " --darkModeInversionAlgorithm=4"
-            // " --enable-low-end-device-mode"
-             " --enable-features=OverlayScrollbar" //better scrollbar
-             " --enable-smooth-scrolling" // smooth scroll
-             " --enable-natural-scroll-default");
+//"--blink-settings=darkMode=3,darkModeImagePolicy=2,darkModeImageStyle=2
+
+    QString conf = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    conf.append("/args.conf");
+    std::string path = conf.toStdString();
+    std::string args = "";
+    FILE *fp = fopen(path.c_str(), "r");
+    char ch;
+
+    while ((ch = getc(fp)) != EOF) {
+        args += ch;
+    }
+
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", QByteArray::fromStdString(args));
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "true");
     //qputenv("APP_ID", "ikozyris.octobrowser");
     qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2"); //force QQC2 popups
-    
+
     if (qgetenv("QT_QPA_PLATFORM") == "wayland") {
         qputenv("QT_WAYLAND_SHELL_INTEGRATION", "wl-shell");
     }
@@ -61,10 +67,10 @@ int main(int argc, char *argv[])
 
     qDebug() << "Starting app from main.cpp";
 
-    // disabled since this style has problems and 
+    // disabled since this style has problems and
     // qqc2 components are only once used
     //QQuickStyle::setStyle("Suru"); // set style to Suru (for Ubuntu Touch)
-    
+
     QQuickView *view = new QQuickView();
     view->setSource(QUrl("qrc:///qml/Main.qml"));
     view->setResizeMode(QQuickView::SizeRootObjectToView);
@@ -74,7 +80,7 @@ int main(int argc, char *argv[])
 }
 
 // Run with QQmlApplicationEngine //DO NOT USE
-//QtWebEngineProcess is not killed after app is closed 
+//QtWebEngineProcess is not killed after app is closed
 // You may see this:
 // [1:19:0505/191935.727720:ERROR:address_tracker_linux.cc(214)] Could not bind NETLINK socket: Address already in use (98)
 // [1:1:0505/191937.894230:ERROR:service_worker_storage.cc(1753)] Failed to delete the database: Database IO error
@@ -92,7 +98,7 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
 //    QString style = QQuickStyle::name();
-//    QQuickStyle::setStyle("Suru");    
+//    QQuickStyle::setStyle("Suru");
 
     QQmlApplicationEngine engine;
 //    engine.rootContext()->setContextProperty("availableStyles", QQuickStyle::availableStyles());

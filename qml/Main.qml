@@ -39,21 +39,31 @@ MainView {
 
     Settings {
         id: prefs
+        // General
         property int zoomlevel: 100
         property int adrpos: 0
         // TODO: better UA?
         property string cmuseragent: "Mozilla/5.0 (Linux; Mobile; Ubuntu 16.04 like Android 9;) AppleWebKit/537.36 Chrome/87.0.4280.144 Mobile Safari/537.36"
+        property bool keeptabs: false
+
+        // Security & Privacy
         property bool js: true
         property bool loadimages: true
         property bool securecontent: false
         property bool webrtc: false
-        property bool keeptabs: false
         property bool autoplay: false
         property bool lightfilter: false
         property bool clearcache: false
+
+        // Advanced
+        property bool dark: false
+        property bool scrollbar: true
+        property bool lowend: false
+        property bool smoothscroll: true
+        property bool log: true
     }
 
-    // Maybe use a DB?
+    // Maybe use a DB? like SQLite?
     Settings {
         id: history
         property var urls: [""]

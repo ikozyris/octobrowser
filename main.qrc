@@ -6,6 +6,7 @@
 	<file>qml/Components/Find.qml</file>
 	<file>qml/Components/History.qml</file>
 	<file>qml/Components/MainHeader.qml</file>
+	<file>qml/Components/Settings/Advanced.qml</file>
 	<file>qml/Components/Settings/General.qml</file>
 	<file>qml/Components/Settings/Privacy.qml</file>
 	<file>qml/Components/Settings/Security.qml</file>

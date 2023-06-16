@@ -29,8 +29,10 @@ ScrollView {
         // ==== SECURITY CATEGORY ====
         ListItem {
             ListItemLayout {
-                title.text: i18n.tr("Enable JavaScipt:")
+                title.text: i18n.tr("Enable JavaScript:")
                 subtitle.text: i18n.tr("A major security feature, it will break many websites")
+                // TODO: Cannot assign a value directly to a grouped property
+                //subtitle.text.wrapMode: Text.Wrap
             }
             Switch {
                 id: jsswitch

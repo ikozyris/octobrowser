@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-15 16:04+0000\n"
+"POT-Creation-Date: 2023-06-16 08:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,6 +92,49 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
+#: ../qml/Components/Settings/Advanced.qml:28
+msgid ""
+"WARNING: these settings are experimental and may not work at all!\n"
+"If you brak something and the app does not start, the configurationfile is "
+"located on /home/phablet/.local/share/octobrowser.ikozyris/args.conf"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:40
+msgid "Disable JavaScript logging:"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:41
+msgid "There is no reason to log JS console messages"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:54
+msgid "Dark Mode:"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:55
+msgid "Not for the app itself, but for the WebView"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:68
+msgid "Better scrollbar:"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:69
+msgid "More modern feel"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:82
+msgid "Smooth scrolling:"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:96
+msgid "Low end device mode:"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:97
+msgid "Less load but worse images and content"
+msgstr ""
+
 #: ../qml/Components/Settings/General.qml:32
 msgid "Remember open tabs:"
 msgstr ""
@@ -158,34 +201,34 @@ msgid "If enabled, it might leak your real IP, even if a VPN is used"
 msgstr ""
 
 #: ../qml/Components/Settings/Security.qml:32
-msgid "Enable JavaScipt:"
+msgid "Enable JavaScript:"
 msgstr ""
 
 #: ../qml/Components/Settings/Security.qml:33
 msgid "A major security feature, it will break many websites"
 msgstr ""
 
-#: ../qml/Components/Settings/Security.qml:46
+#: ../qml/Components/Settings/Security.qml:48
 msgid "Autoload Images:"
 msgstr ""
 
-#: ../qml/Components/Settings/Security.qml:47
+#: ../qml/Components/Settings/Security.qml:49
 msgid "By disabling, images will not be loaded"
 msgstr ""
 
-#: ../qml/Components/Settings/Security.qml:60
+#: ../qml/Components/Settings/Security.qml:62
 msgid "Block autoplay:"
 msgstr ""
 
-#: ../qml/Components/Settings/Security.qml:61
+#: ../qml/Components/Settings/Security.qml:63
 msgid "Block videos from automatically playing"
 msgstr ""
 
-#: ../qml/Components/Settings/Security.qml:74
+#: ../qml/Components/Settings/Security.qml:76
 msgid "Allow running insecure content:"
 msgstr ""
 
-#: ../qml/Components/Settings/Security.qml:75
+#: ../qml/Components/Settings/Security.qml:77
 msgid "Allows loading files over unencrypted HTTP"
 msgstr ""
 

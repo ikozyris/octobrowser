@@ -36,7 +36,7 @@ Page {
         }
         extension: Sections {
             id: sections
-            model: ["General", "Privacy", "Security"]
+            model: ["General", "Privacy", "Security", "Advanced"]
         }
     }
 

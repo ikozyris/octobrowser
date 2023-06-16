@@ -145,7 +145,9 @@ WebEngineView {
         Find.activeFound = result.activeMatch;
     }
     // TODO: maybe just ignore it?
-    onJavaScriptConsoleMessage: {/*
+    onJavaScriptConsoleMessage: {
+        if (!prefs.log)
+            return;
         var msg = "[JS] (%1:%2) %3".arg(sourceID).arg(lineNumber).arg(message)
         if (level === WebEngineView.InfoMessageLevel) {
             console.log(msg)
@@ -153,6 +155,6 @@ WebEngineView {
             console.warn(msg)
         } else if (level === WebEngineView.ErrorMessageLevel) {
             console.error(msg)
-        }*/
+        }
     }
 }

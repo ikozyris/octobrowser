@@ -84,9 +84,9 @@ PopupBase {
     }
     Component.onCompleted: {
         peerPicker.contentType = MimeTypeMapper.mimeTypeToContentType(acceptTypes)
-        console.log(MimeTypeMapper.mimeTypeToContentType(acceptTypes))
+        //console.log(MimeTypeMapper.mimeTypeToContentType(acceptTypes))
         show()
-        console.log("*********webengine sent types: " + acceptTypes)
-        console.log("*********set types: " + peerPicker.contentType)
+        //console.log("*********webengine sent types: " + acceptTypes)
+        //console.log("*********set types: " + peerPicker.contentType)
     }
 }

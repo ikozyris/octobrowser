@@ -41,6 +41,7 @@ ScrollView {
                 width: parent.width
                 anchors.top: ualabel.bottom
                 text: prefs.cmuseragent
+                onTextChanged: prefs.cmuseragent = uatext.text
             }
         }
         ListItem {
@@ -55,11 +56,8 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.webrtc
+                onCheckedChanged: prefs.webrtc = rtcswitch.checked
             }
         }
 	}
-    Component.onDestruction: {
-	    prefs.cmuseragent = uatext.text
-	    prefs.webrtc = rtcswitch.checked
-    }
 }

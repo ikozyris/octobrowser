@@ -28,10 +28,7 @@ Page {
         leadingActionBar {
             actions: Action {
                 iconName: "back"
-                onTriggered: {
-                    settingsLoader.active = false
-                    pStack.pop()
-                }
+                onTriggered: pStack.pop()
             }
         }
         extension: Sections {
@@ -41,10 +38,58 @@ Page {
     }
 
     Loader {
-        id: settingsLoader
+        id: generalSettingsLoader
+        visible: sections.selectedIndex === 0
         asynchronous: true
-        // TODO: this is a very silly way to do this and will have problems if sections get translated
-        source: Qt.resolvedUrl("/qml/Components/Settings/" + sections.model[sections.selectedIndex] + ".qml")
+        source: Qt.resolvedUrl("/qml/Components/Settings/General.qml")
+        anchors {
+            top: settingPage.header.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+    }
+    Loader {
+        id: privacySettingsLoader
+        visible: sections.selectedIndex === 1
+        asynchronous: true
+        source: Qt.resolvedUrl("/qml/Components/Settings/Privacy.qml")
+        anchors {
+            top: settingPage.header.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+    }
+    Loader {
+        id: securitySettingsLoader
+        visible: sections.selectedIndex === 2
+        asynchronous: true
+        source: Qt.resolvedUrl("/qml/Components/Settings/Security.qml")
+        anchors {
+            top: settingPage.header.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+    }
+    Loader {
+        id: advancedSettingsLoader
+        active: sections.selectedIndex === 3
+        asynchronous: true
+        source: Qt.resolvedUrl("/qml/Components/Settings/Advanced.qml")
+        anchors {
+            top: settingPage.header.bottom
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+    }
+    Loader {
+        id: settingsLoader
+        visible: sections.selectedIndex === 0
+        asynchronous: true
+        source: Qt.resolvedUrl("/qml/Components/Settings/General.qml")
         anchors {
             top: settingPage.header.bottom
             left: parent.left

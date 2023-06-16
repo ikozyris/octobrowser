@@ -1,5 +1,6 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
+<!--This is used by the AOT CMake -->
 <qresource prefix="/">
 	<file>assets/logo.svg</file>
 	<file>qml/About.qml</file>

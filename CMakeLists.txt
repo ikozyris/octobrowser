@@ -66,7 +66,9 @@ install(FILES ${PROJECT_NAME}-contenthub.json DESTINATION ${DATA_DIR})
 install(FILES ${PROJECT_NAME}.apparmor DESTINATION ${DATA_DIR})
 install(FILES assets/logo.svg DESTINATION assets)
 
-qt5_add_resources(QT_RESOURCES main.qrc)
+qt5_add_resources(QT_RESOURCES qml/qml.qrc)
+qt5_add_resources(QT_RESOURCES qml/Components/components.qrc)
+qt5_add_resources(QT_RESOURCES assets/assets.qrc)
 
 add_executable(${PROJECT_NAME} main.cpp ${QT_RESOURCES})
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS_RELEASE -s)

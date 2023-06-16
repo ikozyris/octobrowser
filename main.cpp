@@ -27,12 +27,17 @@
 //#include <QtWebEngine/QtWebEngine>
 #include <QtWebEngine/qtwebengineglobal.h>
 #include <QStandardPaths>
+#include <iostream>
 #include <stdio.h>
 #include <string>
 
 // Run with QQuickView
 int main(int argc, char *argv[])
 {
+    // faster reading
+    std::ios_base::sync_with_stdio(false);
+    //std::cin.tie(NULL);
+
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     //QCoreApplication::setAttribute(Qt::AA_UseOpenGLES); // Is this needed?
     QCoreApplication::setAttribute(Qt::AA_ShareOpenGLContexts);
@@ -42,18 +47,20 @@ int main(int argc, char *argv[])
 
 //"--blink-settings=darkMode=3,darkModeImagePolicy=2,darkModeImageStyle=2
 
-    QString conf = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
-    conf.append("/args.conf");
+    QString conf = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/args.conf";
     std::string path = conf.toStdString();
     std::string args = "";
     FILE *fp = fopen(path.c_str(), "r");
     char ch;
+    if (fp != NULL) {
+        while ((ch = fgetc(fp)) != EOF) {
+            args += ch;
+        }
 
-    while ((ch = getc(fp)) != EOF) {
-        args += ch;
+        qputenv("QTWEBENGINE_CHROMIUM_FLAGS", QByteArray::fromStdString(args));
+        fclose(fp);
     }
 
-    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", QByteArray::fromStdString(args));
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "true");
     //qputenv("APP_ID", "ikozyris.octobrowser");
     qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2"); //force QQC2 popups

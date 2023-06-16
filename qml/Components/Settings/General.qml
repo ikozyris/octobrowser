@@ -39,6 +39,7 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.keeptabs
+                onCheckedChanged: prefs.keeptabs = ktabs.checked
             }
         }
         ListItem {
@@ -53,6 +54,7 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.clearcache
+                onCheckedChanged: prefs.clearcache = clrchache.checked
             }
         }
         ListItem {
@@ -86,6 +88,7 @@ ScrollView {
                 live: true
                 width: parent.width
                 anchors.top: zoomlabel.bottom
+                onValueChanged: prefs.zoomlevel = zoomslider.value
             }
         }
         ListItem {
@@ -102,13 +105,8 @@ ScrollView {
                     top: parent.top; topMargin: column.mSpacing
                 }
                 selectedIndex: prefs.adrpos
+                onSelectedIndexChanged: prefs.adrpos = posselector.selectedIndex
             }
         }
 	}
-    Component.onDestruction: {
-	    prefs.keeptabs = ktabs.checked
-        prefs.clearcache = clrchache.checked
-	    prefs.zoomlevel = zoomslider.value
-	    prefs.adrpos = posselector.selectedIndex
-    }
 }

@@ -21,9 +21,10 @@
 
 #include "manager.h"
 #include <stdio.h>
-    // path to configuration file
-    QString path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/args.conf";
-    std::string config;
+
+// path to configuration file
+QString path = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/args.conf";
+std::string config;
 
 Manager::Manager()
 {
@@ -34,9 +35,6 @@ Manager::Manager()
 
 int Manager::overwrite()
 {
-    qDebug() << "start";
-
-
     // overwrite to file
     qDebug() << QString::fromStdString(config);
 
@@ -56,6 +54,6 @@ int Manager::append(QString params)
     FILE *fp = fopen(config.c_str(), "a");
     fputs(args.c_str(), fp);
     fclose(fp);
-    qDebug() << "checkpoint 3";
+
     return 0;
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-16 08:23+0000\n"
+"POT-Creation-Date: 2023-06-16 09:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -92,46 +92,47 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:28
+#: ../qml/Components/Settings/Advanced.qml:42
 msgid ""
-"WARNING: these settings are experimental and may not work at all!\n"
-"If you brak something and the app does not start, the configurationfile is "
-"located on /home/phablet/.local/share/octobrowser.ikozyris/args.conf"
+"<b>WARNING</b>: these settings are experimental<br> and may not work at all!"
+"<br>If you break something and the app does not<br> start, the configuration "
+"file is located on: <br>/home/phablet/.local/<br>share/octobrowser.ikozyris/"
+"args.conf<br>Most of them require a <b>restart of the app</b> to apply"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:40
+#: ../qml/Components/Settings/Advanced.qml:50
 msgid "Disable JavaScript logging:"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:41
+#: ../qml/Components/Settings/Advanced.qml:51
 msgid "There is no reason to log JS console messages"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:54
+#: ../qml/Components/Settings/Advanced.qml:69
 msgid "Dark Mode:"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:55
+#: ../qml/Components/Settings/Advanced.qml:70
 msgid "Not for the app itself, but for the WebView"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:68
+#: ../qml/Components/Settings/Advanced.qml:88
 msgid "Better scrollbar:"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:69
+#: ../qml/Components/Settings/Advanced.qml:89
 msgid "More modern feel"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:82
+#: ../qml/Components/Settings/Advanced.qml:107
 msgid "Smooth scrolling:"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:96
+#: ../qml/Components/Settings/Advanced.qml:126
 msgid "Low end device mode:"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:97
+#: ../qml/Components/Settings/Advanced.qml:127
 msgid "Less load but worse images and content"
 msgstr ""
 
@@ -143,42 +144,42 @@ msgstr ""
 msgid "Do not close tabs on exit"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:46
+#: ../qml/Components/Settings/General.qml:47
 msgid "Clear web cache on exit:"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:47
+#: ../qml/Components/Settings/General.qml:48
 msgid "Web caches can get very large if never cleard"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:60
+#: ../qml/Components/Settings/General.qml:62
 msgid "Blue light filter:"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:61
+#: ../qml/Components/Settings/General.qml:63
 msgid "Applies a yellow overlay to the app"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:77
+#: ../qml/Components/Settings/General.qml:79
 #, javascript-format
 msgid "Zoom level: %1%"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:78
+#: ../qml/Components/Settings/General.qml:80
 msgid "Scales the page according to your needs"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:95
+#: ../qml/Components/Settings/General.qml:98
 msgid ""
 "Address bar position: %1 \n"
 "(restart the app after change)"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:98
+#: ../qml/Components/Settings/General.qml:101
 msgid "top"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:99
+#: ../qml/Components/Settings/General.qml:102
 msgid "bottom"
 msgstr ""
 
@@ -192,11 +193,11 @@ msgid ""
 "desktop version of a page."
 msgstr ""
 
-#: ../qml/Components/Settings/Privacy.qml:48
+#: ../qml/Components/Settings/Privacy.qml:49
 msgid "Limit WebRTC to public IP addresses only:"
 msgstr ""
 
-#: ../qml/Components/Settings/Privacy.qml:49
+#: ../qml/Components/Settings/Privacy.qml:50
 msgid "If enabled, it might leak your real IP, even if a VPN is used"
 msgstr ""
 
@@ -208,27 +209,27 @@ msgstr ""
 msgid "A major security feature, it will break many websites"
 msgstr ""
 
-#: ../qml/Components/Settings/Security.qml:48
+#: ../qml/Components/Settings/Security.qml:49
 msgid "Autoload Images:"
 msgstr ""
 
-#: ../qml/Components/Settings/Security.qml:49
+#: ../qml/Components/Settings/Security.qml:50
 msgid "By disabling, images will not be loaded"
 msgstr ""
 
-#: ../qml/Components/Settings/Security.qml:62
+#: ../qml/Components/Settings/Security.qml:64
 msgid "Block autoplay:"
 msgstr ""
 
-#: ../qml/Components/Settings/Security.qml:63
+#: ../qml/Components/Settings/Security.qml:65
 msgid "Block videos from automatically playing"
 msgstr ""
 
-#: ../qml/Components/Settings/Security.qml:76
+#: ../qml/Components/Settings/Security.qml:79
 msgid "Allow running insecure content:"
 msgstr ""
 
-#: ../qml/Components/Settings/Security.qml:77
+#: ../qml/Components/Settings/Security.qml:80
 msgid "Allows loading files over unencrypted HTTP"
 msgstr ""
 

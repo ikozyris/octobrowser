@@ -1,0 +1,13 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+<qresource prefix="/qml/Components/">
+	<file>Find.qml</file>
+	<file>History.qml</file>
+	<file>MainHeader.qml</file>
+	<file>Settings/Advanced.qml</file>
+	<file>Settings/General.qml</file>
+	<file>Settings/Privacy.qml</file>
+	<file>Settings/Security.qml</file>
+	<file>SingleTab.qml</file>
+</qresource>
+</RCC>

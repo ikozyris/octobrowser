@@ -41,6 +41,7 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.js
+                onCheckedChanged: prefs.js = jsswitch.checked
             }
         }
         ListItem {
@@ -55,6 +56,7 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.loadimages
+                onCheckedChanged: prefs.loadimages = imagswitch.checked
             }
         }
         ListItem {
@@ -69,6 +71,7 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.autoplay
+                onCheckedChanged: prefs.autoplay = playswitch.checked
             }
         }
         ListItem {
@@ -83,13 +86,8 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.securecontent
+                onCheckedChanged: prefs.securecontent = insecswitch.checked
             }
         }
 	}
-    Component.onDestruction: {
-	    prefs.loadimages = imagswitch.checked
-	    prefs.securecontent = insecswitch.checked
-        prefs.js = jsswitch
-	    prefs.autoplay = playswitch.checked
-    }
 }

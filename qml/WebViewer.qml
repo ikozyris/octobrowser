@@ -146,15 +146,15 @@ WebEngineView {
     }
     // TODO: maybe just ignore it?
     onJavaScriptConsoleMessage: {
-        if (!prefs.log)
-            return;
-        var msg = "[JS] (%1:%2) %3".arg(sourceID).arg(lineNumber).arg(message)
-        if (level === WebEngineView.InfoMessageLevel) {
-            console.log(msg)
-        } else if (level === WebEngineView.WarningMessageLevel) {
-            console.warn(msg)
-        } else if (level === WebEngineView.ErrorMessageLevel) {
-            console.error(msg)
+        if (!prefs.log) {
+            var msg = "[JS] (%1:%2) %3".arg(sourceID).arg(lineNumber).arg(message)
+            if (level === WebEngineView.InfoMessageLevel) {
+                console.log(msg)
+            } else if (level === WebEngineView.WarningMessageLevel) {
+                console.warn(msg)
+            } else if (level === WebEngineView.ErrorMessageLevel) {
+                console.error(msg)
+            }
         }
     }
 }

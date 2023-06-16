@@ -24,17 +24,27 @@ import Manager 0.1
 
 ScrollView {
     id: scrollView
-	Label {
-		text: i18n.tr("WARNING: these settings are experimental and may not work at all!\n"
-                     + "If you brak something and the app does not start, the configuration"
-                     + "file is located on /home/phablet/.local/share/octobrowser.ikozyris/args.conf")
-        wrapMode: Text.Wrap
-	}
+
+    // avoid rewriting if nothing changed
+    property bool changed: false
+
     Column {
         id: column
         width: scrollView.width
+
         property int mSpacing: units.gu(2)
         // ==== ADVANCED CATEGORY ====
+        ListItem {
+            height: warningLabel.height + column.mSpacing
+            Label {
+                id: warningLabel
+                // TODO: wrapMode: Text.Wrap does not work
+                text: i18n.tr("<b>WARNING</b>: these settings are experimental<br> and may not work at all!<br>"
+                            + "If you break something and the app does not<br> start, the configuration "
+                            + "file is located on: <br>/home/phablet/.local/<br>share/octobrowser.ikozyris/args.conf<br>"
+                            + "Most of them require a <b>restart of the app</b> to apply")
+            }
+        }
         ListItem {
             ListItemLayout {
                 title.text: i18n.tr("Disable JavaScript logging:")
@@ -47,6 +57,11 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.log
+                onCheckedChanged: {
+                    if (prefs.log != logswitch.checked)
+                        changed = true
+                    prefs.log = logswitch.checked
+                }
             }
         }
         ListItem {
@@ -61,6 +76,11 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.dark
+                onCheckedChanged: {
+                    if (prefs.dark != darkswitch.checked)
+                        changed = true
+                    prefs.dark = darkswitch.checked
+                }
             }
         }
         ListItem {
@@ -75,6 +95,11 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.scrollbar
+                onCheckedChanged: {
+                    if (prefs.scrollbar != scrollswitch.checked)
+                        changed = true
+                    prefs.scrollbar = scrollswitch.checked
+                }
             }
         }
         ListItem {
@@ -89,6 +114,11 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.smoothscroll
+                onCheckedChanged: {
+                    if (prefs.smoothscroll != smoothswitch.checked)
+                        changed = true
+                    prefs.smoothscroll = smoothswitch.checked
+                }
             }
         }
         ListItem {
@@ -103,34 +133,31 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.lowend
+                onCheckedChanged: {
+                    if (prefs.lowend != lowendswitch.checked)
+                        changed = true
+                    prefs.lowend = lowendswitch.checked
+                }
             }
         }
 	}
-    Component.onCompleted: {
-        Manager.overwrite()
-    }
-    Component.onDestruction: {
-        prefs.log = logswitch.checked
-	    prefs.dark = darkswitch.checked
-	    prefs.scrollbar = scrollswitch.checked
-        prefs.smoothscroll = smoothswitch.checked
-	    prefs.lowend = lowendswitch.checked
+    Component.onDestruction: function() {
+        if (changed) {
+            Manager.overwrite()
 
-        if (prefs.dark)
-            Manager.append(" --force-dark-mode --blink-settings=darkModeEnabled=true --darkModeInversionAlgorithm=4")
-        console.log("wrote")
+            if (prefs.dark)
+                Manager.append(" --force-dark-mode --blink-settings=darkModeEnabled=true,"
+                                + "darkModeImagePolicy=2 --darkModeInversionAlgorithm=4")
 
-        if (prefs.scrollbar)
-            Manager.append(" --enable-features=OverlayScrollbar --enable-smooth-scrolling")
-        console.log("wrote")
+            if (prefs.scrollbar)
+                Manager.append(" --enable-features=OverlayScrollbar")
 
-        // --enable-natural-scroll-default
-        if (prefs.smoothscroll)
-            Manager.append(" --enable-smooth-scrolling ")
-        console.log("wrote")
+            // --enable-natural-scroll-default
+            if (prefs.smoothscroll)
+                Manager.append(" --enable-smooth-scrolling")
 
-        if (prefs.lowend)
-            Manager.append(" --enable-low-res-tiling  --enable-low-end-device-mode")
-        console.log("wrote")
+            if (prefs.lowend)
+                Manager.append(" --enable-low-res-tiling  --enable-low-end-device-mode")
+        }
     }
 }

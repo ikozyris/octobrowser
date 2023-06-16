@@ -35,9 +35,9 @@ Manager::Manager()
 
 int Manager::overwrite()
 {
-    // overwrite to file
-    qDebug() << QString::fromStdString(config);
+    //qDebug() << QString::fromStdString(config);
 
+    // overwrite to file
     std::FILE *fp = fopen(config.c_str(), "w");
     std::fprintf(fp, "%s", " ");
     std::fclose(fp);

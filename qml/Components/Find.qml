@@ -21,8 +21,14 @@ PageHeader {
 
     TextField {
         id: findTextbar
-        anchors.topMargin: units.gu(0.2)
-        anchors.left: leadingActionBar.right
+        anchors {
+            top: parent.top
+            topMargin: units.gu(1)
+            left: leadingActionBar.right
+            leftMargin: units.gu(1)
+            right: trailingActionBar.left
+            rightMargin: units.gu(1)
+        }
         onAccepted: {
             webview.findText(findTextbar.text, 
                             WebEngineView.FindCaseInsensitively,

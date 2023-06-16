@@ -39,7 +39,7 @@ ScrollView {
             Label {
                 id: warningLabel
                 // TODO: wrapMode: Text.Wrap does not work
-                text: i18n.tr("<b>WARNING</b>: these settings are experimental<br> and may not work at all!<br>"
+                text: i18n.tr("<b>WARNING</b>: these settings are experimental<br>"
                             + "If you break something and the app does not<br> start, the configuration "
                             + "file is located on: <br>/home/phablet/.local/<br>share/octobrowser.ikozyris/args.conf<br>"
                             + "Most of them require a <b>restart of the app</b> to apply")
@@ -57,11 +57,7 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.log
-                onCheckedChanged: {
-                    if (prefs.log != logswitch.checked)
-                        changed = true
-                    prefs.log = logswitch.checked
-                }
+                onCheckedChanged: prefs.log = logswitch.checked
             }
         }
         ListItem {
@@ -140,6 +136,23 @@ ScrollView {
                 }
             }
         }
+        ListItem {
+            height: backselector.height + column.mSpacing
+            OptionSelector {
+                id: backselector
+                text: i18n.tr("Download backend: %1 ").arg(
+                    backselector.selectedIndex === 0 ? "QtWebEngineView" : "SingleDownload")
+                model: [
+                    i18n.tr("QtWebEngineView"),
+                    i18n.tr("SingleDownload"),
+                ]
+                anchors {
+                    top: parent.top; topMargin: column.mSpacing
+                }
+                selectedIndex: prefs.download
+                onSelectedIndexChanged: prefs.download = backselector.selectedIndex
+            }
+        }
 	}
     Component.onDestruction: function() {
         if (changed) {
@@ -147,17 +160,17 @@ ScrollView {
 
             if (prefs.dark)
                 Manager.append(" --force-dark-mode --blink-settings=darkModeEnabled=true,"
-                                + "darkModeImagePolicy=2 --darkModeInversionAlgorithm=4")
+                                + "darkModeImagePolicy=2 --darkModeInversionAlgorithm=4 ")
 
             if (prefs.scrollbar)
-                Manager.append(" --enable-features=OverlayScrollbar")
+                Manager.append(" --enable-features=OverlayScrollbar ")
 
             // --enable-natural-scroll-default
             if (prefs.smoothscroll)
-                Manager.append(" --enable-smooth-scrolling")
+                Manager.append(" --enable-smooth-scrolling ")
 
             if (prefs.lowend)
-                Manager.append(" --enable-low-res-tiling  --enable-low-end-device-mode")
+                Manager.append(" --enable-low-res-tiling  --enable-low-end-device-mode ")
         }
     }
 }

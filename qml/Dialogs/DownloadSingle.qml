@@ -3,10 +3,18 @@ import Ubuntu.Components 1.3
 import Ubuntu.Components.Popups 1.3
 import Ubuntu.DownloadManager 1.2
 import Ubuntu.Content 1.3
+
 import "../Content/MimeTypeMapper.js" as MimeTypeMapper
+import "/qml/Utils.js" as JS
 
 Dialog {
     id: downloadDialog
+
+    property var downloadItem
+    property bool isPaused: false
+    property var url
+    property var hrttl
+    property var path
 
     function rePau() {
         if (isPaused) {
@@ -27,9 +35,14 @@ Dialog {
             showInIndicator: true
             title: "Downloading from Octobrowser"
         }
+        onFinished: function(path) {
+            downloadDialog.path = path
+            //console.log(path)
+        }    
     }
     Label {
-        text: "Progress: " + single.progress
+        // TODO: received bytes? progress/total
+        text: "Progress: " + single.progress + "\nTotal: "+ hrttl
     }
     ProgressBar {
         id: progBar
@@ -48,7 +61,7 @@ Dialog {
         id: okButton
         text: single.progress === 100 ? i18n.tr("OK") : i18n.tr("Cancel")
         onClicked: {
-            single.progress === 100 ? PopupUtils.close(downloadDialog) : download.cancel()
+            single.progress === 100 ? PopupUtils.close(downloadDialog) : single.cancel()
             PopupUtils.close(downloadDialog)
         }
     }
@@ -57,18 +70,37 @@ Dialog {
         visible: single.progress === 100
         text: i18n.tr("Open")
         onClicked: {
-            /*
-            exportPeerPicker.contentType = MimeTypeMapper.mimeTypeToContentType(downloadItem.mimetype);
+            exportPeerPicker.contentType = MimeTypeMapper.mimeTypeToContentType(downloadItem.mimeType);
             exportPeerPicker.visible = true;
-            exportPeerPicker.path = downloadItem.path;
-            exportPeerPicker.mimeType = downloadItem.mimetype;
-            exportPeerPicker.downloadUrl = downloadItem.url;
-            */
-            contentExportLoader.item.openDialog(webViewProfile.downloadPath + downloadItem.downloadFileName, 
-                MimeTypeMapper.mimeTypeToContentType(downloadItem.mimeType),
-                downloadItem.mimeType, downloadItem.url, title)
-            
+            exportPeerPicker.path = path;
+            exportPeerPicker.mimeType = downloadItem.mimeType;
+            exportPeerPicker.downloadUrl = downloadItem.url;   
         }
     }
-    Component.onCompleted: single.download(url)
+
+    ContentPeerPicker {
+        id: exportPeerPicker
+        visible: false
+        focus: visible
+        handler: ContentHandler.Destination
+        property string path
+        property string mimeType
+        property string downloadUrl
+        onPeerSelected: {
+            var transfer = peer.request()
+            if (transfer.state === ContentTransfer.InProgress) {
+                transfer.items = [contentItemComponent.createObject(downloadsItem, {"url": path})]
+                transfer.state = ContentTransfer.Charged
+            }
+            visible = false
+        }
+        onCancelPressed: visible = false
+        Keys.onEscapePressed: visible = false
+    }
+
+    Component.onCompleted: {
+        url = downloadItem.url
+        hrttl = JS.humanFileSize(downloadItem.totalBytes)
+        single.download(url)
+    }
 }

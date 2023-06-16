@@ -24,18 +24,21 @@
 //#include <QQmlApplicationEngine>  // QQengine
 //#include <QQmlContext>            //  >>
 #include <QQuickStyle>
-//#include <QtWebEngine/QtWebEngine>
-#include <QtWebEngine/qtwebengineglobal.h>
+#include <QtWebEngine/QtWebEngine>
+//#include <QtWebEngine/qtwebengineglobal.h>
 #include <QStandardPaths>
+#include <QSettings>
+
 #include <iostream>
 #include <stdio.h>
 #include <string>
+#include <sys/stat.h>
 
 // Run with QQuickView
 int main(int argc, char *argv[])
 {
     // faster reading
-    std::ios_base::sync_with_stdio(false);
+    //std::ios_base::sync_with_stdio(false);
     //std::cin.tie(NULL);
 
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -45,21 +48,42 @@ int main(int argc, char *argv[])
     QGuiApplication::setOrganizationName("octobrowser.ikozyris");
     QGuiApplication::setApplicationName("octobrowser.ikozyris");
 
-//"--blink-settings=darkMode=3,darkModeImagePolicy=2,darkModeImageStyle=2
+    QString appDataPath = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    std::string config = appDataPath.toStdString();
+    std::string args = " --enable-features=OverlayScrollbar --enable-smooth-scrolling ";
 
-    QString conf = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation) + "/args.conf";
-    std::string path = conf.toStdString();
-    std::string args = "";
-    FILE *fp = fopen(path.c_str(), "r");
-    char ch;
-    if (fp != NULL) {
-        while ((ch = fgetc(fp)) != EOF) {
-            args += ch;
+    struct stat sb;
+    // if path exists
+    if (stat(config.c_str(), &sb) == 0) {
+        //qDebug() << "path exists";
+        config += "/args.conf";
+        FILE *fp = fopen(config.c_str(), "r");
+        char ch;
+        // if file exists
+        if (fp != NULL) {
+            //qDebug() << "file exists";
+            args.clear();
+            while ((ch = getc(fp)) != EOF) {
+                args += ch;
+                // if unusually large file, stop reading
+                if (args.length() >= 500) {
+                    qDebug() << "what?!";
+                    break;
+                }
+            }
+            //qDebug() << QByteArray::fromStdString(args);
+            qputenv("QTWEBENGINE_CHROMIUM_FLAGS", QByteArray::fromStdString(args));
+            fclose(fp);
+        } else {
+            //qDebug() << "file does not exist";
+            // if not initialized, set defaults
+            FILE *fp = fopen(config.c_str(), "w");
+            fputs(args.c_str(), fp);
+            fclose(fp);
         }
+    } //else qDebug() << "first start";
 
-        qputenv("QTWEBENGINE_CHROMIUM_FLAGS", QByteArray::fromStdString(args));
-        fclose(fp);
-    }
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", QByteArray::fromStdString(args));
 
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "true");
     //qputenv("APP_ID", "ikozyris.octobrowser");

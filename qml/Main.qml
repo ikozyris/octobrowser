@@ -61,6 +61,7 @@ MainView {
         property bool lowend: false
         property bool smoothscroll: true
         property bool log: true
+        property int download: 0 // WebView or SingleDowload
     }
 
     // Maybe use a DB? like SQLite?
@@ -86,17 +87,22 @@ MainView {
             bottom: keyboardRect.top
         }
     }
+
 /*
     PerformanceOverlay {
         anchors.fill: pStack
         enabled: true
     }*/
-    ColorOverlay { //blue light filter
+
+    Loader {
         anchors.fill: pStack
-        source: pStack
-        visible: prefs.lightfilter
-// TODO: better ARGB (3/16 opacity) #AARRGGBB (like SVG khaki without blue)
-        color: "#30f0e600"
+        active: prefs.lightfilter
+        asynchronous: true
+        sourceComponent: ColorOverlay { //blue light filter
+            source: pStack
+    // TODO: better ARGB (3/16 opacity) #AARRGGBB (like SVG khaki without blue)
+            color: "#30f0e600"
+        }
     }
     // TODO: find a way to make both effects work (color + brightness)
     /*
@@ -130,9 +136,14 @@ MainView {
             var request = new XMLHttpRequest();
             request.open("PUT", fileUrl, false);
             request.send(decodeURIComponent(download.url.toString().replace("data:text/plain;,", "")))*/
-            download.accept()
-            PopupUtils.open(Qt.resolvedUrl("/qml/Dialogs/Download.qml"), 
-            null, {'downloadItem': download})
+            if (prefs.download === 0) {
+                download.accept()
+                PopupUtils.open(Qt.resolvedUrl("/qml/Dialogs/Download.qml"), 
+                null, {'downloadItem': download})
+            } else {
+                PopupUtils.open(Qt.resolvedUrl("/qml/Dialogs/DownloadSingle.qml"), 
+                null, {'downloadItem': download})
+            }
             //console.log("downloading to: " + webViewProfile.downloadPath + download.downloadFileName)
         }
     }

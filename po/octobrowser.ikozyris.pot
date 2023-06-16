@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-16 09:49+0000\n"
+"POT-Creation-Date: 2023-06-16 17:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -94,10 +94,10 @@ msgstr ""
 
 #: ../qml/Components/Settings/Advanced.qml:42
 msgid ""
-"<b>WARNING</b>: these settings are experimental<br> and may not work at all!"
-"<br>If you break something and the app does not<br> start, the configuration "
-"file is located on: <br>/home/phablet/.local/<br>share/octobrowser.ikozyris/"
-"args.conf<br>Most of them require a <b>restart of the app</b> to apply"
+"<b>WARNING</b>: these settings are experimental<br>If you break something "
+"and the app does not<br> start, the configuration file is located on: <br>/"
+"home/phablet/.local/<br>share/octobrowser.ikozyris/args.conf<br>Most of them "
+"require a <b>restart of the app</b> to apply"
 msgstr ""
 
 #: ../qml/Components/Settings/Advanced.qml:50
@@ -108,32 +108,44 @@ msgstr ""
 msgid "There is no reason to log JS console messages"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:69
+#: ../qml/Components/Settings/Advanced.qml:65
 msgid "Dark Mode:"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:70
+#: ../qml/Components/Settings/Advanced.qml:66
 msgid "Not for the app itself, but for the WebView"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:88
+#: ../qml/Components/Settings/Advanced.qml:84
 msgid "Better scrollbar:"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:89
+#: ../qml/Components/Settings/Advanced.qml:85
 msgid "More modern feel"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:107
+#: ../qml/Components/Settings/Advanced.qml:103
 msgid "Smooth scrolling:"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:126
+#: ../qml/Components/Settings/Advanced.qml:122
 msgid "Low end device mode:"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:127
+#: ../qml/Components/Settings/Advanced.qml:123
 msgid "Less load but worse images and content"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:143
+msgid "Download backend: %1 "
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:146
+msgid "QtWebEngineView"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:147
+msgid "SingleDownload"
 msgstr ""
 
 #: ../qml/Components/Settings/General.qml:32
@@ -233,31 +245,31 @@ msgstr ""
 msgid "Allows loading files over unencrypted HTTP"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:26
+#: ../qml/Dialogs/Download.qml:20
 msgid "Downloading:\n"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:42 ../qml/Dialogs/DownloadSingle.qml:44
+#: ../qml/Dialogs/Download.qml:36 ../qml/Dialogs/DownloadSingle.qml:57
 msgid "Pause"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:42 ../qml/Dialogs/DownloadSingle.qml:44
+#: ../qml/Dialogs/Download.qml:36 ../qml/Dialogs/DownloadSingle.qml:57
 msgid "Resume"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:47 ../qml/Dialogs/DownloadSingle.qml:49
+#: ../qml/Dialogs/Download.qml:41 ../qml/Dialogs/DownloadSingle.qml:62
 msgid "Cancel"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:47 ../qml/Dialogs/DownloadSingle.qml:49
+#: ../qml/Dialogs/Download.qml:41 ../qml/Dialogs/DownloadSingle.qml:62
 msgid "OK"
 msgstr ""
 
-#: ../qml/Dialogs/Download.qml:56 ../qml/Dialogs/DownloadSingle.qml:58
+#: ../qml/Dialogs/Download.qml:50 ../qml/Dialogs/DownloadSingle.qml:71
 msgid "Open"
 msgstr ""
 
-#: ../qml/Dialogs/DownloadSingle.qml:21
+#: ../qml/Dialogs/DownloadSingle.qml:29
 msgid "Downloading:"
 msgstr ""
 
@@ -296,7 +308,7 @@ msgstr ""
 msgid "Clear history"
 msgstr ""
 
-#: ../qml/MainPage.qml:174
+#: ../qml/MainPage.qml:175
 msgid "Welcome to <i>Octopus Browser</i>, <br> a fast & customizable browser."
 msgstr ""
 

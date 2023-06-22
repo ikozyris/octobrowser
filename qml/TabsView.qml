@@ -70,11 +70,13 @@ Page {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        // if deleted tab is before current
-                        if (MyTabs.tabNum >= index)
-                            MyTabs.tabNum--
-                        MyTabs.tabs.splice(index,1)
-                        listModel.remove(index)
+                        if (index >= 1) {
+                            // if deleted tab is before current
+                            if (MyTabs.tabNum >= index)
+                                MyTabs.tabNum--
+                            MyTabs.tabs.splice(index,1)
+                            listModel.remove(index)
+                        }
                     }
                 }
             }

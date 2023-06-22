@@ -80,7 +80,7 @@ WebEngineView {
 
     // html <select> override
     property var selectOverride: function(request) {
-        var dialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/SelectOverride.qml"));
+        var dialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/Web/SelectOverride.qml"));
         dialog.options = request.defaultText;
         dialog.accept.connect(request.dialogAccept);
         dialog.reject.connect(request.dialogReject);
@@ -105,6 +105,7 @@ WebEngineView {
     }
     onFileDialogRequested: function(request) {
         var acceptedTypes = request.acceptedMimeTypes.toString()
+        mainView.internal = true
         switch (request.mode) {
             case FileDialogRequest.FileModeOpen:
                 request.accepted = true;
@@ -155,6 +156,61 @@ WebEngineView {
             } else if (level === WebEngineView.ErrorMessageLevel) {
                 console.error(msg)
             }
+        }
+    }
+    onAuthenticationDialogRequested: function(request) {
+        switch (request.type) {
+            //case WebEngineAuthenticationDialogRequest.AuthenticationTypeHTTP:
+            case 0:
+                request.accepted = true;
+                var authDialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/Web/HttpAuth.qml"), this);
+                authDialog.host = UrlUtils.extractHost(request.url);
+                authDialog.realm = request.realm;
+                authDialog.accept.connect(function(username, password) {
+                                            request.dialogAccept(username, password);});
+                authDialog.reject.connect(request.dialogReject);
+
+            break;
+
+            //case WebEngineAuthenticationDialogRequest.AuthenticationTypeProxy:
+            case 1:
+                request.accepted = false;
+                break;
+        }
+    }
+
+     onFeaturePermissionRequested: {
+        switch (feature) {
+            case WebEngineView.Geolocation:
+                var domain = UrlUtils.extractHost(securityOrigin);
+                var locationPreference = DomainSettingsModel.getLocationPreference(domain);
+                if (locationPreference === DomainSettingsModel.AllowLocationAccess) {
+                    grantFeaturePermission(securityOrigin, feature, true);
+                    return;
+                }
+                if (locationPreference === DomainSettingsModel.DenyLocationAccess){
+                    grantFeaturePermission(securityOrigin, feature, false);
+                    return;
+                }
+                var geoPermissionDialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/Web/GeolocationAccess.qml"), this);
+                geoPermissionDialog.securityOrigin = securityOrigin;
+                geoPermissionDialog.showRememberDecisionCheckBox = (domain !== "") && ! incognito
+                geoPermissionDialog.allow.connect(function() { grantFeaturePermission(securityOrigin, feature, true); });
+                geoPermissionDialog.allowPermanently.connect(function() { grantFeaturePermission(securityOrigin, feature, true);
+                                                                          DomainSettingsModel.setLocationPreference(domain, DomainSettingsModel.AllowLocationAccess);
+                                                                        })
+                geoPermissionDialog.reject.connect(function() { grantFeaturePermission(securityOrigin, feature, false); });
+                geoPermissionDialog.rejectPermanently.connect(function() { grantFeaturePermission(securityOrigin, feature, false);
+                                                                          DomainSettingsModel.setLocationPreference(domain, DomainSettingsModel.DenyLocationAccess);
+                                                                        })
+                break;
+            case WebEngineView.MediaAudioCapture:
+            case WebEngineView.MediaVideoCapture:
+            case WebEngineView.MediaAudioVideoCapture:
+                var mediaAccessDialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/Web/MediaAccess.qml"), this);
+                mediaAccessDialog.origin = securityOrigin;
+                mediaAccessDialog.feature = feature;
+                break;
         }
     }
 }

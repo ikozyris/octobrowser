@@ -67,7 +67,9 @@ PopupBase {
         id: stateChangeConnection
         target: null
         onStateChanged: {
+            console.log("*****state changed")
             if (picker.activeTransfer.state === ContentTransfer.Charged) {
+                console.log("*****charged")
                 var selectedItems = []
                 for (var i in picker.activeTransfer.items) {
                     // ContentTransfer.Single seems not to be handled properly, e.g. selected items with file manager

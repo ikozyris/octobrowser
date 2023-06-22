@@ -35,7 +35,6 @@ Page {
     header: Loader { 
         id: headerLoader
         source: Qt.resolvedUrl("/qml/Components/MainHeader.qml")
-        asynchronous: true
         anchors {
             top: parent.top
             left: parent.left

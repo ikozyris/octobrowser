@@ -6,7 +6,10 @@
 	<file>Content/Picker.qml</file>
 	<file>Dialogs/Download.qml</file>
 	<file>Dialogs/DownloadSingle.qml</file>
-	<file>Dialogs/SelectOverride.qml</file>
+	<file>Dialogs/Web/GeolocationAccess.qml</file>
+	<file>Dialogs/Web/HttpAuth.qml</file>
+	<file>Dialogs/Web/MediaAccess.qml</file>
+	<file>Dialogs/Web/SelectOverride.qml</file>
 	<file>FindSingleton.qml</file>
 	<file>Help.qml</file>
 	<file>HistoryView.qml</file>

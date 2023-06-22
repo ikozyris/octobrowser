@@ -86,7 +86,7 @@ int main(int argc, char *argv[])
     qputenv("QTWEBENGINE_CHROMIUM_FLAGS", QByteArray::fromStdString(args));
 
     qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "true");
-    //qputenv("APP_ID", "ikozyris.octobrowser");
+    qputenv("APP_ID", "ikozyris.octobrowser");
     qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2"); //force QQC2 popups
 
     if (qgetenv("QT_QPA_PLATFORM") == "wayland") {

@@ -8,13 +8,13 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-16 17:26+0000\n"
+"POT-Creation-Date: 2023-06-22 09:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../qml/About.qml:25 ../qml/Components/MainHeader.qml:138
@@ -258,10 +258,12 @@ msgid "Resume"
 msgstr ""
 
 #: ../qml/Dialogs/Download.qml:41 ../qml/Dialogs/DownloadSingle.qml:62
+#: ../qml/Dialogs/Web/HttpAuth.qml:80
 msgid "Cancel"
 msgstr ""
 
 #: ../qml/Dialogs/Download.qml:41 ../qml/Dialogs/DownloadSingle.qml:62
+#: ../qml/Dialogs/Web/HttpAuth.qml:70
 msgid "OK"
 msgstr ""
 
@@ -271,6 +273,67 @@ msgstr ""
 
 #: ../qml/Dialogs/DownloadSingle.qml:29
 msgid "Downloading:"
+msgstr ""
+
+#: ../qml/Dialogs/Web/GeolocationAccess.qml:29
+msgid "Permission Request"
+msgstr ""
+
+#: ../qml/Dialogs/Web/GeolocationAccess.qml:30
+msgid "This page wants to know your device’s location."
+msgstr ""
+
+#: ../qml/Dialogs/Web/GeolocationAccess.qml:44
+msgid "Remember decision"
+msgstr ""
+
+#: ../qml/Dialogs/Web/GeolocationAccess.qml:51
+msgid "Allow"
+msgstr ""
+
+#: ../qml/Dialogs/Web/GeolocationAccess.qml:57
+msgid "Deny"
+msgstr ""
+
+#: ../qml/Dialogs/Web/HttpAuth.qml:25
+msgid "Authentication required."
+msgstr ""
+
+#. TRANSLATORS: %1 refers to the URL of the current website and %2 is a string that the website sends with more information about the authentication challenge (technically called "realm")
+#: ../qml/Dialogs/Web/HttpAuth.qml:27
+msgid "The website at %1 requires authentication. The website says \"%2\""
+msgstr ""
+
+#: ../qml/Dialogs/Web/HttpAuth.qml:50
+msgid "Username"
+msgstr ""
+
+#: ../qml/Dialogs/Web/HttpAuth.qml:60
+msgid "Password"
+msgstr ""
+
+#: ../qml/Dialogs/Web/MediaAccess.qml:39
+msgid "Permission"
+msgstr ""
+
+#: ../qml/Dialogs/Web/MediaAccess.qml:46
+msgid "Allow this domain to access your camera and microphone?"
+msgstr ""
+
+#: ../qml/Dialogs/Web/MediaAccess.qml:47
+msgid "Allow this domain to access your camera?"
+msgstr ""
+
+#: ../qml/Dialogs/Web/MediaAccess.qml:48
+msgid "Allow this domain to access your microphone?"
+msgstr ""
+
+#: ../qml/Dialogs/Web/MediaAccess.qml:77
+msgid "Yes"
+msgstr ""
+
+#: ../qml/Dialogs/Web/MediaAccess.qml:85
+msgid "No"
 msgstr ""
 
 #: ../qml/Help.qml:47
@@ -308,7 +371,7 @@ msgstr ""
 msgid "Clear history"
 msgstr ""
 
-#: ../qml/MainPage.qml:175
+#: ../qml/MainPage.qml:174
 msgid "Welcome to <i>Octopus Browser</i>, <br> a fast & customizable browser."
 msgstr ""
 

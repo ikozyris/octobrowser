@@ -14,9 +14,12 @@
 	<file>qml/Components/SingleTab.qml</file>
 	<file>qml/Content/MimeTypeMapper.js</file>
 	<file>qml/Content/Picker.qml</file>
-	<file>qml/Dialogs/Download.qml</file>
-	<file>qml/Dialogs/DownloadSingle.qml</file>
-	<file>qml/Dialogs/SelectOverride.qml</file>
+	<file>Dialogs/Download.qml</file>
+	<file>Dialogs/DownloadSingle.qml</file>
+	<file>Dialogs/Web/GeolocationAccess.qml</file>
+	<file>Dialogs/Web/HttpAuth.qml</file>
+	<file>Dialogs/Web/MediaAccess.qml</file>
+	<file>Dialogs/Web/SelectOverride.qml</file>
 	<file>qml/FindSingleton.qml</file>
 	<file>qml/Help.qml</file>
 	<file>qml/HistoryView.qml</file>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-22 11:01+0000\n"
+"POT-Creation-Date: 2023-06-22 20:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,7 +76,7 @@ msgstr ""
 msgid "Manage Tabs"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:123 ../qml/SettingsView.qml:27
+#: ../qml/Components/MainHeader.qml:123 ../qml/SettingsView.qml:28
 msgid "Settings"
 msgstr ""
 
@@ -92,7 +92,7 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:42
+#: ../qml/Components/Settings/Advanced.qml:43
 msgid ""
 "<b>WARNING</b>: these settings are experimental<br>If you break something "
 "and the app does not<br> start, the configuration file is located on: <br>/"
@@ -100,52 +100,56 @@ msgid ""
 "require a <b>restart of the app</b> to apply"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:50
-msgid "Disable JavaScript logging:"
-msgstr ""
-
-#: ../qml/Components/Settings/Advanced.qml:51
-msgid "There is no reason to log JS console messages"
-msgstr ""
-
-#: ../qml/Components/Settings/Advanced.qml:65
-msgid "Dark Mode:"
-msgstr ""
-
-#: ../qml/Components/Settings/Advanced.qml:66
-msgid "Not for the app itself, but for the WebView"
-msgstr ""
-
-#: ../qml/Components/Settings/Advanced.qml:84
-msgid "Better scrollbar:"
-msgstr ""
-
-#: ../qml/Components/Settings/Advanced.qml:85
-msgid "More modern feel"
-msgstr ""
-
-#: ../qml/Components/Settings/Advanced.qml:103
-msgid "Smooth scrolling:"
-msgstr ""
-
-#: ../qml/Components/Settings/Advanced.qml:122
-msgid "Low end device mode:"
-msgstr ""
-
-#: ../qml/Components/Settings/Advanced.qml:123
-msgid "Less load but worse images and content"
-msgstr ""
-
-#: ../qml/Components/Settings/Advanced.qml:143
+#: ../qml/Components/Settings/Advanced.qml:53
 msgid "Download backend: %1 "
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:146
+#: ../qml/Components/Settings/Advanced.qml:56
 msgid "QtWebEngineView"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:147
+#: ../qml/Components/Settings/Advanced.qml:57
 msgid "SingleDownload"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:68
+msgid "Disable JavaScript logging:"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:69
+msgid "There is no reason to log JS console messages"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:82
+msgid "Chrome Flags"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:86
+msgid "Dark Mode:"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:87
+msgid "Not for the app itself, but for the WebView"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:105
+msgid "Better scrollbar:"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:106
+msgid "Scrollbar with a modern feel"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:124
+msgid "Smooth scrolling:"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:143
+msgid "Low end device mode:"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:144
+msgid "Less load but worse images and content"
 msgstr ""
 
 #: ../qml/Components/Settings/General.qml:32
@@ -195,38 +199,38 @@ msgstr ""
 msgid "bottom"
 msgstr ""
 
-#: ../qml/Components/Settings/Privacy.qml:34
+#: ../qml/Components/Settings/Privacy.qml:32
+msgid "Limit WebRTC to public IP addresses only:"
+msgstr ""
+
+#: ../qml/Components/Settings/Privacy.qml:33
+msgid "If enabled, it might leak your real IP, even if a VPN is used"
+msgstr ""
+
+#: ../qml/Components/Settings/Privacy.qml:49
 msgid "User Agent:"
 msgstr ""
 
-#: ../qml/Components/Settings/Privacy.qml:35
+#: ../qml/Components/Settings/Privacy.qml:50
 msgid ""
 "This can be used to confuse websites about your identity and/or load the "
 "desktop version of a page."
 msgstr ""
 
-#: ../qml/Components/Settings/Privacy.qml:50
-msgid "The buttons below will apply some default User Agents"
+#: ../qml/Components/Settings/Privacy.qml:65
+msgid "The buttons below will apply some Chrome User Agents"
 msgstr ""
 
-#: ../qml/Components/Settings/Privacy.qml:56
-msgid "Default"
+#: ../qml/Components/Settings/Privacy.qml:73
+msgid "Default (UT)"
 msgstr ""
 
-#: ../qml/Components/Settings/Privacy.qml:60
-msgid "Desktop"
+#: ../qml/Components/Settings/Privacy.qml:77
+msgid "Linux Desktop"
 msgstr ""
 
-#: ../qml/Components/Settings/Privacy.qml:64
-msgid "Common - Chrome on Android"
-msgstr ""
-
-#: ../qml/Components/Settings/Privacy.qml:71
-msgid "Limit WebRTC to public IP addresses only:"
-msgstr ""
-
-#: ../qml/Components/Settings/Privacy.qml:72
-msgid "If enabled, it might leak your real IP, even if a VPN is used"
+#: ../qml/Components/Settings/Privacy.qml:81
+msgid "Chrome on Android"
 msgstr ""
 
 #: ../qml/Components/Settings/Security.qml:32

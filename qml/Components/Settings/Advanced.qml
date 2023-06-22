@@ -21,6 +21,7 @@ import QtQuick.Layouts 1.3
 import Ubuntu.Components 1.3
 
 import Manager 0.1
+import "../"
 
 ScrollView {
     id: scrollView
@@ -46,6 +47,23 @@ ScrollView {
             }
         }
         ListItem {
+            height: backselector.height + column.mSpacing
+            OptionSelector {
+                id: backselector
+                text: i18n.tr("Download backend: %1 ").arg(
+                    backselector.selectedIndex === 0 ? "QtWebEngineView" : "SingleDownload")
+                model: [
+                    i18n.tr("QtWebEngineView"),
+                    i18n.tr("SingleDownload"),
+                ]
+                anchors {
+                    top: parent.top; topMargin: column.mSpacing
+                }
+                selectedIndex: prefs.download
+                onSelectedIndexChanged: prefs.download = backselector.selectedIndex
+            }
+        }
+        ListItem {
             ListItemLayout {
                 title.text: i18n.tr("Disable JavaScript logging:")
                 subtitle.text: i18n.tr("There is no reason to log JS console messages")
@@ -59,6 +77,9 @@ ScrollView {
                 checked: prefs.log
                 onCheckedChanged: prefs.log = logswitch.checked
             }
+        }
+        SectionDivider {
+            text: i18n.tr("Chrome Flags")
         }
         ListItem {
             ListItemLayout {
@@ -82,7 +103,7 @@ ScrollView {
         ListItem {
             ListItemLayout {
                 title.text: i18n.tr("Better scrollbar:")
-                subtitle.text: i18n.tr("More modern feel")
+                subtitle.text: i18n.tr("Scrollbar with a modern feel")
             }
             Switch {
                 id: scrollswitch
@@ -134,23 +155,6 @@ ScrollView {
                         changed = true
                     prefs.lowend = lowendswitch.checked
                 }
-            }
-        }
-        ListItem {
-            height: backselector.height + column.mSpacing
-            OptionSelector {
-                id: backselector
-                text: i18n.tr("Download backend: %1 ").arg(
-                    backselector.selectedIndex === 0 ? "QtWebEngineView" : "SingleDownload")
-                model: [
-                    i18n.tr("QtWebEngineView"),
-                    i18n.tr("SingleDownload"),
-                ]
-                anchors {
-                    top: parent.top; topMargin: column.mSpacing
-                }
-                selectedIndex: prefs.download
-                onSelectedIndexChanged: prefs.download = backselector.selectedIndex
             }
         }
 	}

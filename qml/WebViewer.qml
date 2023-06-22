@@ -36,7 +36,7 @@ WebEngineView {
         pluginsEnabled: true                             // for pdf
         pdfViewerEnabled: true                           // enable pdf viewer
         // according to: https://sites.google.com/a/chromium.org/dev/audio-video/autoplay
-        playbackRequiresUserGesture: prefs.autoplay      // block autoplay (chrome behavior)
+        playbackRequiresUserGesture: prefs.autoplay      // block autoplay
         allowRunningInsecureContent: prefs.securecontent // insecure content
         fullScreenSupportEnabled: true
         dnsPrefetchEnabled: true
@@ -159,8 +159,7 @@ WebEngineView {
                 authDialog.accept.connect(function(username, password) {
                                             request.dialogAccept(username, password);});
                 authDialog.reject.connect(request.dialogReject);
-
-            break;
+                break;
 
             //case WebEngineAuthenticationDialogRequest.AuthenticationTypeProxy:
             case 1:

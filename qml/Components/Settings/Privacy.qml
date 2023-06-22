@@ -28,7 +28,22 @@ ScrollView {
         property int mSpacing: units.gu(2)
 		// ==== PRIVACY CATEGORY ====
         ListItem {
-            height: ualabel.height + uatext.height + ualabel2.height + buttonrow.height + column.mSpacing
+            ListItemLayout {
+                title.text: i18n.tr("Limit WebRTC to public IP addresses only:")
+                subtitle.text: i18n.tr("If enabled, it might leak your real IP, even if a VPN is used")
+            }
+            Switch {
+                id: rtcswitch
+                anchors {
+                    top: parent.top; topMargin: column.mSpacing
+                    right: parent.right; rightMargin: units.gu(1)
+                }
+                checked: prefs.webrtc
+                onCheckedChanged: prefs.webrtc = rtcswitch.checked
+            }
+        }
+        ListItem {
+            height: ualabel.height + uatext.height + ualabel2.height + buttonrow.height + column.mSpacing * 3
             ListItemLayout {
                 id: ualabel
                 title.text: i18n.tr("User Agent:")
@@ -47,38 +62,27 @@ ScrollView {
                 id: ualabel2
                 anchors.top: uatext.bottom
                 anchors.topMargin: column.mSpacing
-                text: i18n.tr("The buttons below will apply some default User Agents")
+                text: i18n.tr("The buttons below will apply some Chrome User Agents")
             }
             Row {
                 id: buttonrow
-                anchors.top: ualabel2.bottom
+                anchors {
+                    top: ualabel2.bottom
+                    topMargin: column.mSpacing
+                    horizontalCenter: parent.horizontalCenter
+                }
                 Button {
-                    text: i18n.tr("Default")
+                    text: i18n.tr("Default (UT)")
                     onClicked: uatext.text = "Mozilla/5.0 (Linux; Mobile; Ubuntu 16.04 like Android 9) AppleWebKit/537.36 Chrome/87.0.4280.144 Mobile Safari/537.36"
                 }
                 Button {
-                    text: i18n.tr("Desktop")
+                    text: i18n.tr("Linux Desktop")
                     onClicked: uatext.text = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
                 }
                 Button {
-                    text: i18n.tr("Common - Chrome on Android")
+                    text: i18n.tr("Chrome on Android")
                     onClicked: uatext.text = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.3"
                 }
-            }
-        }
-        ListItem {
-            ListItemLayout {
-                title.text: i18n.tr("Limit WebRTC to public IP addresses only:")
-                subtitle.text: i18n.tr("If enabled, it might leak your real IP, even if a VPN is used")
-            }
-            Switch {
-                id: rtcswitch
-                anchors {
-                    top: parent.top; topMargin: column.mSpacing
-                    right: parent.right; rightMargin: units.gu(1)
-                }
-                checked: prefs.webrtc
-                onCheckedChanged: prefs.webrtc = rtcswitch.checked
             }
         }
 	}

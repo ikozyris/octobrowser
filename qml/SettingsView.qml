@@ -19,9 +19,10 @@
 import QtQuick 2.12
 import QtQuick.Layouts 1.3
 import Ubuntu.Components 1.3
+import QtQml.Models 2.1
 
 Page {
-    id: settingPage
+    id: settingsPage
 
     header: PageHeader {
         title: i18n.tr("Settings")
@@ -34,67 +35,46 @@ Page {
         extension: Sections {
             id: sections
             model: ["General", "Privacy", "Security", "Advanced"]
+            onSelectedIndexChanged: settingsView.currentIndex = sections.selectedIndex
         }
     }
-
-    Loader {
-        id: generalSettingsLoader
-        visible: sections.selectedIndex === 0
-        asynchronous: true
-        source: Qt.resolvedUrl("/qml/Components/Settings/General.qml")
+    ListView {
+        id: settingsView
         anchors {
-            top: settingPage.header.bottom
+            top: settingsPage.header.bottom
             left: parent.left
             right: parent.right
             bottom: parent.bottom
         }
-    }
-    Loader {
-        id: privacySettingsLoader
-        visible: sections.selectedIndex === 1
-        asynchronous: true
-        source: Qt.resolvedUrl("/qml/Components/Settings/Privacy.qml")
-        anchors {
-            top: settingPage.header.bottom
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        }
-    }
-    Loader {
-        id: securitySettingsLoader
-        visible: sections.selectedIndex === 2
-        asynchronous: true
-        source: Qt.resolvedUrl("/qml/Components/Settings/Security.qml")
-        anchors {
-            top: settingPage.header.bottom
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        }
-    }
-    Loader {
-        id: advancedSettingsLoader
-        active: sections.selectedIndex === 3
-        asynchronous: true
-        source: Qt.resolvedUrl("/qml/Components/Settings/Advanced.qml")
-        anchors {
-            top: settingPage.header.bottom
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
-        }
-    }
-    Loader {
-        id: settingsLoader
-        visible: sections.selectedIndex === 0
-        asynchronous: true
-        source: Qt.resolvedUrl("/qml/Components/Settings/General.qml")
-        anchors {
-            top: settingPage.header.bottom
-            left: parent.left
-            right: parent.right
-            bottom: parent.bottom
+        interactive: false
+        snapMode: ListView.SnapOneItem
+        highlightMoveDuration: 0
+        currentIndex: settingsPage.header.sections.selectedIndex
+        model: ObjectModel {
+            Loader {
+                asynchronous: true
+                width: settingsView.width
+                height: settingsView.height
+                source: Qt.resolvedUrl("/qml/Components/Settings/General.qml")
+            }
+            Loader {
+                asynchronous: true
+                width: settingsView.width
+                height: settingsView.height
+                source: Qt.resolvedUrl("/qml/Components/Settings/Privacy.qml")
+            }
+            Loader {
+                asynchronous: true
+                width: settingsView.width
+                height: settingsView.height
+                source: Qt.resolvedUrl("/qml/Components/Settings/Security.qml")
+            }
+            Loader {
+                asynchronous: true
+                width: settingsView.width
+                height: settingsView.height
+                source: Qt.resolvedUrl("/qml/Components/Settings/Advanced.qml")
+            }
         }
     }
 }

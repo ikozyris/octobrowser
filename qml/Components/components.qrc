@@ -8,6 +8,7 @@
 	<file>Settings/General.qml</file>
 	<file>Settings/Privacy.qml</file>
 	<file>Settings/Security.qml</file>
+	<file>SectionDivider.qml</file>
 	<file>SingleTab.qml</file>
 </qresource>
 </RCC>

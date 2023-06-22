@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-22 09:54+0000\n"
+"POT-Creation-Date: 2023-06-22 11:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -172,26 +172,26 @@ msgstr ""
 msgid "Applies a yellow overlay to the app"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:79
+#: ../qml/Components/Settings/General.qml:95
 #, javascript-format
 msgid "Zoom level: %1%"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:80
+#: ../qml/Components/Settings/General.qml:96
 msgid "Scales the page according to your needs"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:98
+#: ../qml/Components/Settings/General.qml:114
 msgid ""
 "Address bar position: %1 \n"
 "(restart the app after change)"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:101
+#: ../qml/Components/Settings/General.qml:117
 msgid "top"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:102
+#: ../qml/Components/Settings/General.qml:118
 msgid "bottom"
 msgstr ""
 
@@ -205,11 +205,27 @@ msgid ""
 "desktop version of a page."
 msgstr ""
 
-#: ../qml/Components/Settings/Privacy.qml:49
+#: ../qml/Components/Settings/Privacy.qml:50
+msgid "The buttons below will apply some default User Agents"
+msgstr ""
+
+#: ../qml/Components/Settings/Privacy.qml:56
+msgid "Default"
+msgstr ""
+
+#: ../qml/Components/Settings/Privacy.qml:60
+msgid "Desktop"
+msgstr ""
+
+#: ../qml/Components/Settings/Privacy.qml:64
+msgid "Common - Chrome on Android"
+msgstr ""
+
+#: ../qml/Components/Settings/Privacy.qml:71
 msgid "Limit WebRTC to public IP addresses only:"
 msgstr ""
 
-#: ../qml/Components/Settings/Privacy.qml:50
+#: ../qml/Components/Settings/Privacy.qml:72
 msgid "If enabled, it might leak your real IP, even if a VPN is used"
 msgstr ""
 

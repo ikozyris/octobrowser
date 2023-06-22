@@ -190,6 +190,7 @@ Page {
 
     Component.onCompleted: {
         //console.log("MainPage loaded")
+        // TODO: maybe do this asynchronously?
         barposition: prefs.adrpos === 1 ? "bottom" : "top"
         headerLoader.state = barposition
         webviewLoader.state = barposition

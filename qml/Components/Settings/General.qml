@@ -71,7 +71,23 @@ ScrollView {
                 checked: prefs.lightfilter
                 onCheckedChanged: prefs.lightfilter = blfilter.checked
             }
-        }
+        }/*
+        // TODO: find default delagate of ActionBar
+        ListItem {
+            ListItemLayout {
+                title.text: i18n.tr("Add whitespace between buttons on the search header:")
+                subtitle.text: i18n.tr("Some people find buttons too close")
+            }
+            Switch {
+                id: paddingswitch
+                anchors {
+                    top: parent.top; topMargin: column.mSpacing
+                    right: parent.right; rightMargin: units.gu(1)
+                }
+                checked: prefs.padding
+                onCheckedChanged: prefs.padding = paddingswitch.checked
+            }
+        }*/
         ListItem {
             height: zoomlabel.height + zoomslider.height + column.mSpacing
             ListItemLayout {

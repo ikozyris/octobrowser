@@ -28,7 +28,7 @@ ScrollView {
         property int mSpacing: units.gu(2)
 		// ==== PRIVACY CATEGORY ====
         ListItem {
-            height: ualabel.height + uatext.height + column.mSpacing
+            height: ualabel.height + uatext.height + ualabel2.height + buttonrow.height + column.mSpacing
             ListItemLayout {
                 id: ualabel
                 title.text: i18n.tr("User Agent:")
@@ -42,6 +42,28 @@ ScrollView {
                 anchors.top: ualabel.bottom
                 text: prefs.cmuseragent
                 onTextChanged: prefs.cmuseragent = uatext.text
+            }
+            Label {
+                id: ualabel2
+                anchors.top: uatext.bottom
+                anchors.topMargin: column.mSpacing
+                text: i18n.tr("The buttons below will apply some default User Agents")
+            }
+            Row {
+                id: buttonrow
+                anchors.top: ualabel2.bottom
+                Button {
+                    text: i18n.tr("Default")
+                    onClicked: uatext.text = "Mozilla/5.0 (Linux; Mobile; Ubuntu 16.04 like Android 9) AppleWebKit/537.36 Chrome/87.0.4280.144 Mobile Safari/537.36"
+                }
+                Button {
+                    text: i18n.tr("Desktop")
+                    onClicked: uatext.text = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
+                }
+                Button {
+                    text: i18n.tr("Common - Chrome on Android")
+                    onClicked: uatext.text = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Mobile Safari/537.3"
+                }
             }
         }
         ListItem {

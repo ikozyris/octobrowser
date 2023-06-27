@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-22 20:17+0000\n"
+"POT-Creation-Date: 2023-06-27 10:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/About.qml:25 ../qml/Components/MainHeader.qml:138
+#: ../qml/About.qml:25 ../qml/Components/MainHeader.qml:145
 msgid "About"
 msgstr ""
 
@@ -72,23 +72,23 @@ msgstr ""
 msgid "Enter a URL or a search query"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:118
+#: ../qml/Components/MainHeader.qml:125
 msgid "Manage Tabs"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:123 ../qml/SettingsView.qml:28
+#: ../qml/Components/MainHeader.qml:130 ../qml/SettingsView.qml:28
 msgid "Settings"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:128 ../qml/HistoryView.qml:35
+#: ../qml/Components/MainHeader.qml:135 ../qml/HistoryView.qml:35
 msgid "History"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:133
+#: ../qml/Components/MainHeader.qml:140
 msgid "Find in page"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:143 ../qml/Help.qml:28
+#: ../qml/Components/MainHeader.qml:150 ../qml/Help.qml:28
 msgid "Help"
 msgstr ""
 
@@ -96,107 +96,131 @@ msgstr ""
 msgid ""
 "<b>WARNING</b>: these settings are experimental<br>If you break something "
 "and the app does not<br> start, the configuration file is located on: <br>/"
-"home/phablet/.local/<br>share/octobrowser.ikozyris/args.conf<br>Most of them "
-"require a <b>restart of the app</b> to apply"
+"home/phablet/.local/<br>share/octobrowser.ikozyris/args.conf<br>To apply "
+"changes, press the button below<br> and restart the app."
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:53
+#: ../qml/Components/Settings/Advanced.qml:52
+msgid "Apply changes"
+msgstr ""
+
+#: ../qml/Components/Settings/Advanced.qml:79
 msgid "Download backend: %1 "
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:56
+#: ../qml/Components/Settings/Advanced.qml:82
 msgid "QtWebEngineView"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:57
+#: ../qml/Components/Settings/Advanced.qml:83
 msgid "SingleDownload"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:68
+#: ../qml/Components/Settings/Advanced.qml:93
 msgid "Disable JavaScript logging:"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:69
+#: ../qml/Components/Settings/Advanced.qml:94
 msgid "There is no reason to log JS console messages"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:82
+#: ../qml/Components/Settings/Advanced.qml:106
 msgid "Chrome Flags"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:86
+#: ../qml/Components/Settings/Advanced.qml:110
 msgid "Dark Mode:"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:87
+#: ../qml/Components/Settings/Advanced.qml:111
 msgid "Not for the app itself, but for the WebView"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:105
+#: ../qml/Components/Settings/Advanced.qml:124
 msgid "Better scrollbar:"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:106
+#: ../qml/Components/Settings/Advanced.qml:125
 msgid "Scrollbar with a modern feel"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:124
+#: ../qml/Components/Settings/Advanced.qml:138
 msgid "Smooth scrolling:"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:143
+#: ../qml/Components/Settings/Advanced.qml:152
 msgid "Low end device mode:"
 msgstr ""
 
-#: ../qml/Components/Settings/Advanced.qml:144
+#: ../qml/Components/Settings/Advanced.qml:153
 msgid "Less load but worse images and content"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:32
+#: ../qml/Components/Settings/General.qml:33
 msgid "Remember open tabs:"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:33
+#: ../qml/Components/Settings/General.qml:34
 msgid "Do not close tabs on exit"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:47
+#: ../qml/Components/Settings/General.qml:48
 msgid "Clear web cache on exit:"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:48
+#: ../qml/Components/Settings/General.qml:49
 msgid "Web caches can get very large if never cleard"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:62
-msgid "Blue light filter:"
-msgstr ""
-
-#: ../qml/Components/Settings/General.qml:63
-msgid "Applies a yellow overlay to the app"
-msgstr ""
-
-#: ../qml/Components/Settings/General.qml:95
-#, javascript-format
-msgid "Zoom level: %1%"
-msgstr ""
-
-#: ../qml/Components/Settings/General.qml:96
-msgid "Scales the page according to your needs"
-msgstr ""
-
-#: ../qml/Components/Settings/General.qml:114
+#: ../qml/Components/Settings/General.qml:81
 msgid ""
 "Address bar position: %1 \n"
 "(restart the app after change)"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:117
+#: ../qml/Components/Settings/General.qml:84
 msgid "top"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:118
+#: ../qml/Components/Settings/General.qml:85
 msgid "bottom"
+msgstr ""
+
+#: ../qml/Components/Settings/General.qml:98
+#, javascript-format
+msgid "Zoom level: %1%"
+msgstr ""
+
+#: ../qml/Components/Settings/General.qml:99
+msgid "Scales the page according to your needs"
+msgstr ""
+
+#: ../qml/Components/Settings/General.qml:114
+msgid "Filters"
+msgstr ""
+
+#: ../qml/Components/Settings/General.qml:119
+msgid "Blue light filter:"
+msgstr ""
+
+#: ../qml/Components/Settings/General.qml:120
+msgid "Applies a yellow overlay to the app"
+msgstr ""
+
+#: ../qml/Components/Settings/General.qml:135
+msgid "Reduce brightness:"
+msgstr ""
+
+#: ../qml/Components/Settings/General.qml:136
+msgid "Reduces the brightness of the app"
+msgstr ""
+
+#: ../qml/Components/Settings/General.qml:150
+msgid "Night Mode:"
+msgstr ""
+
+#: ../qml/Components/Settings/General.qml:151
+msgid "Makes web page B&W and inverts colors"
 msgstr ""
 
 #: ../qml/Components/Settings/Privacy.qml:32
@@ -221,15 +245,15 @@ msgstr ""
 msgid "The buttons below will apply some Chrome User Agents"
 msgstr ""
 
-#: ../qml/Components/Settings/Privacy.qml:73
+#: ../qml/Components/Settings/Privacy.qml:75
 msgid "Default (UT)"
 msgstr ""
 
-#: ../qml/Components/Settings/Privacy.qml:77
+#: ../qml/Components/Settings/Privacy.qml:79
 msgid "Linux Desktop"
 msgstr ""
 
-#: ../qml/Components/Settings/Privacy.qml:81
+#: ../qml/Components/Settings/Privacy.qml:83
 msgid "Chrome on Android"
 msgstr ""
 
@@ -357,7 +381,7 @@ msgid "No"
 msgstr ""
 
 #: ../qml/Help.qml:47
-msgid "There is an unkown/new bug"
+msgid "There is an unknown/new bug"
 msgstr ""
 
 #: ../qml/Help.qml:54
@@ -371,15 +395,16 @@ msgstr ""
 
 #: ../qml/Help.qml:75
 msgid ""
-"History is shown in reverse order <a href='https://en.m.wikipedia.org/wiki/"
-"FIFO_(computing_and_electronics)'>(FIFO -> first in, first out)</a>"
+"A URL is added to history once the page has fully loaded,\n"
+"which means that if you get redirected from A to B,\n"
+"A will not be written to history."
 msgstr ""
 
-#: ../qml/Help.qml:89
+#: ../qml/Help.qml:91
 msgid "What settings are recommended for best security & privacy"
 msgstr ""
 
-#: ../qml/Help.qml:95
+#: ../qml/Help.qml:97
 msgid ""
 "Disable javascript, disable autoloadind images and block autoplay.\n"
 "In addition, you can use a common user agent to limit fingerprinting.\n"
@@ -391,7 +416,7 @@ msgstr ""
 msgid "Clear history"
 msgstr ""
 
-#: ../qml/MainPage.qml:174
+#: ../qml/MainPage.qml:175
 msgid "Welcome to <i>Octopus Browser</i>, <br> a fast & customizable browser."
 msgstr ""
 

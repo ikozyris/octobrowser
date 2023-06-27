@@ -11,8 +11,8 @@ Item {
 	property url currtab: "";
 	property int tabNum: 0;
 	property bool tabVisibility: false;
-	// URL forwarded from history
-	property url display: "";
+	// string shown in address bar
+	//property string shown: "";
 
 /*	Settings {
 		id: kept

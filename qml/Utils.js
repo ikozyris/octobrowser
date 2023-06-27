@@ -67,6 +67,13 @@ function canshow(prog) {
 	}
 }
 
+function extractDomain(url) {
+	var domainName = url.replace(/^https?:\/\//, "")
+						.replace(/^www\./, "")
+						.replace(/\/..*/, '');
+	return domainName;
+}
+
 //history related
 function delIndex(index) {
 	history.dates.splice(index, 1);

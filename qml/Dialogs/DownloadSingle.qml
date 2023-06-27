@@ -13,7 +13,7 @@ Dialog {
     property var downloadItem
     property bool isPaused: false
     property var url
-    property var hrttl
+    property var hrttl // human readable total file size
     property var path
 
     function rePau() {
@@ -70,11 +70,11 @@ Dialog {
         visible: single.progress === 100
         text: i18n.tr("Open")
         onClicked: {
-            exportPeerPicker.contentType = MimeTypeMapper.mimeTypeToContentType(downloadItem.mimeType);
+            exportPeerPicker.contentType = ContentType.Unknown //MimeTypeMapper.mimeTypeToContentType(downloadItem.mimeType);
             exportPeerPicker.visible = true;
             exportPeerPicker.path = path;
-            exportPeerPicker.mimeType = downloadItem.mimeType;
-            exportPeerPicker.downloadUrl = downloadItem.url;   
+            //exportPeerPicker.mimeType = downloadItem.mimeType;
+            exportPeerPicker.downloadUrl = downloadDialog.url;   
         }
     }
 

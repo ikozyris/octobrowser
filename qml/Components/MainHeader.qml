@@ -95,12 +95,18 @@ PageHeader {
         }
         placeholderText: i18n.tr("Enter a URL or a search query")
         inputMethodHints: Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
+        property var prevText
         onActiveFocusChanged: {
             if (activeFocus) {
+                prevText = textFieldInput.text
+                textFieldInput.text = webview.url
                 state = "focused"
                 selectAll()
             } else {
+                if (prevText != "")
+                    textFieldInput.text = prevText
                 state = "normal"
+                focus = false
             }
         }
         onAccepted: {
@@ -108,6 +114,7 @@ PageHeader {
             MyTabs.currtab = JS.buildSearchUrl(textFieldInput.text)
             MyTabs.tabVisibility = true
             state = "normal"
+            focus = false
         }
     }
     trailingActionBar {

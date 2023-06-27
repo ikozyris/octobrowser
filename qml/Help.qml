@@ -44,7 +44,7 @@ Page {
                 height: adrhelp.height + adrtitle.height + column.mPadding
                 Label {
                     id: adrtitle
-                    text: i18n.tr("There is an unkown/new bug")
+                    text: i18n.tr("There is an unknown/new bug")
                     wrapMode: Text.Wrap
                     font.italic: true
                 }
@@ -72,7 +72,9 @@ Page {
                 Label {
                     id: hstrhelp
                     linkColor: UbuntuColors.orange
-                    text: i18n.tr("History is shown in reverse order <a href='https://en.m.wikipedia.org/wiki/FIFO_(computing_and_electronics)'>(FIFO -> first in, first out)</a>")
+                    text: i18n.tr("A URL is added to history once the page has fully loaded,\n"
+                                + "which means that if you get redirected from A to B,\n"
+                                + "A will not be written to history.")
                     wrapMode: Text.Wrap
                     anchors {
                         top: parent.top; topMargin: column.mSpacing

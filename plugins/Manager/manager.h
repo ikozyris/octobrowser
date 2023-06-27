@@ -19,13 +19,6 @@
 
 #include <QObject>
 #include <QString>
-/*
-#include <QVector>
-#include <QtCore>
-#include <qt5/QtCore/QVector>
-#include <qvector.h>
-#include "qt5/QtCore/qvector.h"
-*/
 
 class Manager: public QObject
 {

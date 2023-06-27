@@ -34,6 +34,7 @@ Page {
     property alias pageHeader: headerLoader.item
     header: Loader { 
         id: headerLoader
+        asynchronous: true
         source: Qt.resolvedUrl("/qml/Components/MainHeader.qml")
         anchors {
             top: parent.top
@@ -165,8 +166,8 @@ Page {
                 }
             }
         ]
-        color: Theme.name === "Ubuntu.Components.Themes.SuruDark" ? "#3A3A3A" : "dimgray"
-        visible: !MyTabs.tabVisibility // opposite
+        color: Theme.name === "Ubuntu.Components.Themes.SuruDark" ? UbuntuColors.inkstone : UbuntuColors.graphite
+        visible: !MyTabs.tabVisibility
         Label {
             id: placeholdertext
             width: parent.width

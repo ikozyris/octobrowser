@@ -36,14 +36,40 @@ ScrollView {
         property int mSpacing: units.gu(2)
         // ==== ADVANCED CATEGORY ====
         ListItem {
-            height: warningLabel.height + column.mSpacing
+            height: warningLabel.height + applyButtom.height + column.mSpacing
             Label {
                 id: warningLabel
                 // TODO: wrapMode: Text.Wrap does not work
                 text: i18n.tr("<b>WARNING</b>: these settings are experimental<br>"
                             + "If you break something and the app does not<br> start, the configuration "
-                            + "file is located on: <br>/home/phablet/.local/<br>share/octobrowser.ikozyris/args.conf<br>"
-                            + "Most of them require a <b>restart of the app</b> to apply")
+                            + "file is located on: <br>/home/phablet/.local/<br>"
+                            + "share/octobrowser.ikozyris/args.conf<br>"
+                            + "To apply changes, press the button below<br> and restart the app.")
+            }
+            Button {
+                id: applyButtom
+                anchors.top: warningLabel.bottom
+                text: i18n.tr("Apply changes")
+                onClicked: {
+                    prefs.log = logswitch.checked
+                    prefs.download = backselector.selectedIndex
+                    prefs.dark = darkswitch.checked
+                    prefs.scrollbar = scrollswitch.checked
+                    prefs.smoothscroll = smoothswitch.checked
+                    prefs.lowend = lowendswitch.checked
+
+                    Manager.overwrite()
+                    if (prefs.dark)
+                        Manager.append(" --force-dark-mode --blink-settings=darkModeEnabled=true,"
+                                        + "darkModeImagePolicy=2 --darkModeInversionAlgorithm=4 ")
+                    if (prefs.scrollbar)
+                        Manager.append(" --enable-features=OverlayScrollbar ")
+                    // --enable-natural-scroll-default
+                    if (prefs.smoothscroll)
+                        Manager.append(" --enable-smooth-scrolling ")
+                    if (prefs.lowend)
+                        Manager.append(" --enable-low-res-tiling  --enable-low-end-device-mode ")
+                }
             }
         }
         ListItem {
@@ -60,7 +86,6 @@ ScrollView {
                     top: parent.top; topMargin: column.mSpacing
                 }
                 selectedIndex: prefs.download
-                onSelectedIndexChanged: prefs.download = backselector.selectedIndex
             }
         }
         ListItem {
@@ -75,7 +100,6 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.log
-                onCheckedChanged: prefs.log = logswitch.checked
             }
         }
         SectionDivider {
@@ -93,11 +117,6 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.dark
-                onCheckedChanged: {
-                    if (prefs.dark != darkswitch.checked)
-                        changed = true
-                    prefs.dark = darkswitch.checked
-                }
             }
         }
         ListItem {
@@ -112,11 +131,6 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.scrollbar
-                onCheckedChanged: {
-                    if (prefs.scrollbar != scrollswitch.checked)
-                        changed = true
-                    prefs.scrollbar = scrollswitch.checked
-                }
             }
         }
         ListItem {
@@ -131,11 +145,6 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.smoothscroll
-                onCheckedChanged: {
-                    if (prefs.smoothscroll != smoothswitch.checked)
-                        changed = true
-                    prefs.smoothscroll = smoothswitch.checked
-                }
             }
         }
         ListItem {
@@ -150,31 +159,7 @@ ScrollView {
                     right: parent.right; rightMargin: units.gu(1)
                 }
                 checked: prefs.lowend
-                onCheckedChanged: {
-                    if (prefs.lowend != lowendswitch.checked)
-                        changed = true
-                    prefs.lowend = lowendswitch.checked
-                }
             }
         }
 	}
-    Component.onDestruction: function() {
-        if (changed) {
-            Manager.overwrite()
-
-            if (prefs.dark)
-                Manager.append(" --force-dark-mode --blink-settings=darkModeEnabled=true,"
-                                + "darkModeImagePolicy=2 --darkModeInversionAlgorithm=4 ")
-
-            if (prefs.scrollbar)
-                Manager.append(" --enable-features=OverlayScrollbar ")
-
-            // --enable-natural-scroll-default
-            if (prefs.smoothscroll)
-                Manager.append(" --enable-smooth-scrolling ")
-
-            if (prefs.lowend)
-                Manager.append(" --enable-low-res-tiling  --enable-low-end-device-mode ")
-        }
-    }
 }

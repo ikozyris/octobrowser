@@ -42,19 +42,21 @@ MainView {
         // General
         property int zoomlevel: 100
         property int adrpos: 0
-        // TODO: better UA?
-        property string cmuseragent: "Mozilla/5.0 (Linux; Mobile; Ubuntu 16.04 like Android 9) AppleWebKit/537.36 Chrome/87.0.4280.144 Mobile Safari/537.36"
         property bool keeptabs: false
         //property bool padding: false
+        property bool clearcache: false
+        property bool dim: false
+        property bool nightMode: false
+        property bool lightfilter: false
 
         // Security & Privacy
+        // TODO: better UA?
+        property string cmuseragent: "Mozilla/5.0 (Linux; Mobile; Ubuntu 16.04 like Android 9) AppleWebKit/537.36 Chrome/87.0.4280.144 Mobile Safari/537.36"
         property bool js: true
         property bool loadimages: true
         property bool securecontent: false
         property bool webrtc: false
         property bool autoplay: false
-        property bool lightfilter: false
-        property bool clearcache: false
 
         // Advanced
         property bool dark: false
@@ -62,7 +64,7 @@ MainView {
         property bool lowend: false
         property bool smoothscroll: true
         property bool log: true
-        property int download: 0 // WebView or SingleDowload
+        property int download: 0 // WebView 0 or SingleDownload 1
     }
 
     // Maybe use a DB? like SQLite?
@@ -81,7 +83,7 @@ MainView {
     PageStack {
         id: pStack
         anchors {
-            fill: undefined // unset the default to make the other anchors work
+            fill: undefined // unset to make the other anchors work
             top: parent.top
             left: parent.left
             right: parent.right
@@ -89,30 +91,32 @@ MainView {
         }
     }
 
-/*
-    PerformanceOverlay {
+/*  PerformanceOverlay {
         anchors.fill: pStack
         enabled: true
     }*/
 
+    // TODO: find a way to make all effects work at the same time
     Loader {
         anchors.fill: pStack
         active: prefs.lightfilter
         asynchronous: true
         sourceComponent: ColorOverlay { //blue light filter
             source: pStack
-    // TODO: better ARGB (3/16 opacity) #AARRGGBB (like SVG khaki without blue)
+    // TODO: better ARGB (3/16 opacity) (like SVG khaki without blue)
+            //      #AARRGGBB
             color: "#30f0e600"
         }
     }
-    // TODO: find a way to make both effects work (color + brightness)
-    /*
-    BrightnessContrast {
+    Loader {
         anchors.fill: pStack
-        source: pStack
-        visible: prefs.lightfilter
-        brightness: -0.25
-    }*/
+        active: prefs.dim
+        sourceComponent: BrightnessContrast {
+            source: pStack
+            brightness: -0.25
+        }
+    }
+
 
     WebEngineProfile {
         //for more profile options see https://doc.qt.io/qt-5/qml-qtwebengine-webengineprofile.html
@@ -126,17 +130,9 @@ MainView {
         
         httpCacheMaximumSize: 94371840 // ~90MB
 
-        httpUserAgent: prefs.cmuseragent;                        //custom UA
+        httpUserAgent: prefs.cmuseragent
         offTheRecord: false
-        onDownloadRequested: {/*
-            console.log(download.url)
-            var fileUrl = StandardPaths.writableLocation(StandardPaths.AppDataLocation)
-                 + "/Downloads/" + download.downloadFileName;
-            //var fileUrl = "/home/phablet/.local/share/octobrowser.ikozyris/Downloads/"
-                 + download.downloadFileName;
-            var request = new XMLHttpRequest();
-            request.open("PUT", fileUrl, false);
-            request.send(decodeURIComponent(download.url.toString().replace("data:text/plain;,", "")))*/
+        onDownloadRequested: {
             if (prefs.download === 0) {
                 download.accept()
                 PopupUtils.open(Qt.resolvedUrl("/qml/Dialogs/Download.qml"), 
@@ -171,7 +167,7 @@ MainView {
         }
     }
     Component.onCompleted: {
-        console.log(Date())
+        //console.log(Date())
         //console.log(StandardPaths.writableLocation(StandardPaths.AppDataLocation) + "/Downloads/")
         //console.log(StandardPaths.writableLocation(StandardPaths.downloadLocation) + "/Downloads/")
         //console.log(webViewProfile.downloadPath)

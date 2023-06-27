@@ -21,6 +21,7 @@ import Ubuntu.Components.Popups 1.3
 import QtWebEngine 1.11
 import QtQuick 2.12
 import "qrc:///qml/Utils.js" as JS
+import "Components/"
 
 WebEngineView {
     id: webview
@@ -58,22 +59,19 @@ WebEngineView {
     }
     onUrlChanged: {
         MyTabs.tabs[MyTabs.tabNum] = webview.url
-        pageHeader.textbar = webview.url
+        pageHeader.textbar = JS.extractDomain(webview.url.toString())
+
+        if (history.urls[history.count] !== url &&
+            webview.loadProgress === 100) {
+            //add url to history
+            history.urls.push(webview.url)
+            history.dates.push(new Date())
+            history.count = history.count + 1
+        }
     }
     onLoadingChanged: {
-        // TODO: display with popup
         if (loadRequest.errorString)
             console.error(loadRequest.errorString)
-        else {
-            // avoid duplicates and redirects
-            if (history.urls[history.count] !== url &&
-                webview.loadProgress === 100) {
-                //add url to history
-                history.urls.push(webview.url)
-                history.dates.push(new Date())
-                history.count = history.count + 1
-            }
-        }
     }
 
     // html <select> override
@@ -202,4 +200,8 @@ WebEngineView {
                 break;
         }
     }
+
+    // Night Mode Shader
+    layer.effect: NightModeShader {}
+    layer.enabled: prefs.nightMode
 }

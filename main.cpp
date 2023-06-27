@@ -84,29 +84,31 @@ int main(int argc, char *argv[])
     } //else qDebug() << "first start";
 
     qputenv("QTWEBENGINE_CHROMIUM_FLAGS", QByteArray::fromStdString(args));
-
-    qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "true");
-    qputenv("APP_ID", "ikozyris.octobrowser");
     qputenv("QTWEBENGINE_DIALOG_SET", "QtQuickControls2"); //force QQC2 popups
-
     if (qgetenv("QT_QPA_PLATFORM") == "wayland") {
         qputenv("QT_WAYLAND_SHELL_INTEGRATION", "wl-shell");
     }
+    //qputenv("QT_AUTO_SCREEN_SCALE_FACTOR", "true");
+
+    // if this is not set the logs say: 
+    /*  APP_ID isn't set, the handler can not be registered
+        APP_ID isn't set, the handler ignored */
+    //qputenv("APP_ID", "ikozyris.octobrowser"); // this brakes ContentHub
+
+    // disabled since this style has problems and
+    // qqc2 components are rarely (only once) used
+    //QQuickStyle::setStyle("Suru"); // set style to Suru (for Ubuntu Touch)
 
     QGuiApplication *app = new QGuiApplication(argc, (char**)argv);
     app->setApplicationName("octobrowser.ikozyris");
 
     qDebug() << "Starting app from main.cpp";
 
-    // disabled since this style has problems and
-    // qqc2 components are only once used
-    //QQuickStyle::setStyle("Suru"); // set style to Suru (for Ubuntu Touch)
 
     QQuickView *view = new QQuickView();
     view->setSource(QUrl("qrc:///qml/Main.qml"));
     view->setResizeMode(QQuickView::SizeRootObjectToView);
     view->show();
-
     return app->exec();
 }
 

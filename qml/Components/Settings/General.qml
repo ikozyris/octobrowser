@@ -19,6 +19,7 @@
 import QtQuick 2.12
 import QtQuick.Layouts 1.3
 import Ubuntu.Components 1.3
+import "../"
 
 ScrollView {
     id: scrollView
@@ -57,23 +58,8 @@ ScrollView {
                 onCheckedChanged: prefs.clearcache = clrchache.checked
             }
         }
-        ListItem {
-            ListItemLayout {
-                title.text: i18n.tr("Blue light filter:")
-                subtitle.text: i18n.tr("Applies a yellow overlay to the app")
-            }
-            Switch {
-                id: blfilter
-                anchors {
-                    top: parent.top; topMargin: column.mSpacing
-                    right: parent.right; rightMargin: units.gu(1)
-                }
-                checked: prefs.lightfilter
-                onCheckedChanged: prefs.lightfilter = blfilter.checked
-            }
-        }/*
         // TODO: find default delagate of ActionBar
-        ListItem {
+        /*ListItem {
             ListItemLayout {
                 title.text: i18n.tr("Add whitespace between buttons on the search header:")
                 subtitle.text: i18n.tr("Some people find buttons too close")
@@ -88,6 +74,23 @@ ScrollView {
                 onCheckedChanged: prefs.padding = paddingswitch.checked
             }
         }*/
+        ListItem {
+            height: posselector.height + column.mSpacing
+            OptionSelector {
+                id: posselector
+                text: i18n.tr("Address bar position: %1 \n(restart the app after change)").arg(
+                    posselector.selectedIndex === 0 ? "top" : "bottom")
+                model: [
+                    i18n.tr("top"),
+                    i18n.tr("bottom"),
+                ]
+                anchors {
+                    top: parent.top; topMargin: column.mSpacing
+                }
+                selectedIndex: prefs.adrpos
+                onSelectedIndexChanged: prefs.adrpos = posselector.selectedIndex
+            }
+        }
         ListItem {
             height: zoomlabel.height + zoomslider.height + column.mSpacing
             ListItemLayout {
@@ -107,21 +110,54 @@ ScrollView {
                 onValueChanged: prefs.zoomlevel = zoomslider.value
             }
         }
+        SectionDivider {
+            text: i18n.tr("Filters")
+        }
         ListItem {
-            height: posselector.height + column.mSpacing
-            OptionSelector {
-                id: posselector
-                text: i18n.tr("Address bar position: %1 \n(restart the app after change)").arg(
-                    posselector.selectedIndex === 0 ? "top" : "bottom")
-                model: [
-                    i18n.tr("top"),
-                    i18n.tr("bottom"),
-                ]
+            enabled: dimfilter != true
+            ListItemLayout {
+                title.text: i18n.tr("Blue light filter:")
+                subtitle.text: i18n.tr("Applies a yellow overlay to the app")
+            }
+            Switch {
+                id: blfilter
                 anchors {
                     top: parent.top; topMargin: column.mSpacing
+                    right: parent.right; rightMargin: units.gu(1)
                 }
-                selectedIndex: prefs.adrpos
-                onSelectedIndexChanged: prefs.adrpos = posselector.selectedIndex
+                checked: prefs.lightfilter
+                onCheckedChanged: prefs.lightfilter = this.checked
+            }
+        }
+        ListItem {
+            enabled: blfilter != true
+            ListItemLayout {
+                title.text: i18n.tr("Reduce brightness:")
+                subtitle.text: i18n.tr("Reduces the brightness of the app")
+            }
+            Switch {
+                id: dimfilter
+                anchors {
+                    top: parent.top; topMargin: column.mSpacing
+                    right: parent.right; rightMargin: units.gu(1)
+                }
+                checked: prefs.dim
+                onCheckedChanged: prefs.dim = this.checked
+            }
+        }
+        ListItem {
+            ListItemLayout {
+                title.text: i18n.tr("Night Mode:")
+                subtitle.text: i18n.tr("Makes web page B&W and inverts colors")
+            }
+            Switch {
+                id: nightfilter
+                anchors {
+                    top: parent.top; topMargin: column.mSpacing
+                    right: parent.right; rightMargin: units.gu(1)
+                }
+                checked: prefs.nightMode
+                onCheckedChanged: prefs.nightMode = this.checked
             }
         }
 	}

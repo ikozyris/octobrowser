@@ -49,6 +49,7 @@ MainView {
         property bool dim: false
         property bool nightMode: false
         property bool lightfilter: false
+        property bool ac: true
 
         // Security & Privacy
         // TODO: better UA?

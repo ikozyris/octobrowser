@@ -79,7 +79,7 @@ Page {
             webview.url = JS.buildSearchUrl(text)
             srchSugg.visible = false
             MyTabs.tabVisibility = true
-            pageHeader.textFieldInput.focus = false
+            //pageHeader.textFieldInput.focus = false
         }
     }
 

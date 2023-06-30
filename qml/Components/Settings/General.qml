@@ -46,7 +46,7 @@ ScrollView {
         ListItem {
             ListItemLayout {
                 title.text: i18n.tr("Clear web cache on exit:")
-                subtitle.text: i18n.tr("Web caches can get very large if never cleard")
+                subtitle.text: i18n.tr("Web caches can get very large if never cleared")
             }
             Switch {
                 id: clrchache
@@ -62,7 +62,7 @@ ScrollView {
         /*ListItem {
             ListItemLayout {
                 title.text: i18n.tr("Add whitespace between buttons on the search header:")
-                subtitle.text: i18n.tr("Some people find buttons too close")
+                subtitle.text: i18n.tr("Some people may find buttons too close")
             }
             Switch {
                 id: paddingswitch
@@ -75,11 +75,25 @@ ScrollView {
             }
         }*/
         ListItem {
+            ListItemLayout {
+                title.text: i18n.tr("Automatically suggest search:")
+                subtitle.text: i18n.tr("Enable word prediction in search bar")
+            }
+            Switch {
+                id: acswitch
+                anchors {
+                    top: parent.top; topMargin: column.mSpacing
+                    right: parent.right; rightMargin: units.gu(1)
+                }
+                checked: prefs.ac
+                onCheckedChanged: prefs.ac = acswitch.checked
+            }
+        }
+        ListItem {
             height: srcselector.height + column.mSpacing
             OptionSelector {
                 id: srcselector
-                text: i18n.tr("Search Engine: %1").arg(
-                    srcselector.selectedIndex === 0 ? "DuckDuckGo" : "Google")
+                text: i18n.tr("Search Engine: %1").arg(model[selectedIndex])
                 model: [
                     i18n.tr("DuckDuckGo"),
                     i18n.tr("Google"),
@@ -96,7 +110,7 @@ ScrollView {
             OptionSelector {
                 id: posselector
                 text: i18n.tr("Address bar position: %1 \n(restart the app after change)").arg(
-                    posselector.selectedIndex === 0 ? "top" : "bottom")
+                               model[selectedIndex])
                 model: [
                     i18n.tr("top"),
                     i18n.tr("bottom"),

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-30 18:36+0000\n"
+"POT-Creation-Date: 2023-06-30 18:56+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -169,69 +169,77 @@ msgid "Clear web cache on exit:"
 msgstr ""
 
 #: ../qml/Components/Settings/General.qml:49
-msgid "Web caches can get very large if never cleard"
+msgid "Web caches can get very large if never cleared"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:81
+#: ../qml/Components/Settings/General.qml:79
+msgid "Automatically suggest search:"
+msgstr ""
+
+#: ../qml/Components/Settings/General.qml:80
+msgid "Enable word prediction in search bar"
+msgstr ""
+
+#: ../qml/Components/Settings/General.qml:96
 msgid "Search Engine: %1"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:84
+#: ../qml/Components/Settings/General.qml:98
 msgid "DuckDuckGo"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:85
+#: ../qml/Components/Settings/General.qml:99
 msgid "Google"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:98
+#: ../qml/Components/Settings/General.qml:112
 msgid ""
 "Address bar position: %1 \n"
 "(restart the app after change)"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:101
+#: ../qml/Components/Settings/General.qml:115
 msgid "top"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:102
+#: ../qml/Components/Settings/General.qml:116
 msgid "bottom"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:115
+#: ../qml/Components/Settings/General.qml:129
 #, javascript-format
 msgid "Zoom level: %1%"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:116
+#: ../qml/Components/Settings/General.qml:130
 msgid "Scales the page according to your needs"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:131
+#: ../qml/Components/Settings/General.qml:145
 msgid "Filters"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:136
+#: ../qml/Components/Settings/General.qml:150
 msgid "Blue light filter:"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:137
+#: ../qml/Components/Settings/General.qml:151
 msgid "Applies a yellow overlay to the app"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:152
+#: ../qml/Components/Settings/General.qml:166
 msgid "Reduce brightness:"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:153
+#: ../qml/Components/Settings/General.qml:167
 msgid "Reduces the brightness of the app"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:167
+#: ../qml/Components/Settings/General.qml:181
 msgid "Night Mode:"
 msgstr ""
 
-#: ../qml/Components/Settings/General.qml:168
+#: ../qml/Components/Settings/General.qml:182
 msgid "Makes web page B&W and inverts colors"
 msgstr ""
 
@@ -426,10 +434,6 @@ msgstr ""
 
 #: ../qml/HistoryView.qml:38
 msgid "Clear history"
-msgstr ""
-
-#: ../qml/ManualDownload.qml:28
-msgid "Downloads"
 msgstr ""
 
 #: ../qml/TabsView.qml:30

@@ -112,7 +112,7 @@ PageHeader {
             }
         }
         onTextChanged: {
-            if (activeFocus && webview.url != textFieldInput.text) {
+            if (prefs.ac && activeFocus && webview.url != textFieldInput.text) {
                 srchSugg.visible = true
                 srchSugg.item.get(pageHeader.textbar)
             }

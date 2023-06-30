@@ -6,7 +6,8 @@ Rectangle {
 	id: suggestions
     radius: 10
     signal activated(string text)
-
+    color: theme.palette.normal.background
+    border.color: theme.palette.normal.raised
     height: 0 // height will be dynamically changed
 	ListView {
         id: suggList

@@ -62,7 +62,7 @@ Page {
                 linkColor: UbuntuColors.orange
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: i18n.tr("Version: 0.4.7")
+                text: i18n.tr("Version: 0.4.9")
             }
 
             Label {

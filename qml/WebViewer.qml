@@ -60,20 +60,28 @@ WebEngineView {
     onUrlChanged: {
         MyTabs.tabs[MyTabs.tabNum] = webview.url
         pageHeader.textbar = JS.extractDomain(webview.url.toString())
-
+        //console.log("curr: " + loadProgress)
         if (history.urls[history.count] !== url &&
-            webview.loadProgress === 100) {
+            loadProgress === 100) {
             //add url to history
             history.urls.push(webview.url)
             history.dates.push(new Date())
-            history.count = history.count + 1
+            history.count++
         }
     }
     onLoadingChanged: {
         if (loadRequest.errorString)
             console.error(loadRequest.errorString)
     }
-
+    onLoadProgressChanged: {
+        if (history.urls[history.count] !== url &&
+            loadProgress === 100) {
+            //add url to history
+            history.urls.push(webview.url)
+            history.dates.push(new Date())
+            history.count++
+        }
+    }
     // html <select> override
     property var selectOverride: function(request) {
         var dialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/Web/SelectOverride.qml"));
@@ -152,7 +160,7 @@ WebEngineView {
             case 0:
                 request.accepted = true;
                 var authDialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/Web/HttpAuth.qml"), this);
-                authDialog.host = UrlUtils.extractHost(request.url);
+                authDialog.host = JS.extractDomain(request.url.toString());
                 authDialog.realm = request.realm;
                 authDialog.accept.connect(function(username, password) {
                                             request.dialogAccept(username, password);});
@@ -169,32 +177,17 @@ WebEngineView {
      onFeaturePermissionRequested: {
         switch (feature) {
             case WebEngineView.Geolocation:
-                var domain = UrlUtils.extractHost(securityOrigin);
-                var locationPreference = DomainSettingsModel.getLocationPreference(domain);
-                if (locationPreference === DomainSettingsModel.AllowLocationAccess) {
-                    grantFeaturePermission(securityOrigin, feature, true);
-                    return;
-                }
-                if (locationPreference === DomainSettingsModel.DenyLocationAccess){
-                    grantFeaturePermission(securityOrigin, feature, false);
-                    return;
-                }
-                var geoPermissionDialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/Web/GeolocationAccess.qml"), this);
+                var domain = JS.extractDomain(securityOrigin.toString());
+                var geoPermissionDialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/Web/GeolocationAccess.qml"));
                 geoPermissionDialog.securityOrigin = securityOrigin;
-                geoPermissionDialog.showRememberDecisionCheckBox = (domain !== "") && ! incognito
+
                 geoPermissionDialog.allow.connect(function() { grantFeaturePermission(securityOrigin, feature, true); });
-                geoPermissionDialog.allowPermanently.connect(function() { grantFeaturePermission(securityOrigin, feature, true);
-                                                                          DomainSettingsModel.setLocationPreference(domain, DomainSettingsModel.AllowLocationAccess);
-                                                                        })
                 geoPermissionDialog.reject.connect(function() { grantFeaturePermission(securityOrigin, feature, false); });
-                geoPermissionDialog.rejectPermanently.connect(function() { grantFeaturePermission(securityOrigin, feature, false);
-                                                                          DomainSettingsModel.setLocationPreference(domain, DomainSettingsModel.DenyLocationAccess);
-                                                                        })
                 break;
             case WebEngineView.MediaAudioCapture:
             case WebEngineView.MediaVideoCapture:
             case WebEngineView.MediaAudioVideoCapture:
-                var mediaAccessDialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/Web/MediaAccess.qml"), this);
+                var mediaAccessDialog = PopupUtils.open(Qt.resolvedUrl("Dialogs/Web/MediaAccess.qml"));
                 mediaAccessDialog.origin = securityOrigin;
                 mediaAccessDialog.feature = feature;
                 break;

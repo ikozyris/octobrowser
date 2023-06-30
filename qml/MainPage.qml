@@ -34,6 +34,7 @@ Page {
     property alias pageHeader: headerLoader.item
     header: Loader { 
         id: headerLoader
+        z: 95
         asynchronous: true
         source: Qt.resolvedUrl("/qml/Components/MainHeader.qml")
         anchors {
@@ -72,10 +73,51 @@ Page {
                 headerLoader.setSource(Qt.resolvedUrl("/qml/Components/MainHeader.qml"))
         }
     }
-    property alias webview: webviewLoader.item
+    Connections {
+        target: srchSugg.item
+        onActivated: {
+            webview.url = JS.buildSearchUrl(text)
+            srchSugg.visible = false
+            MyTabs.tabVisibility = true
+            pageHeader.textFieldInput.focus = false
+        }
+    }
 
     Loader {
+        id: srchSugg
+        source: Qt.resolvedUrl("SearchSuggestionList.qml")
+        z: 90 //appear on top
+        //visible: pageHeader.textbar != "" && pageHeader.textFieldInput.focus === true
+        anchors {
+            top: header.bottom
+            left: parent.left
+            right: parent.right
+        }
+        states: [
+            State {
+                name: "bottom"
+                AnchorChanges {
+                    target: srchSugg
+                    anchors.top: undefined
+                    anchors.bottom: header.top
+                }
+            },
+            State {
+                name: "top"
+                AnchorChanges {
+                    target: srchSugg
+                    anchors.bottom: undefined
+                    anchors.top: header.bottom
+                }
+            }
+        ]
+    }
+
+    property alias webview: webviewLoader.item
+    Loader {
         id: webviewLoader
+        z: 80
+        //asynchronous: true
         source: Qt.resolvedUrl("/qml/WebViewer.qml")
         anchors {
             top: header.bottom
@@ -112,6 +154,7 @@ Page {
     }
 
     ProgressBar {
+        z: 90
         anchors {
             top: header.bottom
             left: parent.left
@@ -140,8 +183,12 @@ Page {
         visible: JS.canshow(webview.loadProgress)
     }
 
-    Rectangle {
+    Loader {
         id: webViewPlaceholder
+        asynchronous: true
+        z: 30
+        source: Qt.resolvedUrl("/qml/Components/WebViewPlaceholder.qml")
+        visible: !MyTabs.tabVisibility
         anchors {
             top: header.bottom
             left: parent.left
@@ -166,27 +213,6 @@ Page {
                 }
             }
         ]
-        color: Theme.name === "Ubuntu.Components.Themes.SuruDark" ? UbuntuColors.inkstone : UbuntuColors.graphite
-        visible: !MyTabs.tabVisibility
-        Label {
-            id: placeholdertext
-            width: parent.width
-            horizontalAlignment: Text.AlignHCenter
-            text: i18n.tr("Welcome to <i>Octopus Browser</i>, <br> a fast & customizable browser.")
-            fontSize: "large"
-            wrapMode: Text.Wrap
-            color: "white"
-            anchors.centerIn: parent
-        }
-        UbuntuShape {
-            width: units.gu(12); height: units.gu(12)
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.bottom: placeholdertext.top
-            radius: "medium"
-            image: Image {
-                source: Qt.resolvedUrl("/assets/logo.svg")
-            }
-        }
     }
 
     Component.onCompleted: {
@@ -196,5 +222,6 @@ Page {
         headerLoader.state = barposition
         webviewLoader.state = barposition
         webViewPlaceholder.state = barposition
+        srchSugg.state = barposition
     }
 }

@@ -24,37 +24,25 @@ Dialog {
     id: dialog
 
     property string securityOrigin
-    property bool showRememberDecisionCheckBox
 
     title: i18n.tr("Permission Request")
     text: securityOrigin + "<br>" + i18n.tr("This page wants to know your device’s location.")
     
     signal allow()
-    signal allowPermanently()
     signal reject()
-    signal rejectPermanently()
     
     onAllow: { PopupUtils.close(dialog); }
-    onAllowPermanently: { PopupUtils.close(dialog); }
     onReject: { PopupUtils.close(dialog); }
-    onRejectPermanently: { PopupUtils.close(dialog); }
 
-    ListItemLayout {
-        visible: showRememberDecisionCheckBox
-        title.text: i18n.tr("Remember decision")
-        CheckBox {
-            id: rememberDecisionCheckBox
-         }
-    }
     Button {
         objectName: "allow"
         text: i18n.tr("Allow")
         color: theme.palette.normal.positive
-        onClicked: rememberDecisionCheckBox.checked ? allowPermanently() : allow()
+        onClicked: allow()
     }
     Button {
         objectName: "deny"
         text: i18n.tr("Deny")
-        onClicked: rememberDecisionCheckBox.checked ? rejectPermanently() : reject()
+        onClicked: reject()
     }
 }

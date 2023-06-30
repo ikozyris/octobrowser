@@ -18,6 +18,7 @@
 	<file>MainPage.qml</file>
 	<file>ManualDownload.qml</file>
 	<file>qmldir</file>
+	<file>SearchSuggestionList.qml</file>
 	<file>select_override.js</file>
 	<file>SettingsView.qml</file>
 	<file>Singleton.qml</file>

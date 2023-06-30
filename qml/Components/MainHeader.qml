@@ -95,26 +95,34 @@ PageHeader {
         }
         placeholderText: i18n.tr("Enter a URL or a search query")
         inputMethodHints: Qt.ImhUrlCharactersOnly | Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase
-        property var prevText
+        property var prevText // used to restore domain name if focus changes twice without change in the text
         onActiveFocusChanged: {
             if (activeFocus) {
                 prevText = textFieldInput.text
-                textFieldInput.text = webview.url
+                if (webview.url !== "")
+                    textFieldInput.text = webview.url
                 state = "focused"
                 selectAll()
             } else {
-                if (prevText != "")
+                if (prevText !== "" && webview.url != "")
                     textFieldInput.text = prevText
                 state = "normal"
                 focus = false
+                srchSugg.visible = false
+            }
+        }
+        onTextChanged: {
+            if (activeFocus && webview.url != textFieldInput.text) {
+                srchSugg.visible = true
+                srchSugg.item.get(pageHeader.textbar)
             }
         }
         onAccepted: {
-            //MyTabs.tabs[MyTabs.tabNum] = JS.geturl(textFieldInput.text)
             MyTabs.currtab = JS.buildSearchUrl(textFieldInput.text)
             MyTabs.tabVisibility = true
             state = "normal"
             focus = false
+            srchSugg.visible = false
         }
     }
     trailingActionBar {

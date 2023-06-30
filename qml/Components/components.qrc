@@ -11,5 +11,6 @@
 	<file>Settings/Privacy.qml</file>
 	<file>Settings/Security.qml</file>
 	<file>SingleTab.qml</file>
+	<file>WebViewPlaceholder.qml</file>
 </qresource>
 </RCC>

@@ -11,13 +11,24 @@ You should follow the following rules:
 - Use meaningful comments
 - Prefer easily understandable code rather than too many comments
 - Avoid exceeding the width of 80 columns and NEVER over 120
-- The following if/while/for... structure:
+- The structure:
 ```
-for (i = 10; i < 0; --i)
-while (1 === 1)
-if (i > 8)
+function silly() {
+    var i
+    for (i = 10; i > 0; --i) {
+        while (i > 8) {
+            ++i;
+            console.log("I: " + i)
+            if (i > 20) 
+                i = 7;
+        }
+        console.log("i: " +i)
+    }
+} 
 ```
+- Spaces around operators:
+` i = 0; ++i; i < 5; i != 8;`
 
 ### Don't know were to start from?
 You can try solving some of the TODO. Find them like that:
-``` grep -rn "TODO" ```
+` grep -rn "TODO" `

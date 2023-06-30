@@ -71,6 +71,7 @@ ScrollView {
                     topMargin: column.mSpacing
                     horizontalCenter: parent.horizontalCenter
                 }
+                spacing: units.gu(1)
                 Button {
                     text: i18n.tr("Default (UT)")
                     onClicked: uatext.text = "Mozilla/5.0 (Linux; Mobile; Ubuntu 16.04 like Android 9) AppleWebKit/537.36 Chrome/87.0.4280.144 Mobile Safari/537.36"

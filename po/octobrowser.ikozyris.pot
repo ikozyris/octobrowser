@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: octobrowser.ikozyris\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-27 10:46+0000\n"
+"POT-Creation-Date: 2023-06-30 19:31+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/About.qml:25 ../qml/Components/MainHeader.qml:145
+#: ../qml/About.qml:25 ../qml/Components/MainHeader.qml:153
 msgid "About"
 msgstr ""
 
@@ -72,23 +72,23 @@ msgstr ""
 msgid "Enter a URL or a search query"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:125
+#: ../qml/Components/MainHeader.qml:133
 msgid "Manage Tabs"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:130 ../qml/SettingsView.qml:28
+#: ../qml/Components/MainHeader.qml:138 ../qml/SettingsView.qml:28
 msgid "Settings"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:135 ../qml/HistoryView.qml:35
+#: ../qml/Components/MainHeader.qml:143 ../qml/HistoryView.qml:35
 msgid "History"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:140
+#: ../qml/Components/MainHeader.qml:148
 msgid "Find in page"
 msgstr ""
 
-#: ../qml/Components/MainHeader.qml:150 ../qml/Help.qml:28
+#: ../qml/Components/MainHeader.qml:158 ../qml/Help.qml:28
 msgid "Help"
 msgstr ""
 
@@ -245,15 +245,15 @@ msgstr ""
 msgid "The buttons below will apply some Chrome User Agents"
 msgstr ""
 
-#: ../qml/Components/Settings/Privacy.qml:75
+#: ../qml/Components/Settings/Privacy.qml:76
 msgid "Default (UT)"
 msgstr ""
 
-#: ../qml/Components/Settings/Privacy.qml:79
+#: ../qml/Components/Settings/Privacy.qml:80
 msgid "Linux Desktop"
 msgstr ""
 
-#: ../qml/Components/Settings/Privacy.qml:83
+#: ../qml/Components/Settings/Privacy.qml:84
 msgid "Chrome on Android"
 msgstr ""
 
@@ -289,6 +289,10 @@ msgstr ""
 msgid "Allows loading files over unencrypted HTTP"
 msgstr ""
 
+#: ../qml/Components/WebViewPlaceholder.qml:9
+msgid "Welcome to <i>Octopus Browser</i>, <br> a fast & customizable browser."
+msgstr ""
+
 #: ../qml/Dialogs/Download.qml:20
 msgid "Downloading:\n"
 msgstr ""
@@ -319,23 +323,19 @@ msgstr ""
 msgid "Downloading:"
 msgstr ""
 
-#: ../qml/Dialogs/Web/GeolocationAccess.qml:29
+#: ../qml/Dialogs/Web/GeolocationAccess.qml:28
 msgid "Permission Request"
 msgstr ""
 
-#: ../qml/Dialogs/Web/GeolocationAccess.qml:30
+#: ../qml/Dialogs/Web/GeolocationAccess.qml:29
 msgid "This page wants to know your device’s location."
 msgstr ""
 
-#: ../qml/Dialogs/Web/GeolocationAccess.qml:44
-msgid "Remember decision"
-msgstr ""
-
-#: ../qml/Dialogs/Web/GeolocationAccess.qml:51
+#: ../qml/Dialogs/Web/GeolocationAccess.qml:39
 msgid "Allow"
 msgstr ""
 
-#: ../qml/Dialogs/Web/GeolocationAccess.qml:57
+#: ../qml/Dialogs/Web/GeolocationAccess.qml:45
 msgid "Deny"
 msgstr ""
 
@@ -414,10 +414,6 @@ msgstr ""
 
 #: ../qml/HistoryView.qml:38
 msgid "Clear history"
-msgstr ""
-
-#: ../qml/MainPage.qml:175
-msgid "Welcome to <i>Octopus Browser</i>, <br> a fast & customizable browser."
 msgstr ""
 
 #: ../qml/ManualDownload.qml:28

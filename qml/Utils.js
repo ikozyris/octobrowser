@@ -25,7 +25,7 @@ function looksLikeUrl(s) {
 
 function fixUrl(string) {
 	if (looksLikeUrl(string)) {
-	    if (prefs.securecontent != true) {
+        if (prefs.securecontent !== true) {
 			return "https://" + string;
 	    } else {
 			return "http://" + string;
@@ -49,12 +49,15 @@ function buildSearchUrl(text) {
 	    return text;
 	} else {
 	    var result = fixUrl(text)
-	    if (result != "bad") {
+        if (result !== "bad") {
 			return result;
 	    } else {
 			var terms = text.split(/\s/).map(escapeHtmlEntities);
 			// TODO: do not hard code search engine
-			return "https://duckduckgo.com/?q=" + terms.join("+");
+			if (prefs.srchEngine === 0)
+				return "https://duckduckgo.com/?q=" + terms.join("+");
+			else
+				return "https://google.com/search?q=" + terms.join("+");
 	    }
 	}
 }
@@ -87,7 +90,7 @@ function showTabs() {
 	let i = 0;
 	let prevX = units.gu(2);
 	let prevY = units.gu(8);
-	while (MyTabs.tabs[i] != undefined) {
+    while (MyTabs.tabs[i] !== undefined) {
 		let tileX = prevX;
 		let tileY = prevY;
 		if (i !== 0) {

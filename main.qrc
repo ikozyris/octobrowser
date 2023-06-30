@@ -29,6 +29,7 @@
 	<file>qml/ManualDownload.qml</file>
 	<file>qml/qmldir</file>
 	<file>qml/select_override.js</file>
+	<file>qml/SearchSuggestionList.qml</file>
 	<file>qml/SettingsView.qml</file>
 	<file>qml/Singleton.qml</file>
 	<file>qml/TabsView.qml</file>

@@ -33,20 +33,23 @@ Rectangle {
             xhr = new XMLHttpRequest()
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
-                    //console.log("received: " + xhr.responseText)
+                    console.log("received: " + xhr.responseText)
                     results = parseResponse(xhr.responseText)
                     //console.log("parsed: " + results)
                 }
             }
         }
         //console.log("encoded: " + encodeURIComponent(text))
-        xhr.open("GET", "https://www.google.com/complete/search?client=firefox&q=" + encodeURIComponent(text));
+        if (prefs.srchEngine === 0)
+            xhr.open("GET", "https://ac.duckduckgo.com/ac/?q=" + encodeURIComponent(text) + "&type=list");
+        else
+            xhr.open("GET", "https://www.google.com/complete/search?client=firefox&q=" + encodeURIComponent(text));
         xhr.send();
     }
     function abort() {
         if (xhr) xhr.abort()
     }
-	   function parseResponse(response) {
+	function parseResponse(response) {
         try {
             var data = JSON.parse(response)
         } catch (error) {

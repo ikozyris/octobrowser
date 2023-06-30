@@ -58,7 +58,7 @@ ScrollView {
                 onCheckedChanged: prefs.clearcache = clrchache.checked
             }
         }
-        // TODO: find default delagate of ActionBar
+        // TODO: find default delegate of ActionBar to make custom Actions
         /*ListItem {
             ListItemLayout {
                 title.text: i18n.tr("Add whitespace between buttons on the search header:")
@@ -74,6 +74,23 @@ ScrollView {
                 onCheckedChanged: prefs.padding = paddingswitch.checked
             }
         }*/
+        ListItem {
+            height: srcselector.height + column.mSpacing
+            OptionSelector {
+                id: srcselector
+                text: i18n.tr("Search Engine: %1").arg(
+                    srcselector.selectedIndex === 0 ? "DuckDuckGo" : "Google")
+                model: [
+                    i18n.tr("DuckDuckGo"),
+                    i18n.tr("Google"),
+                ]
+                anchors {
+                    top: parent.top; topMargin: column.mSpacing
+                }
+                selectedIndex: prefs.srchEngine
+                onSelectedIndexChanged: prefs.srchEngine = srcselector.selectedIndex
+            }
+        }
         ListItem {
             height: posselector.height + column.mSpacing
             OptionSelector {
@@ -114,7 +131,7 @@ ScrollView {
             text: i18n.tr("Filters")
         }
         ListItem {
-            enabled: dimfilter != true
+            enabled: dimfilter !== true
             ListItemLayout {
                 title.text: i18n.tr("Blue light filter:")
                 subtitle.text: i18n.tr("Applies a yellow overlay to the app")
@@ -130,7 +147,7 @@ ScrollView {
             }
         }
         ListItem {
-            enabled: blfilter != true
+            enabled: blfilter !== true
             ListItemLayout {
                 title.text: i18n.tr("Reduce brightness:")
                 subtitle.text: i18n.tr("Reduces the brightness of the app")

@@ -5,7 +5,7 @@ import Ubuntu.DownloadManager 1.2
 import Ubuntu.Content 1.3
 
 import "../Content/MimeTypeMapper.js" as MimeTypeMapper
-import "/qml/Utils.js" as JS
+import "../Utils.js" as JS
 
 Dialog {
     id: downloadDialog

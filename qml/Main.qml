@@ -42,6 +42,7 @@ MainView {
         // General
         property int zoomlevel: 100
         property int adrpos: 0
+        property int srchEngine: 0
         property bool keeptabs: false
         //property bool padding: false
         property bool clearcache: false
@@ -91,7 +92,9 @@ MainView {
         }
     }
 
-/*  PerformanceOverlay {
+/*    PerformanceOverlay {
+        id: perf
+        z: 100
         anchors.fill: pStack
         enabled: true
     }*/
@@ -152,14 +155,14 @@ MainView {
 
         onImportRequested: {
             console.log("import")
-            console.log(transfer)
+            //console.log(transfer)
             // it was triggered externally so open it in webview
             if (!internal) {
                 MyTabs.currtab = transfer.items[0].url
                 MyTabs.tabVisibility = true
-            } else {
+            } /*else {
                 console.log("internal import")
-            }
+            }*/
 
         }
         onExportRequested: {

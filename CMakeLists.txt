@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(octobrowser C CXX)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Werror -O2")
 
 # Automatically create moc files
 set(CMAKE_AUTOMOC ON)
@@ -26,7 +27,7 @@ set(DESKTOP_FILE_NAME ${PROJECT_NAME}.desktop)
 if(DEFINED ENV{SDK_FRAMEWORK})
     set(CLICK_FRAMEWORK "$ENV{SDK_FRAMEWORK}")
 else()
-    set(CLICK_FRAMEWORK "ubuntu-sdk-16.04.3")
+    set(CLICK_FRAMEWORK "ubuntu-sdk-16.04.5")
 endif()
 
 # This figures out the target architecture for use in the manifest file.

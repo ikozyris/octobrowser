@@ -21,7 +21,7 @@ import QtQuick.Controls 2.12
 import Ubuntu.Components 1.3
 
 import "qrc:///qml/Utils.js" as JS
-import "qrc:///qml/Components"
+import "Components"
 import "."
 
 Page {

@@ -54,6 +54,7 @@ Page {
                 radius: "medium"
                 image: Image {
                     source: Qt.resolvedUrl("qrc:///assets/logo.svg")
+                    asynchronous: true
                 }
             }
 

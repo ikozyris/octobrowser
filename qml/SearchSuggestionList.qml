@@ -4,7 +4,7 @@ import Ubuntu.Components.ListItems 1.3 as ListItem
 
 Rectangle {
 	id: suggestions
-
+    radius: 10
     signal activated(string text)
 
     height: 0 // height will be dynamically changed
@@ -33,7 +33,7 @@ Rectangle {
             xhr = new XMLHttpRequest()
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
-                    console.log("received: " + xhr.responseText)
+                    //console.log("received: " + xhr.responseText)
                     results = parseResponse(xhr.responseText)
                     //console.log("parsed: " + results)
                 }

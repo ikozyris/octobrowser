@@ -89,6 +89,7 @@ Page {
         z: 90 //appear on top
         //visible: pageHeader.textbar != "" && pageHeader.textFieldInput.focus === true
         anchors {
+            margins: units.gu(0.8)
             top: header.bottom
             left: parent.left
             right: parent.right

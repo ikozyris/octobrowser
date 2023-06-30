@@ -16,7 +16,6 @@
 	<file>KeyboardRectangle.qml</file>
 	<file>Main.qml</file>
 	<file>MainPage.qml</file>
-	<file>ManualDownload.qml</file>
 	<file>qmldir</file>
 	<file>SearchSuggestionList.qml</file>
 	<file>select_override.js</file>

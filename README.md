@@ -9,15 +9,16 @@ Features:
 - History
 - Block autoplaying videos
 - Tabs
+- Chrome flags: dark-mode, etc.
 - _MORE_
 
 In other words: The simpliest yet experamental Qt browser for Ubuntu Touch.
 
 **DISCLAIMER**: Many things do not work, <br>here is a TODO list sorted by priority:
-- ~~Tabs (important)~~ almost (to some extent)
-- ~~History (important)~~ 
+- ~~Tabs~~ almost (to some extent)
+- ~~History~~ 
 - Bookmarks
-- Camera and other permissions (not prioritized)
+- ~~Camera and other permissions~~
 
 ### Known Issues
 Tabs are not the the best
@@ -29,7 +30,7 @@ You can use the untested `focal.sh` script to fix library imports. Then try to c
 ## Qt Quick Compiler
 to compile Ahead-Of-Time:
 ```
-mv CMakeLists.txt CMakeLists-JIT.txt; mv CMakeLists-AOT.txt CMakeLists.txt
+mv CMakeLists.txt CMakeLists-JIT.txt && mv CMakeLists-AOT.txt CMakeLists.txt
 ```
 I didn't notice any improvement so it is not used by default.
 Not convinced that JIT is faster than AOT (until Qt 6.3)? See [this article](https://www.qt.io/blog/the-new-qtquick-compiler-technology)
